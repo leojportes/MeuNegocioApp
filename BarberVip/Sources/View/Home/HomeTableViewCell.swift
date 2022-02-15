@@ -22,6 +22,19 @@ final class HomeTableViewCell: UITableViewCell, ViewCodeContract {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var backView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.roundCorners(cornerRadius: 8)
+        contentView.addShadow(color: UIColor.BarberColors.darkGray,
+                              size: CGSize(width: -3,
+                                           height: 3),
+                              opacity: 0.4,
+                              radius: 2.0)
+        view.backgroundColor = UIColor.BarberColors.lightGray
+        return view
+    }()
+    
     // MARK: - Viewcode
     private lazy var imagePoster: UIImageView = {
         let image = UIImageView()
@@ -68,43 +81,51 @@ final class HomeTableViewCell: UITableViewCell, ViewCodeContract {
     
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        contentView.addSubview(nameLabel)
-        contentView.addSubview(procedureLabel)
-        contentView.addSubview(priceLabel)
-        contentView.addSubview(paymentMethodLabel)
+        contentView.addSubview(backView)
+        backView.addSubview(nameLabel)
+        backView.addSubview(procedureLabel)
+        backView.addSubview(priceLabel)
+        backView.addSubview(paymentMethodLabel)
     }
     
     func setupConstraints() {
+        contentView
+            .topAnchor(in: self, padding: 5)
+            .bottomAnchor(in: self, padding: 10)
+        
+        backView
+            .topAnchor(in: contentView)
+            .leftAnchor(in: contentView, padding: 8)
+            .rightAnchor(in: contentView)
+            .bottomAnchor(in: contentView)
+        
         nameLabel
-            .topAnchor(in: contentView, padding: 5)
-            .leftAnchor(in: contentView, padding: 10)
-            .bottomAnchor(in: contentView, padding: 5)
+            .topAnchor(in: backView, padding: 5)
+            .leftAnchor(in: backView, padding: 10)
+            .bottomAnchor(in: backView, padding: 5)
             .widthAnchor(70)
         
         procedureLabel
-            .topAnchor(in: contentView, padding: 5)
+            .topAnchor(in: backView, padding: 5)
             .leftAnchor(in: nameLabel, attribute: .right, padding: 25)
-            .bottomAnchor(in: contentView, padding: 5)
+            .bottomAnchor(in: backView, padding: 5)
             .widthAnchor(70)
         
         priceLabel
-            .topAnchor(in: contentView, padding: 5)
+            .topAnchor(in: backView, padding: 5)
             .leftAnchor(in: procedureLabel, attribute: .right, padding: 20)
-            .bottomAnchor(in: contentView, padding: 5)
+            .bottomAnchor(in: backView, padding: 5)
             .widthAnchor(70)
         
         paymentMethodLabel
-            .topAnchor(in: contentView, padding: 5)
-            .rightAnchor(in: contentView, padding: 10)
-            .bottomAnchor(in: contentView, padding: 5)
+            .topAnchor(in: backView, padding: 5)
+            .rightAnchor(in: backView, padding: 10)
+            .bottomAnchor(in: backView, padding: 5)
             .widthAnchor(70)
-        
     }
     
     func setupConfiguration() {
         selectionStyle = .none
-        contentView.roundCorners(cornerRadius: 10, all: true)
-        contentView.backgroundColor = UIColor.BarberColors.lightGray        
     }
     
     // MARK: - Public methods

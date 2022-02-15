@@ -9,6 +9,7 @@ import UIKit
 
 extension UIView {
     
+    /// Adiciona bordas arredondadas em um componente UIView
     func roundCorners(cornerRadius: CGFloat, typeCorners: CACornerMask? = nil, all: Bool = false) {
         self.layer.cornerRadius = cornerRadius
         self.clipsToBounds = true
@@ -23,6 +24,14 @@ extension UIView {
                                                        .bottomLeft,
                                                        .bottomRight]
         }
+    }
+    
+    /// Adiciona sombra em uma UIView
+    func addShadow(color: UIColor? = .black, size: CGSize, opacity: Float, radius: CGFloat) {
+        self.layer.shadowColor = color?.cgColor
+        self.layer.shadowOffset = size
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
     }
     
 }

@@ -305,7 +305,7 @@ final class HomeView: UIView, ViewCodeContract {
         
         tableview
             .topAnchor(in: footerBaseView, padding: 40)
-            .leftAnchor(in: footerBaseView, padding: 10)
+            .leftAnchor(in: footerBaseView, padding: 5)
             .rightAnchor(in: footerBaseView, padding: 10)
             .bottomAnchor(in: footerBaseView, padding: 5)
         
@@ -347,6 +347,7 @@ final class HomeView: UIView, ViewCodeContract {
         self.tableview.delegate = self
         self.tableview.dataSource = self
         tableview.separatorStyle = .none
+        tableview.showsVerticalScrollIndicator = false
         
         horizontalLine.isHidden = true
     }
@@ -379,8 +380,12 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
