@@ -1,0 +1,755 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4EAF6DFE9E44F8365B5E8EBDBBC1AC26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		546901229A3C28E5A5FE8A2E8F87954E /* Pods-BarberVip-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3778D552D0C8B4EC02873DEBFD9620B2 /* Pods-BarberVip-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5DA34FBC3EA7041173D5B3AF7E197DF1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		6A63C831FF21328A371DB03359E5B3A7 /* Pods-BarberVip-BarberVipUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA4EDB9CF440E356F29C9B253D39A69 /* Pods-BarberVip-BarberVipUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73A7C005FC9BC6ABA6D06E690EB577D5 /* Pods-BarberVipTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1816C0148C547201F004CC3ADC484 /* Pods-BarberVipTests-dummy.m */; };
+		917AE4DDB0116DF10E79A495C65B6841 /* Pods-BarberVip-BarberVipUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D4BA492D24511740DCE6EC8FD79008 /* Pods-BarberVip-BarberVipUITests-dummy.m */; };
+		B07EC34CD98E44409F0F0953151F96FE /* Pods-BarberVipTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 95736CD3CB3D176BCCB86E45C8B0D467 /* Pods-BarberVipTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C6E5E4FB3BCACAD2004D8DB7623FCAE8 /* Pods-BarberVip-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10FCB0D563A47D5EFEDA4193FA01B3AE /* Pods-BarberVip-dummy.m */; };
+		E813E46ECACFFDE309713B29A9BB236F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BFA7DC2420629A57A540237CA7D52887 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D515AC46D24A9789DAF0606FE87C46AD;
+			remoteInfo = "Pods-BarberVip";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01D299CB3C0DF5A14B2ACB185657C2EA /* Pods-BarberVipTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BarberVipTests.release.xcconfig"; sourceTree = "<group>"; };
+		0EFD487E65FE3DCE345F9792500A33F3 /* Pods-BarberVip-BarberVipUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BarberVip-BarberVipUITests"; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10FCB0D563A47D5EFEDA4193FA01B3AE /* Pods-BarberVip-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BarberVip-dummy.m"; sourceTree = "<group>"; };
+		16A61AA442F7AD396B1EA9C4ED3696CB /* Pods-BarberVip-BarberVipUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BarberVip-BarberVipUITests.release.xcconfig"; sourceTree = "<group>"; };
+		266B6BA4A5C1AF5092323445BF507254 /* Pods-BarberVip-BarberVipUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BarberVip-BarberVipUITests-Info.plist"; sourceTree = "<group>"; };
+		2875E909D225EBAF21BD8B540D97B60F /* Pods-BarberVipTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BarberVipTests"; path = Pods_BarberVipTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D6B7FEF3A469FBF8C91625554254F81 /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BarberVip-BarberVipUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		36190A7798CADC2BC244078056534F7E /* Pods-BarberVip-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BarberVip-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3778D552D0C8B4EC02873DEBFD9620B2 /* Pods-BarberVip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BarberVip-umbrella.h"; sourceTree = "<group>"; };
+		55D4BA492D24511740DCE6EC8FD79008 /* Pods-BarberVip-BarberVipUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BarberVip-BarberVipUITests-dummy.m"; sourceTree = "<group>"; };
+		66CFBD1844216F20384A5F96DB63531E /* Pods-BarberVipTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BarberVipTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		6BE1816C0148C547201F004CC3ADC484 /* Pods-BarberVipTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BarberVipTests-dummy.m"; sourceTree = "<group>"; };
+		6DC587238EFB29EF5A1C6C0AD42ECAD6 /* Pods-BarberVipTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BarberVipTests.debug.xcconfig"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		73BAD173D9794222743AED81FA688A3D /* Pods-BarberVipTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BarberVipTests.modulemap"; sourceTree = "<group>"; };
+		740F70E0410D3E9AAFD6AA068C50AC78 /* Pods-BarberVip-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BarberVip-acknowledgements.plist"; sourceTree = "<group>"; };
+		95736CD3CB3D176BCCB86E45C8B0D467 /* Pods-BarberVipTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BarberVipTests-umbrella.h"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9F56CF978433DE1507E61CD32365CFEB /* Pods-BarberVip-BarberVipUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BarberVip-BarberVipUITests.modulemap"; sourceTree = "<group>"; };
+		A1A8A9BE02DC03E45AD8EE97849507E8 /* Pods-BarberVipTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BarberVipTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		AF4E7D65A71645A01280C68B65532C7D /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
+		BAC803CFDBD250FAAEEDAA067E811246 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
+		C259E473CB8325459B3738AC18D771A9 /* Pods-BarberVip */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-BarberVip"; path = Pods_BarberVip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD37759062F5FA3540083290B771E525 /* Pods-BarberVipTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BarberVipTests-Info.plist"; sourceTree = "<group>"; };
+		E98795BF842C4ED6D88295E2DD192FB9 /* Pods-BarberVip-BarberVipUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BarberVip-BarberVipUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EAA4EDB9CF440E356F29C9B253D39A69 /* Pods-BarberVip-BarberVipUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BarberVip-BarberVipUITests-umbrella.h"; sourceTree = "<group>"; };
+		EFB6D959E1ADDA3891AE4C70A49DE6D9 /* Pods-BarberVip-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BarberVip-Info.plist"; sourceTree = "<group>"; };
+		FA30C47D1D222D67561245DC7BAB73EC /* Pods-BarberVip-BarberVipUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BarberVip-BarberVipUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		FD0974BDEDA328D982DE69DD995E237B /* Pods-BarberVip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-BarberVip.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8BDD69BF20B4EE12AF68E8F49BCBEF13 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4EAF6DFE9E44F8365B5E8EBDBBC1AC26 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FA98D9B7B8BA35C0EB6806C173ED3CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E813E46ECACFFDE309713B29A9BB236F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C27EA54F0F8172BAAEDB0D492B47BC2A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5DA34FBC3EA7041173D5B3AF7E197DF1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2952AB72344C4DC4FED99118842C65AF /* Pods-BarberVipTests */ = {
+			isa = PBXGroup;
+			children = (
+				73BAD173D9794222743AED81FA688A3D /* Pods-BarberVipTests.modulemap */,
+				66CFBD1844216F20384A5F96DB63531E /* Pods-BarberVipTests-acknowledgements.markdown */,
+				A1A8A9BE02DC03E45AD8EE97849507E8 /* Pods-BarberVipTests-acknowledgements.plist */,
+				6BE1816C0148C547201F004CC3ADC484 /* Pods-BarberVipTests-dummy.m */,
+				DD37759062F5FA3540083290B771E525 /* Pods-BarberVipTests-Info.plist */,
+				95736CD3CB3D176BCCB86E45C8B0D467 /* Pods-BarberVipTests-umbrella.h */,
+				6DC587238EFB29EF5A1C6C0AD42ECAD6 /* Pods-BarberVipTests.debug.xcconfig */,
+				01D299CB3C0DF5A14B2ACB185657C2EA /* Pods-BarberVipTests.release.xcconfig */,
+			);
+			name = "Pods-BarberVipTests";
+			path = "Target Support Files/Pods-BarberVipTests";
+			sourceTree = "<group>";
+		};
+		2FBB8DD1B2F504228256D7B4B9A97ED4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C259E473CB8325459B3738AC18D771A9 /* Pods-BarberVip */,
+				0EFD487E65FE3DCE345F9792500A33F3 /* Pods-BarberVip-BarberVipUITests */,
+				2875E909D225EBAF21BD8B540D97B60F /* Pods-BarberVipTests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		855752D978ADDEFC913CBDC9E713D0C8 /* Pods-BarberVip-BarberVipUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9F56CF978433DE1507E61CD32365CFEB /* Pods-BarberVip-BarberVipUITests.modulemap */,
+				FA30C47D1D222D67561245DC7BAB73EC /* Pods-BarberVip-BarberVipUITests-acknowledgements.markdown */,
+				E98795BF842C4ED6D88295E2DD192FB9 /* Pods-BarberVip-BarberVipUITests-acknowledgements.plist */,
+				55D4BA492D24511740DCE6EC8FD79008 /* Pods-BarberVip-BarberVipUITests-dummy.m */,
+				266B6BA4A5C1AF5092323445BF507254 /* Pods-BarberVip-BarberVipUITests-Info.plist */,
+				EAA4EDB9CF440E356F29C9B253D39A69 /* Pods-BarberVip-BarberVipUITests-umbrella.h */,
+				2D6B7FEF3A469FBF8C91625554254F81 /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */,
+				16A61AA442F7AD396B1EA9C4ED3696CB /* Pods-BarberVip-BarberVipUITests.release.xcconfig */,
+			);
+			name = "Pods-BarberVip-BarberVipUITests";
+			path = "Target Support Files/Pods-BarberVip-BarberVipUITests";
+			sourceTree = "<group>";
+		};
+		BC2E6D3FFA2D8E672B2E394FEB218275 /* Pods-BarberVip */ = {
+			isa = PBXGroup;
+			children = (
+				FD0974BDEDA328D982DE69DD995E237B /* Pods-BarberVip.modulemap */,
+				36190A7798CADC2BC244078056534F7E /* Pods-BarberVip-acknowledgements.markdown */,
+				740F70E0410D3E9AAFD6AA068C50AC78 /* Pods-BarberVip-acknowledgements.plist */,
+				10FCB0D563A47D5EFEDA4193FA01B3AE /* Pods-BarberVip-dummy.m */,
+				EFB6D959E1ADDA3891AE4C70A49DE6D9 /* Pods-BarberVip-Info.plist */,
+				3778D552D0C8B4EC02873DEBFD9620B2 /* Pods-BarberVip-umbrella.h */,
+				AF4E7D65A71645A01280C68B65532C7D /* Pods-BarberVip.debug.xcconfig */,
+				BAC803CFDBD250FAAEEDAA067E811246 /* Pods-BarberVip.release.xcconfig */,
+			);
+			name = "Pods-BarberVip";
+			path = "Target Support Files/Pods-BarberVip";
+			sourceTree = "<group>";
+		};
+		C70F79E5A5C27982A21C1C24132CA389 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC2E6D3FFA2D8E672B2E394FEB218275 /* Pods-BarberVip */,
+				855752D978ADDEFC913CBDC9E713D0C8 /* Pods-BarberVip-BarberVipUITests */,
+				2952AB72344C4DC4FED99118842C65AF /* Pods-BarberVipTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				2FBB8DD1B2F504228256D7B4B9A97ED4 /* Products */,
+				C70F79E5A5C27982A21C1C24132CA389 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5B5A9CE404FFA2A031632B242935EDC4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				546901229A3C28E5A5FE8A2E8F87954E /* Pods-BarberVip-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F847F33048DB6E41DC38C47967B4133 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A63C831FF21328A371DB03359E5B3A7 /* Pods-BarberVip-BarberVipUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3ABFBC48BFDE176496B2C6C6C9FB3EF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B07EC34CD98E44409F0F0953151F96FE /* Pods-BarberVipTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		9659335BE1C2EBEA53AF0E480A46F095 /* Pods-BarberVip-BarberVipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87C7F4AEFCE0F1F66AE93C298237EEEC /* Build configuration list for PBXNativeTarget "Pods-BarberVip-BarberVipUITests" */;
+			buildPhases = (
+				6F847F33048DB6E41DC38C47967B4133 /* Headers */,
+				F5BCB1002BB2F446C755EB1F8A926FB4 /* Sources */,
+				C27EA54F0F8172BAAEDB0D492B47BC2A /* Frameworks */,
+				DB6F370084B80F36EB557A0DDF8CC0BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-BarberVip-BarberVipUITests";
+			productName = Pods_BarberVip_BarberVipUITests;
+			productReference = 0EFD487E65FE3DCE345F9792500A33F3 /* Pods-BarberVip-BarberVipUITests */;
+			productType = "com.apple.product-type.framework";
+		};
+		D515AC46D24A9789DAF0606FE87C46AD /* Pods-BarberVip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E1BD819F3B7A9C91267C784B209E72C /* Build configuration list for PBXNativeTarget "Pods-BarberVip" */;
+			buildPhases = (
+				5B5A9CE404FFA2A031632B242935EDC4 /* Headers */,
+				857248A7B1DCF8C6F0EB8D905B07F19E /* Sources */,
+				8BDD69BF20B4EE12AF68E8F49BCBEF13 /* Frameworks */,
+				7DF1DD4A25FE6971A4A22FA078A0A5AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-BarberVip";
+			productName = Pods_BarberVip;
+			productReference = C259E473CB8325459B3738AC18D771A9 /* Pods-BarberVip */;
+			productType = "com.apple.product-type.framework";
+		};
+		EAFEF47C21DE492755D7A61F7669A67A /* Pods-BarberVipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 732DE97600D33FB1621D5BB27AF11D44 /* Build configuration list for PBXNativeTarget "Pods-BarberVipTests" */;
+			buildPhases = (
+				E3ABFBC48BFDE176496B2C6C6C9FB3EF /* Headers */,
+				EB7DE5405A5E5A3DB8EE3E1C73B3F7ED /* Sources */,
+				8FA98D9B7B8BA35C0EB6806C173ED3CC /* Frameworks */,
+				4511B30C5881B309108A6CAEAD85B363 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D66AA93C566BB4C8764E059C67D0FAD3 /* PBXTargetDependency */,
+			);
+			name = "Pods-BarberVipTests";
+			productName = Pods_BarberVipTests;
+			productReference = 2875E909D225EBAF21BD8B540D97B60F /* Pods-BarberVipTests */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 2FBB8DD1B2F504228256D7B4B9A97ED4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D515AC46D24A9789DAF0606FE87C46AD /* Pods-BarberVip */,
+				9659335BE1C2EBEA53AF0E480A46F095 /* Pods-BarberVip-BarberVipUITests */,
+				EAFEF47C21DE492755D7A61F7669A67A /* Pods-BarberVipTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4511B30C5881B309108A6CAEAD85B363 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7DF1DD4A25FE6971A4A22FA078A0A5AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB6F370084B80F36EB557A0DDF8CC0BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		857248A7B1DCF8C6F0EB8D905B07F19E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E5E4FB3BCACAD2004D8DB7623FCAE8 /* Pods-BarberVip-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB7DE5405A5E5A3DB8EE3E1C73B3F7ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				73A7C005FC9BC6ABA6D06E690EB577D5 /* Pods-BarberVipTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5BCB1002BB2F446C755EB1F8A926FB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				917AE4DDB0116DF10E79A495C65B6841 /* Pods-BarberVip-BarberVipUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D66AA93C566BB4C8764E059C67D0FAD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-BarberVip";
+			target = D515AC46D24A9789DAF0606FE87C46AD /* Pods-BarberVip */;
+			targetProxy = BFA7DC2420629A57A540237CA7D52887 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2D07DAB110299CFC112321DA5D0ADC8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D6B7FEF3A469FBF8C91625554254F81 /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3E841CCF14DB5E9D19F9E49597F02CB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01D299CB3C0DF5A14B2ACB185657C2EA /* Pods-BarberVipTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BarberVipTests/Pods-BarberVipTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BarberVipTests/Pods-BarberVipTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		5308165D57449781008AD3693EFF3417 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 16A61AA442F7AD396B1EA9C4ED3696CB /* Pods-BarberVip-BarberVipUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		578DDC6D08881FF579B27221BC741E86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF4E7D65A71645A01280C68B65532C7D /* Pods-BarberVip.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BarberVip/Pods-BarberVip-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BarberVip/Pods-BarberVip.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7EE7A78859F657F6BEFC651185B43192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		B42AF39CE40E8297E26E72363701672D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BAC803CFDBD250FAAEEDAA067E811246 /* Pods-BarberVip.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BarberVip/Pods-BarberVip-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BarberVip/Pods-BarberVip.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D299434AB35E7FD6F7921C8EF24742FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		F84E45C8DE4DF30EBA8BBC5E75268E39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DC587238EFB29EF5A1C6C0AD42ECAD6 /* Pods-BarberVipTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-BarberVipTests/Pods-BarberVipTests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-BarberVipTests/Pods-BarberVipTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D299434AB35E7FD6F7921C8EF24742FF /* Debug */,
+				7EE7A78859F657F6BEFC651185B43192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		732DE97600D33FB1621D5BB27AF11D44 /* Build configuration list for PBXNativeTarget "Pods-BarberVipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F84E45C8DE4DF30EBA8BBC5E75268E39 /* Debug */,
+				3E841CCF14DB5E9D19F9E49597F02CB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87C7F4AEFCE0F1F66AE93C298237EEEC /* Build configuration list for PBXNativeTarget "Pods-BarberVip-BarberVipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D07DAB110299CFC112321DA5D0ADC8A /* Debug */,
+				5308165D57449781008AD3693EFF3417 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E1BD819F3B7A9C91267C784B209E72C /* Build configuration list for PBXNativeTarget "Pods-BarberVip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				578DDC6D08881FF579B27221BC741E86 /* Debug */,
+				B42AF39CE40E8297E26E72363701672D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
