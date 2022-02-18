@@ -15,6 +15,7 @@
 		C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */; };
 		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
 		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
+		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
 		C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */; };
 		C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */; };
 		C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411027B1953000391CE6 /* AppDelegate.swift */; };
@@ -72,6 +73,7 @@
 		C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
 		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
+		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberNavBar.swift; sourceTree = "<group>"; };
 		C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBarberTableViewCell.swift; sourceTree = "<group>"; };
 		C0A7410D27B1953000391CE6 /* BarberVip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarberVip.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -370,6 +372,7 @@
 			children = (
 				C0BCE58627B731C2005805A6 /* IconButton.swift */,
 				C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */,
+				C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
 				C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
+				C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */,
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,

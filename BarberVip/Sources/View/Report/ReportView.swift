@@ -16,6 +16,7 @@ final class ReportView: UIView, ViewCodeContract {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        topScrollView.isHidden = true
     }
     
     required init?(coder: NSCoder) {
@@ -116,6 +117,23 @@ final class ReportView: UIView, ViewCodeContract {
         return label
     }()
     
+    private lazy var topScrollView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var scrollToTopButton: ScrollToTopButton = {
+        let button = ScrollToTopButton(image: UIImage(named: Icon.arrowUp.rawValue),
+                                colorButton: .black,
+                                action: { [weak self] in
+                                    self?.scrollToTop()
+                                })
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     // MARK: - Viewcode methods
     func setupHierarchy() {
         self.addSubview(navigationBar)
@@ -129,6 +147,9 @@ final class ReportView: UIView, ViewCodeContract {
         baseView.addSubview(horizontalLine)
         baseView.addSubview(bottomHorizontalLine)
         baseView.addSubview(totalLabel)
+        
+        baseView.addSubview(topScrollView)
+        topScrollView.addSubview(scrollToTopButton)
     }
     
     func setupConstraints() {
@@ -192,6 +213,18 @@ final class ReportView: UIView, ViewCodeContract {
             .rightAnchor(in: baseView, padding: 10)
             .heightAnchor(60)
         
+        topScrollView
+            .bottomAnchor(in: baseView, padding: 120)
+            .rightAnchor(in: baseView, padding: 10)
+            .widthAnchor(60)
+            .heightAnchor(60)
+        
+        scrollToTopButton
+            .centerY(in: topScrollView)
+            .centerX(in: topScrollView)
+            .widthAnchor(30)
+            .heightAnchor(30)
+        
     }
     
     func setupConfiguration() {
@@ -201,7 +234,7 @@ final class ReportView: UIView, ViewCodeContract {
         self.tableview.dataSource = self
         tableview.separatorStyle = .none
         tableview.showsVerticalScrollIndicator = false
-        
+        topScrollView.roundCorners(cornerRadius: 30)
     }
     
     // MARK: - Methods
@@ -211,6 +244,14 @@ final class ReportView: UIView, ViewCodeContract {
         navigationBar.set(title: title,
                           color: .white,
                           font: .boldSystemFont(ofSize: 20))
+    }
+    
+    private func scrollToTop() {
+        let topRow = IndexPath(row: 0, section: 0)
+        self.tableview.scrollToRow(at: topRow,
+                                   at: .top,
+                                   animated: true)
+        
     }
     
 }
@@ -233,6 +274,17 @@ extension ReportView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 95
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let currentPositionScroll: CGFloat = 170
+        
+        if position > currentPositionScroll {
+            topScrollView.isHidden = false
+        } else {
+            topScrollView.isHidden = true
+        }
     }
     
 }

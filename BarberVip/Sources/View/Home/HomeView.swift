@@ -12,6 +12,7 @@ final class HomeView: UIView, ViewCodeContract {
     // MARK: - Properties
     var navigateToMonthlyReport: Action?
     var navigateToDailyReport: Action?
+    var alertAction: Action?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -29,7 +30,7 @@ final class HomeView: UIView, ViewCodeContract {
                                       heightIcon: 20,
                                       widhtIcon: 20,
                                       backButtonAction: { [weak self] in
-                                        print("Perfil")
+                                        self?.alertAction?()
                                       })
         navigation.set(title: "Olá, Leonardo",
                        color: .black,
@@ -58,7 +59,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.beard.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
                      action: { [weak self] in
-                        print("Barbeiros")
+                        self?.alertAction?()
                      })
         return button
     }()
@@ -95,7 +96,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.help.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
                      action: { [weak self] in
-                        print("Ajuda")
+                        self?.alertAction?()
                      })
         return button
     }()
@@ -156,7 +157,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.more.rawValue),
                      backgroundColor: .clear,
                      action: { [weak self] in
-                        print("Mais")
+                        self?.alertAction?()
                      })
         return button
     }()
@@ -356,9 +357,11 @@ final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Methods
     func setupHomeView(monthlyReportAction: @escaping Action,
-                       dailyReportAction: @escaping Action) {
+                       dailyReportAction: @escaping Action,
+                       alertAction: @escaping Action) {
         self.navigateToMonthlyReport = monthlyReportAction
         self.navigateToDailyReport = dailyReportAction
+        self.alertAction = alertAction
     }
     
 }
