@@ -18,17 +18,20 @@ final class BarberNavBar: UIView, ViewCodeContract {
     }
     
     init(backgroundColor: UIColor? = nil,
+         backgroundColorButtonLeft: UIColor? = nil,
          colorHorizontalLine: UIColor? = nil,
          iconRight: UIImage? = nil,
          heightIcon: CGFloat,
          widhtIcon: CGFloat,
          backButtonAction: @escaping Action) {
         super.init(frame: .zero)
+        
         self.backgroundColor = backgroundColor
         self.actionButton = backButtonAction
         self.horizontalLine.backgroundColor = colorHorizontalLine
+
         self.barbersButton.setup(image: iconRight,
-                                 backgroundColor: backgroundColor ?? .white,
+                                 backgroundColor: backgroundColorButtonLeft ?? .white,
                                  action: backButtonAction)
         barbersButton.setIcon(height: heightIcon, width: widhtIcon)
     }

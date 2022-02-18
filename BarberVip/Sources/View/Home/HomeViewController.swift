@@ -10,7 +10,8 @@ import Foundation
 final class HomeViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    var didTapNextFlow: Action?
+    var navigateToMonthlyReport: Action?
+    var navigateToDailyReport: Action?
     
     // MARK: - Private properties
     private let customView = HomeView()
@@ -24,8 +25,10 @@ final class HomeViewController: CoordinatedViewController {
     
     // MARK: - Private methods
     private func setupView() {
-        customView.setupHomeView(loginButtonAction: { [weak self] in
-            self?.didTapNextFlow?()
-        })
+        customView.setupHomeView(monthlyReportAction: { [weak self] in
+                                    self?.navigateToMonthlyReport?()},
+                                 dailyReportAction: { [weak self] in
+                                    self?.navigateToDailyReport?()
+                                 })
     }
 }

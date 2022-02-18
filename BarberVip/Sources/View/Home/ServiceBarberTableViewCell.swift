@@ -1,5 +1,5 @@
 //
-//  HomeTableViewCell.swift
+//  ServiceBarberTableViewCell.swift
 //  BarberVip
 //
 //  Created by Leonardo Portes on 12/02/22.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class HomeTableViewCell: UITableViewCell, ViewCodeContract {
+final class ServiceBarberTableViewCell: UITableViewCell, ViewCodeContract {
     
     // MARK: - Static properties
-    static let identifier = "HomeTableViewCell"
+    static let identifier = "ServiceBarberTableViewCell"
     
     // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -90,7 +90,7 @@ final class HomeTableViewCell: UITableViewCell, ViewCodeContract {
     
     func setupConstraints() {
         contentView
-            .topAnchor(in: self, padding: 5)
+            .topAnchor(in: self, padding: 10)
             .bottomAnchor(in: self, padding: 10)
         
         backView
@@ -129,14 +129,14 @@ final class HomeTableViewCell: UITableViewCell, ViewCodeContract {
     }
     
     // MARK: - Public methods
-    public func setupCustomCell(title: String? = nil,
-                                procedure: String? = nil,
-                                price: String? = nil,
-                                paymentMethod: String? = nil) {
+    func setupCustomCell(title: String? = nil,
+                         procedure: String? = nil,
+                         price: String? = nil,
+                         paymentMethod: String? = nil) {
         nameLabel.text = title
         procedureLabel.text = procedure
         priceLabel.text = price
         paymentMethodLabel.text = paymentMethod
     }
-
+    
 }

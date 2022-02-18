@@ -10,7 +10,8 @@ import UIKit
 final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Properties
-    var didTapLoginButton: Action?
+    var navigateToMonthlyReport: Action?
+    var navigateToDailyReport: Action?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -69,7 +70,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
                      action: { [weak self] in
-                        print("Relatório diário")
+                        self?.navigateToDailyReport?()
                      })
         return button
     }()
@@ -82,6 +83,7 @@ final class HomeView: UIView, ViewCodeContract {
                      backgroundColor: UIColor.BarberColors.lightBrown,
                      action: { [weak self] in
                         print("Relatório mensal")
+                        self?.navigateToMonthlyReport?()
                      })
         return button
     }()
@@ -162,13 +164,13 @@ final class HomeView: UIView, ViewCodeContract {
     private(set) lazy var tableview: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.identifier)
+        table.register(ServiceBarberTableViewCell.self, forCellReuseIdentifier: ServiceBarberTableViewCell.identifier)
         return table
     }()
     
     private lazy var clientIcon: IconButton = {
         let button = IconButton()
-        button.setup(image: UIImage(named: Icon.client.rawValue),
+        button.setup(image: UIImage(named: Icon.beard.rawValue),
                      backgroundColor: .clear,
                      action: { [weak self] in /* empty method */ })
         button.setIcon(height: 25, width: 25)
@@ -205,7 +207,7 @@ final class HomeView: UIView, ViewCodeContract {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-  
+    
     // MARK: - Viewcode methods
     func setupHierarchy() {
         self.addSubview(navigationBar)
@@ -338,7 +340,7 @@ final class HomeView: UIView, ViewCodeContract {
             .leftAnchor(in: footerBaseView)
             .rightAnchor(in: footerBaseView)
             .heightAnchor(1)
-
+        
     }
     
     func setupConfiguration() {
@@ -352,14 +354,11 @@ final class HomeView: UIView, ViewCodeContract {
         horizontalLine.isHidden = true
     }
     
-    // MARK: - Actions
-    @objc func didTapLogin() {
-        self.didTapLoginButton?()
-    }
-    
     // MARK: - Methods
-    func setupHomeView(loginButtonAction: @escaping Action) {
-        self.didTapLoginButton = loginButtonAction
+    func setupHomeView(monthlyReportAction: @escaping Action,
+                       dailyReportAction: @escaping Action) {
+        self.navigateToMonthlyReport = monthlyReportAction
+        self.navigateToDailyReport = dailyReportAction
     }
     
 }
@@ -372,20 +371,16 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier, for: indexPath) as! HomeTableViewCell
+        let cell = tableview.dequeueReusableCell(withIdentifier: ServiceBarberTableViewCell.identifier, for: indexPath) as! ServiceBarberTableViewCell
         cell.setupCustomCell(title: "Barbeiro \(indexPath.row + 1)",
-                             procedure: "Corte/Barba",
+                             procedure: "Corte e Barba",
                              price: "R$ 50,00",
                              paymentMethod: "Pix")
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 95
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

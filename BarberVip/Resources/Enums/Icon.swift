@@ -17,4 +17,5 @@ enum Icon: String {
     case money = "ic_money"
     case paymentMethod = "ic_method"
     case client = "ic_client"
+    case back = "ic_back"
 }

@@ -10,8 +10,13 @@
 		20ED6D034C5B0B8ED4A7F267 /* Pods_BarberVip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
+		C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2027BEE83500CFCEE0 /* ReportView.swift */; };
+		C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */; };
+		C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */; };
+		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
+		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
 		C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */; };
-		C09BB5C527B81AD300C91F48 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* HomeTableViewCell.swift */; };
+		C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */; };
 		C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411027B1953000391CE6 /* AppDelegate.swift */; };
 		C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411227B1953000391CE6 /* SceneDelegate.swift */; };
 		C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A7411927B1953300391CE6 /* Assets.xcassets */; };
@@ -62,8 +67,13 @@
 		114D0EC1AB5EEE04CE7BCA8C /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip-BarberVipUITests.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
+		C0319C2027BEE83500CFCEE0 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
+		C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
+		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
+		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberNavBar.swift; sourceTree = "<group>"; };
-		C09BB5C427B81AD300C91F48 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBarberTableViewCell.swift; sourceTree = "<group>"; };
 		C0A7410D27B1953000391CE6 /* BarberVip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarberVip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A7411027B1953000391CE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0A7411227B1953000391CE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +164,16 @@
 				C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0319C1F27BEE81E00CFCEE0 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
+				C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */,
+				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
+			);
+			path = Report;
 			sourceTree = "<group>";
 		};
 		C0A7410427B1953000391CE6 = {
@@ -255,6 +275,8 @@
 			isa = PBXGroup;
 			children = (
 				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
+				C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */,
+				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -269,6 +291,7 @@
 		C0A7414C27B195A700391CE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0319C1F27BEE81E00CFCEE0 /* Report */,
 				C0A7419627B19C8E00391CE6 /* Home */,
 			);
 			path = View;
@@ -305,7 +328,7 @@
 			children = (
 				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
 				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
-				C09BB5C427B81AD300C91F48 /* HomeTableViewCell.swift */,
+				C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -566,20 +589,25 @@
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
 				C0A741D127B1A90500391CE6 /* UIView+AxisAttribute.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
+				C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
-				C09BB5C527B81AD300C91F48 /* HomeTableViewCell.swift in Sources */,
+				C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
+				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
+				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
+				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
+				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
 				C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
