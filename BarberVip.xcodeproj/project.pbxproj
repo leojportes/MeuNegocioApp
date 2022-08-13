@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		20ED6D034C5B0B8ED4A7F267 /* Pods_BarberVip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */; };
+		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
+		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
+		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
 		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
@@ -69,6 +72,9 @@
 
 /* Begin PBXFileReference section */
 		114D0EC1AB5EEE04CE7BCA8C /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip-BarberVipUITests.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
+		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +386,7 @@
 			children = (
 				C0BCE57027B6EA49005805A6 /* UIColor+Extensions.swift */,
 				C0BCE58027B72EF5005805A6 /* UIView+Extensions.swift */,
+				520C66A528A850270016F167 /* UITextField+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -390,6 +397,8 @@
 				C0BCE58627B731C2005805A6 /* IconButton.swift */,
 				C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */,
 				C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */,
+				520C66A728A857A80016F167 /* CustomSubmitButton.swift */,
+				520C66A928A862A20016F167 /* CustomTextField.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -604,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0BCE58127B72EF5005805A6 /* UIView+Extensions.swift in Sources */,
+				520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */,
 				C0A741C727B1A8C600391CE6 /* UIView+RawAnchors.swift in Sources */,
 				C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */,
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
@@ -622,6 +632,7 @@
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
+				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
@@ -631,6 +642,7 @@
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
 				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
 				C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */,
+				520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,

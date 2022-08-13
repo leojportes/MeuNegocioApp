@@ -30,7 +30,9 @@ class LoginViewController: CoordinatedViewController {
     private func setupView() {
         customView.setupHomeView(
         navigateToHome: { [weak self] in
-            self?.navigateToHome?()
+            if self?.customView.emailTextField.text == "Reni" {
+                self?.navigateToHome?()
+            }
         })
     }
     
