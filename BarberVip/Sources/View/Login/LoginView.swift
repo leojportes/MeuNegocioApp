@@ -12,6 +12,8 @@ class LoginView: UIView {
     
     // MARK: - Properties
     var navigateToHome: Action?
+    var navigateToCreateAccount: Action?
+    var navigateToForgotPassword: Action?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -96,18 +98,22 @@ class LoginView: UIView {
     
     @objc
     func handleForgotPasswordButton() {
-        print("esqueceu a senha")
+        self.navigateToForgotPassword?()
     }
     
     @objc
     func handleCreateAccountButton() {
-        print("criar conta")
+        self.navigateToCreateAccount?()
     }
     
     
     // MARK: - Methods
-    func setupHomeView(navigateToHome: @escaping Action) {
+    func setupHomeView(navigateToHome: @escaping Action,
+                       navigateToForgotPassword: @escaping Action,
+                       navigateToCreateAccount: @escaping Action) {
         self.navigateToHome = navigateToHome
+        self.navigateToForgotPassword = navigateToForgotPassword
+        self.navigateToCreateAccount = navigateToCreateAccount
     }
     
 }

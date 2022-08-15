@@ -12,6 +12,8 @@ class LoginViewController: CoordinatedViewController {
     
     // MARK: - Properties
     var navigateToHome: Action?
+    var navigateToCreateAccount: Action?
+    var navigateToForgotPassword: Action?
     
     // MARK: - Private properties
     private let customView = LoginView()
@@ -29,11 +31,14 @@ class LoginViewController: CoordinatedViewController {
     // MARK: - Private methods
     private func setupView() {
         customView.setupHomeView(
-        navigateToHome: { [weak self] in
-            if self?.customView.emailTextField.text == "Reni" {
-                self?.navigateToHome?()
-            }
-        })
+            navigateToHome: { [weak self] in
+                self?.navigateToHome?()},
+            
+            navigateToForgotPassword: { [weak self] in
+                self?.navigateToForgotPassword?()},
+            
+            navigateToCreateAccount: { [weak self] in
+                self?.navigateToCreateAccount?()
+            })
     }
-    
 }
