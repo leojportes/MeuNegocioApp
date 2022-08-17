@@ -90,7 +90,8 @@ class LoginView: UIView {
         button.addTarget(self, action: #selector(handleCreateAccountButton), for: .touchUpInside)
         return button
     }()
-    
+        
+    // MARK: - Action Buttons
     @objc
     func handleLoginButton() {
         self.navigateToHome?()
