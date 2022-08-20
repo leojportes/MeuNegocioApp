@@ -13,7 +13,7 @@ final class LoginCoordinator: BaseCoordinator {
         let controller = LoginViewController(viewModel: teste, coordinator: self)
         controller.navigateToHome = navigateToHome
         controller.navigateToForgotPassword = navigateToForgotPassword
-        controller.navigateToCreateAccount = navigateToCreateAccount
+        controller.navigateToRegister = navigateToRegister
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = true
         configuration.navigationController?.pushViewController(controller, animated: true)
@@ -28,7 +28,7 @@ final class LoginCoordinator: BaseCoordinator {
         print("deu certo o password")
     }
     
-    private func navigateToCreateAccount() {
+    private func navigateToRegister() {
         let coordinator = CreateAccountCoordinator(with: configuration)
         coordinator.start()
     }

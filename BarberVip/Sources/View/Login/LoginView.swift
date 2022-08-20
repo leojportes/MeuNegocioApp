@@ -8,12 +8,16 @@
 import Foundation
 import UIKit
 
+protocol LoginScreenActionsProtocol: AnyObject {
+    func didTapLogin(_ email: String, _ password: String)
+    func didTapForgotPassword()
+    func didTapRegister()
+}
+
 class LoginView: UIView {
     
     // MARK: - Properties
-    var navigateToHome: (String?, String?) -> Void = { _,_ in }
-    var navigateToCreateAccount: Action?
-    var navigateToForgotPassword: Action?
+    weak var delegateAction: LoginScreenActionsProtocol?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -82,41 +86,30 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var createAccountButton: CustomSubmitButton = {
+    lazy var registerButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "CADASTRE-SE",
                                   colorTitle: .white,
                                   radius: 10,
                                   background: .BarberColors.darkGray)
-        button.addTarget(self, action: #selector(handleCreateAccountButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handlerRegisterButton), for: .touchUpInside)
         return button
     }()
         
     // MARK: - Action Buttons
     @objc
     func handleLoginButton() {
-        self.navigateToHome(emailTextField.text, passwordTextField.text)
+        delegateAction?.didTapLogin(emailTextField.text ?? "", passwordTextField.text ?? "")
     }
     
     @objc
     func handleForgotPasswordButton() {
-        self.navigateToForgotPassword?()
+        delegateAction?.didTapForgotPassword()
     }
     
     @objc
-    func handleCreateAccountButton() {
-        self.navigateToCreateAccount?()
+    func handlerRegisterButton() {
+        delegateAction?.didTapRegister()
     }
-    
-    
-    // MARK: - Methods
-    func setupHomeView(navigateToHome: @escaping (String?, String?) -> Void,
-                       navigateToForgotPassword: @escaping Action,
-                       navigateToCreateAccount: @escaping Action) {
-        self.navigateToHome = navigateToHome
-        self.navigateToForgotPassword = navigateToForgotPassword
-        self.navigateToCreateAccount = navigateToCreateAccount
-    }
-    
 }
 
 extension LoginView: ViewCodeContract {
@@ -127,7 +120,7 @@ extension LoginView: ViewCodeContract {
         addSubview(passwordTextField)
         addSubview(loginButton)
         addSubview(forgotPasswordButton)
-        addSubview(createAccountButton)
+        addSubview(registerButton)
     }
     
     func setupConstraints() {
@@ -165,7 +158,7 @@ extension LoginView: ViewCodeContract {
             .rightAnchor(in: self, attribute: .right, padding: 133)
             .heightAnchor(22)
         
-        createAccountButton
+        registerButton
             .bottomAnchor(in: self, attribute: .bottom, padding: 48)
             .leftAnchor(in: self, attribute: .left, padding: 60)
             .rightAnchor(in: self, attribute: .right, padding: 60)

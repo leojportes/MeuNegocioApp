@@ -16,6 +16,7 @@
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
 		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
+		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
 		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
 		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
 		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
@@ -86,6 +87,7 @@
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = BarberVip/Resources/Extensions/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				521A929928AEBFE40024865B /* LoginViewModel.swift */,
+				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
 				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
 				C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */,
+				523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */,
 				527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */,
 				520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,

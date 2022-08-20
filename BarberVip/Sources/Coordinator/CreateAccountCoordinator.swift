@@ -8,7 +8,8 @@
 
 final class CreateAccountCoordinator: BaseCoordinator {
     override func start() {
-        let controller = CreateAccountViewController(coordinator: self)
+        let viewModel = CreateAccountViewModel()
+        let controller = CreateAccountViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = false
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = "voltar"

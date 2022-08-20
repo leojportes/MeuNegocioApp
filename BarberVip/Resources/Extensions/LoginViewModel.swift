@@ -6,13 +6,12 @@
 //
 import FirebaseAuth
 
-
 protocol LoginViewModelProtocol: AnyObject {
-    func requestLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void)
+    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void)
 }
 
 class LoginViewModel: LoginViewModelProtocol {
-    func requestLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void) {
+    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
             if error != nil {
                 resultLogin(false)

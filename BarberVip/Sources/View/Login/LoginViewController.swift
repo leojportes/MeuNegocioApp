@@ -12,7 +12,7 @@ class LoginViewController: CoordinatedViewController {
     
     // MARK: - Properties
     var navigateToHome: Action?
-    var navigateToCreateAccount: Action?
+    var navigateToRegister: Action?
     var navigateToForgotPassword: Action?
     
     // MARK: - Private properties
@@ -23,11 +23,6 @@ class LoginViewController: CoordinatedViewController {
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
-//    static func instantiate(viewModel: LoginViewModelProtocol = LoginViewModelProtocol()) -> LoginViewController {
-//        let controller = LoginViewController
-//        controller.viewModel = viewModel
-//        return controller
-//    }
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,8 +30,7 @@ class LoginViewController: CoordinatedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-//        requestLogin("renilson.moreira@gmail.com", "12345672")
+        customView.delegateAction = self
     }
     
     override func loadView() {
@@ -44,23 +38,22 @@ class LoginViewController: CoordinatedViewController {
         self.view = customView
     }
     
-    // MARK: - Private methods
-    private func setupView() {
-        customView.setupHomeView(
-            navigateToHome: { [weak self] email, passwords in
-                
-                self?.viewModel.requestLogin(email ?? "", passwords ?? "", resultLogin: { auth in
-                    if auth {
-                        self?.navigateToHome?()
-                    }
-                })
-            },
-            
-            navigateToForgotPassword: { [weak self] in
-                self?.navigateToForgotPassword?()},
-            
-            navigateToCreateAccount: { [weak self] in
-                self?.navigateToCreateAccount?()
-            })
+}
+
+extension LoginViewController: LoginScreenActionsProtocol {
+    func didTapLogin(_ email: String, _ password: String) {
+        viewModel.authLogin(email, password) { authResult in
+            if authResult {
+                self.navigateToHome?()
+            }
+        }
+    }
+    
+    func didTapForgotPassword() {
+        self.navigateToForgotPassword?()
+    }
+    
+    func didTapRegister() {
+        self.navigateToRegister?()
     }
 }

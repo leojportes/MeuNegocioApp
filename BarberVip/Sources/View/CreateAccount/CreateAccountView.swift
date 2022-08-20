@@ -8,6 +8,9 @@
 import UIKit
 
 class CreateAccountView: UIView {
+    
+    var createAccount: ((String, String, String) -> Void)?
+    
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
         setupView()
@@ -112,6 +115,7 @@ class CreateAccountView: UIView {
     @objc
     func handleCreateAccountButton() {
         print("conta criada com sucesso")
+        createAccount?(emailTextField.text ?? "", passwordTextField.text ?? "", nameBarberShopTextField.text ?? "") 
     }
 }
 
