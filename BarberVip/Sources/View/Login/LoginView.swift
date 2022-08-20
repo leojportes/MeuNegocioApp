@@ -11,7 +11,7 @@ import UIKit
 class LoginView: UIView {
     
     // MARK: - Properties
-    var navigateToHome: Action?
+    var navigateToHome: (String?, String?) -> Void = { _,_ in }
     var navigateToCreateAccount: Action?
     var navigateToForgotPassword: Action?
     
@@ -94,7 +94,7 @@ class LoginView: UIView {
     // MARK: - Action Buttons
     @objc
     func handleLoginButton() {
-        self.navigateToHome?()
+        self.navigateToHome(emailTextField.text, passwordTextField.text)
     }
     
     @objc
@@ -109,7 +109,7 @@ class LoginView: UIView {
     
     
     // MARK: - Methods
-    func setupHomeView(navigateToHome: @escaping Action,
+    func setupHomeView(navigateToHome: @escaping (String?, String?) -> Void,
                        navigateToForgotPassword: @escaping Action,
                        navigateToCreateAccount: @escaping Action) {
         self.navigateToHome = navigateToHome

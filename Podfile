@@ -4,6 +4,7 @@
 target 'BarberVip' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  pod 'FirebaseAuth'
 
   target 'BarberVipTests' do
     inherit! :search_paths

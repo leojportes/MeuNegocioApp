@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,8 @@
 		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
 		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
 		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
+		521A929828AEA8DD0024865B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521A929728AEA8DC0024865B /* GoogleService-Info.plist */; };
+		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
 		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
@@ -79,6 +81,8 @@
 		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		521A929728AEA8DC0024865B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Resources/Extensions/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				C0A7411E27B1953300391CE6 /* Info.plist */,
+				521A929728AEA8DC0024865B /* GoogleService-Info.plist */,
 				C0A7414527B1956B00391CE6 /* Infrastructure */,
 				C0A7414427B1955F00391CE6 /* Resources */,
 				C0A7414327B1955200391CE6 /* Sources */,
@@ -326,6 +331,7 @@
 		C0A7414B27B1959D00391CE6 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				521A929928AEBFE40024865B /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				C0A7410927B1953000391CE6 /* Sources */,
 				C0A7410A27B1953000391CE6 /* Frameworks */,
 				C0A7410B27B1953000391CE6 /* Resources */,
+				A1DCCD6E59EFB6CE91F8BBAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -479,6 +486,7 @@
 				C0A7412A27B1953400391CE6 /* Sources */,
 				C0A7412B27B1953400391CE6 /* Frameworks */,
 				C0A7412C27B1953400391CE6 /* Resources */,
+				190CAA46E16F55F660DA6980 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -539,6 +547,7 @@
 			files = (
 				C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */,
 				C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */,
+				521A929828AEA8DD0024865B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +568,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		190CAA46E16F55F660DA6980 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		503F054F85DBBD695138B65E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -601,6 +627,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1DCCD6E59EFB6CE91F8BBAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F2F726688BF9CA052A84B9DE /* [CP] Check Pods Manifest.lock */ = {
@@ -652,6 +695,7 @@
 				C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
+				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
@@ -847,7 +891,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.app..BarberVip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -866,7 +910,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.app..BarberVip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
