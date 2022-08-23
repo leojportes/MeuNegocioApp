@@ -14,7 +14,8 @@ final class CreateAccountCoordinator: BaseCoordinator {
         configuration.navigationController?.navigationBar.isHidden = false
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = "voltar"
         configuration.navigationController?.navigationBar.tintColor = .BarberColors.lightBrown
-        configuration.navigationController?.pushViewController(controller, animated: true)
+        controller.modalPresentationStyle = .fullScreen
+        configuration.navigationController?.present(controller, animated: true)
     }
     
     

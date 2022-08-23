@@ -10,6 +10,7 @@ import UIKit
 class CreateAccountView: UIView {
     
     var createAccount: ((String, String, String) -> Void)?
+    var closedView: Action?
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -19,6 +20,15 @@ class CreateAccountView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var closedButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "ic_arrowUp"), for: .normal)
+        button.setTitleColor(UIColor.BarberColors.darkGray, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handlerClosedButton), for: .touchUpInside)
+        return button
+    }()
     
     lazy var barberImage: UIImageView = {
         let img = UIImageView()
@@ -111,6 +121,11 @@ class CreateAccountView: UIView {
     }
     
     // MARK: - Action Buttons
+    @objc
+    func handlerClosedButton() {
+        closedButton.setImage(UIImage(named: "ic_arrowDown"), for: .normal)
+        closedView?()
+    }
     
     @objc
     func handleCreateAccountButton() {
@@ -121,6 +136,7 @@ class CreateAccountView: UIView {
 
 extension CreateAccountView: ViewCodeContract {
     func setupHierarchy() {
+        addSubview(closedButton)
         addSubview(barberImage)
         addSubview(titleLabel)
         addSubview(emailTextField)
@@ -130,6 +146,12 @@ extension CreateAccountView: ViewCodeContract {
     }
     
     func setupConstraints() {
+        closedButton
+            .topAnchor(in: self, attribute: .top, padding: 18)
+            .rightAnchor(in: self, attribute: .right, padding: 20)
+            .widthAnchor(24)
+            .heightAnchor(24)
+        
         barberImage
             .topAnchor(in: self, attribute: .top, padding: 54)
             .leftAnchor(in: self, attribute: .left, padding: 127)

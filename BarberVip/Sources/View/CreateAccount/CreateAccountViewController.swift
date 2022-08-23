@@ -34,12 +34,17 @@ class CreateAccountViewController: CoordinatedViewController {
     }
     
     private func createAccount() {
-        contentView?.createAccount = { email, password, nameBarber in
-            self.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result in
+        contentView?.createAccount = { [ weak self ] email, password, nameBarber in
+            self?.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result in
                 if result {
-                    print("Conta criada com sucesso")
+                    UserDefaults.standard.set(email, forKey: "email")
+                    self?.dismiss(animated: true)
                 }
             })
+        }
+        
+        contentView?.closedView = { [ weak self] in
+            self?.dismiss(animated: true)
         }
         
     }

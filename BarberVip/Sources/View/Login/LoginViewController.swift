@@ -33,6 +33,12 @@ class LoginViewController: CoordinatedViewController {
         customView.delegateAction = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        customView.emailTextField.text = UserDefaults.standard.string(forKey: "email")
+
+    }
+    
     override func loadView() {
         super.loadView()
         self.view = customView
