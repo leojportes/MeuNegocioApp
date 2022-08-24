@@ -12,8 +12,8 @@ final class HomeCoordinator: BaseCoordinator {
         let controller = HomeViewController(coordinator: self)
         controller.navigateToMonthlyReport = navigateToReportView
         controller.navigateToDailyReport = navigateToReportDailyView
+        controller.navigateToProfile = navigateToProfile
         configuration.viewController = controller
-        configuration.navigationController?.navigationBar.isHidden = true
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -24,6 +24,11 @@ final class HomeCoordinator: BaseCoordinator {
     
     private func navigateToReportDailyView() {
         let coordinator = ReportDailyCoordinator(with: configuration)
+        coordinator.start()
+    }
+    
+    private func navigateToProfile() {
+        let coordinator = ProfileCoordinator(with: configuration)
         coordinator.start()
     }
     

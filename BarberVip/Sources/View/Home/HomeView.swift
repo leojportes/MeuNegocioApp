@@ -13,6 +13,7 @@ final class HomeView: UIView, ViewCodeContract {
     var navigateToMonthlyReport: Action?
     var navigateToDailyReport: Action?
     var alertAction: Action?
+    var navigateToProfile: Action?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -30,7 +31,7 @@ final class HomeView: UIView, ViewCodeContract {
                                       heightIcon: 20,
                                       widhtIcon: 20,
                                       backButtonAction: { [weak self] in
-                                        self?.alertAction?()
+                                        self?.navigateToProfile?()
                                       })
         navigation.set(title: "Olá, Leonardo",
                        color: .black,
@@ -358,10 +359,12 @@ final class HomeView: UIView, ViewCodeContract {
     // MARK: - Methods
     func setupHomeView(monthlyReportAction: @escaping Action,
                        dailyReportAction: @escaping Action,
-                       alertAction: @escaping Action) {
+                       alertAction: @escaping Action,
+                       navigateToProfile: @escaping Action) {
         self.navigateToMonthlyReport = monthlyReportAction
         self.navigateToDailyReport = dailyReportAction
         self.alertAction = alertAction
+        self.navigateToProfile = navigateToProfile
     }
     
 }

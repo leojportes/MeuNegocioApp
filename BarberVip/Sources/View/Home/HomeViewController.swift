@@ -12,6 +12,7 @@ final class HomeViewController: CoordinatedViewController {
     // MARK: - Properties
     var navigateToMonthlyReport: Action?
     var navigateToDailyReport: Action?
+    var navigateToProfile: Action?
     
     // MARK: - Private properties
     private let customView = HomeView()
@@ -23,15 +24,29 @@ final class HomeViewController: CoordinatedViewController {
         setupView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     // MARK: - Private methods
     private func setupView() {
         customView.setupHomeView(monthlyReportAction: { [weak self] in
-                                    self?.navigateToMonthlyReport?()},
+            self?.navigateToMonthlyReport?()},
                                  dailyReportAction: { [weak self] in
-                                    self?.navigateToDailyReport?()
-                                 }, alertAction: { [weak self] in
-                                    self?.show(title: "Funcionalidade não disponível!",
-                                               messsage: "Estamos trabalhando nisso.") })
+            self?.navigateToDailyReport?()
+        }, alertAction: { [weak self] in
+            self?.show(title: "Funcionalidade não disponível!",
+                       messsage: "Estamos trabalhando nisso.") },
+                                 navigateToProfile: { [weak self] in
+            self?.navigateToProfile?()
+            
+        })
     }
     
     private func show(title: String, messsage: String) {

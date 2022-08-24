@@ -20,6 +20,9 @@
 		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
 		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
 		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
+		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
+		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
+		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
 		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
@@ -91,6 +94,9 @@
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
+		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
@@ -200,6 +206,15 @@
 				527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */,
 			);
 			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		52C4AE7028B563610055E384 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				52C4AE7128B563780055E384 /* ProfileView.swift */,
+				52C4AE7328B565BD0055E384 /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		A2032500883B9A47E09BE803 /* Frameworks */ = {
@@ -326,6 +341,7 @@
 				C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */,
 				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
 				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
+				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -342,6 +358,7 @@
 		C0A7414C27B195A700391CE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52C4AE7028B563610055E384 /* Profile */,
 				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
 				522D901D289A00DF0085575A /* Login */,
 				C0319C1F27BEE81E00CFCEE0 /* Report */,
@@ -698,6 +715,7 @@
 				C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
+				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
@@ -713,12 +731,14 @@
 				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
 				C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */,
 				523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */,
+				52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */,
 				527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */,
 				520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
 				522D9020289A00E00085575A /* LoginView.swift in Sources */,
+				52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */,
 				C0A7418F27B199B500391CE6 /* Bindable.swift in Sources */,
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,
 			);
