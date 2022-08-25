@@ -103,9 +103,11 @@ class LoginView: UIView {
     
     lazy var registerButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "CADASTRE-SE",
-                                  colorTitle: .white,
-                                  radius: 10,
-                                  background: .BarberColors.darkGray)
+                                        colorTitle: .white,
+                                        radius: 10,
+                                        background: .BarberColors.darkGray,
+                                        borderColorCustom: UIColor.white.cgColor,
+                                        borderWidthCustom: 1)
         button.addTarget(self, action: #selector(handlerRegisterButton), for: .touchUpInside)
         return button
     }()
