@@ -39,6 +39,8 @@ class CreateAccountViewController: CoordinatedViewController {
                 if result {
                     UserDefaults.standard.set(email, forKey: "email")
                     self?.dismiss(animated: true)
+                }else {
+                    self?.showAlert(title: "ocorreu um erro", messsage: "tente criar a conta mais tarde")
                 }
             })
         }

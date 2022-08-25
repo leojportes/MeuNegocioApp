@@ -41,29 +41,11 @@ final class HomeViewController: CoordinatedViewController {
                                  dailyReportAction: { [weak self] in
             self?.navigateToDailyReport?()
         }, alertAction: { [weak self] in
-            self?.show(title: "Funcionalidade não disponível!",
+            self?.showAlert(title: "Funcionalidade não disponível!",
                        messsage: "Estamos trabalhando nisso.") },
                                  navigateToProfile: { [weak self] in
             self?.navigateToProfile?()
             
         })
-    }
-    
-    private func show(title: String, messsage: String) {
-        let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Ok", style: .cancel) { _ in
-            let phoneNumber =  "48998308191"
-            let appURL = URL(string: "https://api.whatsapp.com/send?phone=\(phoneNumber)")!
-            if UIApplication.shared.canOpenURL(appURL) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
-                }
-                else {
-                    UIApplication.shared.openURL(appURL)
-                }
-            }
-        }
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
     }
 }
