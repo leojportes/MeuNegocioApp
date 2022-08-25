@@ -9,6 +9,7 @@ import UIKit
 
 class CreateAccountView: UIView {
     
+    private var isSecureTextEntry: Bool = false
     var createAccount: ((String, String, String) -> Void)?
     var closedView: Action?
     
@@ -20,6 +21,15 @@ class CreateAccountView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var eyeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye"), for: .normal)
+        button.tintColor = .BarberColors.darkGray
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleEyeButton), for: .touchUpInside)
+        return button
+    }()
     
     lazy var closedButton: UIButton = {
         let button = UIButton()
@@ -134,6 +144,20 @@ class CreateAccountView: UIView {
         print("conta criada com sucesso")
         createAccount?(emailTextField.text ?? "", passwordTextField.text ?? "", nameBarberShopTextField.text ?? "") 
     }
+    
+    @objc
+    func handleEyeButton() {
+        if isSecureTextEntry {
+            isSecureTextEntry = false
+            eyeButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+        }else {
+            isSecureTextEntry = true
+            eyeButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            passwordTextField.isSecureTextEntry = false
+        }
+    }
+    
 }
 
 extension CreateAccountView: ViewCodeContract {
@@ -145,6 +169,7 @@ extension CreateAccountView: ViewCodeContract {
         addSubview(passwordTextField)
         addSubview(nameBarberShopTextField)
         addSubview(createAccountButton)
+        addSubview(eyeButton)
     }
     
     func setupConstraints() {
@@ -174,6 +199,12 @@ extension CreateAccountView: ViewCodeContract {
             .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
+            .heightAnchor(48)
+        
+        eyeButton
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
+            .rightAnchor(in: passwordTextField)
+            .widthAnchor(48)
             .heightAnchor(48)
         
         nameBarberShopTextField

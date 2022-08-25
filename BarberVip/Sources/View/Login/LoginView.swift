@@ -17,6 +17,7 @@ protocol LoginScreenActionsProtocol: AnyObject {
 class LoginView: UIView {
     
     // MARK: - Properties
+    private var isSecureTextEntry: Bool = false
     weak var delegateAction: LoginScreenActionsProtocol?
     
     // MARK: - Init
@@ -29,6 +30,15 @@ class LoginView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var eyeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye"), for: .normal)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handleEyeButton), for: .touchUpInside)
+        return button
+    }()
     
     lazy var barberImage: UIImageView = {
         let img = UIImageView()
@@ -140,6 +150,19 @@ class LoginView: UIView {
     func handlerRegisterButton() {
         delegateAction?.didTapRegister()
     }
+    @objc
+    func handleEyeButton() {
+        if isSecureTextEntry {
+            isSecureTextEntry = false
+            eyeButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+        }else {
+            isSecureTextEntry = true
+            eyeButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            passwordTextField.isSecureTextEntry = false
+        }
+    }
+    
 }
 
 extension LoginView: ViewCodeContract {
@@ -151,6 +174,7 @@ extension LoginView: ViewCodeContract {
         addSubview(loginButton)
         addSubview(forgotPasswordButton)
         addSubview(registerButton)
+        addSubview(eyeButton)
     }
     
     func setupConstraints() {
@@ -174,6 +198,12 @@ extension LoginView: ViewCodeContract {
             .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
+            .heightAnchor(48)
+        
+        eyeButton
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
+            .rightAnchor(in: passwordTextField)
+            .widthAnchor(48)
             .heightAnchor(48)
         
         loginButton
