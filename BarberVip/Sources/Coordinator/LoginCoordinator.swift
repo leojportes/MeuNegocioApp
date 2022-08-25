@@ -9,8 +9,8 @@ import Foundation
 
 final class LoginCoordinator: BaseCoordinator {
     override func start() {
-        let teste = LoginViewModel()
-        let controller = LoginViewController(viewModel: teste, coordinator: self)
+        let viewModel = LoginViewModel()
+        let controller = LoginViewController(viewModel: viewModel, coordinator: self)
         controller.navigateToHome = navigateToHome
         controller.navigateToForgotPassword = navigateToForgotPassword
         controller.navigateToRegister = navigateToRegister
