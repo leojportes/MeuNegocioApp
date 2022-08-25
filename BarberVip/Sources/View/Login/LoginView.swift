@@ -49,22 +49,26 @@ class LoginView: UIView {
     
     lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "e-mail cadastrado",
-                                          colorPlaceholder: .white,
-                                          textColor: .white,
-                                          radius: 5,
-                                          borderColor: UIColor.white.cgColor,
-                                          borderWidth: 0.5)
+                                        colorPlaceholder: .systemGray,
+                                        textColor: .white,
+                                        radius: 5,
+                                        borderColor: UIColor.white.cgColor,
+                                        borderWidth: 0.5,
+                                        keyboardType: .emailAddress)
+        textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
         return textField
     }()
     
     lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "senha",
-                                          colorPlaceholder: .white,
-                                          textColor: .white,
-                                          radius: 5,
-                                          borderColor: UIColor.white.cgColor,
-                                          borderWidth: 0.5)
+                                        colorPlaceholder: .systemGray,
+                                        textColor: .white,
+                                        radius: 5,
+                                        borderColor: UIColor.white.cgColor,
+                                        borderWidth: 0.5,
+                                        isSecureTextEntry: true)
+        textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
         return textField
     }()
@@ -73,7 +77,8 @@ class LoginView: UIView {
         let button = CustomSubmitButton(title: "LOGIN",
                                   colorTitle: .white,
                                   radius: 10,
-                                  background: .BarberColors.lightBrown)
+                                  background: .systemGray)
+        button.isEnabled = false
         button.addTarget(self, action: #selector(handleLoginButton), for: .touchUpInside)
         return button
     }()
@@ -94,6 +99,31 @@ class LoginView: UIView {
         button.addTarget(self, action: #selector(handlerRegisterButton), for: .touchUpInside)
         return button
     }()
+    
+    func isEnabledButtonLogin(_ isEnabled: Bool) {
+        if isEnabled {
+            loginButton.backgroundColor = .BarberColors.lightBrown
+            loginButton.setTitleColor(.BarberColors.darkGray, for: .normal)
+            loginButton.isEnabled = true
+        }else {
+            loginButton.backgroundColor = .systemGray
+            loginButton.setTitleColor(.white, for: .normal)
+            loginButton.isEnabled = false
+        }
+    }
+    
+    // MARK: - Action TextFields
+    @objc
+    func handleTextFieldDidChange(_ textField: UITextField) {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }        
+        
+        if email.isValidEmail() && password.count > 7 {
+            isEnabledButtonLogin(true)
+        }else {
+            isEnabledButtonLogin(false)
+        }
+    }
         
     // MARK: - Action Buttons
     @objc

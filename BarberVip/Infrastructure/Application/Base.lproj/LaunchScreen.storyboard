@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="closed" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-9R-Am1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-9R-Am1">
                                 <rect key="frame" x="144" y="372" width="126" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="1Zo-7c-yce"/>
@@ -39,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="closed" width="128" height="128"/>
+        <image name="launchScreen" width="126" height="162"/>
         <namedColor name="lightBrown">
             <color red="0.89899998903274536" green="0.74599999189376831" blue="0.32300001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

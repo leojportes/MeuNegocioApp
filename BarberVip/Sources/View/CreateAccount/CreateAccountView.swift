@@ -53,7 +53,8 @@ class CreateAccountView: UIView {
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
                                         borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5)
+                                        borderWidth: 0.5,
+                                        keyboardType: .emailAddress)
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
         return textField
@@ -65,7 +66,8 @@ class CreateAccountView: UIView {
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
                                         borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5)
+                                        borderWidth: 0.5,
+                                        isSecureTextEntry: true)
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
         return textField

@@ -14,7 +14,9 @@ class CustomTextField: UITextField {
          textColor: UIColor,
          radius: CGFloat,
          borderColor: CGColor,
-         borderWidth: CGFloat) {
+         borderWidth: CGFloat,
+         keyboardType: UIKeyboardType = .default,
+         isSecureTextEntry: Bool = false) {
         super.init(frame: .zero)
         self.attributedPlaceholder = NSAttributedString(string: titlePlaceholder,
                                                    attributes: [NSAttributedString.Key.foregroundColor: colorPlaceholder])
@@ -23,6 +25,8 @@ class CustomTextField: UITextField {
         self.layer.borderColor = borderColor
         self.layer.borderWidth = borderWidth
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.keyboardType = keyboardType
+        self.isSecureTextEntry = isSecureTextEntry
     }
     
     required init?(coder: NSCoder) {
