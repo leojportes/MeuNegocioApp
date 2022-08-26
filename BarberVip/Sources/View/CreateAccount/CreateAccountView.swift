@@ -78,6 +78,7 @@ class CreateAccountView: UIView {
                                         borderColor: UIColor.BarberColors.darkGray.cgColor,
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
+        textField.textContentType = .oneTimeCode
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
         return textField

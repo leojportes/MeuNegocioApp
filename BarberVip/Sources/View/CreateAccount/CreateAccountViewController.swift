@@ -24,6 +24,7 @@ class CreateAccountViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createAccount()
+        self.hideKeyboardWhenTappedAround()
     }
     
     

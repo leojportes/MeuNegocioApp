@@ -31,6 +31,7 @@ class LoginViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.delegateAction = self
+        self.hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
