@@ -22,6 +22,19 @@ class CreateAccountView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var scrollView: UIScrollView = {
+       let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    lazy var contentView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    
     lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
@@ -163,43 +176,61 @@ class CreateAccountView: UIView {
 
 extension CreateAccountView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(closedButton)
-        addSubview(barberImage)
-        addSubview(titleLabel)
-        addSubview(emailTextField)
-        addSubview(passwordTextField)
-        addSubview(nameBarberShopTextField)
-        addSubview(createAccountButton)
-        addSubview(eyeButton)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(closedButton)
+        contentView.addSubview(barberImage)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(emailTextField)
+        contentView.addSubview(passwordTextField)
+        contentView.addSubview(nameBarberShopTextField)
+        contentView.addSubview(createAccountButton)
+        contentView.addSubview(eyeButton)
     }
     
     func setupConstraints() {
+        let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        heightConstraint.priority = UILayoutPriority(400)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -200),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            heightConstraint,
+         ])
+        
         closedButton
-            .topAnchor(in: self, attribute: .top, padding: 18)
-            .rightAnchor(in: self, attribute: .right, padding: 20)
+            .topAnchor(in: contentView, attribute: .top, padding: 18)
+            .rightAnchor(in: contentView, attribute: .right, padding: 20)
             .widthAnchor(24)
             .heightAnchor(24)
         
         barberImage
-            .topAnchor(in: self, attribute: .top, padding: 54)
-            .leftAnchor(in: self, attribute: .left, padding: 127)
-            .rightAnchor(in: self, attribute: .right, padding: 127)
+            .topAnchor(in: contentView, attribute: .top, padding: 54)
+            .leftAnchor(in: contentView, attribute: .left, padding: 127)
+            .rightAnchor(in: contentView, attribute: .right, padding: 127)
             .heightAnchor(66)
         
         titleLabel
             .topAnchor(in: barberImage, attribute: .bottom)
-            .centerX(in: self)
+            .centerX(in: contentView)
         
         emailTextField
             .topAnchor(in: titleLabel, attribute: .bottom, padding: 70)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         passwordTextField
             .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         eyeButton
@@ -210,14 +241,14 @@ extension CreateAccountView: ViewCodeContract {
         
         nameBarberShopTextField
             .topAnchor(in: passwordTextField, attribute: .bottom, padding: 20)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         createAccountButton
-            .bottomAnchor(in: self, attribute: .bottom, padding: 48)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .bottomAnchor(in: contentView, attribute: .bottom, padding: 70)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
     }
