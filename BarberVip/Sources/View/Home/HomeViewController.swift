@@ -13,6 +13,7 @@ final class HomeViewController: CoordinatedViewController {
     var navigateToMonthlyReport: Action?
     var navigateToDailyReport: Action?
     var navigateToProfile: Action?
+    var navigateToAddJob: Action?
     
     // MARK: - Private properties
     private let customView = HomeView()
@@ -36,16 +37,12 @@ final class HomeViewController: CoordinatedViewController {
     
     // MARK: - Private methods
     private func setupView() {
-        customView.setupHomeView(monthlyReportAction: { [weak self] in
-            self?.navigateToMonthlyReport?()},
-                                 dailyReportAction: { [weak self] in
-            self?.navigateToDailyReport?()
-        }, alertAction: { [weak self] in
-            self?.showAlert(title: "Funcionalidade não disponível!",
-                       messsage: "Estamos trabalhando nisso.") },
-                                 navigateToProfile: { [weak self] in
-            self?.navigateToProfile?()
-            
-        })
+        customView.setupHomeView(
+            monthlyReportAction: { [weak self] in self?.navigateToMonthlyReport?()},
+            dailyReportAction: { [weak self] in self?.navigateToDailyReport?()},
+            alertAction: { [weak self] in self?.showAlert(title: "Funcionalidade não disponível!",
+                                                          messsage: "Estamos trabalhando nisso.")},
+            navigateToProfile: { [weak self] in self?.navigateToProfile?()},
+            navigateToAddJob: { [weak self] in self?.navigateToAddJob?()})
     }
 }

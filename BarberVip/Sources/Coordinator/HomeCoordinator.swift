@@ -13,6 +13,7 @@ final class HomeCoordinator: BaseCoordinator {
         controller.navigateToMonthlyReport = navigateToReportView
         controller.navigateToDailyReport = navigateToReportDailyView
         controller.navigateToProfile = navigateToProfile
+        controller.navigateToAddJob = navigateToAddJob
         configuration.viewController = controller
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
@@ -29,6 +30,11 @@ final class HomeCoordinator: BaseCoordinator {
     
     private func navigateToProfile() {
         let coordinator = ProfileCoordinator(with: configuration)
+        coordinator.start()
+    }
+    
+    private func navigateToAddJob() {
+        let coordinator = AddJobCoordinator(with: configuration)
         coordinator.start()
     }
     

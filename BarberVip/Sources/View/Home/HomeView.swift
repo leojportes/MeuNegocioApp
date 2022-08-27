@@ -14,6 +14,7 @@ final class HomeView: UIView, ViewCodeContract {
     var navigateToDailyReport: Action?
     var alertAction: Action?
     var navigateToProfile: Action?
+    var navigateToAddJob: Action?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -158,7 +159,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.more.rawValue),
                      backgroundColor: .clear,
                      action: { [weak self] in
-                        self?.alertAction?()
+                        self?.navigateToAddJob?()
                      })
         return button
     }()
@@ -360,11 +361,13 @@ final class HomeView: UIView, ViewCodeContract {
     func setupHomeView(monthlyReportAction: @escaping Action,
                        dailyReportAction: @escaping Action,
                        alertAction: @escaping Action,
-                       navigateToProfile: @escaping Action) {
+                       navigateToProfile: @escaping Action,
+                       navigateToAddJob: @escaping Action) {
         self.navigateToMonthlyReport = monthlyReportAction
         self.navigateToDailyReport = dailyReportAction
         self.alertAction = alertAction
         self.navigateToProfile = navigateToProfile
+        self.navigateToAddJob = navigateToAddJob
     }
     
 }
