@@ -24,6 +24,15 @@ class AddJobView: UIView {
     }
     
     // MARK: - Viewcode
+    
+    lazy var barView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 4
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var barberImage: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "BarberImage")
@@ -125,6 +134,7 @@ class AddJobView: UIView {
 }
 extension AddJobView: ViewCodeContract {
     func setupHierarchy() {
+        addSubview(barView)
         addSubview(barberImage)
         addSubview(nameTextField)
         addSubview(typeJobTextField)
@@ -134,6 +144,12 @@ extension AddJobView: ViewCodeContract {
     }
     
     func setupConstraints() {
+        barView
+            .topAnchor(in: self, attribute: .top, padding: 8)
+            .centerX(in: self)
+            .widthAnchor(40)
+            .heightAnchor(10)
+        
         barberImage
             .topAnchor(in: self, attribute: .top, padding: 54)
             .leftAnchor(in: self, attribute: .left, padding: 127)
