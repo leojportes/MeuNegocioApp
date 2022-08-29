@@ -71,7 +71,7 @@ class CreateAccountView: UIView {
     }()
     
     lazy var emailTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "e-mail",
+        let textField = CustomTextField(titlePlaceholder: "E-mail",
                                         colorPlaceholder: .systemGray,
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
@@ -84,7 +84,7 @@ class CreateAccountView: UIView {
     }()
     
     lazy var passwordTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "senha",
+        let textField = CustomTextField(titlePlaceholder: "Senha",
                                         colorPlaceholder: .systemGray,
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
@@ -98,7 +98,7 @@ class CreateAccountView: UIView {
     }()
     
     lazy var nameBarberShopTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "nome da barbearia",
+        let textField = CustomTextField(titlePlaceholder: "Nome da barbearia",
                                         colorPlaceholder: .systemGray,
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
@@ -110,7 +110,7 @@ class CreateAccountView: UIView {
     }()
     
     lazy var createAccountButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "CRIAR CONTA",
+        let button = CustomSubmitButton(title: "Criar conta",
                                         colorTitle: .white,
                                   radius: 10,
                                   background: .systemGray)

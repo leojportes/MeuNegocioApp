@@ -58,7 +58,7 @@ class LoginView: UIView {
     }()
     
     lazy var emailTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "e-mail cadastrado",
+        let textField = CustomTextField(titlePlaceholder: "E-mail cadastrado",
                                         colorPlaceholder: .systemGray,
                                         textColor: .white,
                                         radius: 5,
@@ -71,7 +71,7 @@ class LoginView: UIView {
     }()
     
     lazy var passwordTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "senha",
+        let textField = CustomTextField(titlePlaceholder: "Senha",
                                         colorPlaceholder: .systemGray,
                                         textColor: .white,
                                         radius: 5,
@@ -84,7 +84,7 @@ class LoginView: UIView {
     }()
     
     lazy var loginButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "LOGIN",
+        let button = CustomSubmitButton(title: "Login",
                                   colorTitle: .white,
                                   radius: 10,
                                   background: .systemGray)
@@ -94,15 +94,16 @@ class LoginView: UIView {
     }()
     
     lazy var forgotPasswordButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "esqueci a senha",
-                                  colorTitle: .white,
-                                  alignmentText: .left)
+        let button = CustomSubmitButton(title: "Esqueci a senha",
+                                        colorTitle: .white,
+                                        alignmentText: .left,
+                                        fontSize: 16)
         button.addTarget(self, action: #selector(handleForgotPasswordButton), for: .touchUpInside)
         return button
     }()
     
     lazy var registerButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "CADASTRE-SE",
+        let button = CustomSubmitButton(title: "Criar conta",
                                         colorTitle: .white,
                                         radius: 10,
                                         background: .BarberColors.darkGray,

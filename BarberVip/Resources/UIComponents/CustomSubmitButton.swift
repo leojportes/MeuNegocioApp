@@ -15,7 +15,8 @@ class CustomSubmitButton: UIButton {
          background: UIColor = .clear,
          alignmentText: ContentHorizontalAlignment = .center,
          borderColorCustom: CGColor = UIColor.clear.cgColor,
-         borderWidthCustom: CGFloat = CGFloat()) {
+         borderWidthCustom: CGFloat = CGFloat(),
+         fontSize: CGFloat = 18) {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         self.setTitleColor(colorTitle, for: .normal)
@@ -24,6 +25,7 @@ class CustomSubmitButton: UIButton {
         self.contentHorizontalAlignment = alignmentText
         self.layer.borderColor = borderColorCustom
         self.layer.borderWidth = borderWidthCustom
+        self.titleLabel?.font = .boldSystemFont(ofSize: fontSize)
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     

@@ -27,8 +27,15 @@ class AddJobView: UIView {
     
     lazy var barView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         view.layer.cornerRadius = 4
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    lazy var lineBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -42,7 +49,7 @@ class AddJobView: UIView {
     }()
     
     lazy var nameTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "nome do cliente",
+        let textField = CustomTextField(titlePlaceholder: "Nome do cliente",
                                         colorPlaceholder: .systemGray,
                                         textColor: .white,
                                         radius: 5,
@@ -54,7 +61,7 @@ class AddJobView: UIView {
     }()
     
     lazy var typeJobTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "tipo de procedimento",
+        let textField = CustomTextField(titlePlaceholder: "Tipo de procedimento",
                                         colorPlaceholder: .systemGray,
                                         textColor: .white,
                                         radius: 5,
@@ -66,7 +73,7 @@ class AddJobView: UIView {
     }()
     
     lazy var paymentTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "forma de pagamento",
+        let textField = CustomTextField(titlePlaceholder: "Forma de pagamento",
                                         colorPlaceholder: .systemGray,
                                         textColor: .white,
                                         radius: 5,
@@ -90,7 +97,7 @@ class AddJobView: UIView {
     }()
     
     lazy var addButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "ADICIONAR",
+        let button = CustomSubmitButton(title: "Adicionar",
                                         colorTitle: .white,
                                         radius: 10,
                                         background: .BarberColors.lightBrown)
@@ -135,6 +142,7 @@ class AddJobView: UIView {
 extension AddJobView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(barView)
+        addSubview(lineBarView)
         addSubview(barberImage)
         addSubview(nameTextField)
         addSubview(typeJobTextField)
@@ -145,19 +153,25 @@ extension AddJobView: ViewCodeContract {
     
     func setupConstraints() {
         barView
-            .topAnchor(in: self, attribute: .top, padding: 8)
+            .topAnchor(in: self, attribute: .top, padding: 11)
             .centerX(in: self)
-            .widthAnchor(40)
-            .heightAnchor(10)
+            .widthAnchor(38)
+            .heightAnchor(4)
+        
+        lineBarView
+            .topAnchor(in: barView, attribute: .bottom, padding: 15)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .heightAnchor(1)
         
         barberImage
-            .topAnchor(in: self, attribute: .top, padding: 54)
+            .topAnchor(in: lineBarView, attribute: .bottom, padding: 44)
             .leftAnchor(in: self, attribute: .left, padding: 127)
             .rightAnchor(in: self, attribute: .right, padding: 127)
             .heightAnchor(66)
         
         nameTextField
-            .topAnchor(in: barberImage, attribute: .bottom, padding: 50)
+            .topAnchor(in: barberImage, attribute: .bottom, padding: 45)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
