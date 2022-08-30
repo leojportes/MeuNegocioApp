@@ -27,7 +27,7 @@ class AddJobView: UIView {
     
     lazy var barView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .gray
         view.layer.cornerRadius = 4
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -35,7 +35,7 @@ class AddJobView: UIView {
     
     lazy var lineBarView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .gray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -51,11 +51,11 @@ class AddJobView: UIView {
     lazy var nameTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Nome do cliente",
                                         colorPlaceholder: .systemGray,
-                                        textColor: .white,
+                                        textColor: .BarberColors.darkGray,
                                         radius: 5,
-                                        borderColor: UIColor.white.cgColor,
+                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
                                         borderWidth: 0.5,
-                                        keyboardType: .emailAddress)
+                                        keyboardType: .default)
         textField.setPaddingLeft()
         return textField
     }()
@@ -63,11 +63,11 @@ class AddJobView: UIView {
     lazy var typeJobTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Tipo de procedimento",
                                         colorPlaceholder: .systemGray,
-                                        textColor: .white,
+                                        textColor: .BarberColors.darkGray,
                                         radius: 5,
-                                        borderColor: UIColor.white.cgColor,
+                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
                                         borderWidth: 0.5,
-                                        keyboardType: .emailAddress)
+                                        keyboardType: .default)
         textField.setPaddingLeft()
         return textField
     }()
@@ -75,11 +75,11 @@ class AddJobView: UIView {
     lazy var paymentTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Forma de pagamento",
                                         colorPlaceholder: .systemGray,
-                                        textColor: .white,
+                                        textColor: .BarberColors.darkGray,
                                         radius: 5,
-                                        borderColor: UIColor.white.cgColor,
+                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
                                         borderWidth: 0.5,
-                                        keyboardType: .emailAddress)
+                                        keyboardType: .default)
         textField.setPaddingLeft()
         return textField
     }()
@@ -87,11 +87,11 @@ class AddJobView: UIView {
     lazy var valueTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "R$",
                                         colorPlaceholder: .systemGray,
-                                        textColor: .white,
+                                        textColor: .BarberColors.darkGray,
                                         radius: 5,
-                                        borderColor: UIColor.white.cgColor,
+                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
                                         borderWidth: 0.5,
-                                        keyboardType: .emailAddress)
+                                        keyboardType: .numberPad)
         textField.setPaddingLeft()
         return textField
     }()
@@ -155,14 +155,14 @@ extension AddJobView: ViewCodeContract {
         barView
             .topAnchor(in: self, attribute: .top, padding: 11)
             .centerX(in: self)
-            .widthAnchor(38)
-            .heightAnchor(4)
+            .widthAnchor(60)
+            .heightAnchor(6)
         
         lineBarView
-            .topAnchor(in: barView, attribute: .bottom, padding: 15)
+            .topAnchor(in: barView, attribute: .bottom, padding: 18)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(1)
+            .heightAnchor(0.5)
         
         barberImage
             .topAnchor(in: lineBarView, attribute: .bottom, padding: 44)
@@ -202,6 +202,6 @@ extension AddJobView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-        backgroundColor = .BarberColors.darkGray
+        backgroundColor = .white
     }
 }
