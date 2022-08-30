@@ -141,6 +141,7 @@ class LoginView: UIView {
     // MARK: - Action Buttons
     @objc
     func handleLoginButton() {
+        loginButton.loadingIndicator(show: true)
         delegateAction?.didTapLogin(emailTextField.text ?? "", passwordTextField.text ?? "")
     }
     

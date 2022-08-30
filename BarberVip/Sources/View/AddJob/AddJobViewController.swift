@@ -28,9 +28,16 @@ class AddJobViewController: CoordinatedViewController {
     // MARK: - Private methods
     func setupView() {
         customView.setupAddJobView(
-            addJob: { [ weak self ] in self?.addJob?()},
-            alertEmptyField: { [ weak self ] in self?.showAlert(title: "atenção",
-                                                                messsage: "preencha todos os campos")})
+            addJob: { [ weak self ] in
+                self?.addJob?()
+                self?.customView.addButton.loadingIndicator(show: false)
+            },
+            
+            alertEmptyField: { [ weak self ] in
+                self?.showAlert(title: "atenção",
+                                messsage: "preencha todos os campos")
+                self?.customView.addButton.loadingIndicator(show: false)
+            })
     }
 
 }

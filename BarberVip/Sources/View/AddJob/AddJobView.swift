@@ -98,7 +98,7 @@ class AddJobView: UIView {
     
     lazy var addButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Adicionar",
-                                        colorTitle: .white,
+                                        colorTitle: .BarberColors.darkGray,
                                         radius: 10,
                                         background: .BarberColors.lightBrown)
         button.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)

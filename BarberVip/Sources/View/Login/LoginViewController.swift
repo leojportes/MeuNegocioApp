@@ -56,8 +56,10 @@ extension LoginViewController: LoginScreenActionsProtocol {
         viewModel.authLogin(email, password) { [ weak self ] authResult in
             if authResult {
                 self?.navigateToHome?()
+                self?.customView.loginButton.loadingIndicator(show: false)
             }else {
                 self?.showAlert(title: "houve um erro", messsage: "verifique novamente os campos preenchidos")
+                self?.customView.loginButton.loadingIndicator(show: false)
             }
         }
     }
