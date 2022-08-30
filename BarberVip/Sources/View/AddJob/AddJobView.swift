@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol AddJobActionsProtocol: AnyObject {
+    func addJob(nameClient: String, typeJob: String, typePayment: String, value: String)
+    func alertEmptyField()
+}
+
 class AddJobView: UIView {
     
     // MARK: - Properties
-    var addJob: Action?
-    var alertEmptyField: Action?
+    weak var delegateActions: AddJobActionsProtocol?
     
     // MARK: - Init
     override init(frame: CGRect = .zero) {
@@ -106,12 +110,6 @@ class AddJobView: UIView {
     }()
     
     // MARK: - Methods
-    func setupAddJobView(addJob: @escaping Action,
-                         alertEmptyField: @escaping Action) {
-        self.addJob = addJob
-        self.alertEmptyField = alertEmptyField
-    }
-
     
     func isSomeEmptyField() -> Bool{
         var result: Bool = false
@@ -132,9 +130,12 @@ class AddJobView: UIView {
     @objc
     func handleAddButton() {
         if isSomeEmptyField() {
-            self.alertEmptyField?()
+            delegateActions?.alertEmptyField()
         }else{
-            self.addJob?()
+            delegateActions?.addJob(nameClient: nameTextField.text ?? "",
+                                    typeJob: typeJobTextField.text ?? "",
+                                    typePayment: paymentTextField.text ?? "",
+                                    value: valueTextField.text ?? "")
         }
     }
     

@@ -9,13 +9,14 @@ import Foundation
 
 class AddJobCoordinator: BaseCoordinator {
     override func start() {
-        let controller = AddJobViewController(coordinator: self)
-        controller.addJob = addJob
+        let viewModel = AddJobViewModel()
+        let controller = AddJobViewController(viewModel: viewModel, coordinator: self)
+        controller.closedView = closedView
         configuration.viewController = controller
         configuration.navigationController?.present(controller, animated: true)
     }
     
-    private func addJob() {
+    private func closedView() {
         configuration.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

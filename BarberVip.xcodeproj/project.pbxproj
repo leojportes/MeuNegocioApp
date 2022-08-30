@@ -28,6 +28,8 @@
 		52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7E28B999E00055E384 /* AddJobViewController.swift */; };
 		52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */; };
 		52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */; };
+		52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AF28BE512B0048237C /* AddJobModel.swift */; };
+		52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddJobViewModel.swift */; };
 		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
@@ -107,6 +109,8 @@
 		52C4AE7E28B999E00055E384 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
 		52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobCoordinator.swift; sourceTree = "<group>"; };
 		52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		52DC01AF28BE512B0048237C /* AddJobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobModel.swift; sourceTree = "<group>"; };
+		52DC01B128BE51DB0048237C /* AddJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewModel.swift; sourceTree = "<group>"; };
 		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +236,8 @@
 			children = (
 				52C4AE7C28B999C10055E384 /* AddJobView.swift */,
 				52C4AE7E28B999E00055E384 /* AddJobViewController.swift */,
+				52DC01AF28BE512B0048237C /* AddJobModel.swift */,
+				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
 			);
 			path = AddJob;
 			sourceTree = "<group>";
@@ -739,8 +745,10 @@
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
+				52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
+				52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */,
 				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,

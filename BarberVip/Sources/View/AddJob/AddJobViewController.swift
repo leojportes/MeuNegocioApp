@@ -10,34 +10,47 @@ import UIKit
 class AddJobViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    let customView = AddJobView()
-
-    var addJob: Action?
-    var alertEmptyField: Action?
+    private let customView = AddJobView()
+    private let viewModel: AddJobViewModelProtocol
+    var closedView: Action?
+    
+    init(viewModel: AddJobViewModelProtocol, coordinator: CoordinatorProtocol){
+        self.viewModel = viewModel
+        super.init(coordinator: coordinator)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        customView.delegateActions = self
     }
     
     override func loadView() {
         super.loadView()
         self.view = customView
     }
+
+}
+
+extension AddJobViewController: AddJobActionsProtocol {
     
-    // MARK: - Private methods
-    func setupView() {
-        customView.setupAddJobView(
-            addJob: { [ weak self ] in
-                self?.addJob?()
-                self?.customView.addButton.loadingIndicator(show: false)
-            },
-            
-            alertEmptyField: { [ weak self ] in
-                self?.showAlert(title: "atenção",
-                                messsage: "preencha todos os campos")
-                self?.customView.addButton.loadingIndicator(show: false)
-            })
+    func addJob(nameClient: String, typeJob: String, typePayment: String, value: String) {
+        customView.addButton.loadingIndicator(show: false)
+        viewModel.addJob(data: AddJobModel(nameClient: nameClient,
+                                           typeJob: typeJob,
+                                           typePayment: typePayment,
+                                           value: value))
+        closedView?()
     }
 
+    func alertEmptyField() {
+        customView.addButton.loadingIndicator(show: false)
+        showAlert(title: "atenção",
+                  messsage: "preencha todos os campos")
+    }
+    
+    
 }
