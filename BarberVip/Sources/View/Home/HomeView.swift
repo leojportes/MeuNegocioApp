@@ -28,11 +28,10 @@ final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Viewcode
     private lazy var navigationBar: BarberNavBar = {
-        let navigation = BarberNavBar(iconRight: UIImage(named: Icon.profile.rawValue),
+        let navigation = BarberNavBar(iconLeft: UIImage(named: Icon.profile.rawValue),
                                       heightIcon: 20,
                                       widhtIcon: 20,
-                                      backButtonAction: weakify { $0.navigateToProfile?()
-                                      })
+                                      backButtonAction: weakify { $0.navigateToProfile?()})
         navigation.set(title: "Olá, Leonardo",
                        color: .black,
                        font: .boldSystemFont(ofSize: 20))

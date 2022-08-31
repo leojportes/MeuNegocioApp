@@ -27,7 +27,7 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var navigationBar: BarberNavBar = {
         let navigation = BarberNavBar(backgroundColor: UIColor.BarberColors.darkGray,
                                       backgroundColorButtonLeft: .clear,
-                                      iconRight: UIImage(named: Icon.back.rawValue),
+                                      iconLeft: UIImage(named: Icon.back.rawValue),
                                       heightIcon: 20,
                                       widhtIcon: 20,
                                       backButtonAction: weakify { $0.popAction?() })

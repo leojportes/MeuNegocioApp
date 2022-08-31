@@ -20,7 +20,7 @@ final class BarberNavBar: UIView, ViewCodeContract {
     init(backgroundColor: UIColor? = nil,
          backgroundColorButtonLeft: UIColor? = nil,
          colorHorizontalLine: UIColor? = nil,
-         iconRight: UIImage? = nil,
+         iconLeft: UIImage? = nil,
          heightIcon: CGFloat,
          widhtIcon: CGFloat,
          backButtonAction: @escaping Action) {
@@ -30,7 +30,7 @@ final class BarberNavBar: UIView, ViewCodeContract {
         self.actionButton = backButtonAction
         self.horizontalLine.backgroundColor = colorHorizontalLine
 
-        self.barbersButton.setup(image: iconRight,
+        self.barbersButton.setup(image: iconLeft,
                                  backgroundColor: backgroundColorButtonLeft ?? .white,
                                  action: backButtonAction)
         barbersButton.setIcon(height: heightIcon, width: widhtIcon)
