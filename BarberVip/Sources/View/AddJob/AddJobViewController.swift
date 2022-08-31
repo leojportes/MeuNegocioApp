@@ -12,7 +12,6 @@ class AddJobViewController: CoordinatedViewController {
     // MARK: - Properties
     private let customView = AddJobView()
     private let viewModel: AddJobViewModelProtocol
-    var closedView: Action?
     
     init(viewModel: AddJobViewModelProtocol, coordinator: CoordinatorProtocol){
         self.viewModel = viewModel
@@ -43,7 +42,7 @@ extension AddJobViewController: AddJobActionsProtocol {
                                            typeJob: typeJob,
                                            typePayment: typePayment,
                                            value: value))
-        closedView?()
+        viewModel.closed()
     }
 
     func alertEmptyField() {
