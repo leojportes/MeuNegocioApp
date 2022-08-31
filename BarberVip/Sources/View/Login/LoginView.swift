@@ -65,8 +65,8 @@ class LoginView: UIView {
                                         borderColor: UIColor.white.cgColor,
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
-        textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
+        textField.delegate = self
         return textField
     }()
     
@@ -78,8 +78,8 @@ class LoginView: UIView {
                                         borderColor: UIColor.white.cgColor,
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
-        textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
+        textField.delegate = self
         return textField
     }()
     
@@ -124,19 +124,6 @@ class LoginView: UIView {
             loginButton.isEnabled = false
         }
     }
-    
-    // MARK: - Action TextFields
-    @objc
-    func handleTextFieldDidChange(_ textField: UITextField) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }        
-        
-        if email.isValidEmail() && password.count > 7 {
-            isEnabledButtonLogin(true)
-        }else {
-            isEnabledButtonLogin(false)
-        }
-    }
         
     // MARK: - Action Buttons
     @objc
@@ -154,13 +141,14 @@ class LoginView: UIView {
     func handlerRegisterButton() {
         delegateAction?.didTapRegister()
     }
+
     @objc
     func handleEyeButton() {
         if isSecureTextEntry {
             isSecureTextEntry = false
             eyeButton.setImage(UIImage(systemName: "eye"), for: .normal)
             passwordTextField.isSecureTextEntry = true
-        }else {
+        } else {
             isSecureTextEntry = true
             eyeButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
             passwordTextField.isSecureTextEntry = false
@@ -232,5 +220,15 @@ extension LoginView: ViewCodeContract {
     
     func setupConfiguration() {
         self.backgroundColor = UIColor.BarberColors.darkGray
+    }
+}
+
+extension LoginView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        let isValidLogin = email.isValidEmail() && password.count > 7
+        isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
     }
 }

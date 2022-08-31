@@ -379,11 +379,8 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y >= 20 {
-            horizontalLine.isHidden = false
-        } else {
-            horizontalLine.isHidden = true
-        }
+        let shouldDisplay = scrollView.contentOffset.y >= 20
+        horizontalLine.isHidden = shouldDisplay
     }
     
 }

@@ -68,6 +68,7 @@
 		C0BCE58127B72EF5005805A6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58027B72EF5005805A6 /* UIView+Extensions.swift */; };
 		C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58627B731C2005805A6 /* IconButton.swift */; };
 		C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58E27B747E2005805A6 /* Icon.swift */; };
+		C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +156,7 @@
 		C0BCE58027B72EF5005805A6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C0BCE58627B731C2005805A6 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C0BCE58E27B747E2005805A6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weakify+Ext.swift"; sourceTree = "<group>"; };
 		C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVipTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.release.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
@@ -462,6 +464,7 @@
 				52EC175028AC6C71005E6B4C /* String+Extensions.swift */,
 				52C4AE7728B705A00055E384 /* UIViewController+Extensions.swift */,
 				52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */,
+				C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -726,6 +729,7 @@
 			files = (
 				C0BCE58127B72EF5005805A6 /* UIView+Extensions.swift in Sources */,
 				520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */,
+				C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */,
 				C0A741C727B1A8C600391CE6 /* UIView+RawAnchors.swift in Sources */,
 				C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */,
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
