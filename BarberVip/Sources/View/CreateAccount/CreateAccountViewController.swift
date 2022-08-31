@@ -35,21 +35,17 @@ class CreateAccountViewController: CoordinatedViewController {
     }
     
     private func createAccount() {
-        contentView?.createAccount = { [ weak self ] email, password, nameBarber in
-            self?.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result in
+        contentView?.createAccount = weakify { weakSelf, email, password, nameBarber in
+            weakSelf.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result in
                 if result {
                     UserDefaults.standard.set(email, forKey: "email")
-                    self?.dismiss(animated: true)
-                }else {
-                    self?.showAlert(title: "ocorreu um erro", messsage: "tente criar a conta mais tarde")
+                    weakSelf.dismiss(animated: true)
+                } else {
+                    weakSelf.showAlert(title: "ocorreu um erro", messsage: "tente criar a conta mais tarde")
                 }
             })
         }
-        
-        contentView?.closedView = { [ weak self] in
-            self?.dismiss(animated: true)
-        }
-        
+        contentView?.closedView = weakify { $0.dismiss(animated: true) }
     }
     
 }

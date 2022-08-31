@@ -30,9 +30,7 @@ final class ReportView: UIView, ViewCodeContract {
                                       iconRight: UIImage(named: Icon.back.rawValue),
                                       heightIcon: 20,
                                       widhtIcon: 20,
-                                      backButtonAction: { [weak self] in
-                                        self?.popAction?()
-                                      })
+                                      backButtonAction: weakify { $0.popAction?() })
         
         navigation.translatesAutoresizingMaskIntoConstraints = false
         return navigation
@@ -61,8 +59,7 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var clientIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.beard.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         button.setIcon(height: 25, width: 25)
         return button
     }()
@@ -70,24 +67,21 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var procedureIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.procedure.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var priceIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.money.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var paymentMethodIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.paymentMethod.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
@@ -127,9 +121,7 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var scrollToTopButton: ScrollToTopButton = {
         let button = ScrollToTopButton(image: UIImage(named: Icon.arrowUp.rawValue),
                                 colorButton: .black,
-                                action: { [weak self] in
-                                    self?.scrollToTop()
-                                })
+                                action: weakify { $0.scrollToTop() })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()

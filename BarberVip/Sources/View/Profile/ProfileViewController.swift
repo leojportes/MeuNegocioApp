@@ -26,9 +26,7 @@ class ProfileViewController: CoordinatedViewController {
     }
     
     func closedFlow() {
-        customView.closed = { [ weak self ] in
-            self?.closed?()
-        }
+        customView.closed = weakify { $0.closed?() }
     }
 
 }

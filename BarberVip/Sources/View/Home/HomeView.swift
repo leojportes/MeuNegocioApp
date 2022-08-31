@@ -31,8 +31,7 @@ final class HomeView: UIView, ViewCodeContract {
         let navigation = BarberNavBar(iconRight: UIImage(named: Icon.profile.rawValue),
                                       heightIcon: 20,
                                       widhtIcon: 20,
-                                      backButtonAction: { [weak self] in
-                                        self?.navigateToProfile?()
+                                      backButtonAction: weakify { $0.navigateToProfile?()
                                       })
         navigation.set(title: "Olá, Leonardo",
                        color: .black,
@@ -60,9 +59,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.beard.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        self?.alertAction?()
-                     })
+                     action: weakify { $0.alertAction?() })
         return button
     }()
     
@@ -72,9 +69,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        self?.navigateToDailyReport?()
-                     })
+                     action: weakify { $0.navigateToDailyReport?() })
         return button
     }()
     
@@ -84,10 +79,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        print("Relatório mensal")
-                        self?.navigateToMonthlyReport?()
-                     })
+                     action: weakify { $0.navigateToMonthlyReport?() })
         return button
     }()
     
@@ -97,9 +89,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.help.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        self?.alertAction?()
-                     })
+                     action: weakify { $0.alertAction?() })
         return button
     }()
     
@@ -174,8 +164,7 @@ final class HomeView: UIView, ViewCodeContract {
     private lazy var clientIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.beard.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         button.setIcon(height: 25, width: 25)
         return button
     }()
@@ -183,24 +172,21 @@ final class HomeView: UIView, ViewCodeContract {
     private lazy var procedureIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.procedure.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var priceIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.money.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var paymentMethodIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.paymentMethod.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     

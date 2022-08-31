@@ -25,8 +25,6 @@ final class ReportViewController: CoordinatedViewController {
     // MARK: - Private methods
     private func setupCustomView() {
         customView.setupHomeView(title: "Relatório mensal",
-                                 popAction: { [weak self] in
-                                    self?.popAction?()
-                                 })
+                                 popAction: weakify { $0.popAction?() })
     }
 }

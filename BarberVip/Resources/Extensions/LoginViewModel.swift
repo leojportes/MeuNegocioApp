@@ -4,6 +4,7 @@
 //
 //  Created by Renilson Moreira on 18/08/22.
 //
+
 import FirebaseAuth
 
 protocol LoginViewModelProtocol: AnyObject {
@@ -12,10 +13,10 @@ protocol LoginViewModelProtocol: AnyObject {
 
 class LoginViewModel: LoginViewModelProtocol {
     func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+        Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if error != nil {
                 resultLogin(false)
-            }else {
+            } else {
                 resultLogin(true)
             }
         }

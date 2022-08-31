@@ -38,11 +38,10 @@ final class HomeViewController: CoordinatedViewController {
     // MARK: - Private methods
     private func setupView() {
         customView.setupHomeView(
-            monthlyReportAction: { [weak self] in self?.navigateToMonthlyReport?()},
-            dailyReportAction: { [weak self] in self?.navigateToDailyReport?()},
-            alertAction: { [weak self] in self?.showAlert(title: "Funcionalidade não disponível!",
-                                                          messsage: "Estamos trabalhando nisso.")},
-            navigateToProfile: { [weak self] in self?.navigateToProfile?()},
-            navigateToAddJob: { [weak self] in self?.navigateToAddJob?()})
+            monthlyReportAction: weakify { $0.navigateToMonthlyReport?() },
+            dailyReportAction: weakify { $0.navigateToDailyReport?() },
+            alertAction: weakify { $0.showAlert()},
+            navigateToProfile: weakify { $0.navigateToProfile?() },
+            navigateToAddJob: weakify { $0.navigateToAddJob?() })
     }
 }
