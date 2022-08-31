@@ -10,13 +10,19 @@ import UIKit
 final class HomeViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    var navigateToMonthlyReport: Action?
-    var navigateToDailyReport: Action?
-    var navigateToProfile: Action?
-    var navigateToAddJob: Action?
-    
+    private let viewModel: HomeViewModelProtocol
+
     // MARK: - Private properties
     private let customView = HomeView()
+        
+    init(viewModel: HomeViewModelProtocol, coordinator: CoordinatorProtocol){
+        self.viewModel = viewModel
+        super.init(coordinator: coordinator)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -38,10 +44,10 @@ final class HomeViewController: CoordinatedViewController {
     // MARK: - Private methods
     private func setupView() {
         customView.setupHomeView(
-            monthlyReportAction: weakify { $0.navigateToMonthlyReport?() },
-            dailyReportAction: weakify { $0.navigateToDailyReport?() },
+            monthlyReportAction: weakify { $0.viewModel.navigateToMonthlyReport() },
+            dailyReportAction: weakify { $0.viewModel.navigateToDailyReport()},
             alertAction: weakify { $0.showAlert()},
-            navigateToProfile: weakify { $0.navigateToProfile?() },
-            navigateToAddJob: weakify { $0.navigateToAddJob?() })
+            navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
+            navigateToAddJob: weakify { $0.viewModel.navigateToAddJob() })
     }
 }

@@ -7,35 +7,37 @@
 
 import Foundation
 
+enum TypeScreen {
+    case MonthlyReport
+    case DailyReport
+    case Profile
+    case AddJob
+}
+
 final class HomeCoordinator: BaseCoordinator {
     override func start() {
-        let controller = HomeViewController(coordinator: self)
-        controller.navigateToMonthlyReport = navigateToReportView
-        controller.navigateToDailyReport = navigateToReportDailyView
-        controller.navigateToProfile = navigateToProfile
-        controller.navigateToAddJob = navigateToAddJob
+        let viewModel = HomeViewModel(coordinator: self)
+        let controller = HomeViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func navigateToReportView() {
-        let coordinator = ReportCoordinator(with: configuration)
-        coordinator.start()
+    func navigateTo(_ event: TypeScreen) {
+        switch event {
+        case .MonthlyReport:
+            let coordinator = ReportCoordinator(with: configuration)
+            coordinator.start()
+        case .DailyReport:
+            let coordinator = ReportDailyCoordinator(with: configuration)
+            coordinator.start()
+        case .Profile:
+            let coordinator = ProfileCoordinator(with: configuration)
+            coordinator.start()
+        case .AddJob:
+            let coordinator = AddJobCoordinator(with: configuration)
+            coordinator.start()
+        default:
+            break
+        }
     }
-    
-    private func navigateToReportDailyView() {
-        let coordinator = ReportDailyCoordinator(with: configuration)
-        coordinator.start()
-    }
-    
-    private func navigateToProfile() {
-        let coordinator = ProfileCoordinator(with: configuration)
-        coordinator.start()
-    }
-    
-    private func navigateToAddJob() {
-        let coordinator = AddJobCoordinator(with: configuration)
-        coordinator.start()
-    }
-    
 }
