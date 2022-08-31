@@ -199,7 +199,7 @@ extension CreateAccountView: ViewCodeContract {
             
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -200),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -120),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             heightConstraint,
@@ -246,7 +246,7 @@ extension CreateAccountView: ViewCodeContract {
             .heightAnchor(48)
         
         createAccountButton
-            .bottomAnchor(in: contentView, attribute: .bottom, padding: 70)
+            .bottomAnchor(in: contentView, attribute: .bottom, padding: 140)
             .leftAnchor(in: contentView, attribute: .left, padding: 16)
             .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)

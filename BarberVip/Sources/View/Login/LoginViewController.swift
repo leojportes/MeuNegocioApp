@@ -10,11 +10,6 @@ import UIKit
 
 class LoginViewController: CoordinatedViewController {
     
-    // MARK: - Properties
-    var navigateToHome: Action?
-    var navigateToRegister: Action?
-    var navigateToForgotPassword: Action?
-    
     // MARK: - Private properties
     private let customView = LoginView()
     private let viewModel: LoginViewModelProtocol
@@ -55,7 +50,7 @@ extension LoginViewController: LoginScreenActionsProtocol {
     func didTapLogin(_ email: String, _ password: String) {
         viewModel.authLogin(email, password) { [weak self] authResult in
             if authResult {
-                self?.navigateToHome?()
+                self?.viewModel.navigateToHome()
                 self?.customView.loginButton.loadingIndicator(show: false)
             } else {
                 self?.showAlert(title: "Houve um erro", messsage: "verifique novamente os campos preenchidos.")
@@ -65,10 +60,10 @@ extension LoginViewController: LoginScreenActionsProtocol {
     }
     
     func didTapForgotPassword() {
-        self.navigateToForgotPassword?()
+        viewModel.navigateToForgotPassword()
     }
     
     func didTapRegister() {
-        self.navigateToRegister?()
+        viewModel.navigateToRegister()
     }
 }

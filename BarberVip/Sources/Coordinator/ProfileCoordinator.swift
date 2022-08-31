@@ -18,6 +18,8 @@ class ProfileCoordinator: BaseCoordinator {
     }
     
     func closed() {
-        configuration.navigationController?.popToRootViewController(animated: true)
+        let coordinator = LoginCoordinator(with: configuration)
+        configuration.navigationController?.viewControllers.removeAll()
+        coordinator.start()
     }
 }

@@ -6,30 +6,40 @@
 //
 
 import Foundation
+import UIKit
 
 final class LoginCoordinator: BaseCoordinator {
     override func start() {
-        let viewModel = LoginViewModel()
+        let viewModel = LoginViewModel(coordinator: self)
         let controller = LoginViewController(viewModel: viewModel, coordinator: self)
-        controller.navigateToHome = navigateToHome
-        controller.navigateToForgotPassword = navigateToForgotPassword
-        controller.navigateToRegister = navigateToRegister
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = true
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func navigateToHome() {
+    func navigateToHome() {
         let coordinator = HomeCoordinator(with: configuration)
         coordinator.start()
+        configuration.navigationController?.removeViewController(LoginViewController.self)
     }
     
-    private func navigateToForgotPassword() {
+    func navigateToForgotPassword() {
         print("deu certo o password")
     }
     
-    private func navigateToRegister() {
+    func navigateToRegister() {
         let coordinator = CreateAccountCoordinator(with: configuration)
         coordinator.start()
+    }
+}
+
+extension UINavigationController {
+    
+    func removeViewController(_ controller: UIViewController.Type) {
+        if let viewController = viewControllers.first(where: { $0.isKind(of: controller.self) }) {
+            viewController.willMove(toParent: nil)
+            viewController.removeFromParent()
+            viewController.view.removeFromSuperview()
+        }
     }
 }
