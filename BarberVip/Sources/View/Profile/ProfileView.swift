@@ -22,7 +22,7 @@ class ProfileView: UIView {
     
     lazy var emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "example@gmail.com.br"
+        label.text = UserDefaults.standard.string(forKey: "email")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
