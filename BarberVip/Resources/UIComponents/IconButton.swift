@@ -52,7 +52,7 @@ public final class IconButton: UIView, ViewCodeContract {
     
     public func setup(image: UIImage? = nil,
                       backgroundColor: UIColor,
-                      action: @escaping Action) {
+                      action: @escaping Action = { () } ) {
         icon.image = image
         self.backgroundColor = backgroundColor
         self.translatesAutoresizingMaskIntoConstraints = false

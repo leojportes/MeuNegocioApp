@@ -3,16 +3,40 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		20ED6D034C5B0B8ED4A7F267 /* Pods_BarberVip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */; };
+		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
+		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
+		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
+		521A929828AEA8DD0024865B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521A929728AEA8DC0024865B /* GoogleService-Info.plist */; };
+		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
+		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
+		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
+		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
+		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
+		5249214928C00621006F01DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249214828C00621006F01DA /* HomeViewModel.swift */; };
+		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
+		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
+		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
+		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
+		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
+		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
+		52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7728B705A00055E384 /* UIViewController+Extensions.swift */; };
+		52C4AE7D28B999C10055E384 /* AddJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7C28B999C10055E384 /* AddJobView.swift */; };
+		52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7E28B999E00055E384 /* AddJobViewController.swift */; };
+		52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */; };
+		52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */; };
+		52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AF28BE512B0048237C /* AddJobModel.swift */; };
+		52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddJobViewModel.swift */; };
+		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
 		C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2027BEE83500CFCEE0 /* ReportView.swift */; };
-		C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */; };
-		C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */; };
+		C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */; };
+		C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */; };
 		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
 		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
@@ -45,6 +69,7 @@
 		C0BCE58127B72EF5005805A6 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58027B72EF5005805A6 /* UIView+Extensions.swift */; };
 		C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58627B731C2005805A6 /* IconButton.swift */; };
 		C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58E27B747E2005805A6 /* Icon.swift */; };
+		C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,11 +91,35 @@
 
 /* Begin PBXFileReference section */
 		114D0EC1AB5EEE04CE7BCA8C /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip-BarberVipUITests.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
+		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		521A929728AEA8DC0024865B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Sources/ViewModel/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = BarberVip/Sources/ViewModel/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
+		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
+		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
+		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		52C4AE7728B705A00055E384 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		52C4AE7C28B999C10055E384 /* AddJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobView.swift; sourceTree = "<group>"; };
+		52C4AE7E28B999E00055E384 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
+		52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobCoordinator.swift; sourceTree = "<group>"; };
+		52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		52DC01AF28BE512B0048237C /* AddJobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobModel.swift; sourceTree = "<group>"; };
+		52DC01B128BE51DB0048237C /* AddJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewModel.swift; sourceTree = "<group>"; };
+		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
 		C0319C2027BEE83500CFCEE0 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
+		C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
+		C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
 		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
@@ -109,6 +158,7 @@
 		C0BCE58027B72EF5005805A6 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		C0BCE58627B731C2005805A6 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C0BCE58E27B747E2005805A6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
+		C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weakify+Ext.swift"; sourceTree = "<group>"; };
 		C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVipTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.release.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +208,53 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		522D901D289A00DF0085575A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				522D901E289A00DF0085575A /* LoginView.swift */,
+				522D901F289A00DF0085575A /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		5249214728BFF2EC006F01DA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
+				521A929928AEBFE40024865B /* LoginViewModel.swift */,
+				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
+				5249214828C00621006F01DA /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		527D06D628AAD5D7001E0BE0 /* CreateAccount */ = {
+			isa = PBXGroup;
+			children = (
+				527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */,
+				527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */,
+			);
+			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		52C4AE7028B563610055E384 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				52C4AE7128B563780055E384 /* ProfileView.swift */,
+				52C4AE7328B565BD0055E384 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		52C4AE7B28B999350055E384 /* AddJob */ = {
+			isa = PBXGroup;
+			children = (
+				52C4AE7C28B999C10055E384 /* AddJobView.swift */,
+				52C4AE7E28B999E00055E384 /* AddJobViewController.swift */,
+			);
+			path = AddJob;
+			sourceTree = "<group>";
+		};
 		A2032500883B9A47E09BE803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
-				C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */,
+				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
 				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
 			);
 			path = Report;
@@ -204,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				C0A7411E27B1953300391CE6 /* Info.plist */,
+				521A929728AEA8DC0024865B /* GoogleService-Info.plist */,
 				C0A7414527B1956B00391CE6 /* Infrastructure */,
 				C0A7414427B1955F00391CE6 /* Resources */,
 				C0A7414327B1955200391CE6 /* Sources */,
@@ -234,7 +332,7 @@
 			children = (
 				C0A7414D27B195AE00391CE6 /* Model */,
 				C0A7414C27B195A700391CE6 /* View */,
-				C0A7414B27B1959D00391CE6 /* ViewModel */,
+				5249214728BFF2EC006F01DA /* ViewModel */,
 				C0A7414A27B1959200391CE6 /* Coordinator */,
 			);
 			path = Sources;
@@ -276,23 +374,24 @@
 		C0A7414A27B1959200391CE6 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				522D901B289A00C40085575A /* LoginCoordinator.swift */,
 				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
-				C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */,
+				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
 				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
+				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
+				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
+				52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */,
 			);
 			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		C0A7414B27B1959D00391CE6 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		C0A7414C27B195A700391CE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				52C4AE7B28B999350055E384 /* AddJob */,
+				52C4AE7028B563610055E384 /* Profile */,
+				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
+				522D901D289A00DF0085575A /* Login */,
 				C0319C1F27BEE81E00CFCEE0 /* Report */,
 				C0A7419627B19C8E00391CE6 /* Home */,
 			);
@@ -302,6 +401,7 @@
 		C0A7414D27B195AE00391CE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				52DC01AF28BE512B0048237C /* AddJobModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -363,6 +463,11 @@
 			children = (
 				C0BCE57027B6EA49005805A6 /* UIColor+Extensions.swift */,
 				C0BCE58027B72EF5005805A6 /* UIView+Extensions.swift */,
+				520C66A528A850270016F167 /* UITextField+Extensions.swift */,
+				52EC175028AC6C71005E6B4C /* String+Extensions.swift */,
+				52C4AE7728B705A00055E384 /* UIViewController+Extensions.swift */,
+				52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */,
+				C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -373,6 +478,8 @@
 				C0BCE58627B731C2005805A6 /* IconButton.swift */,
 				C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */,
 				C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */,
+				520C66A728A857A80016F167 /* CustomSubmitButton.swift */,
+				520C66A928A862A20016F167 /* CustomTextField.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -396,6 +503,7 @@
 				C0A7410927B1953000391CE6 /* Sources */,
 				C0A7410A27B1953000391CE6 /* Frameworks */,
 				C0A7410B27B1953000391CE6 /* Resources */,
+				A1DCCD6E59EFB6CE91F8BBAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -433,6 +541,7 @@
 				C0A7412A27B1953400391CE6 /* Sources */,
 				C0A7412B27B1953400391CE6 /* Frameworks */,
 				C0A7412C27B1953400391CE6 /* Resources */,
+				190CAA46E16F55F660DA6980 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -493,6 +602,7 @@
 			files = (
 				C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */,
 				C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */,
+				521A929828AEA8DD0024865B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,6 +623,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		190CAA46E16F55F660DA6980 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		503F054F85DBBD695138B65E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -557,6 +684,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A1DCCD6E59EFB6CE91F8BBAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F2F726688BF9CA052A84B9DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -587,34 +731,58 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0BCE58127B72EF5005805A6 /* UIView+Extensions.swift in Sources */,
+				520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */,
+				C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */,
 				C0A741C727B1A8C600391CE6 /* UIView+RawAnchors.swift in Sources */,
 				C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */,
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
 				C0A741D127B1A90500391CE6 /* UIView+AxisAttribute.swift in Sources */,
+				527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */,
+				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
-				C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */,
+				C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
 				C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */,
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
+				52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */,
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
 				C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */,
+				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
+				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
+				52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */,
+				5249214928C00621006F01DA /* HomeViewModel.swift in Sources */,
+				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
-				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
+				52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */,
+				C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
+				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
+				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
+				52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
 				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
+				52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
 				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
 				C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */,
+				523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */,
+				52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */,
+				527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */,
+				520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
+				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
+				52C4AE7D28B999C10055E384 /* AddJobView.swift in Sources */,
+				522D9020289A00E00085575A /* LoginView.swift in Sources */,
+				52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */,
+				52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */,
 				C0A7418F27B199B500391CE6 /* Bindable.swift in Sources */,
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,
 			);
@@ -786,12 +954,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BarberVip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.app..BarberVip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -805,12 +974,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BarberVip/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.app..BarberVip;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

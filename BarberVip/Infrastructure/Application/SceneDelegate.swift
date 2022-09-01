@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigation.setNavigationBarHidden(false, animated: false)
       
         let configuration = CoordinatorConfiguration(navigationController: navigation)
-        let coordinator = HomeCoordinator(with: configuration)
+        let coordinator = LoginCoordinator(with: configuration)
         coordinator.start()
         
         window.rootViewController = navigation

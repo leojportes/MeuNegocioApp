@@ -24,19 +24,6 @@ final class ReportView: UIView, ViewCodeContract {
     }
     
     // MARK: - Viewcode
-    private lazy var navigationBar: BarberNavBar = {
-        let navigation = BarberNavBar(backgroundColor: UIColor.BarberColors.darkGray,
-                                      backgroundColorButtonLeft: .clear,
-                                      iconRight: UIImage(named: Icon.back.rawValue),
-                                      heightIcon: 20,
-                                      widhtIcon: 20,
-                                      backButtonAction: { [weak self] in
-                                        self?.popAction?()
-                                      })
-        
-        navigation.translatesAutoresizingMaskIntoConstraints = false
-        return navigation
-    }()
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -61,8 +48,7 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var clientIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.beard.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         button.setIcon(height: 25, width: 25)
         return button
     }()
@@ -70,24 +56,21 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var procedureIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.procedure.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var priceIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.money.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var paymentMethodIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.paymentMethod.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
@@ -127,18 +110,14 @@ final class ReportView: UIView, ViewCodeContract {
     private lazy var scrollToTopButton: ScrollToTopButton = {
         let button = ScrollToTopButton(image: UIImage(named: Icon.arrowUp.rawValue),
                                 colorButton: .black,
-                                action: { [weak self] in
-                                    self?.scrollToTop()
-                                })
+                                action: weakify { $0.scrollToTop() })
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        self.addSubview(navigationBar)
         self.addSubview(baseView)
-        
         baseView.addSubview(tableview)
         baseView.addSubview(clientIcon)
         baseView.addSubview(procedureIcon)
@@ -153,14 +132,8 @@ final class ReportView: UIView, ViewCodeContract {
     }
     
     func setupConstraints() {
-        navigationBar
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .heightAnchor(70)
-        
         baseView
-            .topAnchor(in: navigationBar, attribute: .bottom)
+            .topAnchor(in: self)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
@@ -241,9 +214,6 @@ final class ReportView: UIView, ViewCodeContract {
     func setupHomeView(title: String = "",
                        popAction: @escaping Action) {
         self.popAction = popAction
-        navigationBar.set(title: title,
-                          color: .white,
-                          font: .boldSystemFont(ofSize: 20))
     }
     
     private func scrollToTop() {

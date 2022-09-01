@@ -7,24 +7,37 @@
 
 import Foundation
 
+enum TypeScreen {
+    case MonthlyReport
+    case ReportDaily
+    case Profile
+    case AddJob
+}
+
 final class HomeCoordinator: BaseCoordinator {
     override func start() {
-        let controller = HomeViewController(coordinator: self)
-        controller.navigateToMonthlyReport = navigateToReportView
-        controller.navigateToDailyReport = navigateToReportDailyView
+        let viewModel = HomeViewModel(coordinator: self)
+        let controller = HomeViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
-        configuration.navigationController?.navigationBar.isHidden = true
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
     
-    private func navigateToReportView() {
-        let coordinator = ReportCoordinator(with: configuration)
-        coordinator.start()
+    func navigateTo(_ event: TypeScreen) {
+        switch event {
+        case .MonthlyReport:
+            let coordinator = MonthlyReportCoordinator(with: configuration)
+            coordinator.start()
+        case .ReportDaily:
+            let coordinator = ReportDailyCoordinator(with: configuration)
+            coordinator.start()
+        case .Profile:
+            let coordinator = ProfileCoordinator(with: configuration)
+            coordinator.start()
+        case .AddJob:
+            let coordinator = AddJobCoordinator(with: configuration)
+            coordinator.start()
+        default:
+            break
+        }
     }
-    
-    private func navigateToReportDailyView() {
-        let coordinator = ReportDailyCoordinator(with: configuration)
-        coordinator.start()
-    }
-    
 }

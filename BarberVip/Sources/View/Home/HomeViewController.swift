@@ -10,11 +10,19 @@ import UIKit
 final class HomeViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    var navigateToMonthlyReport: Action?
-    var navigateToDailyReport: Action?
-    
+    private let viewModel: HomeViewModelProtocol
+
     // MARK: - Private properties
     private let customView = HomeView()
+        
+    init(viewModel: HomeViewModelProtocol, coordinator: CoordinatorProtocol){
+        self.viewModel = viewModel
+        super.init(coordinator: coordinator)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -23,32 +31,23 @@ final class HomeViewController: CoordinatedViewController {
         setupView()
     }
     
-    // MARK: - Private methods
-    private func setupView() {
-        customView.setupHomeView(monthlyReportAction: { [weak self] in
-                                    self?.navigateToMonthlyReport?()},
-                                 dailyReportAction: { [weak self] in
-                                    self?.navigateToDailyReport?()
-                                 }, alertAction: { [weak self] in
-                                    self?.show(title: "Funcionalidade não disponível!",
-                                               messsage: "Estamos trabalhando nisso.") })
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    private func show(title: String, messsage: String) {
-        let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Ok", style: .cancel) { _ in
-            let phoneNumber =  "48998308191"
-            let appURL = URL(string: "https://api.whatsapp.com/send?phone=\(phoneNumber)")!
-            if UIApplication.shared.canOpenURL(appURL) {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
-                }
-                else {
-                    UIApplication.shared.openURL(appURL)
-                }
-            }
-        }
-        alert.addAction(cancel)
-        self.present(alert, animated: true, completion: nil)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    // MARK: - Private methods
+    private func setupView() {
+        customView.setupHomeView(
+            monthlyReportAction: weakify { $0.viewModel.navigateToMonthlyReport() },
+            dailyReportAction: weakify { $0.viewModel.navigateToDailyReport()},
+            alertAction: weakify { $0.showAlert()},
+            navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
+            navigateToAddJob: weakify { $0.viewModel.navigateToAddJob() })
     }
 }

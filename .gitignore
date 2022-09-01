@@ -1,2 +1,7 @@
 **/.DS_Store
 BarberVip.xcworkspace/xcuserdata/macbookpro.xcuserdatad/
+
+
+# Cocoapods
+BarberVip/Pods/
+Pods/

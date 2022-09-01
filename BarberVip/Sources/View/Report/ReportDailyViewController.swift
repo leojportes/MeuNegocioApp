@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class ReportDailyViewController: CoordinatedViewController {
     
@@ -18,15 +19,21 @@ final class ReportDailyViewController: CoordinatedViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = customView
+        self.title = "relatório diário"
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
+        self.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         setupCustomView()
+        
+    }
+    
+    override func loadView() {
+        super.loadView()
+        self.view = customView
     }
     
     // MARK: - Private methods
     private func setupCustomView() {
         customView.setupHomeView(title: "Relatório diário",
-                                 popAction: { [weak self] in
-                                    self?.popAction?()
-                                 })
+                                 popAction: weakify { $0.popAction?() })
     }
 }

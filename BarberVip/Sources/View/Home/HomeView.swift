@@ -13,6 +13,8 @@ final class HomeView: UIView, ViewCodeContract {
     var navigateToMonthlyReport: Action?
     var navigateToDailyReport: Action?
     var alertAction: Action?
+    var navigateToProfile: Action?
+    var navigateToAddJob: Action?
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -26,12 +28,10 @@ final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Viewcode
     private lazy var navigationBar: BarberNavBar = {
-        let navigation = BarberNavBar(iconRight: UIImage(named: Icon.profile.rawValue),
+        let navigation = BarberNavBar(iconLeft: UIImage(named: Icon.profile.rawValue),
                                       heightIcon: 20,
                                       widhtIcon: 20,
-                                      backButtonAction: { [weak self] in
-                                        self?.alertAction?()
-                                      })
+                                      backButtonAction: weakify { $0.navigateToProfile?()})
         navigation.set(title: "Olá, Leonardo",
                        color: .black,
                        font: .boldSystemFont(ofSize: 20))
@@ -58,9 +58,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.beard.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        self?.alertAction?()
-                     })
+                     action: weakify { $0.alertAction?() })
         return button
     }()
     
@@ -70,9 +68,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        self?.navigateToDailyReport?()
-                     })
+                     action: weakify { $0.navigateToDailyReport?() })
         return button
     }()
     
@@ -82,10 +78,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        print("Relatório mensal")
-                        self?.navigateToMonthlyReport?()
-                     })
+                     action: weakify { $0.navigateToMonthlyReport?() })
         return button
     }()
     
@@ -95,9 +88,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.help.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: { [weak self] in
-                        self?.alertAction?()
-                     })
+                     action: weakify { $0.alertAction?() })
         return button
     }()
     
@@ -157,7 +148,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.more.rawValue),
                      backgroundColor: .clear,
                      action: { [weak self] in
-                        self?.alertAction?()
+                        self?.navigateToAddJob?()
                      })
         return button
     }()
@@ -172,8 +163,7 @@ final class HomeView: UIView, ViewCodeContract {
     private lazy var clientIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.beard.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         button.setIcon(height: 25, width: 25)
         return button
     }()
@@ -181,24 +171,21 @@ final class HomeView: UIView, ViewCodeContract {
     private lazy var procedureIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.procedure.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var priceIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.money.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
     private lazy var paymentMethodIcon: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.paymentMethod.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in /* empty method */ })
+                     backgroundColor: .clear)
         return button
     }()
     
@@ -358,10 +345,14 @@ final class HomeView: UIView, ViewCodeContract {
     // MARK: - Methods
     func setupHomeView(monthlyReportAction: @escaping Action,
                        dailyReportAction: @escaping Action,
-                       alertAction: @escaping Action) {
+                       alertAction: @escaping Action,
+                       navigateToProfile: @escaping Action,
+                       navigateToAddJob: @escaping Action) {
         self.navigateToMonthlyReport = monthlyReportAction
         self.navigateToDailyReport = dailyReportAction
         self.alertAction = alertAction
+        self.navigateToProfile = navigateToProfile
+        self.navigateToAddJob = navigateToAddJob
     }
     
 }
@@ -387,11 +378,8 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y >= 20 {
-            horizontalLine.isHidden = false
-        } else {
-            horizontalLine.isHidden = true
-        }
+        let shouldDisplay = scrollView.contentOffset.y >= 20
+        horizontalLine.isHidden = shouldDisplay
     }
     
 }
