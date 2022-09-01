@@ -35,8 +35,8 @@
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
 		C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2027BEE83500CFCEE0 /* ReportView.swift */; };
-		C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */; };
-		C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */; };
+		C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */; };
+		C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */; };
 		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
 		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
@@ -118,8 +118,8 @@
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
 		C0319C2027BEE83500CFCEE0 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
+		C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
+		C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
 		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
-				C0319C2527BEEC4600CFCEE0 /* ReportViewController.swift */,
+				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
 				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
 			);
 			path = Report;
@@ -376,7 +376,7 @@
 			children = (
 				522D901B289A00C40085575A /* LoginCoordinator.swift */,
 				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
-				C0319C2A27BEEC7000CFCEE0 /* ReportCoordinator.swift */,
+				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
 				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
 				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
 				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
@@ -740,7 +740,7 @@
 				527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */,
 				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
-				C0319C2B27BEEC7000CFCEE0 /* ReportCoordinator.swift in Sources */,
+				C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
 				C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */,
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
@@ -757,7 +757,7 @@
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */,
-				C0319C2627BEEC4600CFCEE0 /* ReportViewController.swift in Sources */,
+				C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,

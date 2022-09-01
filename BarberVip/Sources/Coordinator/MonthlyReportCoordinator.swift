@@ -7,9 +7,9 @@
 
 import Foundation
 
-final class ReportCoordinator: BaseCoordinator {
+final class MonthlyReportCoordinator: BaseCoordinator {
     override func start() {
-        let controller = ReportViewController(coordinator: self)
+        let controller = MonthlyReportViewController(coordinator: self)
         controller.popAction = popAction
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = true

@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-final class ReportViewController: CoordinatedViewController {
+final class MonthlyReportViewController: CoordinatedViewController {
     
     // MARK: - Properties
     var popAction: Action?
@@ -18,8 +19,16 @@ final class ReportViewController: CoordinatedViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = customView
+        self.title = "relatório mensal"
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
+        self.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         setupCustomView()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        self.view = customView
+
     }
     
     // MARK: - Private methods

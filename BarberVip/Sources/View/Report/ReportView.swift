@@ -24,17 +24,6 @@ final class ReportView: UIView, ViewCodeContract {
     }
     
     // MARK: - Viewcode
-    private lazy var navigationBar: BarberNavBar = {
-        let navigation = BarberNavBar(backgroundColor: UIColor.BarberColors.darkGray,
-                                      backgroundColorButtonLeft: .clear,
-                                      iconLeft: UIImage(named: Icon.back.rawValue),
-                                      heightIcon: 20,
-                                      widhtIcon: 20,
-                                      backButtonAction: weakify { $0.popAction?() })
-        
-        navigation.translatesAutoresizingMaskIntoConstraints = false
-        return navigation
-    }()
     
     private lazy var headerView: UIView = {
         let view = UIView()
@@ -128,9 +117,7 @@ final class ReportView: UIView, ViewCodeContract {
     
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        self.addSubview(navigationBar)
         self.addSubview(baseView)
-        
         baseView.addSubview(tableview)
         baseView.addSubview(clientIcon)
         baseView.addSubview(procedureIcon)
@@ -145,14 +132,8 @@ final class ReportView: UIView, ViewCodeContract {
     }
     
     func setupConstraints() {
-        navigationBar
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .heightAnchor(70)
-        
         baseView
-            .topAnchor(in: navigationBar, attribute: .bottom)
+            .topAnchor(in: self)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
@@ -233,9 +214,6 @@ final class ReportView: UIView, ViewCodeContract {
     func setupHomeView(title: String = "",
                        popAction: @escaping Action) {
         self.popAction = popAction
-        navigationBar.set(title: title,
-                          color: .white,
-                          font: .boldSystemFont(ofSize: 20))
     }
     
     private func scrollToTop() {

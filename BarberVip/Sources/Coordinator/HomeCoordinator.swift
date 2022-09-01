@@ -9,7 +9,7 @@ import Foundation
 
 enum TypeScreen {
     case MonthlyReport
-    case DailyReport
+    case ReportDaily
     case Profile
     case AddJob
 }
@@ -25,9 +25,9 @@ final class HomeCoordinator: BaseCoordinator {
     func navigateTo(_ event: TypeScreen) {
         switch event {
         case .MonthlyReport:
-            let coordinator = ReportCoordinator(with: configuration)
+            let coordinator = MonthlyReportCoordinator(with: configuration)
             coordinator.start()
-        case .DailyReport:
+        case .ReportDaily:
             let coordinator = ReportDailyCoordinator(with: configuration)
             coordinator.start()
         case .Profile:

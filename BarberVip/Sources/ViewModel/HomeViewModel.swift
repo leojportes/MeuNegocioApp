@@ -28,7 +28,7 @@ class HomeViewModel: HomeViewModelProtocol {
     }
     
     func navigateToDailyReport() {
-        coordinator?.navigateTo(.DailyReport)
+        coordinator?.navigateTo(.ReportDaily)
     }
     
     func navigateToProfile() {
