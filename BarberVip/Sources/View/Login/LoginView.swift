@@ -60,7 +60,7 @@ class LoginView: UIView {
     
     lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "E-mail cadastrado",
-                                        colorPlaceholder: .systemGray,
+                                        colorPlaceholder: .systemGray3,
                                         textColor: .white,
                                         radius: 5,
                                         borderColor: UIColor.white.cgColor,
@@ -73,7 +73,7 @@ class LoginView: UIView {
     
     lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Senha",
-                                        colorPlaceholder: .systemGray,
+                                        colorPlaceholder: .systemGray3,
                                         textColor: .white,
                                         radius: 5,
                                         borderColor: UIColor.white.cgColor,
@@ -94,22 +94,48 @@ class LoginView: UIView {
         return button
     }()
     
+    lazy var forgotPasswordStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [forgotPasswordLabel, forgotPasswordButton])
+        stack.axis = .horizontal
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    lazy var forgotPasswordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Esqueceu sua senha? "
+        label.textColor = .systemGray3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var forgotPasswordButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "Esqueci a senha",
+        let button = CustomSubmitButton(title: "Clique aqui!",
                                         colorTitle: .white,
-                                        alignmentText: .left,
-                                        fontSize: 16)
+                                        alignmentText: .left)
         button.addTarget(self, action: #selector(handleForgotPasswordButton), for: .touchUpInside)
         return button
     }()
     
+    lazy var registerStackView: UIStackView = {
+        let container = UIStackView(arrangedSubviews: [registerLabel, registerButton])
+        container.axis = .horizontal
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    lazy var registerLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Não tem uma conta? "
+        label.textColor = .systemGray3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     lazy var registerButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "Criar conta",
+        let button = CustomSubmitButton(title: "Registre-se",
                                         colorTitle: .white,
-                                        radius: 10,
-                                        background: .BarberColors.darkGray,
-                                        borderColorCustom: UIColor.white.cgColor,
-                                        borderWidthCustom: 1)
+                                        background: .BarberColors.darkGray)
         button.addTarget(self, action: #selector(handlerRegisterButton), for: .touchUpInside)
         return button
     }()
@@ -164,10 +190,10 @@ extension LoginView: ViewCodeContract {
         addSubview(barberImage)
         addSubview(emailTextField)
         addSubview(passwordTextField)
-        addSubview(loginButton)
-        addSubview(forgotPasswordButton)
-        addSubview(registerButton)
         addSubview(eyeButton)
+        addSubview(loginButton)
+        addSubview(forgotPasswordStackView)
+        addSubview(registerStackView)
     }
     
     func setupConstraints() {
@@ -182,41 +208,36 @@ extension LoginView: ViewCodeContract {
             .centerX(in: self)
         
         emailTextField
-            .topAnchor(in: titleLabel, attribute: .bottom, padding: 70)
+            .topAnchor(in: titleLabel, attribute: .bottom, padding: 50)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         passwordTextField
-            .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 16)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         eyeButton
-            .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 16)
             .rightAnchor(in: passwordTextField)
             .widthAnchor(48)
             .heightAnchor(48)
         
         loginButton
-            .topAnchor(in: passwordTextField, attribute: .bottom, padding: 46)
+            .topAnchor(in: passwordTextField, attribute: .bottom, padding: 17)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
         
-        forgotPasswordButton
+        forgotPasswordStackView
             .topAnchor(in: loginButton, attribute: .bottom, padding: 14)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 133)
-            .heightAnchor(22)
+            .centerX(in: self)
         
-        registerButton
-            .bottomAnchor(in: self, attribute: .bottom, padding: 48)
-            .leftAnchor(in: self, attribute: .left, padding: 60)
-            .rightAnchor(in: self, attribute: .right, padding: 60)
-            .heightAnchor(40)
-        
+        registerStackView
+            .bottomAnchor(in: self, attribute: .bottom, padding: 20)
+            .centerX(in: self)
     }
     
     func setupConfiguration() {
