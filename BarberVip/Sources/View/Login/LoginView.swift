@@ -117,6 +117,43 @@ class LoginView: UIView {
         return button
     }()
     
+    lazy var orLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Ou"
+        label.textColor = .systemGray3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var singInGoogleStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [signInGoogleImageView, signInGoogleButton])
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 10
+        stack.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.layer.borderColor = UIColor.white.cgColor
+        stack.layer.borderWidth = 0.5
+        stack.layer.cornerRadius = 5
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    lazy var signInGoogleImageView: UIImageView = {
+        let container = UIImageView()
+        container.image = UIImage(named: "ic_google")
+        container.contentMode = .scaleAspectFit
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    lazy var signInGoogleButton: CustomSubmitButton = {
+        let button = CustomSubmitButton(title: "Login com o google",
+                                        colorTitle: .white)
+        button.addTarget(self, action: #selector(handlerSignInGoogleButton), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var registerStackView: UIStackView = {
         let container = UIStackView(arrangedSubviews: [registerLabel, registerButton])
         container.axis = .horizontal
@@ -165,6 +202,11 @@ class LoginView: UIView {
     }
     
     @objc
+    func handlerSignInGoogleButton() {
+        print("google")
+    }
+    
+    @objc
     func handlerRegisterButton() {
         delegateAction?.didTapRegister()
     }
@@ -193,6 +235,8 @@ extension LoginView: ViewCodeContract {
         addSubview(eyeButton)
         addSubview(loginButton)
         addSubview(forgotPasswordStackView)
+        addSubview(orLabel)
+        addSubview(singInGoogleStackView)
         addSubview(registerStackView)
     }
     
@@ -233,6 +277,14 @@ extension LoginView: ViewCodeContract {
         
         forgotPasswordStackView
             .topAnchor(in: loginButton, attribute: .bottom, padding: 14)
+            .centerX(in: self)
+        
+        orLabel
+            .topAnchor(in: forgotPasswordStackView, attribute: .bottom, padding: 20)
+            .centerX(in: self)
+        
+        singInGoogleStackView
+            .topAnchor(in: orLabel, attribute: .bottom, padding: 20)
             .centerX(in: self)
         
         registerStackView
