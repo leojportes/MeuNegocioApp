@@ -2,6 +2,12 @@
 BarberVip.xcworkspace/xcuserdata/macbookpro.xcuserdatad/
 
 
+Pods/*
 # Cocoapods
 BarberVip/Pods/
 Pods/
+
+# Xcuserdata
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
