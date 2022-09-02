@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
+import FirebaseAuth
 
 class LoginViewController: CoordinatedViewController {
     
@@ -66,4 +68,28 @@ extension LoginViewController: LoginScreenActionsProtocol {
     func didTapRegister() {
         viewModel.navigateToRegister()
     }
+    
+    func didTapSignInGoogle() {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance().signIn()
+    }
 }
+
+extension LoginViewController: GIDSignInDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if error != nil {
+            return
+        }
+        
+        guard let auth = user.authentication else { return }
+        let credentials = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
+        
+        viewModel.authLoginGoogle(credentials: credentials) { [ weak self ] result in
+            result ? self?.viewModel.navigateToHome() : self?.showAlert(title: "Houve um erro", messsage: "verifique novamente os campos preenchidos.")
+        }
+    }
+}
+
+
+

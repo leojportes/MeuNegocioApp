@@ -6,6 +6,7 @@ target 'BarberVip' do
   use_frameworks!
   pod 'FirebaseAuth'
   pod 'FirebaseFirestore'
+  pod 'GoogleSignIn', '~> 5.0'
 
   target 'BarberVipTests' do
     inherit! :search_paths

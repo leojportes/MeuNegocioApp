@@ -9,6 +9,7 @@ import FirebaseAuth
 
 protocol LoginViewModelProtocol: AnyObject {
     func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void)
+    func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void)
     func navigateToHome()
     func navigateToForgotPassword()
     func navigateToRegister()
@@ -30,6 +31,16 @@ class LoginViewModel: LoginViewModelProtocol {
                 resultLogin(false)
             } else {
                 resultLogin(true)
+            }
+        }
+    }
+    
+    func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void) {
+        Auth.auth().signIn(with: credentials) { (result, error) in
+            if error != nil {
+                resultAuth(false)
+            }else {
+                resultAuth(true)
             }
         }
     }

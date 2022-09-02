@@ -31,6 +31,7 @@
 		52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */; };
 		52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AF28BE512B0048237C /* AddJobModel.swift */; };
 		52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddJobViewModel.swift */; };
+		52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */; };
 		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
@@ -114,6 +115,7 @@
 		52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		52DC01AF28BE512B0048237C /* AddJobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobModel.swift; sourceTree = "<group>"; };
 		52DC01B128BE51DB0048237C /* AddJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewModel.swift; sourceTree = "<group>"; };
+		52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				521A929928AEBFE40024865B /* LoginViewModel.swift */,
 				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
 				5249214828C00621006F01DA /* HomeViewModel.swift */,
+				52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				C0A7410A27B1953000391CE6 /* Frameworks */,
 				C0A7410B27B1953000391CE6 /* Resources */,
 				A1DCCD6E59EFB6CE91F8BBAF /* [CP] Embed Pods Frameworks */,
+				A9FE18854F95F99941012049 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -542,6 +546,7 @@
 				C0A7412B27B1953400391CE6 /* Frameworks */,
 				C0A7412C27B1953400391CE6 /* Resources */,
 				190CAA46E16F55F660DA6980 /* [CP] Embed Pods Frameworks */,
+				281D79C02364ABA8E682B148 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -640,6 +645,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		281D79C02364ABA8E682B148 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		503F054F85DBBD695138B65E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -701,6 +723,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A9FE18854F95F99941012049 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BarberVip/Pods-BarberVip-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F2F726688BF9CA052A84B9DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -736,6 +775,7 @@
 				C0A741C727B1A8C600391CE6 /* UIView+RawAnchors.swift in Sources */,
 				C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */,
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
+				52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */,
 				C0A741D127B1A90500391CE6 /* UIView+AxisAttribute.swift in Sources */,
 				527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */,
 				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,

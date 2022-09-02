@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 protocol LoginScreenActionsProtocol: AnyObject {
     func didTapLogin(_ email: String, _ password: String)
     func didTapForgotPassword()
     func didTapRegister()
+    func didTapSignInGoogle()
 }
 
 class LoginView: UIView {
@@ -203,7 +205,7 @@ class LoginView: UIView {
     
     @objc
     func handlerSignInGoogleButton() {
-        print("google")
+        delegateAction?.didTapSignInGoogle()
     }
     
     @objc
