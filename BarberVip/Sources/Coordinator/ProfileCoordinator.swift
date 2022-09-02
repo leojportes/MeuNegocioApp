@@ -12,7 +12,6 @@ class ProfileCoordinator: BaseCoordinator {
         let viewModel = ProfileViewModel(coordinator: self)
         let controller = ProfileViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
-        controller.closed = closed
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         configuration.navigationController?.pushViewController(controller, animated: true)

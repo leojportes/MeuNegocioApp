@@ -9,8 +9,6 @@ import UIKit
 
 class ProfileViewController: CoordinatedViewController {
     
-    var closed: Action?
-
     // MARK: - Private properties
     private let customView = ProfileView()
     private let viewModel: ProfileViewModelProtocol
