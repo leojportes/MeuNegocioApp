@@ -9,7 +9,8 @@ import UIKit
 
 class ProfileCoordinator: BaseCoordinator {
     override func start() {
-        let controller = ProfileViewController(coordinator: self)
+        let viewModel = ProfileViewModel(coordinator: self)
+        let controller = ProfileViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         controller.closed = closed
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
