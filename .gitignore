@@ -3,6 +3,8 @@ BarberVip.xcworkspace/xcuserdata/macbookpro.xcuserdatad/
 
 
 Pods/*
+Pods/Pods.xcodeproj/xcuserdata/*
+Pods/Pods.xcodeproj/xcuserdata/
 # Cocoapods
 BarberVip/Pods/
 Pods/
