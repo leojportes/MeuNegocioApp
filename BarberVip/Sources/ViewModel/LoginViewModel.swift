@@ -51,8 +51,8 @@ class LoginViewModel: LoginViewModelProtocol {
         var description: String = .stringEmpty
         
         switch error.code {
-        case AuthErrorCode.invalidEmail.rawValue:
-            description = "verifique o e-mail informado e tente novamente"
+        case AuthErrorCode.userNotFound.rawValue:
+            description = "Não existe uma conta com esse email"
         case AuthErrorCode.wrongPassword.rawValue:
             description = "senha incorreta"
         default:

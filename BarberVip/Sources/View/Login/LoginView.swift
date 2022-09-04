@@ -69,7 +69,7 @@ class LoginView: UIView {
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
         textField.setPaddingLeft()
-        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -82,7 +82,7 @@ class LoginView: UIView {
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
         textField.setPaddingLeft()
-        textField.delegate = self
+        textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -190,6 +190,14 @@ class LoginView: UIView {
             loginButton.isEnabled = false
         }
     }
+    
+    // MARK: - Action TextFields
+    @objc func textFieldEditingDidChange(sender: UITextField) {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        let isValidLogin = email.isValidEmail() && !password.isEmpty
+        isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
+    }
         
     // MARK: - Action Buttons
     @objc
@@ -296,15 +304,5 @@ extension LoginView: ViewCodeContract {
     
     func setupConfiguration() {
         self.backgroundColor = UIColor.BarberColors.darkGray
-    }
-}
-
-extension LoginView: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        let isValidLogin = email.isValidEmail() && password.count > 7
-        isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
     }
 }
