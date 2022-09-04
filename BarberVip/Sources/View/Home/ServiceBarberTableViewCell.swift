@@ -29,7 +29,7 @@ final class ServiceBarberTableViewCell: UITableViewCell, ViewCodeContract {
         contentView.addShadow(color: UIColor.BarberColors.darkGray,
                               size: CGSize(width: -3,
                                            height: 3),
-                              opacity: 0.4,
+                              opacity: 0.2,
                               radius: 2.0)
         view.backgroundColor = UIColor.BarberColors.lightGray
         return view

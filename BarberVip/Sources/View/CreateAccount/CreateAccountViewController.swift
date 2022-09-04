@@ -36,12 +36,12 @@ class CreateAccountViewController: CoordinatedViewController {
     
     private func createAccount() {
         contentView?.createAccount = weakify { weakSelf, email, password, nameBarber in
-            weakSelf.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result in
+            weakSelf.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result, descriptionError  in
                 if result {
                     UserDefaults.standard.set(email, forKey: "email")
                     weakSelf.viewModel.closed()
                 } else {
-                    weakSelf.showAlert(title: "ocorreu um erro", messsage: "tente criar a conta mais tarde")
+                    weakSelf.showAlert(title: "Atenção", messsage: descriptionError)
                 }
             })
         }

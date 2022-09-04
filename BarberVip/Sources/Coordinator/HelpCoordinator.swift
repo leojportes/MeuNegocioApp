@@ -1,16 +1,17 @@
 //
-//  ProfileCoordinator.swift
+//  HelpCoordinator.swift
 //  BarberVip
 //
-//  Created by Renilson Moreira on 23/08/22.
+//  Created by Leonardo Portes on 04/09/22.
 //
 
 import UIKit
 
-class ProfileCoordinator: BaseCoordinator {
+class HelpCoordinator: BaseCoordinator {
+
     override func start() {
-        let viewModel = ProfileViewModel(coordinator: self)
-        let controller = ProfileViewController(viewModel: viewModel, coordinator: self)
+        let viewModel = HelpViewModel(coordinator: self)
+        let controller = HelpViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray

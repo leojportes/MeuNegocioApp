@@ -1,6 +1,0 @@
-framework module Pods_BarberVip_BarberVipUITests {
-  umbrella header "Pods-BarberVip-BarberVipUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -247,14 +247,8 @@ extension ReportView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let position = scrollView.contentOffset.y
-        let currentPositionScroll: CGFloat = 170
-        
-        if position > currentPositionScroll {
-            topScrollView.isHidden = false
-        } else {
-            topScrollView.isHidden = true
-        }
+        let shouldDisplay = scrollView.contentOffset.y >= 15
+        horizontalLine.isHidden = shouldDisplay.not
     }
     
 }

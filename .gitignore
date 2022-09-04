@@ -1,7 +1,15 @@
 **/.DS_Store
-BarberVip.xcworkspace/xcuserdata/macbookpro.xcuserdatad/
+BarberVip.xcworkspace/
 
 
+Pods/*
+Pods/Pods.xcodeproj/xcuserdata/*
+Pods/Pods.xcodeproj/xcuserdata/
 # Cocoapods
 BarberVip/Pods/
 Pods/
+
+# Xcuserdata
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout

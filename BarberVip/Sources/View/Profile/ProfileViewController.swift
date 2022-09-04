@@ -9,10 +9,18 @@ import UIKit
 
 class ProfileViewController: CoordinatedViewController {
     
-    var closed: Action?
-
     // MARK: - Private properties
     private let customView = ProfileView()
+    private let viewModel: ProfileViewModelProtocol
+    
+    init(viewModel: ProfileViewModelProtocol, coordinator: CoordinatorProtocol){
+        self.viewModel = viewModel
+        super.init(coordinator: coordinator)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +34,10 @@ class ProfileViewController: CoordinatedViewController {
     }
     
     func closedFlow() {
-        customView.closed = weakify { $0.closed?() }
+        customView.closed = weakify { $0.viewModel.signOut { [ weak self ] result in
+            result ? self?.viewModel.closedView() : self?.showAlert(title: "Ocorreu um erro",
+                                                        messsage: "Tente novamente mais tarde")
+        } }
     }
 
 }

@@ -7,11 +7,13 @@
 
 import Foundation
 import UIKit
+import GoogleSignIn
 
 protocol LoginScreenActionsProtocol: AnyObject {
     func didTapLogin(_ email: String, _ password: String)
     func didTapForgotPassword()
     func didTapRegister()
+    func didTapSignInGoogle()
 }
 
 class LoginView: UIView {
@@ -67,7 +69,9 @@ class LoginView: UIView {
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
         textField.setPaddingLeft()
-        textField.delegate = self
+        textField.autocapitalizationType = .none
+        textField.clearButtonMode = .whileEditing
+        textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -80,7 +84,8 @@ class LoginView: UIView {
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
         textField.setPaddingLeft()
-        textField.delegate = self
+        textField.autocapitalizationType = .none
+        textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField
     }()
     
@@ -117,6 +122,43 @@ class LoginView: UIView {
         return button
     }()
     
+    lazy var orLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Ou"
+        label.textColor = .systemGray3
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    lazy var singInGoogleStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [signInGoogleImageView, signInGoogleButton])
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.spacing = 10
+        stack.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.layer.borderColor = UIColor.white.cgColor
+        stack.layer.borderWidth = 0.5
+        stack.layer.cornerRadius = 5
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    lazy var signInGoogleImageView: UIImageView = {
+        let container = UIImageView()
+        container.image = UIImage(named: "ic_google")
+        container.contentMode = .scaleAspectFit
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    lazy var signInGoogleButton: CustomSubmitButton = {
+        let button = CustomSubmitButton(title: "Login com o google",
+                                        colorTitle: .white)
+        button.addTarget(self, action: #selector(handlerSignInGoogleButton), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var registerStackView: UIStackView = {
         let container = UIStackView(arrangedSubviews: [registerLabel, registerButton])
         container.axis = .horizontal
@@ -145,11 +187,19 @@ class LoginView: UIView {
             loginButton.backgroundColor = .BarberColors.lightBrown
             loginButton.setTitleColor(.BarberColors.darkGray, for: .normal)
             loginButton.isEnabled = true
-        }else {
+        } else {
             loginButton.backgroundColor = .systemGray
             loginButton.setTitleColor(.white, for: .normal)
             loginButton.isEnabled = false
         }
+    }
+    
+    // MARK: - Action TextFields
+    @objc func textFieldEditingDidChange(sender: UITextField) {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        let isValidLogin = email.isValidEmail() && password.isEmpty.not
+        isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
     }
         
     // MARK: - Action Buttons
@@ -162,6 +212,11 @@ class LoginView: UIView {
     @objc
     func handleForgotPasswordButton() {
         delegateAction?.didTapForgotPassword()
+    }
+    
+    @objc
+    func handlerSignInGoogleButton() {
+        delegateAction?.didTapSignInGoogle()
     }
     
     @objc
@@ -193,6 +248,8 @@ extension LoginView: ViewCodeContract {
         addSubview(eyeButton)
         addSubview(loginButton)
         addSubview(forgotPasswordStackView)
+        addSubview(orLabel)
+        addSubview(singInGoogleStackView)
         addSubview(registerStackView)
     }
     
@@ -235,6 +292,14 @@ extension LoginView: ViewCodeContract {
             .topAnchor(in: loginButton, attribute: .bottom, padding: 14)
             .centerX(in: self)
         
+        orLabel
+            .topAnchor(in: forgotPasswordStackView, attribute: .bottom, padding: 20)
+            .centerX(in: self)
+        
+        singInGoogleStackView
+            .topAnchor(in: orLabel, attribute: .bottom, padding: 20)
+            .centerX(in: self)
+        
         registerStackView
             .bottomAnchor(in: self, attribute: .bottom, padding: 20)
             .centerX(in: self)
@@ -242,15 +307,5 @@ extension LoginView: ViewCodeContract {
     
     func setupConfiguration() {
         self.backgroundColor = UIColor.BarberColors.darkGray
-    }
-}
-
-extension LoginView: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
-        let isValidLogin = email.isValidEmail() && password.count > 7
-        isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
     }
 }

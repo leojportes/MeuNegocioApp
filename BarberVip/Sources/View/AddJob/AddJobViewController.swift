@@ -51,5 +51,4 @@ extension AddJobViewController: AddJobActionsProtocol {
                   messsage: "preencha todos os campos")
     }
     
-    
 }

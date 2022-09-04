@@ -139,7 +139,7 @@ class CreateAccountView: UIView {
         guard let nameBarber = nameBarberShopTextField.text else { return }
         
         
-        if email.isValidEmail() && password.count > 7 && !nameBarber.isEmpty{
+        if email.isValidEmail() && !password.isEmpty && !nameBarber.isEmpty{
             isEnabledButtonCreateAccount(true)
         }else {
             isEnabledButtonCreateAccount(false)

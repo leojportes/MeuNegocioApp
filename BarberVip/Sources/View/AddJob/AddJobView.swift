@@ -29,17 +29,11 @@ class AddJobView: UIView {
     
     // MARK: - Viewcode
     
-    lazy var barView: UIView = {
+    lazy var gripView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
-        view.layer.cornerRadius = 4
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var lineBarView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = 2.0
+        view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -142,8 +136,7 @@ class AddJobView: UIView {
 }
 extension AddJobView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(barView)
-        addSubview(lineBarView)
+        addSubview(gripView)
         addSubview(barberImage)
         addSubview(nameTextField)
         addSubview(typeJobTextField)
@@ -153,20 +146,14 @@ extension AddJobView: ViewCodeContract {
     }
     
     func setupConstraints() {
-        barView
+        gripView
             .topAnchor(in: self, attribute: .top, padding: 11)
             .centerX(in: self)
-            .widthAnchor(60)
-            .heightAnchor(6)
-        
-        lineBarView
-            .topAnchor(in: barView, attribute: .bottom, padding: 18)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .heightAnchor(0.5)
+            .widthAnchor(32)
+            .heightAnchor(4)
         
         barberImage
-            .topAnchor(in: lineBarView, attribute: .bottom, padding: 44)
+            .topAnchor(in: gripView, attribute: .bottom, padding: 60)
             .leftAnchor(in: self, attribute: .left, padding: 127)
             .rightAnchor(in: self, attribute: .right, padding: 127)
             .heightAnchor(66)

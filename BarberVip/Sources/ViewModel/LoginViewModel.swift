@@ -6,9 +6,11 @@
 //
 
 import FirebaseAuth
+import FirebaseCore
 
 protocol LoginViewModelProtocol: AnyObject {
-    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void)
+    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool, String) -> Void)
+    func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void)
     func navigateToHome()
     func navigateToForgotPassword()
     func navigateToRegister()
@@ -24,14 +26,40 @@ class LoginViewModel: LoginViewModelProtocol {
         self.coordinator = coordinator
     }
     
-    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void) {
+    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool, String) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if error != nil {
-                resultLogin(false)
+                guard let typeError = error as? NSError else { return }
+                resultLogin(false, self.descriptionError(error: typeError))
             } else {
-                resultLogin(true)
+                resultLogin(true, .stringEmpty)
             }
         }
+    }
+    
+    func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void) {
+        Auth.auth().signIn(with: credentials) { (result, error) in
+            if error != nil {
+                resultAuth(false)
+            }else {
+                resultAuth(true)
+            }
+        }
+    }
+    
+    private func descriptionError(error: NSError) -> String {
+        var description: String = .stringEmpty
+        
+        switch error.code {
+        case AuthErrorCode.userNotFound.rawValue:
+            description = "Não existe uma conta com esse email"
+        case AuthErrorCode.wrongPassword.rawValue:
+            description = "senha incorreta"
+        default:
+            description = "Ocorreu um erro, tente novamente mais tarde"
+        }
+        
+        return description
     }
     
     // MARK: - Routes

@@ -24,7 +24,8 @@ final class LoginCoordinator: BaseCoordinator {
     }
     
     func navigateToForgotPassword() {
-        print("deu certo o password")
+        let coordinator = ForgetPasswordCoordinator(with: configuration)
+        coordinator.start()
     }
     
     func navigateToRegister() {

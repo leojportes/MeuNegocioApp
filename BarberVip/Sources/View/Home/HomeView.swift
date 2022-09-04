@@ -10,15 +10,29 @@ import UIKit
 final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Properties
-    var navigateToMonthlyReport: Action?
-    var navigateToDailyReport: Action?
-    var alertAction: Action?
-    var navigateToProfile: Action?
-    var navigateToAddJob: Action?
+    var openMonthlyReport: Action?
+    var openDailyReport: Action?
+    var openAlertAction: Action?
+    var openProfile: Action?
+    var openAddJob: Action?
+    var openHelp: Action?
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(
+        navigateToMonthlyReport: @escaping Action,
+        navigateToDailyReport: @escaping Action,
+        alertAction: @escaping Action,
+        navigateToProfile: @escaping Action,
+        navigateToAddJob: @escaping Action,
+        navigateToHelp: @escaping Action
+    ) {
+        self.openMonthlyReport = navigateToMonthlyReport
+        self.openDailyReport = navigateToDailyReport
+        self.openAlertAction = alertAction
+        self.openProfile = navigateToProfile
+        self.openAddJob = navigateToAddJob
+        self.openHelp = navigateToHelp
+        super.init(frame: .zero)
         setupView()
     }
     
@@ -31,7 +45,7 @@ final class HomeView: UIView, ViewCodeContract {
         let navigation = BarberNavBar(iconLeft: UIImage(named: Icon.profile.rawValue),
                                       heightIcon: 20,
                                       widhtIcon: 20,
-                                      backButtonAction: weakify { $0.navigateToProfile?()})
+                                      backButtonAction: weakify { $0.openProfile?() })
         navigation.set(title: "Olá, Leonardo",
                        color: .black,
                        font: .boldSystemFont(ofSize: 20))
@@ -58,7 +72,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.beard.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.alertAction?() })
+                     action: weakify { $0.openAlertAction?() })
         return button
     }()
     
@@ -68,7 +82,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.navigateToDailyReport?() })
+                     action: weakify { $0.openDailyReport?() })
         return button
     }()
     
@@ -78,7 +92,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.report.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.navigateToMonthlyReport?() })
+                     action: weakify { $0.openMonthlyReport?() })
         return button
     }()
     
@@ -88,7 +102,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.backgroundColor = UIColor.BarberColors.lightBrown
         button.setup(image: UIImage(named: Icon.help.rawValue),
                      backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.alertAction?() })
+                     action: weakify { $0.openHelp?() })
         return button
     }()
     
@@ -148,7 +162,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.more.rawValue),
                      backgroundColor: .clear,
                      action: { [weak self] in
-                        self?.navigateToAddJob?()
+                        self?.openAddJob?()
                      })
         return button
     }()
@@ -342,19 +356,6 @@ final class HomeView: UIView, ViewCodeContract {
         horizontalLine.isHidden = true
     }
     
-    // MARK: - Methods
-    func setupHomeView(monthlyReportAction: @escaping Action,
-                       dailyReportAction: @escaping Action,
-                       alertAction: @escaping Action,
-                       navigateToProfile: @escaping Action,
-                       navigateToAddJob: @escaping Action) {
-        self.navigateToMonthlyReport = monthlyReportAction
-        self.navigateToDailyReport = dailyReportAction
-        self.alertAction = alertAction
-        self.navigateToProfile = navigateToProfile
-        self.navigateToAddJob = navigateToAddJob
-    }
-    
 }
 
 // MARK: - Extension UITableView Delegate and DataSource
@@ -378,8 +379,8 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let shouldDisplay = scrollView.contentOffset.y >= 20
-        horizontalLine.isHidden = shouldDisplay
+        let shouldDisplay = scrollView.contentOffset.y >= 15
+        horizontalLine.isHidden = shouldDisplay.not
     }
     
 }

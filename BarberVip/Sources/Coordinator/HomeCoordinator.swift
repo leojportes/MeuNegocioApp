@@ -12,6 +12,7 @@ enum TypeScreen {
     case ReportDaily
     case Profile
     case AddJob
+    case Help
 }
 
 final class HomeCoordinator: BaseCoordinator {
@@ -24,20 +25,37 @@ final class HomeCoordinator: BaseCoordinator {
     
     func navigateTo(_ event: TypeScreen) {
         switch event {
-        case .MonthlyReport:
-            let coordinator = MonthlyReportCoordinator(with: configuration)
-            coordinator.start()
-        case .ReportDaily:
-            let coordinator = ReportDailyCoordinator(with: configuration)
-            coordinator.start()
-        case .Profile:
-            let coordinator = ProfileCoordinator(with: configuration)
-            coordinator.start()
-        case .AddJob:
-            let coordinator = AddJobCoordinator(with: configuration)
-            coordinator.start()
-        default:
-            break
+        case .MonthlyReport: openMonthlyReport()
+        case .ReportDaily: openReportDaily()
+        case .Profile: openProfile()
+        case .AddJob: openAddJob()
+        case .Help: openHelp()
         }
     }
 }
+
+extension HomeCoordinator {
+    
+    // MARK: - Routes
+
+    private func openMonthlyReport() {
+        MonthlyReportCoordinator(with: configuration).start()
+    }
+
+    private func openReportDaily() {
+        ReportDailyCoordinator(with: configuration).start()
+    }
+
+    private func openProfile() {
+        ProfileCoordinator(with: configuration).start()
+    }
+
+    private func openAddJob() {
+        AddJobCoordinator(with: configuration).start()
+    }
+
+    private func openHelp() {
+        HelpCoordinator(with: configuration).start()
+    }
+}
+
