@@ -10,6 +10,7 @@ protocol HomeViewModelProtocol: AnyObject {
     func navigateToDailyReport()
     func navigateToProfile()
     func navigateToAddJob()
+    func navigateToHelp()
 }
 
 class HomeViewModel: HomeViewModelProtocol {
@@ -38,6 +39,9 @@ class HomeViewModel: HomeViewModelProtocol {
     func navigateToAddJob() {
         coordinator?.navigateTo(.AddJob)
     }
-    
+
+    func navigateToHelp() {
+        coordinator?.navigateTo(.Help)
+    }
     
 }

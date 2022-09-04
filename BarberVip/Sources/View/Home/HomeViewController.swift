@@ -12,14 +12,22 @@ final class HomeViewController: CoordinatedViewController {
     // MARK: - Properties
     private let viewModel: HomeViewModelProtocol
 
-    // MARK: - Private properties
-    private let customView = HomeView()
-        
+    // MARK: - View
+    private lazy var customView = HomeView(
+        navigateToMonthlyReport: weakify { $0.viewModel.navigateToMonthlyReport() },
+        navigateToDailyReport: weakify { $0.viewModel.navigateToDailyReport()},
+        alertAction: weakify { $0.showAlert()},
+        navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
+        navigateToAddJob: weakify { $0.viewModel.navigateToAddJob() },
+        navigateToHelp: weakify { $0.viewModel.navigateToHelp() }
+    )
+
+    // MARK: - Init
     init(viewModel: HomeViewModelProtocol, coordinator: CoordinatorProtocol){
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
-    
+
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -28,7 +36,6 @@ final class HomeViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = customView
-        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,14 +47,5 @@ final class HomeViewController: CoordinatedViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
-    // MARK: - Private methods
-    private func setupView() {
-        customView.setupHomeView(
-            monthlyReportAction: weakify { $0.viewModel.navigateToMonthlyReport() },
-            dailyReportAction: weakify { $0.viewModel.navigateToDailyReport()},
-            alertAction: weakify { $0.showAlert()},
-            navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
-            navigateToAddJob: weakify { $0.viewModel.navigateToAddJob() })
-    }
+
 }

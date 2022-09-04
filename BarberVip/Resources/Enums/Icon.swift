@@ -19,4 +19,7 @@ enum Icon: String {
     case client = "ic_client"
     case back = "ic_back"
     case arrowUp = "ic_arrowUp"
+    case gmail = "ic_google"
+    case whatsapp = "ic_whatsapp"
+    case email = "ic_email"
 }

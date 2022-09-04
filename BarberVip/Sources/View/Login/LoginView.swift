@@ -69,6 +69,8 @@ class LoginView: UIView {
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
         textField.setPaddingLeft()
+        textField.autocapitalizationType = .none
+        textField.clearButtonMode = .whileEditing
         textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField
     }()
@@ -82,6 +84,7 @@ class LoginView: UIView {
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
         textField.setPaddingLeft()
+        textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField
     }()
@@ -184,7 +187,7 @@ class LoginView: UIView {
             loginButton.backgroundColor = .BarberColors.lightBrown
             loginButton.setTitleColor(.BarberColors.darkGray, for: .normal)
             loginButton.isEnabled = true
-        }else {
+        } else {
             loginButton.backgroundColor = .systemGray
             loginButton.setTitleColor(.white, for: .normal)
             loginButton.isEnabled = false
@@ -195,7 +198,7 @@ class LoginView: UIView {
     @objc func textFieldEditingDidChange(sender: UITextField) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        let isValidLogin = email.isValidEmail() && !password.isEmpty
+        let isValidLogin = email.isValidEmail() && password.isEmpty.not
         isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
     }
         

@@ -24,6 +24,10 @@ public extension UIColor {
             return UIColor(named: "lightGray") ?? UIColor.lightGray
         }
 
+        public static var yellowDark: UIColor {
+            return UIColor(named: "yellowDark") ?? UIColor.systemYellow
+        }
+
     }
     
 }
