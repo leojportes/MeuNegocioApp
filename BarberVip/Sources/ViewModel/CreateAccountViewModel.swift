@@ -42,6 +42,8 @@ class CreateAccountViewModel: CreateAccountViewModelProtocol {
             description = "E-mail invalido"
         case AuthErrorCode.emailAlreadyInUse.rawValue:
             description = "Já existe uma conta com esse e-mail"
+        case AuthErrorCode.weakPassword.rawValue:
+            description = "Adicione uma senha com no mínimo 6 digitos"
         default:
             description = "Tente novamente mais tarde"
         }
