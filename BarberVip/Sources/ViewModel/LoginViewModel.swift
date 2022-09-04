@@ -6,9 +6,10 @@
 //
 
 import FirebaseAuth
+import FirebaseCore
 
 protocol LoginViewModelProtocol: AnyObject {
-    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void)
+    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool, String) -> Void)
     func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void)
     func navigateToHome()
     func navigateToForgotPassword()
@@ -25,12 +26,13 @@ class LoginViewModel: LoginViewModelProtocol {
         self.coordinator = coordinator
     }
     
-    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool) -> Void) {
+    func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool, String) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if error != nil {
-                resultLogin(false)
+                guard let typeError = error as? NSError else { return }
+                resultLogin(false, self.descriptionError(error: typeError))
             } else {
-                resultLogin(true)
+                resultLogin(true, .stringEmpty)
             }
         }
     }
@@ -43,6 +45,21 @@ class LoginViewModel: LoginViewModelProtocol {
                 resultAuth(true)
             }
         }
+    }
+    
+    private func descriptionError(error: NSError) -> String {
+        var description: String = .stringEmpty
+        
+        switch error.code {
+        case AuthErrorCode.invalidEmail.rawValue:
+            description = "verifique o e-mail informado e tente novamente"
+        case AuthErrorCode.wrongPassword.rawValue:
+            description = "senha incorreta"
+        default:
+            description = "Ocorreu um erro, tente novamente mais tarde"
+        }
+        
+        return description
     }
     
     // MARK: - Routes

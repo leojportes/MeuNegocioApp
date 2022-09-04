@@ -50,12 +50,12 @@ class LoginViewController: CoordinatedViewController {
 
 extension LoginViewController: LoginScreenActionsProtocol {
     func didTapLogin(_ email: String, _ password: String) {
-        viewModel.authLogin(email, password) { [weak self] authResult in
+        viewModel.authLogin(email, password) { [weak self] authResult, descriptionError in
             if authResult {
                 self?.viewModel.navigateToHome()
                 self?.customView.loginButton.loadingIndicator(show: false)
             } else {
-                self?.showAlert(title: "Houve um erro", messsage: "verifique novamente os campos preenchidos.")
+                self?.showAlert(title: "Atenção", messsage: descriptionError)
                 self?.customView.loginButton.loadingIndicator(show: false)
             }
         }
