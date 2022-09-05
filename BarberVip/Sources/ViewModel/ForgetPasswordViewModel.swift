@@ -39,7 +39,7 @@ class ForgetPasswordViewModel: ForgetPasswordViewModelProtocol {
             
             currentController?.showAlert(
                 title: "Atenção",
-                messsage: "Foi enviado um link para redefinir a sua senha no email mecionado.\n Verifique sua caixa de spam.",
+                messsage: "Foi enviado um link para redefinir a sua senha no email cadastrado.\n Verifique sua caixa de spam.",
                 completion: { currentController?.dismiss(animated: true) })
         }
     }
