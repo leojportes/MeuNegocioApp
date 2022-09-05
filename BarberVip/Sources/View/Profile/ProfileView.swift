@@ -10,32 +10,63 @@ import UIKit
 class ProfileView: UIView {
     
     var closed: Action?
+    var didTapVerifyEmail: Action?
     
-    override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
+    init(
+        didTapClose: @escaping Action,
+        didTapVerifyEmail: @escaping Action
+    ) {
+        self.closed = didTapClose
+        self.didTapVerifyEmail = didTapVerifyEmail
+        super.init(frame: .zero)
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    private lazy var headerCardView = UIView() .. {
+        $0.backgroundColor = .BarberColors.yellowDark
+        $0.roundCorners(cornerRadius: 15)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
     
-    lazy var emailLabel: UILabel = {
+    private lazy var emailVerifiedLabel = UILabel() .. { $0.translatesAutoresizingMaskIntoConstraints = false }
+    
+    private lazy var verifyEmailButton = UIButton() .. {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.roundCorners(cornerRadius: 10)
+        $0.backgroundColor = .clear
+        $0.isHidden = true
+        $0.setTitle("Verificar conta", for: .normal)
+        $0.setTitleColor(.systemRed, for: .normal)
+        $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        $0.contentHorizontalAlignment = .left
+        $0.addTarget(self, action: #selector(didTapverifyEmailAction), for: .touchUpInside)
+    }
+    
+    private lazy var userLabel: UILabel = {
         let label = UILabel()
-        label.text = UserDefaults.standard.string(forKey: "email")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
+    private lazy var emailLabel: UILabel = {
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var exiteButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "sair da conta", colorTitle: .white, background: .BarberColors.darkGray)
+    private lazy var exiteButton: CustomSubmitButton = {
+        let button = CustomSubmitButton(title: "Sair da conta", colorTitle: .white, background: .BarberColors.darkGray)
         button.addTarget(self, action: #selector(handleExiteButton), for: .touchUpInside)
         return button
     }()
     
-    lazy var versionLabel: UILabel = {
+    private lazy var versionLabel: UILabel = {
         let label = UILabel()
-        label.text = "versao 1.0.0"
+        label.text = "Versao 1.0.0"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -46,19 +77,56 @@ class ProfileView: UIView {
     func handleExiteButton() {
         self.closed?()
     }
+    
+    @objc
+    func didTapverifyEmailAction() {
+        self.didTapVerifyEmail?()
+    }
+
+    func setup(profileEmail: String, isEmailVerified: Bool) {
+        userLabel.text = "Usuário: \(profileEmail.getUserPartOfEmail)"
+        emailLabel.text = "E-mail cadastrado: \(profileEmail)"
+        emailVerifiedLabel.text = isEmailVerified ? "E-mail verificado" : "E-mail não verificado"
+        verifyEmailButton.isHidden = isEmailVerified
+    }
+
 }
 
 extension ProfileView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(emailLabel)
+        addSubview(headerCardView)
+        headerCardView.addSubview(userLabel)
+        headerCardView.addSubview(emailLabel)
+        headerCardView.addSubview(emailVerifiedLabel)
+        headerCardView.addSubview(verifyEmailButton)
         addSubview(exiteButton)
         addSubview(versionLabel)
     }
     
     func setupConstraints() {
+        headerCardView
+            .topAnchor(in: self, padding: 50)
+            .leftAnchor(in: self, padding: 15)
+            .rightAnchor(in: self, padding: 15)
+            .heightAnchor(150)
+
+        userLabel
+            .topAnchor(in: headerCardView, attribute: .top, padding: 15)
+            .leftAnchor(in: headerCardView, padding: 15)
+
         emailLabel
-            .topAnchor(in: self, attribute: .top, padding: 145)
-            .centerX(in: self)
+            .topAnchor(in: userLabel, attribute: .bottom, padding: 10)
+            .leftAnchor(in: headerCardView, padding: 15)
+        
+        emailVerifiedLabel
+            .topAnchor(in: emailLabel, attribute: .bottom, padding: 10)
+            .leftAnchor(in: headerCardView, padding: 15)
+        
+        verifyEmailButton
+            .topAnchor(in: emailVerifiedLabel, attribute: .bottom, padding: 10)
+            .leftAnchor(in: headerCardView, padding: 15)
+            .widthAnchor(200)
+            .heightAnchor(35)
         
         exiteButton
             .bottomAnchor(in: versionLabel, attribute: .top, padding: 10)

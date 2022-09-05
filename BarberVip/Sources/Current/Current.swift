@@ -7,6 +7,7 @@
 
 import Foundation
 import MessageUI
+import SafariServices
 
 public class Current: NSObject, MFMailComposeViewControllerDelegate {
 
@@ -38,11 +39,10 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
         isHTML: Bool = false
     ) {
         let currentController = UIViewController.findCurrentController()
+        guard let url = URL(string: "https://www.gmail.com") else { return }
         if MFMailComposeViewController.canSendMail().not {
-            currentController?.showAlert(
-                title: "Ops!",
-                messsage: "Serviço indisponível no momento.\n Tente novamente mais tarde."
-            )
+            let vcSafari = SFSafariViewController(url: url)
+            currentController?.present(vcSafari, animated: true)
         } else {
             lazy var mailComposeController = MFMailComposeViewController() .. {
                 $0.mailComposeDelegate = self
@@ -50,11 +50,11 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
                 $0.setSubject("")
                 $0.setMessageBody("", isHTML: false)
             }
-            currentController?.present(mailComposeController, animated: true)
+            currentController?.present(UINavigationController(rootViewController: mailComposeController), animated: true)
         }
     }
 
-    public func show(title: String, messsage: String) {
+    public func openWhatsapp(title: String, messsage: String) {
         let currentController = UIViewController.findCurrentController()
         let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancelar", style: .cancel)

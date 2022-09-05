@@ -15,4 +15,12 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }
+
+    public var getUserPartOfEmail: String {
+        let charSet = CharacterSet(charactersIn: "@")
+        let v = self.components(separatedBy: charSet)
+        let pos = v.count - 2
+        return v[pos]
+    }
+    
 }

@@ -29,7 +29,7 @@ class HelpViewModel: HelpViewModelProtocol {
     }
 
     func openWhatsapp() {
-        Current.shared.show(
+        Current.shared.openWhatsapp(
             title: "Atenção!",
             messsage: "Você será redirecionado para o Whatsapp."
         )
