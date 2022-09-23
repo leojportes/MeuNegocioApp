@@ -107,11 +107,11 @@
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		521A929728AEA8DC0024865B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Sources/ViewModel/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = BarberVip/Sources/ViewModel/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
+		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = BarberVip/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -235,29 +235,61 @@
 		522D901D289A00DF0085575A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				522D901B289A00C40085575A /* LoginCoordinator.swift */,
 				522D901E289A00DF0085575A /* LoginView.swift */,
 				522D901F289A00DF0085575A /* LoginViewController.swift */,
+				521A929928AEBFE40024865B /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		5249214728BFF2EC006F01DA /* ViewModel */ = {
+		525A98B128DE36C800920AA5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
-				521A929928AEBFE40024865B /* LoginViewModel.swift */,
-				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
+				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
 				5249214828C00621006F01DA /* HomeViewModel.swift */,
-				52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */,
-				C0AFF99C28C460AF00B816AA /* HelpViewModel.swift */,
-				C0AF028428C5373D00B816AA /* ForgetPasswordViewModel.swift */,
+				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
+				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
+				C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */,
 			);
-			path = ViewModel;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		525A98B328DE371C00920AA5 /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				C0AFFEEE28C4836F00B816AA /* Current */,
+				C0AF028428C5373D00B816AA /* ForgetPasswordViewModel.swift */,
+				C0AF028228C5370000B816AA /* ForgetPasswordCoordinator.swift */,
+				C0AF028028C536C600B816AA /* ForgetPasswordViewController.swift */,
+				C0AF028628C5389600B816AA /* ForgetPasswordView.swift */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		525A98B528DE38E200920AA5 /* Report Monthly */ = {
+			isa = PBXGroup;
+			children = (
+				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
+				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
+			);
+			path = "Report Monthly";
+			sourceTree = "<group>";
+		};
+		525A98B628DE38F000920AA5 /* Report Daily */ = {
+			isa = PBXGroup;
+			children = (
+				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
+				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
+			);
+			path = "Report Daily";
 			sourceTree = "<group>";
 		};
 		527D06D628AAD5D7001E0BE0 /* CreateAccount */ = {
 			isa = PBXGroup;
 			children = (
+				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
+				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
 				527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */,
 				527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */,
 			);
@@ -267,6 +299,8 @@
 		52C4AE7028B563610055E384 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
+				52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */,
 				52C4AE7128B563780055E384 /* ProfileView.swift */,
 				52C4AE7328B565BD0055E384 /* ProfileViewController.swift */,
 			);
@@ -276,6 +310,9 @@
 		52C4AE7B28B999350055E384 /* AddJob */ = {
 			isa = PBXGroup;
 			children = (
+				52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */,
+				52DC01AF28BE512B0048237C /* AddJobModel.swift */,
+				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
 				52C4AE7C28B999C10055E384 /* AddJobView.swift */,
 				52C4AE7E28B999E00055E384 /* AddJobViewController.swift */,
 			);
@@ -296,8 +333,8 @@
 			isa = PBXGroup;
 			children = (
 				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
-				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
-				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
+				525A98B628DE38F000920AA5 /* Report Daily */,
+				525A98B528DE38E200920AA5 /* Report Monthly */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -357,11 +394,14 @@
 		C0A7414327B1955200391CE6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C0AFFEEE28C4836F00B816AA /* Current */,
-				C0A7414D27B195AE00391CE6 /* Model */,
-				C0A7414C27B195A700391CE6 /* View */,
-				5249214728BFF2EC006F01DA /* ViewModel */,
-				C0A7414A27B1959200391CE6 /* Coordinator */,
+				52C4AE7B28B999350055E384 /* AddJob */,
+				52C4AE7028B563610055E384 /* Profile */,
+				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
+				522D901D289A00DF0085575A /* Login */,
+				C0319C1F27BEE81E00CFCEE0 /* Report */,
+				C0AFF99728C45B2F00B816AA /* Help */,
+				525A98B328DE371C00920AA5 /* ForgetPassword */,
+				525A98B128DE36C800920AA5 /* Home */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -400,45 +440,6 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		C0A7414A27B1959200391CE6 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				522D901B289A00C40085575A /* LoginCoordinator.swift */,
-				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
-				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
-				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
-				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
-				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
-				52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */,
-				C0AFF99E28C4621A00B816AA /* HelpCoordinator.swift */,
-				C0AF028228C5370000B816AA /* ForgetPasswordCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		C0A7414C27B195A700391CE6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C0AF027F28C536AE00B816AA /* ForgetPassword */,
-				C0AFF99728C45B2F00B816AA /* Help */,
-				52C4AE7B28B999350055E384 /* AddJob */,
-				52C4AE7028B563610055E384 /* Profile */,
-				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
-				522D901D289A00DF0085575A /* Login */,
-				C0319C1F27BEE81E00CFCEE0 /* Report */,
-				C0A7419627B19C8E00391CE6 /* Home */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C0A7414D27B195AE00391CE6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				52DC01AF28BE512B0048237C /* AddJobModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		C0A7416127B197B200391CE6 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,16 +457,6 @@
 				C0A7418E27B199B500391CE6 /* Bindable.swift */,
 			);
 			path = Bindable;
-			sourceTree = "<group>";
-		};
-		C0A7419627B19C8E00391CE6 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
-				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
-				C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		C0A7419C27B19CAD00391CE6 /* Protocols */ = {
@@ -491,15 +482,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		C0AF027F28C536AE00B816AA /* ForgetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				C0AF028028C536C600B816AA /* ForgetPasswordViewController.swift */,
-				C0AF028628C5389600B816AA /* ForgetPasswordView.swift */,
-			);
-			path = ForgetPassword;
-			sourceTree = "<group>";
-		};
 		C0AFF7D028C454DD00B816AA /* Operators */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +493,8 @@
 		C0AFF99728C45B2F00B816AA /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				C0AFF99E28C4621A00B816AA /* HelpCoordinator.swift */,
+				C0AFF99C28C460AF00B816AA /* HelpViewModel.swift */,
 				C0AFF99828C45B9500B816AA /* HelpView.swift */,
 				C0AFF99A28C45BA200B816AA /* HelpViewController.swift */,
 			);

@@ -9,7 +9,7 @@ import UIKit
 
 class CreateAccountViewController: CoordinatedViewController {
     
-    private var contentView: CreateAccountView?
+    private var customView: CreateAccountView?
     private let viewModel: CreateAccountViewModelProtocol
 
     init(viewModel: CreateAccountViewModelProtocol, coordinator: CoordinatorProtocol){
@@ -30,12 +30,12 @@ class CreateAccountViewController: CoordinatedViewController {
     
     override func loadView() {
         super.loadView()
-        contentView = CreateAccountView()
-        self.view = contentView
+        customView = CreateAccountView()
+        self.view = customView
     }
     
     private func createAccount() {
-        contentView?.createAccount = weakify { weakSelf, email, password, nameBarber in
+        customView?.createAccount = weakify { weakSelf, email, password, nameBarber in
             weakSelf.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result, descriptionError  in
                 if result {
                     UserDefaults.standard.set(email, forKey: "email")
@@ -45,7 +45,7 @@ class CreateAccountViewController: CoordinatedViewController {
                 }
             })
         }
-        contentView?.closedView = weakify { $0.viewModel.closed()}
+        customView?.closedView = weakify { $0.viewModel.closed()}
     }
     
 }
