@@ -24,6 +24,7 @@ class AddJobViewController: CoordinatedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         customView.delegateActions = self
     }
     

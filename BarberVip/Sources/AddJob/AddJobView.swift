@@ -29,6 +29,18 @@ class AddJobView: UIView {
     
     // MARK: - Viewcode
     
+    lazy var scrollView: UIScrollView = {
+       let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    lazy var contentView: UIView = {
+       let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     lazy var gripView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
@@ -136,56 +148,74 @@ class AddJobView: UIView {
 }
 extension AddJobView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(gripView)
-        addSubview(barberImage)
-        addSubview(nameTextField)
-        addSubview(typeJobTextField)
-        addSubview(paymentTextField)
-        addSubview(valueTextField)
-        addSubview(addButton)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(gripView)
+        contentView.addSubview(barberImage)
+        contentView.addSubview(nameTextField)
+        contentView.addSubview(typeJobTextField)
+        contentView.addSubview(paymentTextField)
+        contentView.addSubview(valueTextField)
+        contentView.addSubview(addButton)
     }
     
     func setupConstraints() {
+        let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        heightConstraint.priority = UILayoutPriority(400)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -160),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            heightConstraint,
+         ])
+        
         gripView
             .topAnchor(in: self, attribute: .top, padding: 11)
-            .centerX(in: self)
+            .centerX(in: contentView)
             .widthAnchor(32)
             .heightAnchor(4)
         
         barberImage
-            .topAnchor(in: gripView, attribute: .bottom, padding: 60)
-            .leftAnchor(in: self, attribute: .left, padding: 127)
-            .rightAnchor(in: self, attribute: .right, padding: 127)
+            .topAnchor(in: contentView, attribute: .top, padding: 60)
+            .leftAnchor(in: contentView, attribute: .left, padding: 127)
+            .rightAnchor(in: contentView, attribute: .right, padding: 127)
             .heightAnchor(66)
         
         nameTextField
             .topAnchor(in: barberImage, attribute: .bottom, padding: 45)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         typeJobTextField
             .topAnchor(in: nameTextField, attribute: .bottom, padding: 24)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         paymentTextField
             .topAnchor(in: typeJobTextField, attribute: .bottom, padding: 24)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         valueTextField
             .topAnchor(in: paymentTextField, attribute: .bottom, padding: 24)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
     
         addButton
             .topAnchor(in: valueTextField, attribute: .bottom, padding: 54)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
     }
     
