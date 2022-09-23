@@ -31,16 +31,6 @@ class LoginViewController: CoordinatedViewController {
         self.hideKeyboardWhenTappedAround()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        customView.emailTextField.text = UserDefaults.standard.string(forKey: "email")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        customView.passwordTextField.text = .stringEmpty
-    }
-    
     override func loadView() {
         super.loadView()
         self.view = customView
