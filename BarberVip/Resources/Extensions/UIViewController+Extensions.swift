@@ -34,7 +34,9 @@ extension UIViewController {
         completion: @escaping () -> Void? = { nil }
     ) {
         let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "Cancelar", style: .cancel)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel) { _ in
+            self.dismiss(animated: true)
+        }
         let confirm = UIAlertAction(title: "Deletar", style: .default) { _ in completion() }
         alert.addAction(cancel)
         alert.addAction(confirm)
