@@ -51,11 +51,13 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     }
 
     private func didTapDelete(procedure: String) {
-        viewModel.deleteProcedure(procedure) { message in
-            DispatchQueue.main.async {
-                self.showAlert(title: "", messsage: message) {
-                    self.customView.deleteButton.loadingIndicator(show: false)
-                    self.dismiss(animated: true)
+        self.showDeleteAlert() {
+            self.viewModel.deleteProcedure(procedure) { message in
+                DispatchQueue.main.async {
+                    self.showAlert(title: "", messsage: message) {
+                        self.customView.deleteButton.loadingIndicator(show: false)
+                        self.dismiss(animated: true)
+                    }
                 }
             }
         }

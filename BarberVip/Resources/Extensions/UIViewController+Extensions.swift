@@ -27,6 +27,19 @@ extension UIViewController {
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
+    
+    func showDeleteAlert(
+        title: String = "Atenção!",
+        messsage: String = "Deseja deletar este procedimento?\n Esta ação é irreversível.",
+        completion: @escaping () -> Void? = { nil }
+    ) {
+        let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancelar", style: .cancel)
+        let confirm = UIAlertAction(title: "Deletar", style: .default) { _ in completion() }
+        alert.addAction(cancel)
+        alert.addAction(confirm)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 public extension UIViewController {
