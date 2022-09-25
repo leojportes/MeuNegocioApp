@@ -29,12 +29,18 @@
 		52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7E28B999E00055E384 /* AddJobViewController.swift */; };
 		52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */; };
 		52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */; };
-		52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AF28BE512B0048237C /* AddJobModel.swift */; };
 		52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddJobViewModel.swift */; };
 		52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */; };
 		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
 		9D7E2966D254E13C0E29F975 /* Pods_BarberVip_BarberVipUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */; };
+		C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */; };
+		C016B44128DFE10B007372E4 /* PaymentMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B44028DFE10B007372E4 /* PaymentMethodType.swift */; };
+		C016B61728E0AFC4007372E4 /* ProcedureDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61628E0AFC4007372E4 /* ProcedureDetailViewController.swift */; };
+		C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */; };
+		C016B61B28E0B341007372E4 /* ProcedureDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61A28E0B341007372E4 /* ProcedureDetailCoordinator.swift */; };
+		C016B61D28E0B3CC007372E4 /* ProcedureDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */; };
+		C016B62028E0D212007372E4 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61F28E0D212007372E4 /* BottomSheetView.swift */; };
 		C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2027BEE83500CFCEE0 /* ReportView.swift */; };
 		C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */; };
 		C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */; };
@@ -42,7 +48,7 @@
 		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
 		C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */; };
-		C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */; };
+		C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */; };
 		C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411027B1953000391CE6 /* AppDelegate.swift */; };
 		C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411227B1953000391CE6 /* SceneDelegate.swift */; };
 		C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A7411927B1953300391CE6 /* Assets.xcassets */; };
@@ -107,11 +113,11 @@
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		521A929728AEA8DC0024865B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Sources/ViewModel/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = BarberVip/Sources/ViewModel/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
+		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = BarberVip/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -124,12 +130,18 @@
 		52C4AE7E28B999E00055E384 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
 		52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobCoordinator.swift; sourceTree = "<group>"; };
 		52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
-		52DC01AF28BE512B0048237C /* AddJobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobModel.swift; sourceTree = "<group>"; };
 		52DC01B128BE51DB0048237C /* AddJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewModel.swift; sourceTree = "<group>"; };
 		52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
+		C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureModel.swift; sourceTree = "<group>"; };
+		C016B44028DFE10B007372E4 /* PaymentMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodType.swift; sourceTree = "<group>"; };
+		C016B61628E0AFC4007372E4 /* ProcedureDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailViewController.swift; sourceTree = "<group>"; };
+		C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailView.swift; sourceTree = "<group>"; };
+		C016B61A28E0B341007372E4 /* ProcedureDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailCoordinator.swift; sourceTree = "<group>"; };
+		C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailViewModel.swift; sourceTree = "<group>"; };
+		C016B61F28E0D212007372E4 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		C0319C2027BEE83500CFCEE0 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
 		C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportCoordinator.swift; sourceTree = "<group>"; };
@@ -137,7 +149,7 @@
 		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberNavBar.swift; sourceTree = "<group>"; };
-		C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceBarberTableViewCell.swift; sourceTree = "<group>"; };
+		C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureTableViewCell.swift; sourceTree = "<group>"; };
 		C0A7410D27B1953000391CE6 /* BarberVip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarberVip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A7411027B1953000391CE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0A7411227B1953000391CE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -235,29 +247,62 @@
 		522D901D289A00DF0085575A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				522D901B289A00C40085575A /* LoginCoordinator.swift */,
 				522D901E289A00DF0085575A /* LoginView.swift */,
 				522D901F289A00DF0085575A /* LoginViewController.swift */,
+				521A929928AEBFE40024865B /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
 		};
-		5249214728BFF2EC006F01DA /* ViewModel */ = {
+		525A98B128DE36C800920AA5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
-				521A929928AEBFE40024865B /* LoginViewModel.swift */,
-				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
+				C016B43F28DFE0F0007372E4 /* Model */,
+				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
 				5249214828C00621006F01DA /* HomeViewModel.swift */,
-				52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */,
-				C0AFF99C28C460AF00B816AA /* HelpViewModel.swift */,
-				C0AF028428C5373D00B816AA /* ForgetPasswordViewModel.swift */,
+				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
+				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
+				C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */,
 			);
-			path = ViewModel;
+			path = Home;
+			sourceTree = "<group>";
+		};
+		525A98B328DE371C00920AA5 /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				C0AFFEEE28C4836F00B816AA /* Current */,
+				C0AF028428C5373D00B816AA /* ForgetPasswordViewModel.swift */,
+				C0AF028228C5370000B816AA /* ForgetPasswordCoordinator.swift */,
+				C0AF028028C536C600B816AA /* ForgetPasswordViewController.swift */,
+				C0AF028628C5389600B816AA /* ForgetPasswordView.swift */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		525A98B528DE38E200920AA5 /* Report Monthly */ = {
+			isa = PBXGroup;
+			children = (
+				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
+				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
+			);
+			path = "Report Monthly";
+			sourceTree = "<group>";
+		};
+		525A98B628DE38F000920AA5 /* Report Daily */ = {
+			isa = PBXGroup;
+			children = (
+				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
+				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
+			);
+			path = "Report Daily";
 			sourceTree = "<group>";
 		};
 		527D06D628AAD5D7001E0BE0 /* CreateAccount */ = {
 			isa = PBXGroup;
 			children = (
+				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
+				523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */,
 				527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */,
 				527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */,
 			);
@@ -267,6 +312,8 @@
 		52C4AE7028B563610055E384 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
+				52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */,
 				52C4AE7128B563780055E384 /* ProfileView.swift */,
 				52C4AE7328B565BD0055E384 /* ProfileViewController.swift */,
 			);
@@ -276,6 +323,9 @@
 		52C4AE7B28B999350055E384 /* AddJob */ = {
 			isa = PBXGroup;
 			children = (
+				C016B24B28DFA2D1007372E4 /* Model */,
+				52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */,
+				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
 				52C4AE7C28B999C10055E384 /* AddJobView.swift */,
 				52C4AE7E28B999E00055E384 /* AddJobViewController.swift */,
 			);
@@ -292,12 +342,39 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C016B24B28DFA2D1007372E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C016B43F28DFE0F0007372E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C016B44028DFE10B007372E4 /* PaymentMethodType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C016B61E28E0BC9C007372E4 /* ProcedureDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C016B61A28E0B341007372E4 /* ProcedureDetailCoordinator.swift */,
+				C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */,
+				C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */,
+				C016B61628E0AFC4007372E4 /* ProcedureDetailViewController.swift */,
+			);
+			path = ProcedureDetails;
+			sourceTree = "<group>";
+		};
 		C0319C1F27BEE81E00CFCEE0 /* Report */ = {
 			isa = PBXGroup;
 			children = (
 				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
-				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
-				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
+				525A98B628DE38F000920AA5 /* Report Daily */,
+				525A98B528DE38E200920AA5 /* Report Monthly */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -357,11 +434,15 @@
 		C0A7414327B1955200391CE6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C0AFFEEE28C4836F00B816AA /* Current */,
-				C0A7414D27B195AE00391CE6 /* Model */,
-				C0A7414C27B195A700391CE6 /* View */,
-				5249214728BFF2EC006F01DA /* ViewModel */,
-				C0A7414A27B1959200391CE6 /* Coordinator */,
+				52C4AE7B28B999350055E384 /* AddJob */,
+				52C4AE7028B563610055E384 /* Profile */,
+				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
+				522D901D289A00DF0085575A /* Login */,
+				C0319C1F27BEE81E00CFCEE0 /* Report */,
+				C0AFF99728C45B2F00B816AA /* Help */,
+				525A98B328DE371C00920AA5 /* ForgetPassword */,
+				C016B61E28E0BC9C007372E4 /* ProcedureDetails */,
+				525A98B128DE36C800920AA5 /* Home */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -400,45 +481,6 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		C0A7414A27B1959200391CE6 /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				522D901B289A00C40085575A /* LoginCoordinator.swift */,
-				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
-				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
-				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
-				527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */,
-				52C4AE7528B566180055E384 /* ProfileCoordinator.swift */,
-				52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */,
-				C0AFF99E28C4621A00B816AA /* HelpCoordinator.swift */,
-				C0AF028228C5370000B816AA /* ForgetPasswordCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
-		C0A7414C27B195A700391CE6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C0AF027F28C536AE00B816AA /* ForgetPassword */,
-				C0AFF99728C45B2F00B816AA /* Help */,
-				52C4AE7B28B999350055E384 /* AddJob */,
-				52C4AE7028B563610055E384 /* Profile */,
-				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
-				522D901D289A00DF0085575A /* Login */,
-				C0319C1F27BEE81E00CFCEE0 /* Report */,
-				C0A7419627B19C8E00391CE6 /* Home */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C0A7414D27B195AE00391CE6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				52DC01AF28BE512B0048237C /* AddJobModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		C0A7416127B197B200391CE6 /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,16 +498,6 @@
 				C0A7418E27B199B500391CE6 /* Bindable.swift */,
 			);
 			path = Bindable;
-			sourceTree = "<group>";
-		};
-		C0A7419627B19C8E00391CE6 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
-				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
-				C09BB5C427B81AD300C91F48 /* ServiceBarberTableViewCell.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		C0A7419C27B19CAD00391CE6 /* Protocols */ = {
@@ -491,15 +523,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		C0AF027F28C536AE00B816AA /* ForgetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				C0AF028028C536C600B816AA /* ForgetPasswordViewController.swift */,
-				C0AF028628C5389600B816AA /* ForgetPasswordView.swift */,
-			);
-			path = ForgetPassword;
-			sourceTree = "<group>";
-		};
 		C0AFF7D028C454DD00B816AA /* Operators */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +534,8 @@
 		C0AFF99728C45B2F00B816AA /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				C0AFF99E28C4621A00B816AA /* HelpCoordinator.swift */,
+				C0AFF99C28C460AF00B816AA /* HelpViewModel.swift */,
 				C0AFF99828C45B9500B816AA /* HelpView.swift */,
 				C0AFF99A28C45BA200B816AA /* HelpViewController.swift */,
 			);
@@ -548,6 +573,7 @@
 				C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */,
 				520C66A728A857A80016F167 /* CustomSubmitButton.swift */,
 				520C66A928A862A20016F167 /* CustomTextField.swift */,
+				C016B61F28E0D212007372E4 /* BottomSheetView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -835,7 +861,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0BCE58127B72EF5005805A6 /* UIView+Extensions.swift in Sources */,
+				C016B61D28E0B3CC007372E4 /* ProcedureDetailViewModel.swift in Sources */,
 				520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */,
+				C016B62028E0D212007372E4 /* BottomSheetView.swift in Sources */,
 				C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */,
 				C0A741C727B1A8C600391CE6 /* UIView+RawAnchors.swift in Sources */,
 				C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */,
@@ -857,13 +885,15 @@
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
 				52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */,
+				C016B44128DFE10B007372E4 /* PaymentMethodType.swift in Sources */,
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
-				C09BB5C527B81AD300C91F48 /* ServiceBarberTableViewCell.swift in Sources */,
+				C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */,
+				C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
+				C016B61728E0AFC4007372E4 /* ProcedureDetailViewController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
-				52DC01B028BE512B0048237C /* AddJobModel.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
 				5249214928C00621006F01DA /* HomeViewModel.swift in Sources */,
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
@@ -879,6 +909,7 @@
 				52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
+				C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */,
 				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
 				52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
@@ -900,6 +931,7 @@
 				52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */,
 				C0A7418F27B199B500391CE6 /* Bindable.swift in Sources */,
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,
+				C016B61B28E0B341007372E4 /* ProcedureDetailCoordinator.swift in Sources */,
 				C0AFFB6528C47D9800B816AA /* Bool+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1070,16 +1102,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B26UWH9L8Q;
 				INFOPLIST_FILE = BarberVip/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.BarberVip;
+				PRODUCT_BUNDLE_IDENTIFIER = ljports.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1090,16 +1126,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = B26UWH9L8Q;
 				INFOPLIST_FILE = BarberVip/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.BarberVip;
+				PRODUCT_BUNDLE_IDENTIFIER = ljports.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
