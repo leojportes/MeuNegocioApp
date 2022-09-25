@@ -37,7 +37,7 @@ public class Bindable<T> {
     /// - Parameter:
     /// - skip: bollean to decide if it should ignore ending callback from init
     /// - bind: callback to notify changed value
-    public func bind(skip: Bool = false, _ bind: @escaping BindType) {
+    public func bind(skip: Bool = true, _ bind: @escaping BindType) {
         binds.append(bind)
         guard skip else {
             bind(value)

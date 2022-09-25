@@ -29,6 +29,7 @@ class ProfileView: UIView {
     private lazy var headerCardView = UIView() .. {
         $0.backgroundColor = .BarberColors.yellowDark
         $0.roundCorners(cornerRadius: 15)
+        $0.loadingIndicatorView(show: true)
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -88,6 +89,7 @@ class ProfileView: UIView {
         emailLabel.text = "E-mail cadastrado: \(profileEmail)"
         emailVerifiedLabel.text = isEmailVerified ? "E-mail verificado" : "E-mail não verificado"
         verifyEmailButton.isHidden = isEmailVerified
+        headerCardView.loadingIndicatorView(show: false)
     }
 
 }

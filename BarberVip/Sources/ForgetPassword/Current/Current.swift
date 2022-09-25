@@ -50,7 +50,7 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
                 $0.setSubject("")
                 $0.setMessageBody("", isHTML: false)
             }
-            currentController?.present(UINavigationController(rootViewController: mailComposeController), animated: true)
+            currentController?.present(mailComposeController, animated: true)
         }
     }
 

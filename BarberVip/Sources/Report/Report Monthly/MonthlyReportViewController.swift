@@ -19,9 +19,10 @@ final class MonthlyReportViewController: CoordinatedViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "relatório mensal"
-        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
-        self.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        title = "Relatório mensal"
+        navigationController?.navigationBar.topItem?.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        navigationController?.navigationBar.barTintColor = .white
         setupCustomView()
     }
     

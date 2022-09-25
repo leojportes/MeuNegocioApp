@@ -41,7 +41,7 @@ final class ReportView: UIView, ViewCodeContract {
     private(set) lazy var tableview: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(ServiceBarberTableViewCell.self, forCellReuseIdentifier: ServiceBarberTableViewCell.identifier)
+        table.register(ProcedureTableViewCell.self, forCellReuseIdentifier: ProcedureTableViewCell.identifier)
         return table
     }()
     
@@ -119,11 +119,6 @@ final class ReportView: UIView, ViewCodeContract {
     func setupHierarchy() {
         self.addSubview(baseView)
         baseView.addSubview(tableview)
-        baseView.addSubview(clientIcon)
-        baseView.addSubview(procedureIcon)
-        baseView.addSubview(priceIcon)
-        baseView.addSubview(paymentMethodIcon)
-        baseView.addSubview(horizontalLine)
         baseView.addSubview(bottomHorizontalLine)
         baseView.addSubview(totalLabel)
         
@@ -139,41 +134,11 @@ final class ReportView: UIView, ViewCodeContract {
             .bottomAnchor(in: self, layoutOption: .useMargins)
         
         tableview
-            .topAnchor(in: baseView, padding: 40)
+            .topAnchor(in: baseView)
             .leftAnchor(in: baseView, padding: 5)
             .rightAnchor(in: baseView, padding: 10)
             .bottomAnchor(in: baseView, padding: 100)
-        
-        clientIcon
-            .topAnchor(in: baseView, padding: 10)
-            .leftAnchor(in: baseView, padding: 40)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        procedureIcon
-            .topAnchor(in: baseView, padding: 10)
-            .leftAnchor(in: clientIcon, attribute: .right, padding: 65)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        priceIcon
-            .topAnchor(in: baseView, padding: 10)
-            .leftAnchor(in: procedureIcon, attribute: .right, padding: 75)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        paymentMethodIcon
-            .topAnchor(in: baseView, padding: 10)
-            .rightAnchor(in: baseView, padding: 50)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        horizontalLine
-            .topAnchor(in: clientIcon, attribute: .bottom, padding: 10)
-            .leftAnchor(in: baseView)
-            .rightAnchor(in: baseView)
-            .heightAnchor(1)
-        
+
         bottomHorizontalLine
             .bottomAnchor(in: baseView, padding: 100)
             .leftAnchor(in: baseView)
@@ -234,7 +199,7 @@ extension ReportView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: ServiceBarberTableViewCell.identifier, for: indexPath) as! ServiceBarberTableViewCell
+        let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as! ProcedureTableViewCell
         cell.setupCustomCell(title: "Barbeiro \(indexPath.row + 1)",
                              procedure: "Corte/Barba",
                              price: "R$ 50,00",
@@ -243,7 +208,7 @@ extension ReportView: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95
+        return 90
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

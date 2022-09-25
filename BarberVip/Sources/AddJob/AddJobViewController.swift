@@ -24,12 +24,14 @@ class AddJobViewController: CoordinatedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Cadastrar Procedimento"
         self.hideKeyboardWhenTappedAround()
         customView.delegateActions = self
     }
     
     override func loadView() {
         super.loadView()
+        navigationController?.navigationBar.barTintColor = .white
         self.view = customView
     }
 
@@ -38,18 +40,26 @@ class AddJobViewController: CoordinatedViewController {
 extension AddJobViewController: AddJobActionsProtocol {
     
     func addJob(nameClient: String, typeJob: String, typePayment: String, value: String) {
-        customView.addButton.loadingIndicator(show: false)
-        viewModel.addJob(data: AddJobModel(nameClient: nameClient,
-                                           typeJob: typeJob,
-                                           typePayment: typePayment,
-                                           value: value))
-        viewModel.closed()
+        customView.addButton.loadingIndicator(show: true)
+        viewModel.createProcedure(
+            procedure: CreateProcedureModel(
+                nameClient: nameClient,
+                typeProcedure: typeJob,
+                formPayment: typePayment,
+                value: value
+            )
+        ) { result in
+            DispatchQueue.main.async {
+                self.customView.addButton.loadingIndicator(show: false)
+                self.showAlert(title: String.stringEmpty, messsage: result)
+            }
+        }
     }
 
     func alertEmptyField() {
         customView.addButton.loadingIndicator(show: false)
-        showAlert(title: "atenção",
-                  messsage: "preencha todos os campos")
+        showAlert(title: "Atenção",
+                  messsage: "Preencha todos os campos.")
     }
     
 }

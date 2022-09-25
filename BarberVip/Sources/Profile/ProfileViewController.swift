@@ -39,6 +39,7 @@ class ProfileViewController: CoordinatedViewController {
     
     override func loadView() {
         super.loadView()
+        navigationController?.navigationBar.barTintColor = .BarberColors.lightBrown
         self.view = customView
     }
     

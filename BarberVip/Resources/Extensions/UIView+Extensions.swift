@@ -42,3 +42,28 @@ extension CACornerMask {
     static public let topRight: CACornerMask = .layerMaxXMinYCorner
     static public let topLeft: CACornerMask = .layerMinXMinYCorner
 }
+
+extension UIView {
+    func loadingIndicatorView(show: Bool = true) {
+        if show {
+            DispatchQueue.main.async {
+                let indicator = UIActivityIndicatorView()
+                let buttonHeight = self.bounds.size.height
+                let buttonWidth = self.bounds.size.width
+                indicator.center = CGPoint(x: buttonWidth/2, y: buttonHeight/2)
+                indicator.color = .darkGray
+                self.layer.opacity = 0.5
+                self.addSubview(indicator)
+                indicator.startAnimating()
+            }
+        } else {
+            for view in self.subviews {
+                if let indicator = view as? UIActivityIndicatorView {
+                    indicator.stopAnimating()
+                    indicator.removeFromSuperview()
+                    self.layer.opacity = 1
+                }
+            }
+        }
+    }
+}

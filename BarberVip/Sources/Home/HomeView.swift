@@ -9,13 +9,23 @@ import UIKit
 
 final class HomeView: UIView, ViewCodeContract {
     
-    // MARK: - Properties
+    // MARK: - Actions properties
     var openMonthlyReport: Action?
     var openDailyReport: Action?
     var openAlertAction: Action?
     var openProfile: Action?
     var openAddJob: Action?
     var openHelp: Action?
+    var deleteProcedure: (String) -> Void?
+    var didPullRefresh: Action?
+
+    // MARK: - Properties
+    var procedures: [GetProcedureModel] = [] {
+        didSet {
+            tableview.reloadData()
+            tableview.loadingIndicatorView(show: false)
+        }
+    }
     
     // MARK: - Init
     init(
@@ -24,7 +34,9 @@ final class HomeView: UIView, ViewCodeContract {
         alertAction: @escaping Action,
         navigateToProfile: @escaping Action,
         navigateToAddJob: @escaping Action,
-        navigateToHelp: @escaping Action
+        navigateToHelp: @escaping Action,
+        deleteProcedure: @escaping (String) -> Void?,
+        didPullRefresh: @escaping Action
     ) {
         self.openMonthlyReport = navigateToMonthlyReport
         self.openDailyReport = navigateToDailyReport
@@ -32,6 +44,8 @@ final class HomeView: UIView, ViewCodeContract {
         self.openProfile = navigateToProfile
         self.openAddJob = navigateToAddJob
         self.openHelp = navigateToHelp
+        self.deleteProcedure = deleteProcedure
+        self.didPullRefresh = didPullRefresh
         super.init(frame: .zero)
         setupView()
     }
@@ -167,49 +181,17 @@ final class HomeView: UIView, ViewCodeContract {
         return button
     }()
     
-    private(set) lazy var tableview: UITableView = {
+    lazy var tableview: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.register(ServiceBarberTableViewCell.self, forCellReuseIdentifier: ServiceBarberTableViewCell.identifier)
+        table.register(ProcedureTableViewCell.self, forCellReuseIdentifier: ProcedureTableViewCell.identifier)
+        table.refreshControl = UIRefreshControl()
+        table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        table.separatorStyle = .none
+        table.loadingIndicatorView()
         return table
     }()
-    
-    private lazy var clientIcon: IconButton = {
-        let button = IconButton()
-        button.setup(image: UIImage(named: Icon.beard.rawValue),
-                     backgroundColor: .clear)
-        button.setIcon(height: 25, width: 25)
-        return button
-    }()
-    
-    private lazy var procedureIcon: IconButton = {
-        let button = IconButton()
-        button.setup(image: UIImage(named: Icon.procedure.rawValue),
-                     backgroundColor: .clear)
-        return button
-    }()
-    
-    private lazy var priceIcon: IconButton = {
-        let button = IconButton()
-        button.setup(image: UIImage(named: Icon.money.rawValue),
-                     backgroundColor: .clear)
-        return button
-    }()
-    
-    private lazy var paymentMethodIcon: IconButton = {
-        let button = IconButton()
-        button.setup(image: UIImage(named: Icon.paymentMethod.rawValue),
-                     backgroundColor: .clear)
-        return button
-    }()
-    
-    private lazy var horizontalLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+
     // MARK: - Viewcode methods
     func setupHierarchy() {
         self.addSubview(navigationBar)
@@ -228,11 +210,6 @@ final class HomeView: UIView, ViewCodeContract {
         headerView.addSubview(infoLabel)
         
         footerBaseView.addSubview(tableview)
-        footerBaseView.addSubview(clientIcon)
-        footerBaseView.addSubview(procedureIcon)
-        footerBaseView.addSubview(priceIcon)
-        footerBaseView.addSubview(paymentMethodIcon)
-        footerBaseView.addSubview(horizontalLine)
     }
     
     func setupConstraints() {
@@ -308,40 +285,10 @@ final class HomeView: UIView, ViewCodeContract {
             .widthAnchor(30)
         
         tableview
-            .topAnchor(in: footerBaseView, padding: 40)
-            .leftAnchor(in: footerBaseView, padding: 5)
-            .rightAnchor(in: footerBaseView, padding: 10)
+            .topAnchor(in: footerBaseView)
+            .leftAnchor(in: footerBaseView, padding: 0)
+            .rightAnchor(in: footerBaseView, padding: 0)
             .bottomAnchor(in: footerBaseView, padding: 5)
-        
-        clientIcon
-            .topAnchor(in: footerBaseView, padding: 10)
-            .leftAnchor(in: footerBaseView, padding: 40)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        procedureIcon
-            .topAnchor(in: footerBaseView, padding: 10)
-            .leftAnchor(in: clientIcon, attribute: .right, padding: 65)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        priceIcon
-            .topAnchor(in: footerBaseView, padding: 10)
-            .leftAnchor(in: procedureIcon, attribute: .right, padding: 75)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        paymentMethodIcon
-            .topAnchor(in: footerBaseView, padding: 10)
-            .rightAnchor(in: footerBaseView, padding: 50)
-            .widthAnchor(20)
-            .heightAnchor(18)
-        
-        horizontalLine
-            .topAnchor(in: clientIcon, attribute: .bottom, padding: 11)
-            .leftAnchor(in: footerBaseView)
-            .rightAnchor(in: footerBaseView)
-            .heightAnchor(1)
         
     }
     
@@ -350,10 +297,10 @@ final class HomeView: UIView, ViewCodeContract {
         self.headerView.backgroundColor = UIColor.BarberColors.darkGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
-        tableview.separatorStyle = .none
-        tableview.showsVerticalScrollIndicator = false
-        
-        horizontalLine.isHidden = true
+    }
+
+    @objc private func pullToRefresh() {
+        self.didPullRefresh?()
     }
     
 }
@@ -362,25 +309,32 @@ final class HomeView: UIView, ViewCodeContract {
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return procedures.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: ServiceBarberTableViewCell.identifier, for: indexPath) as! ServiceBarberTableViewCell
-        cell.setupCustomCell(title: "Barbeiro \(indexPath.row + 1)",
-                             procedure: "Corte e Barba",
-                             price: "R$ 50,00",
-                             paymentMethod: "Pix")
+        guard let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as? ProcedureTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let procedure = procedures[indexPath.row]
+        
+        cell.setupCustomCell(
+            title: procedure.nameClient,
+            procedure: procedure.typeProcedure,
+            price: "R$\(procedure.value.replacingOccurrences(of: ".", with: ","))",
+            paymentMethod: "\(procedure.currentDate) • \(procedure.formPayment.rawValue)"
+        )
+        cell.setPaymentIcon(method: procedure.formPayment)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95
+        return 90
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let shouldDisplay = scrollView.contentOffset.y >= 15
-        horizontalLine.isHidden = shouldDisplay.not
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let procedure = procedures[indexPath.row]
+        self.deleteProcedure(procedure._id)
     }
-    
 }

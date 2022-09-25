@@ -28,6 +28,15 @@ class AddJobView: UIView {
     }
     
     // MARK: - Viewcode
+
+    lazy var pickerView = UIPickerView() .. {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.backgroundColor = .BarberColors.yellowDark
+        $0.selectRow(2, inComponent: 0, animated: true)
+    }
+
+    private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
     
     lazy var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
@@ -40,16 +49,7 @@ class AddJobView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    lazy var gripView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        view.layer.cornerRadius = 2.0
-        view.layer.masksToBounds = true
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+
     lazy var barberImage: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "BarberImage")
@@ -91,6 +91,7 @@ class AddJobView: UIView {
                                         borderWidth: 0.5,
                                         keyboardType: .default)
         textField.setPaddingLeft()
+        textField.inputView = pickerView
         return textField
     }()
     
@@ -103,8 +104,15 @@ class AddJobView: UIView {
                                         borderWidth: 0.5,
                                         keyboardType: .numberPad)
         textField.setPaddingLeft()
+        textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         return textField
     }()
+    
+    @objc func myTextFieldDidChange(_ textField: UITextField) {
+        if let amountString = textField.text?.currencyInputFormatting() {
+            textField.text = amountString
+        }
+    }
     
     lazy var addButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Adicionar",
@@ -117,18 +125,17 @@ class AddJobView: UIView {
     
     // MARK: - Methods
     
-    func isSomeEmptyField() -> Bool{
+    func isSomeEmptyField() -> Bool {
         var result: Bool = false
         let name = nameTextField.text ?? ""
         let typeJob = typeJobTextField.text ?? ""
         let payment = paymentTextField.text ?? ""
         let value = valueTextField.text ?? ""
         
-        if name.isEmpty || typeJob.isEmpty || payment.isEmpty || value.isEmpty {
-            result = true
-        }else{
-            result = false
-        }
+        let someAreEmpty = name.isEmpty || typeJob.isEmpty || payment.isEmpty || value.isEmpty
+
+        result = someAreEmpty ? true : false
+
         return result
     }
     
@@ -137,11 +144,14 @@ class AddJobView: UIView {
     func handleAddButton() {
         if isSomeEmptyField() {
             delegateActions?.alertEmptyField()
-        }else{
-            delegateActions?.addJob(nameClient: nameTextField.text ?? "",
-                                    typeJob: typeJobTextField.text ?? "",
-                                    typePayment: paymentTextField.text ?? "",
-                                    value: valueTextField.text ?? "")
+        } else {
+            let amount = valueTextField.text?.replacingOccurrences(of: "R$", with: "")
+            delegateActions?.addJob(
+                nameClient: nameTextField.text ?? "",
+                typeJob: typeJobTextField.text ?? "",
+                typePayment: paymentTextField.text ?? "",
+                value: amount ?? ""
+            )
         }
     }
     
@@ -150,7 +160,6 @@ extension AddJobView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(gripView)
         contentView.addSubview(barberImage)
         contentView.addSubview(nameTextField)
         contentView.addSubview(typeJobTextField)
@@ -175,12 +184,6 @@ extension AddJobView: ViewCodeContract {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             heightConstraint,
          ])
-        
-        gripView
-            .topAnchor(in: self, attribute: .top, padding: 11)
-            .centerX(in: contentView)
-            .widthAnchor(32)
-            .heightAnchor(4)
         
         barberImage
             .topAnchor(in: contentView, attribute: .top, padding: 60)
@@ -223,3 +226,25 @@ extension AddJobView: ViewCodeContract {
         backgroundColor = .white
     }
 }
+
+// MARK: - UIPickerViewDelegate & UIPickerViewDataSource
+extension AddJobView: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return paymentMethods.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return paymentMethods[row].rawValue
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        paymentTextField.text = paymentMethods[row].rawValue
+        paymentTextField.resignFirstResponder()
+    }
+}
+
