@@ -37,21 +37,19 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
         subject: String = "Tenho uma dúvida",
         body: String = "",
         isHTML: Bool = false
-    ) {
+    ) -> MFMailComposeViewController {
         let currentController = UIViewController.findCurrentController()
-        guard let url = URL(string: "https://www.gmail.com") else { return }
-        if MFMailComposeViewController.canSendMail().not {
-            let vcSafari = SFSafariViewController(url: url)
-            currentController?.present(vcSafari, animated: true)
-        } else {
-            lazy var mailComposeController = MFMailComposeViewController() .. {
-                $0.mailComposeDelegate = self
-                $0.setToRecipients(["mybarbersuport@gmail.com"])
-                $0.setSubject("")
-                $0.setMessageBody("", isHTML: false)
-            }
-            currentController?.present(mailComposeController, animated: true)
+        let url = URL(string: "https://www.gmail.com")
+
+        lazy var mailComposeController = MFMailComposeViewController() .. {
+            $0.mailComposeDelegate = self
+            $0.setToRecipients(["mybarbersuport@gmail.com"])
+            $0.setSubject("")
+            $0.setMessageBody("", isHTML: false)
         }
+        mailComposeController.modalPresentationStyle = .pageSheet
+        
+        return mailComposeController
     }
 
     public func openWhatsapp(title: String, messsage: String) {

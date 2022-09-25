@@ -8,7 +8,6 @@
 import Foundation
 
 protocol HelpViewModelProtocol {
-    func openMailCompose()
     func openWhatsapp()
 }
 
@@ -23,10 +22,6 @@ class HelpViewModel: HelpViewModelProtocol {
     }
 
     // MARK: - Routes
-
-    func openMailCompose() {
-        Current.shared.openMailCompose()
-    }
 
     func openWhatsapp() {
         Current.shared.openWhatsapp(
