@@ -38,9 +38,6 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
         body: String = "",
         isHTML: Bool = false
     ) -> MFMailComposeViewController {
-        let currentController = UIViewController.findCurrentController()
-        let url = URL(string: "https://www.gmail.com")
-
         lazy var mailComposeController = MFMailComposeViewController() .. {
             $0.mailComposeDelegate = self
             $0.setToRecipients(["mybarbersuport@gmail.com"])
@@ -48,7 +45,6 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
             $0.setMessageBody("", isHTML: false)
         }
         mailComposeController.modalPresentationStyle = .pageSheet
-        
         return mailComposeController
     }
 

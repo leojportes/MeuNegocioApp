@@ -35,6 +35,11 @@ class AddJobViewController: CoordinatedViewController {
         self.view = customView
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIViewController.findCurrentController()?.viewWillAppear(true)
+    }
+
 }
 
 extension AddJobViewController: AddJobActionsProtocol {

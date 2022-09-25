@@ -14,7 +14,8 @@ class AddJobCoordinator: BaseCoordinator {
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = String.stringEmpty
         configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
-        configuration.navigationController?.pushViewController(controller, animated: true)    }
+        configuration.navigationController?.present(controller, animated: true)
+    }
     
     func closed() {
         configuration.navigationController?.dismiss(animated: true, completion: nil)

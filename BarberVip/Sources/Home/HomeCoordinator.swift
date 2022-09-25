@@ -13,6 +13,7 @@ enum TypeScreen {
     case Profile
     case AddJob
     case Help
+    case detailProcedure(GetProcedureModel)
 }
 
 final class HomeCoordinator: BaseCoordinator {
@@ -30,6 +31,7 @@ final class HomeCoordinator: BaseCoordinator {
         case .Profile: openProfile()
         case .AddJob: openAddJob()
         case .Help: openHelp()
+        case let .detailProcedure(procedure): detailProcedure(procedure: procedure)
         }
     }
 }
@@ -56,6 +58,12 @@ extension HomeCoordinator {
 
     private func openHelp() {
         HelpCoordinator(with: configuration).start()
+    }
+
+    private func detailProcedure(procedure: GetProcedureModel) {
+        let coordinator = ProcedureDetailCoordinator(with: configuration)
+        coordinator.procedure = procedure
+        coordinator.start()
     }
 }
 

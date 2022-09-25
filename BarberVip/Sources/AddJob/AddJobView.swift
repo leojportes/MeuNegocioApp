@@ -16,6 +16,7 @@ class AddJobView: UIView {
     
     // MARK: - Properties
     weak var delegateActions: AddJobActionsProtocol?
+    private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
     
     // MARK: - Init
     override init(frame: CGRect = .zero) {
@@ -29,23 +30,28 @@ class AddJobView: UIView {
     
     // MARK: - Viewcode
 
-    lazy var pickerView = UIPickerView() .. {
+    private lazy var pickerView = UIPickerView() .. {
         $0.delegate = self
         $0.dataSource = self
         $0.backgroundColor = .BarberColors.yellowDark
         $0.selectRow(2, inComponent: 0, animated: true)
     }
 
-    private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
+    private lazy var gripView = UIView() .. {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .lightGray
+        $0.roundCorners(cornerRadius: 2)
+    }
     
     lazy var scrollView: UIScrollView = {
-       let scrollView = UIScrollView()
+        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.bounces = false
         return scrollView
     }()
     
     lazy var contentView: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -59,72 +65,83 @@ class AddJobView: UIView {
     }()
     
     lazy var nameTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Nome do cliente",
-                                        colorPlaceholder: .systemGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5,
-                                        keyboardType: .default)
+        let textField = CustomTextField(
+            titlePlaceholder: "Nome do cliente",
+            colorPlaceholder: .systemGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderWidth: 0.5,
+            keyboardType: .default
+        )
         textField.setPaddingLeft()
         return textField
     }()
     
     lazy var typeJobTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Tipo de procedimento",
-                                        colorPlaceholder: .systemGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5,
-                                        keyboardType: .default)
+        let textField = CustomTextField(
+            titlePlaceholder: "Tipo de procedimento",
+            colorPlaceholder: .systemGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderWidth: 0.5,
+            keyboardType: .default
+        )
         textField.setPaddingLeft()
         return textField
     }()
     
     lazy var paymentTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Forma de pagamento",
-                                        colorPlaceholder: .systemGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5,
-                                        keyboardType: .default)
+        let textField = CustomTextField(
+            titlePlaceholder: "Forma de pagamento",
+            colorPlaceholder: .systemGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderWidth: 0.5,
+            keyboardType: .default
+        )
         textField.setPaddingLeft()
         textField.inputView = pickerView
         return textField
     }()
     
     lazy var valueTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "R$",
-                                        colorPlaceholder: .systemGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5,
-                                        keyboardType: .numberPad)
+        let textField = CustomTextField(
+            titlePlaceholder: "R$",
+            colorPlaceholder: .systemGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderWidth: 0.5,
+            keyboardType: .numberPad
+        )
         textField.setPaddingLeft()
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         return textField
     }()
-    
-    @objc func myTextFieldDidChange(_ textField: UITextField) {
-        if let amountString = textField.text?.currencyInputFormatting() {
-            textField.text = amountString
-        }
-    }
-    
+
     lazy var addButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "Adicionar",
-                                        colorTitle: .BarberColors.darkGray,
-                                        radius: 10,
-                                        background: .BarberColors.lightBrown)
+        let button = CustomSubmitButton(
+            title: "Adicionar",
+            colorTitle: .BarberColors.darkGray,
+            radius: 10,
+            background: .BarberColors.lightBrown
+        )
         button.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
         return button
     }()
     
     // MARK: - Methods
-    
+
+    @objc
+    func myTextFieldDidChange(_ textField: UITextField) {
+        if let amountString = textField.text?.currencyInputFormatting() {
+            textField.text = amountString
+        }
+    }
+
     func isSomeEmptyField() -> Bool {
         var result: Bool = false
         let name = nameTextField.text ?? ""
@@ -159,6 +176,7 @@ class AddJobView: UIView {
 extension AddJobView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(scrollView)
+        addSubview(gripView)
         scrollView.addSubview(contentView)
         contentView.addSubview(barberImage)
         contentView.addSubview(nameTextField)
@@ -169,10 +187,17 @@ extension AddJobView: ViewCodeContract {
     }
     
     func setupConstraints() {
+        
+        gripView
+            .topAnchor(in: self, padding: 10)
+            .centerX(in: self)
+            .heightAnchor(4)
+            .widthAnchor(34)
+
         let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         heightConstraint.priority = UILayoutPriority(400)
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.topAnchor.constraint(equalTo: gripView.bottomAnchor, constant: 10),
             scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),

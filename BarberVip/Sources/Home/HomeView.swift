@@ -16,7 +16,7 @@ final class HomeView: UIView, ViewCodeContract {
     var openProfile: Action?
     var openAddJob: Action?
     var openHelp: Action?
-    var deleteProcedure: (String) -> Void?
+    var openProcedureDetails: (GetProcedureModel) -> Void?
     var didPullRefresh: Action?
 
     // MARK: - Properties
@@ -35,7 +35,7 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToProfile: @escaping Action,
         navigateToAddJob: @escaping Action,
         navigateToHelp: @escaping Action,
-        deleteProcedure: @escaping (String) -> Void?,
+        openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
         didPullRefresh: @escaping Action
     ) {
         self.openMonthlyReport = navigateToMonthlyReport
@@ -44,7 +44,7 @@ final class HomeView: UIView, ViewCodeContract {
         self.openProfile = navigateToProfile
         self.openAddJob = navigateToAddJob
         self.openHelp = navigateToHelp
-        self.deleteProcedure = deleteProcedure
+        self.openProcedureDetails = openProcedureDetails
         self.didPullRefresh = didPullRefresh
         super.init(frame: .zero)
         setupView()
@@ -335,6 +335,6 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let procedure = procedures[indexPath.row]
-        self.deleteProcedure(procedure._id)
+        self.openProcedureDetails(procedure)
     }
 }

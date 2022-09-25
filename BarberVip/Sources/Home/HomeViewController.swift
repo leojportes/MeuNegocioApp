@@ -20,12 +20,7 @@ final class HomeViewController: CoordinatedViewController {
         navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
         navigateToAddJob: weakify { $0.viewModel.navigateToAddJob() },
         navigateToHelp: weakify { $0.viewModel.navigateToHelp() },
-        deleteProcedure: weakify {
-            $0.viewModel.deleteProcedure($1) {
-                self.bindProperties()
-                self.reloadData()
-            }
-        },
+        openProcedureDetails: weakify { $0.viewModel.openProcedureDetails($1) },
         didPullRefresh: weakify { $0.didPullToRefresh() }
     )
 

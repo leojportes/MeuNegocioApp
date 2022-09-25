@@ -15,7 +15,7 @@ protocol HomeViewModelProtocol: AnyObject {
     func navigateToProfile()
     func navigateToAddJob()
     func navigateToHelp()
-    func deleteProcedure(_ procedure: String, completion: @escaping () -> Void)
+    func openProcedureDetails(_ procedure: GetProcedureModel)
 }
 
 // MARK: - Protocols
@@ -52,12 +52,6 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
         }
     }
 
-    internal func deleteProcedure(_ procedure: String, completion: @escaping () -> Void) {
-        service.deleteProcedure(procedure) {
-            completion()
-        }
-    }
-
     // MARK: - Routes
     func navigateToMonthlyReport() {
         coordinator?.navigateTo(.MonthlyReport)
@@ -77,6 +71,10 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
 
     func navigateToHelp() {
         coordinator?.navigateTo(.Help)
+    }
+
+    func openProcedureDetails(_ procedure: GetProcedureModel) {
+        coordinator?.navigateTo(.detailProcedure(procedure))
     }
 
 }
