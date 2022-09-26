@@ -44,14 +44,15 @@ class AddProcedureViewController: CoordinatedViewController {
 
 extension AddProcedureViewController: AddProcedureActionsProtocol {
     
-    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String) {
+    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String) {
         customView.addButton.loadingIndicator(show: true)
         viewModel.createProcedure(
             procedure: CreateProcedureModel(
                 nameClient: nameClient,
                 typeProcedure: typeProcedure,
                 formPayment: formPayment,
-                value: value)) { [ weak self ] result in
+                value: value,
+                email: email)) { [ weak self ] result in
                     guard let self = self else {return}
                     if result {
                         self.customView.addButton.loadingIndicator(show: false)

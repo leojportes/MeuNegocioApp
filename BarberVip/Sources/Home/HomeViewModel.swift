@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 protocol HomeViewModelProtocol: AnyObject {
     var input: HomeViewModelInputProtocol { get }
@@ -94,7 +95,9 @@ class HomeService: HomeServiceProtocol {
 
     // Get procedure list
     func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void) {
-        let urlString = "http://54.86.122.10:3000/procedure"
+        guard let email = Auth.auth().currentUser?.email else { return }
+
+        let urlString = "http://54.86.122.10:3000/procedure/\(email)"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }

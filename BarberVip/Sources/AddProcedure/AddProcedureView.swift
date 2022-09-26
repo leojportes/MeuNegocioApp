@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol AddProcedureActionsProtocol: AnyObject {
-    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String)
+    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String)
     func alertEmptyField()
 }
 
@@ -162,12 +163,14 @@ class AddProcedureView: UIView {
         if isSomeEmptyField() {
             delegateActions?.alertEmptyField()
         } else {
+            guard let email = Auth.auth().currentUser?.email else { return }
             let amount = valueTextField.text?.replacingOccurrences(of: "R$", with: "")
             delegateActions?.addProcedure(
                 nameClient: nameTextField.text ?? "",
                 typeProcedure: typeJobTextField.text ?? "",
                 formPayment: paymentTextField.text ?? "",
-                value: amount ?? ""
+                value: amount ?? "",
+                email: email
             )
         }
     }

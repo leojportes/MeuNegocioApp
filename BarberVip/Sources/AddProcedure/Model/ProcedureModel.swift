@@ -13,6 +13,7 @@ struct GetProcedureModel: Decodable {
     let typeProcedure: String
     let formPayment: PaymentMethodType
     let value: String
+    let email: String
     let currentDate: String
 }
 
@@ -21,5 +22,5 @@ struct CreateProcedureModel: Codable {
     let typeProcedure: String
     let formPayment: String
     let value: String
-//    let currentDate: String - WIP
+    let email: String
 }
