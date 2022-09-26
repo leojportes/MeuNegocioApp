@@ -21,6 +21,8 @@
 		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
 		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
 		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
+		52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */; };
+		52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08228E2310900B1C9F7 /* ErrorView.swift */; };
 		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
@@ -122,6 +124,8 @@
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
+		52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
+		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -259,11 +263,11 @@
 			isa = PBXGroup;
 			children = (
 				C016B43F28DFE0F0007372E4 /* Model */,
+				52B8A08428E23A5800B1C9F7 /* Cell */,
 				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
 				5249214828C00621006F01DA /* HomeViewModel.swift */,
 				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
 				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
-				C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -307,6 +311,15 @@
 				527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */,
 			);
 			path = CreateAccount;
+			sourceTree = "<group>";
+		};
+		52B8A08428E23A5800B1C9F7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */,
+				52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		52C4AE7028B563610055E384 /* Profile */ = {
@@ -574,6 +587,7 @@
 				520C66A728A857A80016F167 /* CustomSubmitButton.swift */,
 				520C66A928A862A20016F167 /* CustomTextField.swift */,
 				C016B61F28E0D212007372E4 /* BottomSheetView.swift */,
+				52B8A08228E2310900B1C9F7 /* ErrorView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -885,6 +899,7 @@
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
 				52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */,
+				52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */,
 				C016B44128DFE10B007372E4 /* PaymentMethodType.swift in Sources */,
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
@@ -914,6 +929,7 @@
 				52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
+				52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */,
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
 				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
 				C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */,
