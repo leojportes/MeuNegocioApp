@@ -11,7 +11,7 @@ enum TypeScreen {
     case MonthlyReport
     case ReportDaily
     case Profile
-    case AddJob
+    case AddProcedure
     case Help
     case detailProcedure(GetProcedureModel)
 }
@@ -29,7 +29,7 @@ final class HomeCoordinator: BaseCoordinator {
         case .MonthlyReport: openMonthlyReport()
         case .ReportDaily: openReportDaily()
         case .Profile: openProfile()
-        case .AddJob: openAddJob()
+        case .AddProcedure: openAddProcedure()
         case .Help: openHelp()
         case let .detailProcedure(procedure): detailProcedure(procedure: procedure)
         }
@@ -52,8 +52,8 @@ extension HomeCoordinator {
         ProfileCoordinator(with: configuration).start()
     }
 
-    private func openAddJob() {
-        AddJobCoordinator(with: configuration).start()
+    private func openAddProcedure() {
+        AddProcedureCoordinator(with: configuration).start()
     }
 
     private func openHelp() {

@@ -14,7 +14,7 @@ public class BottomSheetView: UIView {
 
     private(set) lazy var baseView = UIView() .. {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .white
+        $0.backgroundColor = .systemGray6
         $0.roundCorners(cornerRadius: 15, typeCorners: [.topLeft, .topRight])
     }
     

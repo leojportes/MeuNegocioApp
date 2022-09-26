@@ -1,5 +1,5 @@
 //
-//  AddJobViewModel.swift
+//  AddProcedureViewModel.swift
 //  BarberVip
 //
 //  Created by Renilson Moreira on 30/08/22.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol AddJobViewModelProtocol {
-    func createProcedure(procedure: CreateProcedureModel, completion: @escaping (String) -> Void)
+protocol AddProcedureViewModelProtocol {
+    func createProcedure(procedure: CreateProcedureModel, completion: @escaping (Bool) -> Void)
     func closed()
 }
 
-class AddJobViewModel: AddJobViewModelProtocol {
+class AddProcedureViewModel: AddProcedureViewModelProtocol {
 
     // MARK: - Properties
-    private var coordinator: AddJobCoordinator?
+    private var coordinator: AddProcedureCoordinator?
 
     // MARK: - Init
-    init(coordinator: AddJobCoordinator?) {
+    init(coordinator: AddProcedureCoordinator?) {
         self.coordinator = coordinator
     }
 
@@ -28,7 +28,7 @@ class AddJobViewModel: AddJobViewModelProtocol {
     }
 
     // MARK: - Methods
-    func createProcedure(procedure: CreateProcedureModel, completion: @escaping (String) -> Void) {
+    func createProcedure(procedure: CreateProcedureModel, completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: "http://54.86.122.10:3000/procedure") else {
             print("Error: cannot create URL")
             return
@@ -49,16 +49,16 @@ class AddJobViewModel: AddJobViewModelProtocol {
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil else {
-                completion("\(String(describing: error?.localizedDescription))")
+                completion(false)
                 return
             }
            
             guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                completion("Error: HTTP request failed")
+                completion(false)
                 return
             }
             DispatchQueue.main.async {
-                completion("Procedimento cadastrado com sucesso!")
+                completion(true)
             }
         }.resume()
     }

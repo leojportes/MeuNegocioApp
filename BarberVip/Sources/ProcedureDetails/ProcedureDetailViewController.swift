@@ -55,12 +55,16 @@ final class ProcedureDetailViewController: CoordinatedViewController {
             self.viewModel.deleteProcedure(procedure) { message in
                 DispatchQueue.main.async {
                     self.showAlert(title: "", messsage: message) {
-                        self.customView.deleteButton.loadingIndicator(show: false)
-                        self.dismiss(animated: true)
+                        self.closedView()
                     }
                 }
             }
         }
+    }
+
+    private func closedView() {
+        self.customView.deleteButton.loadingIndicator(show: false)
+        self.dismiss(animated: true)
     }
 
 }

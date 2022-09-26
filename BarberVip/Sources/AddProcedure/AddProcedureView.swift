@@ -1,21 +1,22 @@
 //
-//  AddJobView.swift
+//  AddProcedureView.swift
 //  BarberVip
 //
 //  Created by Renilson Moreira on 26/08/22.
 //
 
 import UIKit
+import FirebaseAuth
 
-protocol AddJobActionsProtocol: AnyObject {
-    func addJob(nameClient: String, typeJob: String, typePayment: String, value: String)
+protocol AddProcedureActionsProtocol: AnyObject {
+    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String)
     func alertEmptyField()
 }
 
-class AddJobView: UIView {
+class AddProcedureView: UIView {
     
     // MARK: - Properties
-    weak var delegateActions: AddJobActionsProtocol?
+    weak var delegateActions: AddProcedureActionsProtocol?
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
     
     // MARK: - Init
@@ -162,18 +163,20 @@ class AddJobView: UIView {
         if isSomeEmptyField() {
             delegateActions?.alertEmptyField()
         } else {
+            guard let email = Auth.auth().currentUser?.email else { return }
             let amount = valueTextField.text?.replacingOccurrences(of: "R$", with: "")
-            delegateActions?.addJob(
+            delegateActions?.addProcedure(
                 nameClient: nameTextField.text ?? "",
-                typeJob: typeJobTextField.text ?? "",
-                typePayment: paymentTextField.text ?? "",
-                value: amount ?? ""
+                typeProcedure: typeJobTextField.text ?? "",
+                formPayment: paymentTextField.text ?? "",
+                value: amount ?? "",
+                email: email
             )
         }
     }
     
 }
-extension AddJobView: ViewCodeContract {
+extension AddProcedureView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(scrollView)
         addSubview(gripView)
@@ -253,7 +256,7 @@ extension AddJobView: ViewCodeContract {
 }
 
 // MARK: - UIPickerViewDelegate & UIPickerViewDataSource
-extension AddJobView: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddProcedureView: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

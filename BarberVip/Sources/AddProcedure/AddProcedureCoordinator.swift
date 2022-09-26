@@ -1,5 +1,5 @@
 //
-//  AddJobCoordinator.swift
+//  AddProcedureCoordinator.swift
 //  BarberVip
 //
 //  Created by Renilson Moreira on 26/08/22.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-class AddJobCoordinator: BaseCoordinator {
+class AddProcedureCoordinator: BaseCoordinator {
     override func start() {
-        let viewModel = AddJobViewModel(coordinator: self)
-        let controller = AddJobViewController(viewModel: viewModel, coordinator: self)
+        let viewModel = AddProcedureViewModel(coordinator: self)
+        let controller = AddProcedureViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = String.stringEmpty
         configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
