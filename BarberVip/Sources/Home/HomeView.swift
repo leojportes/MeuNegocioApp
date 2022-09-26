@@ -185,6 +185,7 @@ final class HomeView: UIView, ViewCodeContract {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(ProcedureTableViewCell.self, forCellReuseIdentifier: ProcedureTableViewCell.identifier)
+        table.register(ErrorTableViewCell.self, forCellReuseIdentifier: ErrorTableViewCell.identifier)
         table.refreshControl = UIRefreshControl()
         table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         table.separatorStyle = .none
@@ -309,24 +310,31 @@ final class HomeView: UIView, ViewCodeContract {
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if procedures.isEmpty{
+            return 1
+        }
         return procedures.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as? ProcedureTableViewCell else {
-            return UITableViewCell()
+
+        if procedures.isEmpty{
+            let cellEmpty = tableview.dequeueReusableCell(withIdentifier: ErrorTableViewCell.identifier, for: indexPath) as? ErrorTableViewCell
+            cellEmpty?.isUserInteractionEnabled = false
+            return cellEmpty ?? UITableViewCell()
+        } else {
+            let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as? ProcedureTableViewCell
+            let procedure = procedures[indexPath.row]
+            
+            cell?.setupCustomCell(
+                title: procedure.nameClient,
+                procedure: procedure.typeProcedure,
+                price: "R$\(procedure.value.replacingOccurrences(of: ".", with: ","))",
+                paymentMethod: "\(procedure.currentDate) • \(procedure.formPayment.rawValue)"
+            )
+            cell?.setPaymentIcon(method: procedure.formPayment)
+            return cell ?? UITableViewCell()
         }
-        
-        let procedure = procedures[indexPath.row]
-        
-        cell.setupCustomCell(
-            title: procedure.nameClient,
-            procedure: procedure.typeProcedure,
-            price: "R$\(procedure.value.replacingOccurrences(of: ".", with: ","))",
-            paymentMethod: "\(procedure.currentDate) • \(procedure.formPayment.rawValue)"
-        )
-        cell.setPaymentIcon(method: procedure.formPayment)
-        return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
