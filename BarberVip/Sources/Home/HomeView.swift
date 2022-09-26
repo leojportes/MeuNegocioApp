@@ -80,44 +80,31 @@ final class HomeView: UIView, ViewCodeContract {
         return view
     }()
     
-    private lazy var barbersButton: IconButton = {
-        let button = IconButton()
-        button.roundCorners(cornerRadius: 35, all: true)
-        button.backgroundColor = UIColor.BarberColors.lightBrown
-        button.setup(image: UIImage(named: Icon.beard.rawValue),
-                     backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.openAlertAction?() })
-        return button
+    lazy var cardStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [reportDailyCard, reportMonthlyCard, infoCard])
+        stack.axis = .horizontal
+        stack.spacing = 15
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
     
-    private lazy var dailyReportButton: IconButton = {
-        let button = IconButton()
-        button.roundCorners(cornerRadius: 35, all: true)
-        button.backgroundColor = UIColor.BarberColors.lightBrown
-        button.setup(image: UIImage(named: Icon.report.rawValue),
-                     backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.openDailyReport?() })
-        return button
+    lazy var reportDailyCard: CardButtonView = {
+        let view = CardButtonView(icon: "ic_report", title: "Relatório Diário")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private lazy var monthlyReportButton: IconButton = {
-        let button = IconButton()
-        button.roundCorners(cornerRadius: 35, all: true)
-        button.backgroundColor = UIColor.BarberColors.lightBrown
-        button.setup(image: UIImage(named: Icon.report.rawValue),
-                     backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.openMonthlyReport?() })
-        return button
+    lazy var reportMonthlyCard: CardButtonView = {
+        let view = CardButtonView(icon: "ic_report", title: "Relatório Semanal")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    private lazy var helpButton: IconButton = {
-        let button = IconButton()
-        button.roundCorners(cornerRadius: 35, all: true)
-        button.backgroundColor = UIColor.BarberColors.lightBrown
-        button.setup(image: UIImage(named: Icon.help.rawValue),
-                     backgroundColor: UIColor.BarberColors.lightBrown,
-                     action: weakify { $0.openHelp?() })
-        return button
+    lazy var infoCard: CardButtonView = {
+        let view = CardButtonView(icon: "ic_help", title: "Informações")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var titleLabel: UILabel = {
@@ -128,49 +115,8 @@ final class HomeView: UIView, ViewCodeContract {
         label.textColor = .white
         return label
     }()
-    
-    private lazy var barberLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Profissionais"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        return label
-    }()
-    
-    private lazy var monthlyReportLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Relatório mensal"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        return label
-    }()
-    
-    private lazy var dailyReportLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Relatório diário"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        return label
-    }()
-    
-    private lazy var infoLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Ajuda"
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.numberOfLines = 2
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        return label
-    }()
-    
+  
+      
     private lazy var moreButton: IconButton = {
         let button = IconButton()
         button.setup(image: UIImage(named: Icon.more.rawValue),
@@ -198,17 +144,10 @@ final class HomeView: UIView, ViewCodeContract {
         self.addSubview(navigationBar)
         self.addSubview(headerView)
         self.addSubview(footerBaseView)
-        headerView.addSubview(barbersButton)
-        headerView.addSubview(dailyReportButton)
-        headerView.addSubview(monthlyReportButton)
-        headerView.addSubview(helpButton)
+        
+        headerView.addSubview(cardStackView)
         headerView.addSubview(titleLabel)
         headerView.addSubview(moreButton)
-        
-        headerView.addSubview(barberLabel)
-        headerView.addSubview(monthlyReportLabel)
-        headerView.addSubview(dailyReportLabel)
-        headerView.addSubview(infoLabel)
         
         footerBaseView.addSubview(tableview)
     }
@@ -226,54 +165,11 @@ final class HomeView: UIView, ViewCodeContract {
             .rightAnchor(in: self)
             .heightAnchor(230)
         
-        barberLabel
-            .topAnchor(in: barbersButton, attribute: .bottom, padding: 10)
-            .centerX(in: barbersButton)
-        
-        monthlyReportLabel
-            .topAnchor(in: monthlyReportButton, attribute: .bottom, padding: 10)
-            .centerX(in: monthlyReportButton)
-            .widthAnchor(60)
-        
-        dailyReportLabel
-            .topAnchor(in: dailyReportButton, attribute: .bottom, padding: 10)
-            .centerX(in: dailyReportButton)
-            .widthAnchor(60)
-        
-        infoLabel
-            .topAnchor(in: helpButton, attribute: .bottom, padding: 10)
-            .centerX(in: helpButton)
-            .widthAnchor(60)
-        
-        footerBaseView
-            .topAnchor(in: headerView, attribute: .bottom)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .bottomAnchor(in: self, layoutOption: .useMargins)
-        
-        barbersButton
-            .topAnchor(in: headerView, padding: 52)
-            .leftAnchor(in: headerView, padding: 15)
-            .heightAnchor(70)
-            .widthAnchor(70)
-        
-        dailyReportButton
-            .topAnchor(in: headerView, padding: 52)
-            .leftAnchor(in: barbersButton, attribute: .right, padding: 22)
-            .heightAnchor(70)
-            .widthAnchor(70)
-        
-        monthlyReportButton
-            .topAnchor(in: headerView, padding: 52)
-            .leftAnchor(in: dailyReportButton, attribute: .right, padding: 22)
-            .heightAnchor(70)
-            .widthAnchor(70)
-        
-        helpButton
-            .topAnchor(in: headerView, padding: 52)
-            .leftAnchor(in: monthlyReportButton, attribute: .right, padding: 22)
-            .heightAnchor(70)
-            .widthAnchor(70)
+        cardStackView
+            .centerY(in: headerView)
+            .leftAnchor(in: headerView, attribute: .left, padding: 10)
+            .rightAnchor(in: headerView, attribute: .right, padding: 10)
+            .heightAnchor(80)
         
         titleLabel
             .leftAnchor(in: headerView, padding: 11)
@@ -284,6 +180,12 @@ final class HomeView: UIView, ViewCodeContract {
             .bottomAnchor(in: headerView, padding: 12)
             .heightAnchor(30)
             .widthAnchor(30)
+        
+        footerBaseView
+            .topAnchor(in: headerView, attribute: .bottom)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .bottomAnchor(in: self, layoutOption: .useMargins)
         
         tableview
             .topAnchor(in: footerBaseView)

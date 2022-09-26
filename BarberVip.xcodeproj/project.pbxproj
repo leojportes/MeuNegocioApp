@@ -23,6 +23,7 @@
 		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
 		52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */; };
 		52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08228E2310900B1C9F7 /* ErrorView.swift */; };
+		52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08528E2557000B1C9F7 /* CardButtonView.swift */; };
 		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
@@ -126,6 +127,7 @@
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
 		52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		52B8A08528E2557000B1C9F7 /* CardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonView.swift; sourceTree = "<group>"; };
 		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 				520C66A928A862A20016F167 /* CustomTextField.swift */,
 				C016B61F28E0D212007372E4 /* BottomSheetView.swift */,
 				52B8A08228E2310900B1C9F7 /* ErrorView.swift */,
+				52B8A08528E2557000B1C9F7 /* CardButtonView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -938,6 +941,7 @@
 				527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */,
 				520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */,
 				C0AFF99F28C4621A00B816AA /* HelpCoordinator.swift in Sources */,
+				52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
