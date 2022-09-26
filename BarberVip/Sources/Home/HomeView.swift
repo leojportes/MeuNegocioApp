@@ -14,7 +14,7 @@ final class HomeView: UIView, ViewCodeContract {
     var openDailyReport: Action?
     var openAlertAction: Action?
     var openProfile: Action?
-    var openAddJob: Action?
+    var openAddProcedure: Action?
     var openHelp: Action?
     var openProcedureDetails: (GetProcedureModel) -> Void?
     var didPullRefresh: Action?
@@ -33,7 +33,7 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToDailyReport: @escaping Action,
         alertAction: @escaping Action,
         navigateToProfile: @escaping Action,
-        navigateToAddJob: @escaping Action,
+        navigateToAddProcedure: @escaping Action,
         navigateToHelp: @escaping Action,
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
         didPullRefresh: @escaping Action
@@ -42,7 +42,7 @@ final class HomeView: UIView, ViewCodeContract {
         self.openDailyReport = navigateToDailyReport
         self.openAlertAction = alertAction
         self.openProfile = navigateToProfile
-        self.openAddJob = navigateToAddJob
+        self.openAddProcedure = navigateToAddProcedure
         self.openHelp = navigateToHelp
         self.openProcedureDetails = openProcedureDetails
         self.didPullRefresh = didPullRefresh
@@ -176,7 +176,7 @@ final class HomeView: UIView, ViewCodeContract {
         button.setup(image: UIImage(named: Icon.more.rawValue),
                      backgroundColor: .clear,
                      action: { [weak self] in
-                        self?.openAddJob?()
+                        self?.openAddProcedure?()
                      })
         return button
     }()

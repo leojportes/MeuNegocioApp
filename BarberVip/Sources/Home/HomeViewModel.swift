@@ -13,7 +13,7 @@ protocol HomeViewModelProtocol: AnyObject {
     func navigateToMonthlyReport()
     func navigateToDailyReport()
     func navigateToProfile()
-    func navigateToAddJob()
+    func navigateToAddProcedure()
     func navigateToHelp()
     func openProcedureDetails(_ procedure: GetProcedureModel)
 }
@@ -65,8 +65,8 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
         coordinator?.navigateTo(.Profile)
     }
 
-    func navigateToAddJob() {
-        coordinator?.navigateTo(.AddJob)
+    func navigateToAddProcedure() {
+        coordinator?.navigateTo(.AddProcedure)
     }
 
     func navigateToHelp() {

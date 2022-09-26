@@ -27,11 +27,11 @@
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
 		52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7728B705A00055E384 /* UIViewController+Extensions.swift */; };
-		52C4AE7D28B999C10055E384 /* AddJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7C28B999C10055E384 /* AddJobView.swift */; };
-		52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7E28B999E00055E384 /* AddJobViewController.swift */; };
-		52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */; };
+		52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7C28B999C10055E384 /* AddProcedureView.swift */; };
+		52C4AE7F28B999E00055E384 /* AddProcedureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7E28B999E00055E384 /* AddProcedureViewController.swift */; };
+		52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE8028B99AE90055E384 /* AddProcedureCoordinator.swift */; };
 		52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */; };
-		52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddJobViewModel.swift */; };
+		52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddProcedureViewModel.swift */; };
 		52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */; };
 		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
 		5816D84E6CAF15D54506780F /* Pods_BarberVipTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */; };
@@ -130,11 +130,11 @@
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		52C4AE7728B705A00055E384 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		52C4AE7C28B999C10055E384 /* AddJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobView.swift; sourceTree = "<group>"; };
-		52C4AE7E28B999E00055E384 /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
-		52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobCoordinator.swift; sourceTree = "<group>"; };
+		52C4AE7C28B999C10055E384 /* AddProcedureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProcedureView.swift; sourceTree = "<group>"; };
+		52C4AE7E28B999E00055E384 /* AddProcedureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProcedureViewController.swift; sourceTree = "<group>"; };
+		52C4AE8028B99AE90055E384 /* AddProcedureCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProcedureCoordinator.swift; sourceTree = "<group>"; };
 		52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
-		52DC01B128BE51DB0048237C /* AddJobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewModel.swift; sourceTree = "<group>"; };
+		52DC01B128BE51DB0048237C /* AddProcedureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProcedureViewModel.swift; sourceTree = "<group>"; };
 		52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		74FE020DC4C9F882AF712F5D /* Pods_BarberVip_BarberVipUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip_BarberVipUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,16 +333,16 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		52C4AE7B28B999350055E384 /* AddJob */ = {
+		52C4AE7B28B999350055E384 /* AddProcedure */ = {
 			isa = PBXGroup;
 			children = (
 				C016B24B28DFA2D1007372E4 /* Model */,
-				52C4AE8028B99AE90055E384 /* AddJobCoordinator.swift */,
-				52DC01B128BE51DB0048237C /* AddJobViewModel.swift */,
-				52C4AE7C28B999C10055E384 /* AddJobView.swift */,
-				52C4AE7E28B999E00055E384 /* AddJobViewController.swift */,
+				52C4AE8028B99AE90055E384 /* AddProcedureCoordinator.swift */,
+				52DC01B128BE51DB0048237C /* AddProcedureViewModel.swift */,
+				52C4AE7C28B999C10055E384 /* AddProcedureView.swift */,
+				52C4AE7E28B999E00055E384 /* AddProcedureViewController.swift */,
 			);
-			path = AddJob;
+			path = AddProcedure;
 			sourceTree = "<group>";
 		};
 		A2032500883B9A47E09BE803 /* Frameworks */ = {
@@ -447,7 +447,7 @@
 		C0A7414327B1955200391CE6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				52C4AE7B28B999350055E384 /* AddJob */,
+				52C4AE7B28B999350055E384 /* AddProcedure */,
 				52C4AE7028B563610055E384 /* Profile */,
 				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
 				522D901D289A00DF0085575A /* Login */,
@@ -914,19 +914,19 @@
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
-				52DC01B228BE51DB0048237C /* AddJobViewModel.swift in Sources */,
+				52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */,
 				C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
-				52C4AE8128B99AE90055E384 /* AddJobCoordinator.swift in Sources */,
+				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
 				C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */,
 				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
-				52C4AE7F28B999E00055E384 /* AddJobViewController.swift in Sources */,
+				52C4AE7F28B999E00055E384 /* AddProcedureViewController.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */,
@@ -941,7 +941,7 @@
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
-				52C4AE7D28B999C10055E384 /* AddJobView.swift in Sources */,
+				52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */,
 				522D9020289A00E00085575A /* LoginView.swift in Sources */,
 				52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */,
 				52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */,

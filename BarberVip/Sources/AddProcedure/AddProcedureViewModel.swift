@@ -1,5 +1,5 @@
 //
-//  AddJobViewModel.swift
+//  AddProcedureViewModel.swift
 //  BarberVip
 //
 //  Created by Renilson Moreira on 30/08/22.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol AddJobViewModelProtocol {
+protocol AddProcedureViewModelProtocol {
     func createProcedure(procedure: CreateProcedureModel, completion: @escaping (Bool) -> Void)
     func closed()
 }
 
-class AddJobViewModel: AddJobViewModelProtocol {
+class AddProcedureViewModel: AddProcedureViewModelProtocol {
 
     // MARK: - Properties
-    private var coordinator: AddJobCoordinator?
+    private var coordinator: AddProcedureCoordinator?
 
     // MARK: - Init
-    init(coordinator: AddJobCoordinator?) {
+    init(coordinator: AddProcedureCoordinator?) {
         self.coordinator = coordinator
     }
 

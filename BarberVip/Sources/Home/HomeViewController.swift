@@ -18,7 +18,7 @@ final class HomeViewController: CoordinatedViewController {
         navigateToDailyReport: weakify { $0.viewModel.navigateToDailyReport()},
         alertAction: weakify { $0.showAlert()},
         navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
-        navigateToAddJob: weakify { $0.viewModel.navigateToAddJob() },
+        navigateToAddProcedure: weakify { $0.viewModel.navigateToAddProcedure() },
         navigateToHelp: weakify { $0.viewModel.navigateToHelp() },
         openProcedureDetails: weakify { $0.viewModel.openProcedureDetails($1) },
         didPullRefresh: weakify { $0.didPullToRefresh() }

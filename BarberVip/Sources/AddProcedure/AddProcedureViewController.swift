@@ -1,5 +1,5 @@
 //
-//  AddJobViewController.swift
+//  AddProcedureViewController.swift
 //  BarberVip
 //
 //  Created by Renilson Moreira on 26/08/22.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class AddJobViewController: CoordinatedViewController {
+class AddProcedureViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    private let customView = AddJobView()
-    private let viewModel: AddJobViewModelProtocol
+    private let customView = AddProcedureView()
+    private let viewModel: AddProcedureViewModelProtocol
     
-    init(viewModel: AddJobViewModelProtocol, coordinator: CoordinatorProtocol){
+    init(viewModel: AddProcedureViewModelProtocol, coordinator: CoordinatorProtocol){
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
@@ -42,15 +42,15 @@ class AddJobViewController: CoordinatedViewController {
 
 }
 
-extension AddJobViewController: AddJobActionsProtocol {
+extension AddProcedureViewController: AddProcedureActionsProtocol {
     
-    func addJob(nameClient: String, typeJob: String, typePayment: String, value: String) {
+    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String) {
         customView.addButton.loadingIndicator(show: true)
         viewModel.createProcedure(
             procedure: CreateProcedureModel(
                 nameClient: nameClient,
-                typeProcedure: typeJob,
-                formPayment: typePayment,
+                typeProcedure: typeProcedure,
+                formPayment: formPayment,
                 value: value)) { [ weak self ] result in
                     guard let self = self else {return}
                     if result {
