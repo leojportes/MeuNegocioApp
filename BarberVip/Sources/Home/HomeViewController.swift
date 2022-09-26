@@ -62,7 +62,7 @@ final class HomeViewController: CoordinatedViewController {
 
     private func didPullToRefresh() {
         bindProperties()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.customView.tableview.refreshControl?.endRefreshing()
             self.reloadData()
         }
