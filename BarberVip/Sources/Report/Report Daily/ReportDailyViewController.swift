@@ -15,6 +15,17 @@ final class ReportDailyViewController: CoordinatedViewController {
     
     // MARK: - Private properties
     private let customView = ReportView()
+    private let viewModel: ReportDailyViewModelProtocol
+    
+    // MARK: - Init
+    init(viewModel: ReportDailyViewModelProtocol, coordinator: CoordinatorProtocol){
+        self.viewModel = viewModel
+        super.init(coordinator: coordinator)
+    }
+
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -24,7 +35,19 @@ final class ReportDailyViewController: CoordinatedViewController {
         navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         navigationController?.navigationBar.barTintColor = .white
         setupCustomView()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.getProcedureList { [ weak self ] result in
+            DispatchQueue.main.async {
+                /// a ideia é passar a data atual que vem no medoto returnCurrentDate(), mas dado que a api está zoada,
+                /// estou passando uma data fixa pra filtrar os procedimentos
+                let dailyProcedures = result.filter({$0.currentDate == "26/09/2022"})
+                self?.customView.procedures = dailyProcedures
+                self?.customView.tableview.reloadData()
+            }
+        }
     }
     
     override func loadView() {
@@ -36,5 +59,13 @@ final class ReportDailyViewController: CoordinatedViewController {
     private func setupCustomView() {
         customView.setupHomeView(title: "Relatório diário",
                                  popAction: weakify { $0.popAction?() })
+    }
+    
+    private func returnCurrentDate() -> String {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        let dateString = df.string(from: date)
+        return dateString
     }
 }

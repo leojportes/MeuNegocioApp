@@ -10,6 +10,12 @@ import UIKit
 final class ReportView: UIView, ViewCodeContract {
     
     // MARK: - Properties
+    var procedures: [GetProcedureModel] = [] {
+        didSet {
+            tableview.reloadData()
+            tableview.loadingIndicatorView(show: false)
+        }
+    }
     var popAction: Action?
     
     // MARK: - Init
@@ -41,6 +47,7 @@ final class ReportView: UIView, ViewCodeContract {
     private(set) lazy var tableview: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.loadingIndicatorView()
         table.register(ProcedureTableViewCell.self, forCellReuseIdentifier: ProcedureTableViewCell.identifier)
         return table
     }()
@@ -195,15 +202,21 @@ final class ReportView: UIView, ViewCodeContract {
 extension ReportView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return procedures.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as! ProcedureTableViewCell
-        cell.setupCustomCell(title: "Barbeiro \(indexPath.row + 1)",
-                             procedure: "Corte/Barba",
-                             price: "R$ 50,00",
-                             paymentMethod: "Pix")
+        guard let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as? ProcedureTableViewCell else { return UITableViewCell()}
+        
+        let procedure = procedures[indexPath.row]
+        
+        cell.setupCustomCell(title: procedure.nameClient,
+                              procedure: procedure.typeProcedure,
+                              price: "R$\(procedure.value.replacingOccurrences(of: ".", with: ","))",
+                              paymentMethod: "\(procedure.currentDate) • \(procedure.formPayment.rawValue)")
+        
+        
+        cell.setPaymentIcon(method: procedure.formPayment)
         return cell
     }
     
