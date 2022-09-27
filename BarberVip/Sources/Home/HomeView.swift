@@ -90,20 +90,26 @@ final class HomeView: UIView, ViewCodeContract {
     }()
     
     lazy var reportDailyCard: CardButtonView = {
-        let view = CardButtonView(icon: "ic_report", title: "Relatório Diário")
+        let view = CardButtonView(icon: "ic_report-daily", title: "Relatório Diário")
         view.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportDaily(_:)))
+        view.addGestureRecognizer(tap)
         return view
     }()
     
     lazy var reportMonthlyCard: CardButtonView = {
         let view = CardButtonView(icon: "ic_report", title: "Relatório Semanal")
         view.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportMonthly(_:)))
+        view.addGestureRecognizer(tap)
         return view
     }()
     
     lazy var infoCard: CardButtonView = {
         let view = CardButtonView(icon: "ic_help", title: "Informações")
         view.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardInfo(_:)))
+        view.addGestureRecognizer(tap)
         return view
     }()
     
@@ -138,6 +144,23 @@ final class HomeView: UIView, ViewCodeContract {
         table.loadingIndicatorView()
         return table
     }()
+    
+    // MARK: - Actions
+    @objc private func pullToRefresh() {
+        self.didPullRefresh?()
+    }
+    
+    @objc func didTapCardReportDaily(_ sender: UITapGestureRecognizer) {
+        openDailyReport?()
+    }
+    
+    @objc func didTapCardReportMonthly(_ sender: UITapGestureRecognizer) {
+        openMonthlyReport?()
+    }
+    
+    @objc func didTapCardInfo(_ sender: UITapGestureRecognizer) {
+        openHelp?()
+    }
 
     // MARK: - Viewcode methods
     func setupHierarchy() {
@@ -200,10 +223,6 @@ final class HomeView: UIView, ViewCodeContract {
         self.headerView.backgroundColor = UIColor.BarberColors.darkGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
-    }
-
-    @objc private func pullToRefresh() {
-        self.didPullRefresh?()
     }
     
 }
