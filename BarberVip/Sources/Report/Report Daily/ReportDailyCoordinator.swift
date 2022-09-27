@@ -9,7 +9,8 @@ import Foundation
 
 final class ReportDailyCoordinator: BaseCoordinator {
     override func start() {
-        let controller = ReportDailyViewController(coordinator: self)
+        let viewModel = ReportDailyViewModel()
+        let controller = ReportDailyViewController(viewModel: viewModel, coordinator: self)
         controller.popAction = popAction
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = true

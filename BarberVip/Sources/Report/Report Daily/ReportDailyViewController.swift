@@ -15,6 +15,17 @@ final class ReportDailyViewController: CoordinatedViewController {
     
     // MARK: - Private properties
     private let customView = ReportView()
+    private let viewModel: ReportDailyViewModelProtocol
+    
+    // MARK: - Init
+    init(viewModel: ReportDailyViewModelProtocol, coordinator: CoordinatorProtocol){
+        self.viewModel = viewModel
+        super.init(coordinator: coordinator)
+    }
+
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -24,7 +35,16 @@ final class ReportDailyViewController: CoordinatedViewController {
         navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         navigationController?.navigationBar.barTintColor = .white
         setupCustomView()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewModel.getProcedureList { [ weak self ] result in
+            DispatchQueue.main.async {
+                self?.customView.procedures = result
+                self?.customView.tableview.reloadData()
+            }
+        }
     }
     
     override func loadView() {

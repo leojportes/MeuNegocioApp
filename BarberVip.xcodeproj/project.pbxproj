@@ -24,6 +24,7 @@
 		52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */; };
 		52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08228E2310900B1C9F7 /* ErrorView.swift */; };
 		52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08528E2557000B1C9F7 /* CardButtonView.swift */; };
+		52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */; };
 		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
@@ -128,6 +129,7 @@
 		52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52B8A08528E2557000B1C9F7 /* CardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonView.swift; sourceTree = "<group>"; };
+		52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewModel.swift; sourceTree = "<group>"; };
 		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
 				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
+				52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */,
 			);
 			path = "Report Daily";
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */,
 				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
 				52C4AE7F28B999E00055E384 /* AddProcedureViewController.swift in Sources */,
+				52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */,
