@@ -41,7 +41,8 @@ final class ReportDailyViewController: CoordinatedViewController {
         super.viewWillAppear(animated)
         self.viewModel.getProcedureList { [ weak self ] result in
             DispatchQueue.main.async {
-                self?.customView.procedures = result
+                let dailyProcedures = result.filter({$0.currentDate == self?.returnCurrentDate()})
+                self?.customView.procedures = dailyProcedures
                 self?.customView.tableview.reloadData()
             }
         }
@@ -56,5 +57,13 @@ final class ReportDailyViewController: CoordinatedViewController {
     private func setupCustomView() {
         customView.setupHomeView(title: "Relatório diário",
                                  popAction: weakify { $0.popAction?() })
+    }
+    
+    private func returnCurrentDate() -> String {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        let dateString = df.string(from: date)
+        return dateString
     }
 }
