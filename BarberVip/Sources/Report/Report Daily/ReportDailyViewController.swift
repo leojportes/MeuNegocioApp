@@ -39,15 +39,7 @@ final class ReportDailyViewController: CoordinatedViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.viewModel.getProcedureList { [ weak self ] result in
-            DispatchQueue.main.async {
-                /// a ideia é passar a data atual que vem no medoto returnCurrentDate(), mas dado que a api está zoada,
-                /// estou passando uma data fixa pra filtrar os procedimentos
-                let dailyProcedures = result.filter({$0.currentDate == "26/09/2022"})
-                self?.customView.procedures = dailyProcedures
-                self?.customView.tableview.reloadData()
-            }
-        }
+        fetchCurrentProcedure()
     }
     
     override func loadView() {
@@ -59,6 +51,18 @@ final class ReportDailyViewController: CoordinatedViewController {
     private func setupCustomView() {
         customView.setupHomeView(title: "Relatório diário",
                                  popAction: weakify { $0.popAction?() })
+    }
+    
+    private func fetchCurrentProcedure() {
+        self.viewModel.getProcedureList { [ weak self ] result in
+            DispatchQueue.main.async {
+                /// a ideia é passar a data atual que vem no medoto returnCurrentDate(), mas dado que a api está zoada,
+                /// estou passando uma data fixa pra filtrar os procedimentos
+                let dailyProcedures = result.filter({$0.currentDate == "26/09/2022"})
+                self?.customView.procedures = dailyProcedures
+                self?.customView.tableview.reloadData()
+            }
+        }
     }
     
     private func returnCurrentDate() -> String {
