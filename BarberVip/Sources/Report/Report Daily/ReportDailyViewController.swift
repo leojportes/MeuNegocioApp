@@ -41,7 +41,9 @@ final class ReportDailyViewController: CoordinatedViewController {
         super.viewWillAppear(animated)
         self.viewModel.getProcedureList { [ weak self ] result in
             DispatchQueue.main.async {
-                let dailyProcedures = result.filter({$0.currentDate == self?.returnCurrentDate()})
+                /// a ideia é passar a data atual que vem no medoto returnCurrentDate(), mas dado que a api está zoada,
+                /// estou passando uma data fixa pra filtrar os procedimentos
+                let dailyProcedures = result.filter({$0.currentDate == "26/09/2022"})
                 self?.customView.procedures = dailyProcedures
                 self?.customView.tableview.reloadData()
             }
