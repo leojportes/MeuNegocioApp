@@ -10,12 +10,12 @@ import UIKit
 final class BarberNavBar: UIView {
     
     // MARK: - Private properties
-    private var actionButton: Action?
+    private var openProfileModal: Action?
     
     // MARK: - Init    
-    init(backButtonAction: @escaping Action, nameUser: String) {
+    init(actionButton: @escaping Action, nameUser: String) {
         super.init(frame: .zero)
-        self.actionButton = backButtonAction
+        self.openProfileModal = actionButton
         nameUserLabel.text = nameUser
         setupView()
     }
@@ -25,9 +25,10 @@ final class BarberNavBar: UIView {
     }
     
     // MARK: - Viewcode
-    lazy var containerView: UIView = {
+    private lazy var containerView: UIView = {
         let container = UIView()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportDaily(_:)))
+        container.backgroundColor = .red
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapProfile(_:)))
         container.addGestureRecognizer(tap)
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
@@ -41,7 +42,7 @@ final class BarberNavBar: UIView {
         return container
     }()
     
-    lazy var iconImage: UIImageView = {
+    private lazy var iconImage: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "ic_profile")
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -56,7 +57,7 @@ final class BarberNavBar: UIView {
         return label
     }()
     
-    lazy var iconArrow: UIImageView = {
+    private lazy var iconArrow: UIImageView = {
         let img = UIImageView()
         img.image = UIImage(named: "ic_arrowDown")
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -65,8 +66,9 @@ final class BarberNavBar: UIView {
     
     
     // MARK: - Actions private methods
-    @objc private func didTapCardReportDaily(_ sender: UITapGestureRecognizer) {
-        actionButton?()
+    @objc private func didTapProfile(_ sender: UITapGestureRecognizer) {
+        openProfileModal?()
+        print("olá")
     }
 }
 
