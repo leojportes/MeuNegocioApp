@@ -7,33 +7,17 @@
 
 import UIKit
 
-final class BarberNavBar: UIView, ViewCodeContract {
+final class BarberNavBar: UIView {
     
     // MARK: - Private properties
     private var actionButton: Action?
     
-    // MARK: - Init
-    override func layoutSubviews() {
-        setupView()
-    }
-    
-    init(backgroundColor: UIColor? = nil,
-         backgroundColorButtonLeft: UIColor? = nil,
-         colorHorizontalLine: UIColor? = nil,
-         iconLeft: UIImage? = nil,
-         heightIcon: CGFloat,
-         widhtIcon: CGFloat,
-         backButtonAction: @escaping Action) {
+    // MARK: - Init    
+    init(backButtonAction: @escaping Action, nameUser: String) {
         super.init(frame: .zero)
-        
-        self.backgroundColor = backgroundColor
         self.actionButton = backButtonAction
-        self.horizontalLine.backgroundColor = colorHorizontalLine
-
-        self.barbersButton.setup(image: iconLeft,
-                                 backgroundColor: backgroundColorButtonLeft ?? .white,
-                                 action: backButtonAction)
-        barbersButton.setIcon(height: heightIcon, width: widhtIcon)
+        nameUserLabel.text = nameUser
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -41,64 +25,88 @@ final class BarberNavBar: UIView, ViewCodeContract {
     }
     
     // MARK: - Viewcode
-    private lazy var barbersButton: IconButton = {
-        let button = IconButton()
-        button.roundCorners(cornerRadius: 20, all: true)
-        button.backgroundColor = UIColor.BarberColors.lightBrown
-        return button
+    lazy var containerView: UIView = {
+        let container = UIView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportDaily(_:)))
+        container.addGestureRecognizer(tap)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
     
-    private lazy var titleLabel: UILabel = {
+    private lazy var iconView: UIView = {
+        let container = UIView()
+        container.backgroundColor = .lightText
+        container.roundCorners(cornerRadius: 20)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    lazy var iconImage: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "ic_profile")
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
+    
+    private lazy var nameUserLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
+        label.font = .boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var horizontalLine: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+    lazy var iconArrow: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "ic_arrowDown")
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
     }()
     
-    // MARK: - Methods viewcode
+    
+    // MARK: - Actions private methods
+    @objc private func didTapCardReportDaily(_ sender: UITapGestureRecognizer) {
+        actionButton?()
+    }
+}
+
+extension BarberNavBar: ViewCodeContract {
     func setupHierarchy() {
-        self.addSubview(barbersButton)
-        self.addSubview(titleLabel)
-        self.addSubview(horizontalLine)
+        addSubview(containerView)
+        containerView.addSubview(iconView)
+        containerView.addSubview(nameUserLabel)
+        containerView.addSubview(iconArrow)
+        iconView.addSubview(iconImage)
     }
     
     func setupConstraints() {
-        barbersButton
-            .leftAnchor(in: self, padding: 10)
+        
+        containerView
             .centerY(in: self)
+            .leftAnchor(in: self, padding: 10)
+            .heightAnchor(40)
+            .widthAnchor(165)
+        
+        iconView
+            .centerY(in: containerView)
+            .leftAnchor(in: containerView, attribute: .left)
             .heightAnchor(40)
             .widthAnchor(40)
         
-        titleLabel
-            .leftAnchor(in: barbersButton, attribute: .right, padding: 15)
-            .centerY(in: barbersButton)
+        iconImage
+            .centerX(in: iconView)
+            .centerY(in: iconView)
+            .heightAnchor(20)
+            .widthAnchor(20)
         
-        horizontalLine
-            .bottomAnchor(in: self, attribute: .bottom)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .heightAnchor(1)
+        nameUserLabel
+            .centerY(in: containerView)
+            .leftAnchor(in: iconView, attribute: .right, padding: 8)
+        
+        iconArrow
+            .centerY(in: containerView)
+            .leftAnchor(in: nameUserLabel, attribute: .right, padding: 4)
+            .heightAnchor(15)
+            .widthAnchor(15)
     }
-    
-    // MARK: - Methods setup
-    func set(title: String,
-             color: UIColor? = nil,
-             font: UIFont? = nil) {
-        self.titleLabel.text = title
-        self.titleLabel.textColor = color
-        self.titleLabel.text = title
-        self.titleLabel.font = font
-    }
-    
-    // MARK: - Actions private methods
-    private func didTapBack() {
-        self.actionButton?()
-    }
-    
 }

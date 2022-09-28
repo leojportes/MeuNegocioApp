@@ -55,25 +55,26 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     // MARK: - Viewcode
-    private lazy var navigationBar: BarberNavBar = {
-        let navigation = BarberNavBar(iconLeft: UIImage(named: Icon.profile.rawValue),
-                                      heightIcon: 20,
-                                      widhtIcon: 20,
-                                      backButtonAction: weakify { $0.openProfile?() })
-        navigation.set(title: "Olá, Leonardo",
-                       color: .black,
-                       font: .boldSystemFont(ofSize: 20))
-        navigation.translatesAutoresizingMaskIntoConstraints = false
-        return navigation
-    }()
-    
     private lazy var headerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var footerBaseView: UIView = {
+    private lazy var sectionCardsView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    private lazy var navBarView: BarberNavBar = {
+        let navigation = BarberNavBar(backButtonAction: weakify { $0.openProfile?() },
+                                      nameUser: "Olá, Renilson")
+        navigation.translatesAutoresizingMaskIntoConstraints = false
+        return navigation
+    }()
+    
+    private lazy var mainBaseView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -164,63 +165,74 @@ final class HomeView: UIView, ViewCodeContract {
 
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        self.addSubview(navigationBar)
-        self.addSubview(headerView)
-        self.addSubview(footerBaseView)
+        addSubview(headerView)
+        addSubview(sectionCardsView)
+        addSubview(mainBaseView)
         
-        headerView.addSubview(cardStackView)
-        headerView.addSubview(titleLabel)
-        headerView.addSubview(moreButton)
+        headerView.addSubview(navBarView)
         
-        footerBaseView.addSubview(tableview)
+        sectionCardsView.addSubview(cardStackView)
+        sectionCardsView.addSubview(titleLabel)
+        sectionCardsView.addSubview(moreButton)
+        
+        mainBaseView.addSubview(tableview)
     }
     
     func setupConstraints() {
-        navigationBar
+        
+        /// Header
+        headerView
             .topAnchor(in: self)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .bottomAnchor(in: headerView, attribute: .top)
+            .heightAnchor(58)
         
-        headerView
-            .topAnchor(in: self, padding: 66)
+        navBarView
+            .centerY(in: headerView)
+            .leftAnchor(in: headerView)
+            .rightAnchor(in: headerView)
+        
+        /// Section Cards
+        sectionCardsView
+            .topAnchor(in: headerView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .heightAnchor(230)
         
         cardStackView
-            .centerY(in: headerView)
-            .leftAnchor(in: headerView, attribute: .left, padding: 10)
-            .rightAnchor(in: headerView, attribute: .right, padding: 10)
+            .centerY(in: sectionCardsView)
+            .leftAnchor(in: sectionCardsView, attribute: .left, padding: 10)
+            .rightAnchor(in: sectionCardsView, attribute: .right, padding: 10)
             .heightAnchor(80)
         
         titleLabel
-            .leftAnchor(in: headerView, padding: 11)
-            .bottomAnchor(in: headerView, padding: 11)
+            .leftAnchor(in: sectionCardsView, padding: 11)
+            .bottomAnchor(in: sectionCardsView, padding: 11)
         
         moreButton
-            .rightAnchor(in: headerView, padding: 15)
-            .bottomAnchor(in: headerView, padding: 12)
+            .rightAnchor(in: sectionCardsView, padding: 15)
+            .bottomAnchor(in: sectionCardsView, padding: 12)
             .heightAnchor(30)
             .widthAnchor(30)
         
-        footerBaseView
-            .topAnchor(in: headerView, attribute: .bottom)
+        /// Main
+        mainBaseView
+            .topAnchor(in: sectionCardsView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
         
         tableview
-            .topAnchor(in: footerBaseView)
-            .leftAnchor(in: footerBaseView, padding: 0)
-            .rightAnchor(in: footerBaseView, padding: 0)
-            .bottomAnchor(in: footerBaseView, padding: 5)
+            .topAnchor(in: mainBaseView)
+            .leftAnchor(in: mainBaseView, padding: 0)
+            .rightAnchor(in: mainBaseView, padding: 0)
+            .bottomAnchor(in: mainBaseView, padding: 5)
         
     }
     
     func setupConfiguration() {
         self.backgroundColor = UIColor.BarberColors.lightBrown
-        self.headerView.backgroundColor = UIColor.BarberColors.darkGray
+        self.sectionCardsView.backgroundColor = UIColor.BarberColors.darkGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }
