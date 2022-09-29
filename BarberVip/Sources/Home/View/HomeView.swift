@@ -10,8 +10,7 @@ import UIKit
 final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Actions properties
-    var openMonthlyReport: Action?
-    var openDailyReport: Action?
+    var openReport: Action?
     var openAlertAction: Action?
     var openProfile: Action?
     var openAddProcedure: Action?
@@ -29,8 +28,7 @@ final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Init
     init(
-        navigateToMonthlyReport: @escaping Action,
-        navigateToDailyReport: @escaping Action,
+        navigateToReport: @escaping Action,
         alertAction: @escaping Action,
         navigateToProfile: @escaping Action,
         navigateToAddProcedure: @escaping Action,
@@ -38,8 +36,7 @@ final class HomeView: UIView, ViewCodeContract {
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
         didPullRefresh: @escaping Action
     ) {
-        self.openMonthlyReport = navigateToMonthlyReport
-        self.openDailyReport = navigateToDailyReport
+        self.openReport = navigateToReport
         self.openAlertAction = alertAction
         self.openProfile = navigateToProfile
         self.openAddProcedure = navigateToAddProcedure
@@ -77,7 +74,7 @@ final class HomeView: UIView, ViewCodeContract {
     }()
     
     lazy var cardStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [reportMonthlyCard, infoCard, moreCard])
+        let stack = UIStackView(arrangedSubviews: [reportCard, infoCard, moreCard])
         stack.axis = .horizontal
         stack.spacing = 15
         stack.distribution = .fillEqually
@@ -85,10 +82,10 @@ final class HomeView: UIView, ViewCodeContract {
         return stack
     }()
     
-    lazy var reportMonthlyCard: CardButtonView = {
+    lazy var reportCard: CardButtonView = {
         let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatório Semanal")
         view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportMonthly(_:)))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReport(_:)))
         view.addGestureRecognizer(tap)
         return view
     }()
@@ -136,8 +133,8 @@ final class HomeView: UIView, ViewCodeContract {
         self.didPullRefresh?()
     }
     
-    @objc func didTapCardReportMonthly(_ sender: UITapGestureRecognizer) {
-        openMonthlyReport?()
+    @objc func didTapCardReport(_ sender: UITapGestureRecognizer) {
+        openReport?()
     }
     
     @objc func didTapCardInfo(_ sender: UITapGestureRecognizer) {

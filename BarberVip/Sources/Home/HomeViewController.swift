@@ -14,8 +14,7 @@ final class HomeViewController: CoordinatedViewController {
 
     // MARK: - View
     private lazy var customView = HomeView(
-        navigateToMonthlyReport: weakify { $0.viewModel.navigateToMonthlyReport() },
-        navigateToDailyReport: weakify { $0.viewModel.navigateToDailyReport()},
+        navigateToReport: weakify { $0.viewModel.navigateToReport()},
         alertAction: weakify { $0.showAlert()},
         navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
         navigateToAddProcedure: weakify { $0.viewModel.navigateToAddProcedure() },

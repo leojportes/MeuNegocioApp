@@ -46,8 +46,6 @@
 		C016B61D28E0B3CC007372E4 /* ProcedureDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */; };
 		C016B62028E0D212007372E4 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61F28E0D212007372E4 /* BottomSheetView.swift */; };
 		C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2027BEE83500CFCEE0 /* ReportView.swift */; };
-		C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */; };
-		C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */; };
 		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
 		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
@@ -157,8 +155,6 @@
 		C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailViewModel.swift; sourceTree = "<group>"; };
 		C016B61F28E0D212007372E4 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		C0319C2027BEE83500CFCEE0 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportViewController.swift; sourceTree = "<group>"; };
-		C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
 		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
@@ -300,23 +296,14 @@
 			path = ForgetPassword;
 			sourceTree = "<group>";
 		};
-		525A98B528DE38E200920AA5 /* Report Monthly */ = {
+		525A98B628DE38F000920AA5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C0319C2527BEEC4600CFCEE0 /* MonthlyReportViewController.swift */,
-				C0319C2A27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift */,
+				C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */,
+				C0A174D028E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift */,
+				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
 			);
-			path = "Report Monthly";
-			sourceTree = "<group>";
-		};
-		525A98B628DE38F000920AA5 /* Report Daily */ = {
-			isa = PBXGroup;
-			children = (
-				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
-				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
-				52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */,
-			);
-			path = "Report Daily";
+			path = View;
 			sourceTree = "<group>";
 		};
 		527D06D628AAD5D7001E0BE0 /* CreateAccount */ = {
@@ -411,11 +398,10 @@
 		C0319C1F27BEE81E00CFCEE0 /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
-				525A98B628DE38F000920AA5 /* Report Daily */,
-				525A98B528DE38E200920AA5 /* Report Monthly */,
-				C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */,
-				C0A174D028E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift */,
+				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
+				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
+				52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */,
+				525A98B628DE38F000920AA5 /* View */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -925,7 +911,6 @@
 				C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */,
 				C0AF028128C536C600B816AA /* ForgetPasswordViewController.swift in Sources */,
 				C0AF028728C5389600B816AA /* ForgetPasswordView.swift in Sources */,
-				C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */,
 				C0AF028528C5373D00B816AA /* ForgetPasswordViewModel.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
 				C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */,
@@ -949,7 +934,6 @@
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */,
-				C0319C2627BEEC4600CFCEE0 /* MonthlyReportViewController.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ReportDailyViewModel.swift
+//  ReportViewModel.swift
 //  BarberVip
 //
 //  Created by Renilson Moreira on 26/09/22.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol ReportDailyViewModelProtocol {
+protocol ReportViewModelProtocol {
     func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void)
 }
 
-class ReportDailyViewModel: ReportDailyViewModelProtocol {
+class ReportViewModel: ReportViewModelProtocol {
         
     let service = HomeService()
     

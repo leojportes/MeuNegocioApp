@@ -11,8 +11,7 @@ import FirebaseAuth
 protocol HomeViewModelProtocol: AnyObject {
     var input: HomeViewModelInputProtocol { get }
     var output: HomeViewModelOutputProtocol { get }
-    func navigateToMonthlyReport()
-    func navigateToDailyReport()
+    func navigateToReport()
     func navigateToProfile()
     func navigateToAddProcedure()
     func navigateToHelp()
@@ -54,12 +53,8 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     }
 
     // MARK: - Routes
-    func navigateToMonthlyReport() {
-        coordinator?.navigateTo(.MonthlyReport)
-    }
-
-    func navigateToDailyReport() {
-        coordinator?.navigateTo(.ReportDaily)
+    func navigateToReport() {
+        coordinator?.navigateTo(.Report)
     }
 
     func navigateToProfile() {
