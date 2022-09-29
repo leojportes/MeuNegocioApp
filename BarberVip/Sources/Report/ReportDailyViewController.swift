@@ -125,14 +125,6 @@ final class ReportViewController: CoordinatedViewController {
         let totalAmount = format.replacingOccurrences(of: ".", with: ",")
         return "\(totalAmount)"
     }
-    
-    private func returnCurrentDate() -> String {
-        let date = Date()
-        let df = DateFormatter()
-        df.dateFormat = "dd/MM/yyyy"
-        let dateString = df.string(from: date)
-        return dateString
-    }
 
     private func setupNavigationBar() {
         title = "Relatórios"
