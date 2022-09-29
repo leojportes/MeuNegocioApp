@@ -78,8 +78,9 @@ final class ReportViewController: CoordinatedViewController {
     }
 
     private func setupDailyAmount(procedures: [GetProcedureModel], isOnSwitch: Bool = false, percent: String = "") {
+        let today = returnCurrentDate()
         /// Aqui filtramos os procedimentos do dia atual.
-        let dailyProcedures = procedures.filter({$0.currentDate == "26/09/2022"})
+        let dailyProcedures = procedures.filter({$0.currentDate == today})
         /// Aqui somamos todos os recebimentos do dia atual.
         let makeTotalDailyAmount = self.makeTotalAmount(procedures: dailyProcedures)
         
@@ -109,24 +110,24 @@ final class ReportViewController: CoordinatedViewController {
     private func setupPaymentTypeAmount(procedures: [GetProcedureModel], isOnSwitch: Bool = false, percent: String = "") {
         
         if isOnSwitch {
-           
+            let percentage = percent.replacingOccurrences(of: ".", with: ",")
             let debitAmount = calculatePercentageFromString(
-                percent: percent,
+                percent: percentage,
                 baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .debit }))
             )
             
             let creditAmount = calculatePercentageFromString(
-                percent: percent,
+                percent: percentage,
                 baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .credit }))
             )
             
             let cashAmount = calculatePercentageFromString(
-                percent: percent,
+                percent: percentage,
                 baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .cash }))
             )
 
             let pixAmount = calculatePercentageFromString(
-                percent: percent,
+                percent: percentage,
                 baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .pix }))
             )
 
