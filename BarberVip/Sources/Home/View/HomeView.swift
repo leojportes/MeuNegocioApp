@@ -71,7 +71,7 @@ final class HomeView: UIView, ViewCodeContract {
     // MARK: - Section Cards
     private lazy var sectionCardsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .BarberColors.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -203,7 +203,7 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     func setupConfiguration() {
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .BarberColors.lightGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }
