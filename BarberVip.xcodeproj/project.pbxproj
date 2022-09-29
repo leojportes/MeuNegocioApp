@@ -51,7 +51,7 @@
 		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
 		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
-		C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */; };
+		C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */; };
 		C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */; };
 		C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411027B1953000391CE6 /* AppDelegate.swift */; };
 		C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411227B1953000391CE6 /* SceneDelegate.swift */; };
@@ -156,7 +156,7 @@
 		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
 		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
-		C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberNavBar.swift; sourceTree = "<group>"; };
+		C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureTableViewCell.swift; sourceTree = "<group>"; };
 		C0A7410D27B1953000391CE6 /* BarberVip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarberVip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A7411027B1953000391CE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -266,12 +266,12 @@
 		525A98B128DE36C800920AA5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				52B8A08928E5327000B1C9F7 /* View */,
 				C016B43F28DFE0F0007372E4 /* Model */,
 				52B8A08428E23A5800B1C9F7 /* Cell */,
 				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
 				5249214828C00621006F01DA /* HomeViewModel.swift */,
 				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
-				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -325,6 +325,15 @@
 				52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		52B8A08928E5327000B1C9F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
+				C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		52C4AE7028B563610055E384 /* Profile */ = {
@@ -587,7 +596,6 @@
 			isa = PBXGroup;
 			children = (
 				C0BCE58627B731C2005805A6 /* IconButton.swift */,
-				C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */,
 				C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */,
 				520C66A728A857A80016F167 /* CustomSubmitButton.swift */,
 				520C66A928A862A20016F167 /* CustomTextField.swift */,
@@ -947,7 +955,7 @@
 				C0AFF99F28C4621A00B816AA /* HelpCoordinator.swift in Sources */,
 				52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */,
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
-				C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */,
+				C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
 				52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */,
 				522D9020289A00E00085575A /* LoginView.swift in Sources */,

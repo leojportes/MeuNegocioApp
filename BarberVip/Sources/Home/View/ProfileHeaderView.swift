@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class BarberNavBar: UIView {
+final class ProfileHeaderView: UIView {
     
     // MARK: - Private properties
-    private var openProfileModal: Action?
+    private var openProfile: Action?
     
     // MARK: - Init    
     init(actionButton: @escaping Action, nameUser: String) {
         super.init(frame: .zero)
-        self.openProfileModal = actionButton
+        self.openProfile = actionButton
         nameUserLabel.text = nameUser
         setupView()
     }
@@ -25,14 +25,6 @@ final class BarberNavBar: UIView {
     }
     
     // MARK: - Viewcode
-    private lazy var containerView: UIView = {
-        let container = UIView()
-        container.backgroundColor = .red
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapProfile(_:)))
-        container.addGestureRecognizer(tap)
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
-    }()
     
     private lazy var iconView: UIView = {
         let container = UIView()
@@ -63,35 +55,34 @@ final class BarberNavBar: UIView {
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
-    
-    
-    // MARK: - Actions private methods
-    @objc private func didTapProfile(_ sender: UITapGestureRecognizer) {
-        openProfileModal?()
-        print("olá")
+        
+    @objc private func tappedView(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            self.openProfile?()
+        }
     }
+    
+    private func tapGestureRecognizer() {
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.tappedView))
+        self.addGestureRecognizer(tapGR)
+        self.isUserInteractionEnabled = true
+    }
+
 }
 
-extension BarberNavBar: ViewCodeContract {
+extension ProfileHeaderView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(containerView)
-        containerView.addSubview(iconView)
-        containerView.addSubview(nameUserLabel)
-        containerView.addSubview(iconArrow)
+        addSubview(iconView)
+        addSubview(nameUserLabel)
+        addSubview(iconArrow)
         iconView.addSubview(iconImage)
     }
     
     func setupConstraints() {
         
-        containerView
-            .centerY(in: self)
-            .leftAnchor(in: self, padding: 10)
-            .heightAnchor(40)
-            .widthAnchor(165)
-        
         iconView
-            .centerY(in: containerView)
-            .leftAnchor(in: containerView, attribute: .left)
+            .centerY(in: self)
+            .leftAnchor(in: self, attribute: .left)
             .heightAnchor(40)
             .widthAnchor(40)
         
@@ -102,13 +93,18 @@ extension BarberNavBar: ViewCodeContract {
             .widthAnchor(20)
         
         nameUserLabel
-            .centerY(in: containerView)
+            .centerY(in: self)
             .leftAnchor(in: iconView, attribute: .right, padding: 8)
         
         iconArrow
-            .centerY(in: containerView)
+            .centerY(in: self)
             .leftAnchor(in: nameUserLabel, attribute: .right, padding: 4)
             .heightAnchor(15)
             .widthAnchor(15)
+    }
+    
+    func setupConfiguration() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        tapGestureRecognizer()
     }
 }

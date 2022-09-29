@@ -54,7 +54,7 @@ final class HomeView: UIView, ViewCodeContract {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Viewcode
+    // MARK: - Header
     private lazy var headerView: UIView = {
         let view = UIView()
         view.backgroundColor = .BarberColors.lightBrown
@@ -62,24 +62,18 @@ final class HomeView: UIView, ViewCodeContract {
         return view
     }()
     
+    private lazy var profileView: ProfileHeaderView = {
+        let view = ProfileHeaderView(actionButton: weakify { $0.openProfile?() },
+                                      nameUser: "Olá, Renilson")
+        return view
+    }()
+    
+    // MARK: - Section Cards
     private lazy var sectionCardsView: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }()
-    
-    private lazy var mainBaseView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var navBarView: BarberNavBar = {
-        let navigation = BarberNavBar(actionButton: weakify { $0.openProfile?() },
-                                      nameUser: "Olá, Renilson")
-        navigation.translatesAutoresizingMaskIntoConstraints = false
-        return navigation
     }()
     
     lazy var cardStackView: UIStackView = {
@@ -112,6 +106,14 @@ final class HomeView: UIView, ViewCodeContract {
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardMore(_:)))
         view.addGestureRecognizer(tap)
+        return view
+    }()
+    
+    
+    // MARK: - Main
+    private lazy var mainBaseView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -152,7 +154,7 @@ final class HomeView: UIView, ViewCodeContract {
         addSubview(sectionCardsView)
         addSubview(mainBaseView)
         
-        headerView.addSubview(navBarView)
+        headerView.addSubview(profileView)
         sectionCardsView.addSubview(cardStackView)
         mainBaseView.addSubview(tableview)
     }
@@ -166,10 +168,11 @@ final class HomeView: UIView, ViewCodeContract {
             .rightAnchor(in: self)
             .heightAnchor(80)
         
-        navBarView
-            .centerY(in: headerView)
-            .leftAnchor(in: headerView)
-            .rightAnchor(in: headerView)
+        profileView
+            .topAnchor(in: headerView, attribute: .top, padding: 22)
+            .leftAnchor(in: headerView, attribute: .left, padding: 10)
+            .widthAnchor(165)
+            .heightAnchor(50)
         
         /// Section Cards
         sectionCardsView
