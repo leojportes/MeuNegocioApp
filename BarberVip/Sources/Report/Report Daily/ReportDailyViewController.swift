@@ -36,6 +36,7 @@ final class ReportDailyViewController: CoordinatedViewController {
         super.viewDidLoad()
         setupNavigationBar()
         hideKeyboardWhenTappedAround()
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,20 +56,40 @@ final class ReportDailyViewController: CoordinatedViewController {
     private func fetchCurrentProcedure() {
         self.viewModel.getProcedureList { [weak self] result in
             DispatchQueue.main.async {
-                self?.setupDailyAmount(procedures: result)
+                
                 self?.setupWeeklyAmount(procedures: result)
                 self?.setupPaymentTypeAmount(procedures: result)
+                self?.setupDailyAmount(procedures: result, isOnSwitch: false, porcent: "0")
+                
+                self?.customView.didChangeTF = { [weak self] txt in
+                    print(txt.text)
+                    
+                    self?.customView.didTapDiscountSwitch = { [weak self] sender in
+                        self?.setupDailyAmount(procedures: result, isOnSwitch: sender.isOn, porcent: txt.text ?? "")
+                    }
+                }
+                    
+               
             }
         }
     }
 
     // MARK: - Bind methods
-    private func setupDailyAmount(procedures: [GetProcedureModel]) {
-        /// Aqui filtramos os procedimentos do dia atual.
-        let dailyProcedures = procedures.filter({$0.currentDate == "26/09/2022"})
-        /// Aqui somamos todos os recebimentos do dia atual.
-        let makeTotalDailyAmount = self.makeTotalAmount(procedures: dailyProcedures)
-        self.customView.setupDailyCard(makeTotalDailyAmount, "\(dailyProcedures.count)")
+    private func setupDailyAmount(procedures: [GetProcedureModel], isOnSwitch: Bool, porcent: String) {
+     
+        if isOnSwitch {
+            print(porcent)
+            self.customView.setupDailyCard("444", "\(444)")
+            
+        } else {
+            /// Aqui filtramos os procedimentos do dia atual.
+            let dailyProcedures = procedures.filter({$0.currentDate == "26/09/2022"})
+            /// Aqui somamos todos os recebimentos do dia atual.
+            let makeTotalDailyAmount = self.makeTotalAmount(procedures: dailyProcedures)
+            
+            self.customView.setupDailyCard(makeTotalDailyAmount, "\(dailyProcedures.count)")
+        }
+
     }
 
     private func setupWeeklyAmount(procedures: [GetProcedureModel]) {

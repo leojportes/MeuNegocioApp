@@ -13,6 +13,7 @@ final class ReportView: UIView {
     var didTapDiscountSwitch: (UISwitch) -> Void?
     var didTapDownloadDailyHistoric: Action?
     var didTapDownloadWeeklyHistoric: Action?
+    var didChangeTF: (UITextField) -> Void? = { _ in nil }
     
     // MARK: - Init
     init(
@@ -23,7 +24,6 @@ final class ReportView: UIView {
         self.didTapDiscountSwitch = didTapDiscountSwitch
         self.didTapDownloadDailyHistoric = didTapDownloadDailyHistoric
         self.didTapDownloadWeeklyHistoric = didTapDownloadWeeklyHistoric
-        
         super.init(frame: .zero)
         setupView()
     }
@@ -77,6 +77,12 @@ final class ReportView: UIView {
         $0.textAlignment = .center
         $0.keyboardType = .numberPad
         $0.placeholder = "Ex: 10%"
+        $0.addTarget(self, action: #selector(didInputTextfield), for: .editingChanged)
+    }
+    
+    @objc
+    func didInputTextfield(sender: UITextField) {
+        self.didChangeTF(sender)
     }
 
     /// Historic cards
