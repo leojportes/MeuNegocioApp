@@ -1,5 +1,5 @@
 //
-//  ReportDailyViewController.swift
+//  ReportViewController.swift
 //  BarberVip
 //
 //  Created by Leonardo Portes on 17/02/22.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class ReportDailyViewController: CoordinatedViewController {
+final class ReportViewController: CoordinatedViewController {
     
     // MARK: - Properties
     var popAction: Action?
@@ -19,10 +19,10 @@ final class ReportDailyViewController: CoordinatedViewController {
         didTapDownloadDailyHistoric: weakify { print($0.getLast7Days()) },
         didTapDownloadWeeklyHistoric: { print("didTapDownloadWeeklyHistoric") }
     )
-    private let viewModel: ReportDailyViewModelProtocol
+    private let viewModel: ReportViewModelProtocol
     
     // MARK: - Init
-    init(viewModel: ReportDailyViewModelProtocol, coordinator: CoordinatorProtocol){
+    init(viewModel: ReportViewModelProtocol, coordinator: CoordinatorProtocol){
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
