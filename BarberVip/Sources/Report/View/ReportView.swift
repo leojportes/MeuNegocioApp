@@ -64,7 +64,7 @@ final class ReportView: UIView {
     /// Apply discount
     private lazy var applydiscountCardView = CardView()
     private lazy var applydiscountTitleLabel = BarberLabel(
-        text: "Aplicar desconto:",
+        text: "Aplicar porcentagem:",
         font: UIFont.boldSystemFont(ofSize: 16)
     )
     

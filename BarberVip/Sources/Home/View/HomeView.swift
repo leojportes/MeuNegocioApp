@@ -87,6 +87,7 @@ final class HomeView: UIView, ViewCodeContract {
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReport(_:)))
         view.addGestureRecognizer(tap)
+        view.addShadow()
         return view
     }()
     
@@ -95,6 +96,7 @@ final class HomeView: UIView, ViewCodeContract {
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardInfo(_:)))
         view.addGestureRecognizer(tap)
+        view.addShadow()
         return view
     }()
     
@@ -103,9 +105,9 @@ final class HomeView: UIView, ViewCodeContract {
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardMore(_:)))
         view.addGestureRecognizer(tap)
+        view.addShadow()
         return view
     }()
-    
     
     // MARK: - Main
     private lazy var mainBaseView: UIView = {
