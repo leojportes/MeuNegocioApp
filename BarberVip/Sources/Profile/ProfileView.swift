@@ -9,14 +9,17 @@ import UIKit
 
 class ProfileView: UIView {
     
-    var closed: Action?
+    var logout: Action?
+    var closedView: Action?
     var didTapVerifyEmail: Action?
     
     init(
-        didTapClose: @escaping Action,
+        didTapLogout: @escaping Action,
+        didTapClosedView: @escaping Action,
         didTapVerifyEmail: @escaping Action
     ) {
-        self.closed = didTapClose
+        self.logout = didTapLogout
+        self.closedView = didTapClosedView
         self.didTapVerifyEmail = didTapVerifyEmail
         super.init(frame: .zero)
         setupView()
@@ -25,6 +28,14 @@ class ProfileView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var closedButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: Icon.closed.rawValue), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTapClosed), for: .touchUpInside)
+        return button
+    }()
 
     private lazy var headerCardView = UIView() .. {
         $0.backgroundColor = .BarberColors.yellowDark
@@ -61,7 +72,7 @@ class ProfileView: UIView {
     
     private lazy var exiteButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Sair da conta", colorTitle: .white, background: .BarberColors.darkGray)
-        button.addTarget(self, action: #selector(handleExiteButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleLogoutButton), for: .touchUpInside)
         return button
     }()
     
@@ -73,10 +84,14 @@ class ProfileView: UIView {
     }()
     
     // MARK: - Action Buttons
+    @objc
+    func didTapClosed() {
+        self.closedView?()
+    }
     
     @objc
-    func handleExiteButton() {
-        self.closed?()
+    func handleLogoutButton() {
+        self.logout?()
     }
     
     @objc
@@ -96,6 +111,7 @@ class ProfileView: UIView {
 
 extension ProfileView: ViewCodeContract {
     func setupHierarchy() {
+        addSubview(closedButton)
         addSubview(headerCardView)
         headerCardView.addSubview(userLabel)
         headerCardView.addSubview(emailLabel)
@@ -106,8 +122,15 @@ extension ProfileView: ViewCodeContract {
     }
     
     func setupConstraints() {
+        
+        closedButton
+            .topAnchor(in: self, padding: 30)
+            .rightAnchor(in: self, padding: 15)
+            .heightAnchor(18)
+            .widthAnchor(18)
+        
         headerCardView
-            .topAnchor(in: self, padding: 50)
+            .topAnchor(in: self, padding: 130)
             .leftAnchor(in: self, padding: 15)
             .rightAnchor(in: self, padding: 15)
             .heightAnchor(150)

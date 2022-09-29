@@ -54,34 +54,30 @@ final class HomeView: UIView, ViewCodeContract {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Viewcode
-    private lazy var navigationBar: BarberNavBar = {
-        let navigation = BarberNavBar(iconLeft: UIImage(named: Icon.profile.rawValue),
-                                      heightIcon: 20,
-                                      widhtIcon: 20,
-                                      backButtonAction: weakify { $0.openProfile?() })
-        navigation.set(title: "Olá, Leonardo",
-                       color: .black,
-                       font: .boldSystemFont(ofSize: 20))
-        navigation.translatesAutoresizingMaskIntoConstraints = false
-        return navigation
-    }()
-    
+    // MARK: - Header
     private lazy var headerView: UIView = {
         let view = UIView()
+        view.backgroundColor = .BarberColors.lightBrown
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var footerBaseView: UIView = {
+    private lazy var profileView: ProfileHeaderView = {
+        let view = ProfileHeaderView(actionButton: weakify { $0.openProfile?() },
+                                      nameUser: "Olá, Renilson")
+        return view
+    }()
+    
+    // MARK: - Section Cards
+    private lazy var sectionCardsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .BarberColors.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     lazy var cardStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [reportDailyCard, reportMonthlyCard, infoCard])
+        let stack = UIStackView(arrangedSubviews: [reportMonthlyCard, infoCard, moreCard])
         stack.axis = .horizontal
         stack.spacing = 15
         stack.distribution = .fillEqually
@@ -89,16 +85,8 @@ final class HomeView: UIView, ViewCodeContract {
         return stack
     }()
     
-    lazy var reportDailyCard: CardButtonView = {
-        let view = CardButtonView(icon: "ic_report-daily", title: "Relatório Diário")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportDaily(_:)))
-        view.addGestureRecognizer(tap)
-        return view
-    }()
-    
     lazy var reportMonthlyCard: CardButtonView = {
-        let view = CardButtonView(icon: "ic_report", title: "Relatório Semanal")
+        let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatório Semanal")
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReportMonthly(_:)))
         view.addGestureRecognizer(tap)
@@ -106,31 +94,27 @@ final class HomeView: UIView, ViewCodeContract {
     }()
     
     lazy var infoCard: CardButtonView = {
-        let view = CardButtonView(icon: "ic_help", title: "Informações")
+        let view = CardButtonView(icon: Icon.help.rawValue, title: "Informações")
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardInfo(_:)))
         view.addGestureRecognizer(tap)
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Lista de serviços"
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
-        return label
+    lazy var moreCard: CardButtonView = {
+        let view = CardButtonView(icon: Icon.more.rawValue, title: "Adicionar")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardMore(_:)))
+        view.addGestureRecognizer(tap)
+        return view
     }()
-  
-      
-    private lazy var moreButton: IconButton = {
-        let button = IconButton()
-        button.setup(image: UIImage(named: Icon.more.rawValue),
-                     backgroundColor: .clear,
-                     action: { [weak self] in
-                        self?.openAddProcedure?()
-                     })
-        return button
+    
+    
+    // MARK: - Main
+    private lazy var mainBaseView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     lazy var tableview: UITableView = {
@@ -141,17 +125,15 @@ final class HomeView: UIView, ViewCodeContract {
         table.refreshControl = UIRefreshControl()
         table.refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         table.separatorStyle = .none
+        table.backgroundColor = .white
+        table.roundCorners(cornerRadius: 10, typeCorners: [.topLeft, .topRight])
         table.loadingIndicatorView()
         return table
     }()
     
-    // MARK: - Actions
+    // MARK: - Actions Cards
     @objc private func pullToRefresh() {
         self.didPullRefresh?()
-    }
-    
-    @objc func didTapCardReportDaily(_ sender: UITapGestureRecognizer) {
-        openDailyReport?()
     }
     
     @objc func didTapCardReportMonthly(_ sender: UITapGestureRecognizer) {
@@ -161,66 +143,67 @@ final class HomeView: UIView, ViewCodeContract {
     @objc func didTapCardInfo(_ sender: UITapGestureRecognizer) {
         openHelp?()
     }
+    
+    @objc func didTapCardMore(_ sender: UITapGestureRecognizer) {
+        openAddProcedure?()
+    }
 
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        self.addSubview(navigationBar)
-        self.addSubview(headerView)
-        self.addSubview(footerBaseView)
+        addSubview(headerView)
+        addSubview(sectionCardsView)
+        addSubview(mainBaseView)
         
-        headerView.addSubview(cardStackView)
-        headerView.addSubview(titleLabel)
-        headerView.addSubview(moreButton)
-        
-        footerBaseView.addSubview(tableview)
+        headerView.addSubview(profileView)
+        sectionCardsView.addSubview(cardStackView)
+        mainBaseView.addSubview(tableview)
     }
     
     func setupConstraints() {
-        navigationBar
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .bottomAnchor(in: headerView, attribute: .top)
         
+        /// Header
         headerView
-            .topAnchor(in: self, padding: 66)
+            .topAnchor(in: self, layoutOption: .useMargins)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(230)
-        
-        cardStackView
-            .centerY(in: headerView)
-            .leftAnchor(in: headerView, attribute: .left, padding: 10)
-            .rightAnchor(in: headerView, attribute: .right, padding: 10)
             .heightAnchor(80)
         
-        titleLabel
-            .leftAnchor(in: headerView, padding: 11)
-            .bottomAnchor(in: headerView, padding: 11)
+        profileView
+            .topAnchor(in: headerView, attribute: .top, padding: 22)
+            .leftAnchor(in: headerView, attribute: .left, padding: 10)
+            .widthAnchor(165)
+            .heightAnchor(50)
         
-        moreButton
-            .rightAnchor(in: headerView, padding: 15)
-            .bottomAnchor(in: headerView, padding: 12)
-            .heightAnchor(30)
-            .widthAnchor(30)
-        
-        footerBaseView
+        /// Section Cards
+        sectionCardsView
             .topAnchor(in: headerView, attribute: .bottom)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .heightAnchor(152)
+        
+        cardStackView
+            .centerY(in: sectionCardsView)
+            .leftAnchor(in: sectionCardsView, attribute: .left, padding: 10)
+            .rightAnchor(in: sectionCardsView, attribute: .right, padding: 10)
+            .heightAnchor(106)
+        
+        /// Main
+        mainBaseView
+            .topAnchor(in: sectionCardsView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
         
         tableview
-            .topAnchor(in: footerBaseView)
-            .leftAnchor(in: footerBaseView, padding: 0)
-            .rightAnchor(in: footerBaseView, padding: 0)
-            .bottomAnchor(in: footerBaseView, padding: 5)
+            .topAnchor(in: mainBaseView)
+            .leftAnchor(in: mainBaseView, padding: 0)
+            .rightAnchor(in: mainBaseView, padding: 0)
+            .bottomAnchor(in: mainBaseView, padding: 5)
         
     }
     
     func setupConfiguration() {
-        self.backgroundColor = UIColor.BarberColors.lightBrown
-        self.headerView.backgroundColor = UIColor.BarberColors.darkGray
+        self.backgroundColor = .BarberColors.lightGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }
@@ -259,11 +242,15 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 80
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let procedure = procedures[indexPath.row]
         self.openProcedureDetails(procedure)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Procedimentos"
     }
 }

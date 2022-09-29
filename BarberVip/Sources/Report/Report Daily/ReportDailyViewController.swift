@@ -61,9 +61,7 @@ final class ReportDailyViewController: CoordinatedViewController {
                 self?.setupPaymentTypeAmount(procedures: result)
                 self?.setupDailyAmount(procedures: result, isOnSwitch: false, porcent: "0")
                 
-                self?.customView.didChangeTF = { [weak self] txt in
-                    print(txt.text)
-                    
+                self?.customView.didChangeTF = { [weak self] txt in                    
                     self?.customView.didTapDiscountSwitch = { [weak self] sender in
                         self?.setupDailyAmount(procedures: result, isOnSwitch: sender.isOn, porcent: txt.text ?? "")
                     }

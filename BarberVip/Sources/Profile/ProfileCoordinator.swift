@@ -14,12 +14,17 @@ class ProfileCoordinator: BaseCoordinator {
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
-        configuration.navigationController?.pushViewController(controller, animated: true)
+        configuration.navigationController?.present(controller, animated: true)
     }
     
     func closed() {
         let coordinator = LoginCoordinator(with: configuration)
+        configuration.navigationController?.dismiss(animated: true)
         configuration.navigationController?.viewControllers.removeAll()
         coordinator.start()
+    }
+    
+    func closedView() {
+        configuration.navigationController?.dismiss(animated: true)
     }
 }
