@@ -53,6 +53,11 @@
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
 		C09BB5C027B7EB6100C91F48 /* BarberNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */; };
 		C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */; };
+		C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */; };
+		C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */; };
+		C0A174CD28E51F6100DB0CE4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */; };
+		C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CE28E5342300DB0CE4 /* TappedView.swift */; };
+		C0A174D128E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174D028E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift */; };
 		C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411027B1953000391CE6 /* AppDelegate.swift */; };
 		C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411227B1953000391CE6 /* SceneDelegate.swift */; };
 		C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A7411927B1953300391CE6 /* Assets.xcassets */; };
@@ -92,6 +97,7 @@
 		C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58627B731C2005805A6 /* IconButton.swift */; };
 		C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58E27B747E2005805A6 /* Icon.swift */; };
 		C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */; };
+		C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8E70C28E4F01700FD1B57 /* CardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +164,11 @@
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* BarberNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberNavBar.swift; sourceTree = "<group>"; };
 		C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureTableViewCell.swift; sourceTree = "<group>"; };
+		C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberLabel.swift; sourceTree = "<group>"; };
+		C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCardView.swift; sourceTree = "<group>"; };
+		C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		C0A174CE28E5342300DB0CE4 /* TappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappedView.swift; sourceTree = "<group>"; };
+		C0A174D028E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeAmountCardView.swift; sourceTree = "<group>"; };
 		C0A7410D27B1953000391CE6 /* BarberVip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BarberVip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A7411027B1953000391CE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0A7411227B1953000391CE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -203,6 +214,7 @@
 		C0BCE58627B731C2005805A6 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		C0BCE58E27B747E2005805A6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weakify+Ext.swift"; sourceTree = "<group>"; };
+		C0C8E70C28E4F01700FD1B57 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVipTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.release.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
@@ -393,6 +405,8 @@
 				C0319C2027BEE83500CFCEE0 /* ReportView.swift */,
 				525A98B628DE38F000920AA5 /* Report Daily */,
 				525A98B528DE38E200920AA5 /* Report Monthly */,
+				C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */,
+				C0A174D028E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift */,
 			);
 			path = Report;
 			sourceTree = "<group>";
@@ -579,6 +593,7 @@
 				52DC01AD28BE454F0048237C /* UIButton+Extensions.swift */,
 				C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */,
 				C0AFFB6428C47D9800B816AA /* Bool+Ext.swift */,
+				C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -594,6 +609,9 @@
 				C016B61F28E0D212007372E4 /* BottomSheetView.swift */,
 				52B8A08228E2310900B1C9F7 /* ErrorView.swift */,
 				52B8A08528E2557000B1C9F7 /* CardButtonView.swift */,
+				C0C8E70C28E4F01700FD1B57 /* CardView.swift */,
+				C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */,
+				C0A174CE28E5342300DB0CE4 /* TappedView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -896,6 +914,7 @@
 				527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */,
 				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
+				C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */,
 				C0AF028128C536C600B816AA /* ForgetPasswordViewController.swift in Sources */,
 				C0AF028728C5389600B816AA /* ForgetPasswordView.swift in Sources */,
 				C0319C2B27BEEC7000CFCEE0 /* MonthlyReportCoordinator.swift in Sources */,
@@ -917,6 +936,7 @@
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
 				5249214928C00621006F01DA /* HomeViewModel.swift in Sources */,
+				C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */,
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
@@ -926,11 +946,14 @@
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
+				C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
+				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
 				C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */,
+				C0A174CD28E51F6100DB0CE4 /* Date+Ext.swift in Sources */,
 				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
 				52C4AE7F28B999E00055E384 /* AddProcedureViewController.swift in Sources */,
 				52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */,
@@ -957,6 +980,7 @@
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,
 				C016B61B28E0B341007372E4 /* ProcedureDetailCoordinator.swift in Sources */,
 				C0AFFB6528C47D9800B816AA /* Bool+Ext.swift in Sources */,
+				C0A174D128E54F8C00DB0CE4 /* PaymentTypeAmountCardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

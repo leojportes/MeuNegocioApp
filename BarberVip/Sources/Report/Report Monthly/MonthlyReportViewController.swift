@@ -14,7 +14,11 @@ final class MonthlyReportViewController: CoordinatedViewController {
     var popAction: Action?
     
     // MARK: - Private properties
-    private let customView = ReportView()
+    private let customView = ReportView(
+        didTapDiscountSwitch: { _ in },
+        didTapDownloadDailyHistoric: { print("didTapDownloadDailyHistoric") },
+        didTapDownloadWeeklyHistoric: { print("didTapDownloadWeeklyHistoric") }
+    )
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -34,7 +38,5 @@ final class MonthlyReportViewController: CoordinatedViewController {
     
     // MARK: - Private methods
     private func setupCustomView() {
-        customView.setupHomeView(title: "Relatório mensal",
-                                 popAction: weakify { $0.popAction?() })
     }
 }

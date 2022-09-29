@@ -14,7 +14,11 @@ final class ReportDailyViewController: CoordinatedViewController {
     var popAction: Action?
     
     // MARK: - Private properties
-    private let customView = ReportView()
+    private lazy var customView = ReportView(
+        didTapDiscountSwitch: { _ in },
+        didTapDownloadDailyHistoric: weakify { print($0.getLast7Days()) },
+        didTapDownloadWeeklyHistoric: { print("didTapDownloadWeeklyHistoric") }
+    )
     private let viewModel: ReportDailyViewModelProtocol
     
     // MARK: - Init
@@ -30,11 +34,8 @@ final class ReportDailyViewController: CoordinatedViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Relatório diário"
-        navigationController?.navigationBar.topItem?.backButtonTitle = ""
-        navigationController?.navigationBar.tintColor = .BarberColors.darkGray
-        navigationController?.navigationBar.barTintColor = .white
-        setupCustomView()
+        setupNavigationBar()
+        hideKeyboardWhenTappedAround()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,22 +48,63 @@ final class ReportDailyViewController: CoordinatedViewController {
         self.view = customView
     }
     
-    // MARK: - Private methods
-    private func setupCustomView() {
-        customView.setupHomeView(title: "Relatório diário",
-                                 popAction: weakify { $0.popAction?() })
+    func getLast7Days() -> [String] {
+        return Date.getDates(forLastNDays: 7)
     }
     
     private func fetchCurrentProcedure() {
-        self.viewModel.getProcedureList { [ weak self ] result in
+        self.viewModel.getProcedureList { [weak self] result in
             DispatchQueue.main.async {
-                /// a ideia é passar a data atual que vem no medoto returnCurrentDate(), mas dado que a api está zoada,
-                /// estou passando uma data fixa pra filtrar os procedimentos
-                let dailyProcedures = result.filter({$0.currentDate == "26/09/2022"})
-                self?.customView.procedures = dailyProcedures
-                self?.customView.tableview.reloadData()
+                self?.setupDailyAmount(procedures: result)
+                self?.setupWeeklyAmount(procedures: result)
+                self?.setupPaymentTypeAmount(procedures: result)
             }
         }
+    }
+
+    // MARK: - Bind methods
+    private func setupDailyAmount(procedures: [GetProcedureModel]) {
+        /// Aqui filtramos os procedimentos do dia atual.
+        let dailyProcedures = procedures.filter({$0.currentDate == "26/09/2022"})
+        /// Aqui somamos todos os recebimentos do dia atual.
+        let makeTotalDailyAmount = self.makeTotalAmount(procedures: dailyProcedures)
+        self.customView.setupDailyCard(makeTotalDailyAmount, "\(dailyProcedures.count)")
+    }
+
+    private func setupWeeklyAmount(procedures: [GetProcedureModel]) {
+        /// Aqui filtramos os procedimentos dos últimos 7 dias.
+        let last7Days = self.getLast7Days()
+        let weeklyProcedures = procedures.filter({ last7Days.contains($0.currentDate) }) //totalWeeklyProceduresValue
+        
+        /// Aqui somamos os valores dos procedimentos dos últimos 7 dias.
+        let makeTotalWeeklyAmount = self.makeTotalAmount(procedures: weeklyProcedures)
+        self.customView.setupWeeklyCard(makeTotalWeeklyAmount, "\(weeklyProcedures.count)")
+    }
+
+    private func setupPaymentTypeAmount(procedures: [GetProcedureModel]) {
+        
+        let debitAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .debit }))
+        let creditAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .credit }))
+        let cashAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .cash }))
+        let pixAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .pix }))
+        
+        self.customView.setupPaymentTypeAmountCard(debitAmount, creditAmount, cashAmount, pixAmount)
+        
+    }
+    
+    // MARK: - Aux methods
+    private func makeTotalAmount(procedures: [GetProcedureModel]) -> String {
+        let values = procedures.map({
+            $0.value
+                .replacingOccurrences(of: ",", with: ".")
+                .replacingOccurrences(of: " ", with: "")
+        })
+        
+        let sum = values.compactMap(Double.init).reduce(0, +)
+        let format = String(format: "%.2f", sum)
+        
+        let totalAmount = format.replacingOccurrences(of: ".", with: ",")
+        return "\(totalAmount)"
     }
     
     private func returnCurrentDate() -> String {
@@ -71,5 +113,12 @@ final class ReportDailyViewController: CoordinatedViewController {
         df.dateFormat = "dd/MM/yyyy"
         let dateString = df.string(from: date)
         return dateString
+    }
+
+    private func setupNavigationBar() {
+        title = "Relatórios"
+        navigationController?.navigationBar.topItem?.backButtonTitle = ""
+        navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        navigationController?.navigationBar.barTintColor = .white
     }
 }

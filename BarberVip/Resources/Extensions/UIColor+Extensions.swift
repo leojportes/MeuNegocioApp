@@ -19,6 +19,14 @@ public extension UIColor {
         public static var darkGray: UIColor {
             return UIColor(named: "darkGray") ?? UIColor.darkGray
         }
+
+        public static var grayDarkest: UIColor {
+            return UIColor(named: "grayDarkest") ?? UIColor.darkGray
+        }
+        
+        public static var grayDescription: UIColor {
+            return UIColor(named: "grayDescription") ?? UIColor.darkGray
+        }
         
         public static var lightGray: UIColor {
             return UIColor(named: "lightGray") ?? UIColor.lightGray
