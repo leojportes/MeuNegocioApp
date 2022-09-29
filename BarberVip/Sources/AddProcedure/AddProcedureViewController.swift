@@ -52,6 +52,7 @@ extension AddProcedureViewController: AddProcedureActionsProtocol {
                 typeProcedure: typeProcedure,
                 formPayment: formPayment,
                 value: value,
+                currentDate: .currentDateSystem,
                 email: email)) { [ weak self ] result in
                     guard let self = self else {return}
                     if result {

@@ -23,6 +23,13 @@ extension String {
         return v[pos]
     }
     
+    public static var currentDateSystem: String {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        let dateString = df.string(from: date)
+        return dateString
+    }
 }
 
 
