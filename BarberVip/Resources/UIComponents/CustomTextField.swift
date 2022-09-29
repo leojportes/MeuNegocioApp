@@ -9,17 +9,29 @@ import Foundation
 import UIKit
 
 class CustomTextField: UITextField {
-    init(titlePlaceholder: String,
-         colorPlaceholder: UIColor,
-         textColor: UIColor,
-         radius: CGFloat,
-         borderColor: CGColor,
-         borderWidth: CGFloat,
-         keyboardType: UIKeyboardType = .default,
-         isSecureTextEntry: Bool = false) {
+    
+    private lazy var baseLineview = UIView() .. {
+        $0.backgroundColor = .BarberColors.grayDescription
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isHidden = true
+    }
+    
+    init(
+        titlePlaceholder: String = "",
+        colorPlaceholder: UIColor = .lightGray,
+        textColor: UIColor = .BarberColors.grayDarkest,
+        radius: CGFloat = 0,
+        borderColor: CGColor = UIColor.clear.cgColor,
+        borderWidth: CGFloat = 0,
+        keyboardType: UIKeyboardType = .default,
+        isSecureTextEntry: Bool = false,
+        showBaseLine: Bool = false
+    ) {
         super.init(frame: .zero)
-        self.attributedPlaceholder = NSAttributedString(string: titlePlaceholder,
-                                                   attributes: [NSAttributedString.Key.foregroundColor: colorPlaceholder])
+        self.attributedPlaceholder = NSAttributedString(
+            string: titlePlaceholder,
+            attributes: [NSAttributedString.Key.foregroundColor: colorPlaceholder]
+        )
         self.textColor = textColor
         self.layer.cornerRadius = radius
         self.layer.borderColor = borderColor
@@ -27,6 +39,15 @@ class CustomTextField: UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.keyboardType = keyboardType
         self.isSecureTextEntry = isSecureTextEntry
+
+        self.addSubview(baseLineview)
+        baseLineview
+            .bottomAnchor(in: self)
+            .heightAnchor(1)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+        
+        baseLineview.isHidden = !showBaseLine
     }
     
     required init?(coder: NSCoder) {
