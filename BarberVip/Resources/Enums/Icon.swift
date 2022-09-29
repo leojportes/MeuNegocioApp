@@ -22,4 +22,5 @@ enum Icon: String {
     case gmail = "ic_google"
     case whatsapp = "ic_whatsapp"
     case email = "ic_email"
+    case closed = "ic_closed"
 }

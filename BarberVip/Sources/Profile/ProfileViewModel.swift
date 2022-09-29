@@ -9,6 +9,7 @@ import FirebaseAuth
 protocol ProfileViewModelProtocol {
     func signOut(resultSignOut: (Bool) -> Void)
     func closedView()
+    func logout()
 }
 
 class ProfileViewModel: ProfileViewModelProtocol {
@@ -32,6 +33,10 @@ class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func closedView() {
+        coordinator?.closedView()
+    }
+    
+    func logout() {
         coordinator?.closed()
     }
 }

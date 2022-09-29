@@ -12,7 +12,8 @@ class ProfileViewController: CoordinatedViewController {
     
     // MARK: - Private properties
     private lazy var customView = ProfileView(
-        didTapClose: weakify { $0.closedFlow() },
+        didTapLogout: weakify { $0.logout() },
+        didTapClosedView: weakify { $0.closedView()},
         didTapVerifyEmail: weakify { $0.sendVerificationMail() }
     )
 
@@ -43,9 +44,13 @@ class ProfileViewController: CoordinatedViewController {
         self.view = customView
     }
     
-    func closedFlow() {
+    private func closedView() {
+        viewModel.closedView()
+    }
+    
+    private func logout() {
         viewModel.signOut { [ weak self ] result in
-            result ? self?.viewModel.closedView() : self?.showAlert(
+            result ? self?.viewModel.logout() : self?.showAlert(
                 title: "Ocorreu um erro",
                 messsage: "Tente novamente mais tarde"
             )
