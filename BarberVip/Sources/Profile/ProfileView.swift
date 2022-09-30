@@ -36,27 +36,21 @@ class ProfileView: UIView {
         button.addTarget(self, action: #selector(didTapClosed), for: .touchUpInside)
         return button
     }()
-
-    private lazy var headerCardView = UIView() .. {
-        $0.backgroundColor = .BarberColors.yellowDark
-        $0.roundCorners(cornerRadius: 15)
-        $0.loadingIndicatorView(show: true)
-        $0.translatesAutoresizingMaskIntoConstraints = false
-    }
     
-    private lazy var emailVerifiedLabel = UILabel() .. { $0.translatesAutoresizingMaskIntoConstraints = false }
+    private lazy var iconView: UIView = {
+        let container = UIView()
+        container.backgroundColor = .lightText
+        container.roundCorners(cornerRadius: 30)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
     
-    private lazy var verifyEmailButton = UIButton() .. {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.roundCorners(cornerRadius: 10)
-        $0.backgroundColor = .clear
-        $0.isHidden = true
-        $0.setTitle("Verificar conta", for: .normal)
-        $0.setTitleColor(.systemRed, for: .normal)
-        $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
-        $0.contentHorizontalAlignment = .left
-        $0.addTarget(self, action: #selector(didTapverifyEmailAction), for: .touchUpInside)
-    }
+    private lazy var iconImage: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: "ic_profile")
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
     
     private lazy var userLabel: UILabel = {
         let label = UILabel()
@@ -69,6 +63,48 @@ class ProfileView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    lazy var InfoStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [nameBarberLabel, cityLabel, emailVerifiedLabel])
+        stack.backgroundColor = .BarberColors.yellowDark
+        stack.axis = .vertical
+        stack.alignment = .leading
+        stack.distribution = .fillEqually
+        stack.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.roundCorners(cornerRadius: 10)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    lazy var nameBarberLabel: BarberLabel = {
+        let label = BarberLabel(font: UIFont.systemFont(ofSize: 14))
+        return label
+    }()
+    
+    lazy var cityLabel: BarberLabel = {
+        let label = BarberLabel(font: UIFont.systemFont(ofSize: 14))
+        return label
+    }()
+    
+    private lazy var emailVerifiedLabel = UILabel() .. {
+        $0.font = UIFont.systemFont(ofSize: 14)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private lazy var verifyEmailButton = UIButton() .. {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.roundCorners(cornerRadius: 10)
+        $0.isHidden = true
+        $0.setImage(UIImage(named: Icon.arrowRight.rawValue), for: .normal)
+        $0.semanticContentAttribute = .forceRightToLeft
+        $0.imageEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
+        $0.setTitle("Verificar conta", for: .normal)
+        $0.setTitleColor(.systemRed, for: .normal)
+        $0.titleLabel?.font = .boldSystemFont(ofSize: 16)
+        $0.contentHorizontalAlignment = .left
+        $0.addTarget(self, action: #selector(didTapverifyEmailAction), for: .touchUpInside)
+    }
     
     private lazy var exiteButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Sair da conta", colorTitle: .white, background: .BarberColors.darkGray)
@@ -99,12 +135,13 @@ class ProfileView: UIView {
         self.didTapVerifyEmail?()
     }
 
-    func setup(profileEmail: String, isEmailVerified: Bool) {
-        userLabel.text = "Usuário: \(profileEmail.getUserPartOfEmail)"
-        emailLabel.text = "E-mail cadastrado: \(profileEmail)"
+    func setup(user: String, email: String, barbershop: String, city: String, isEmailVerified: Bool) {
+        userLabel.text = user
+        emailLabel.text = email
+        nameBarberLabel.text = barbershop
+        cityLabel.text = city
         emailVerifiedLabel.text = isEmailVerified ? "E-mail verificado" : "E-mail não verificado"
         verifyEmailButton.isHidden = isEmailVerified
-        headerCardView.loadingIndicatorView(show: false)
     }
 
 }
@@ -112,11 +149,12 @@ class ProfileView: UIView {
 extension ProfileView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(closedButton)
-        addSubview(headerCardView)
-        headerCardView.addSubview(userLabel)
-        headerCardView.addSubview(emailLabel)
-        headerCardView.addSubview(emailVerifiedLabel)
-        headerCardView.addSubview(verifyEmailButton)
+        addSubview(iconView)
+        iconView.addSubview(iconImage)
+        addSubview(userLabel)
+        addSubview(emailLabel)
+        addSubview(InfoStackView)
+        addSubview(verifyEmailButton)
         addSubview(exiteButton)
         addSubview(versionLabel)
     }
@@ -128,30 +166,38 @@ extension ProfileView: ViewCodeContract {
             .rightAnchor(in: self, padding: 15)
             .heightAnchor(18)
             .widthAnchor(18)
-        
-        headerCardView
-            .topAnchor(in: self, padding: 130)
-            .leftAnchor(in: self, padding: 15)
-            .rightAnchor(in: self, padding: 15)
-            .heightAnchor(150)
 
+        iconView
+            .topAnchor(in: self, padding: 70)
+            .centerX(in: self)
+            .heightAnchor(60)
+            .widthAnchor(60)
+        
+        iconImage
+            .centerX(in: iconView)
+            .centerY(in: iconView)
+            .heightAnchor(24)
+            .widthAnchor(24)
+        
         userLabel
-            .topAnchor(in: headerCardView, attribute: .top, padding: 15)
-            .leftAnchor(in: headerCardView, padding: 15)
+            .topAnchor(in: iconView, attribute: .bottom, padding: 25)
+            .centerX(in: self)
 
         emailLabel
-            .topAnchor(in: userLabel, attribute: .bottom, padding: 10)
-            .leftAnchor(in: headerCardView, padding: 15)
-        
-        emailVerifiedLabel
-            .topAnchor(in: emailLabel, attribute: .bottom, padding: 10)
-            .leftAnchor(in: headerCardView, padding: 15)
+            .topAnchor(in: userLabel, attribute: .bottom, padding: 4)
+            .centerX(in: self)
+//
+        InfoStackView
+            .topAnchor(in: emailLabel, attribute: .bottom, padding: 20)
+            .leftAnchor(in: self, attribute: .left, padding: 14)
+            .rightAnchor(in: self, attribute: .right, padding: 14)
+            .heightAnchor(80)
         
         verifyEmailButton
-            .topAnchor(in: emailVerifiedLabel, attribute: .bottom, padding: 10)
-            .leftAnchor(in: headerCardView, padding: 15)
-            .widthAnchor(200)
-            .heightAnchor(35)
+            .topAnchor(in: InfoStackView, attribute: .bottom, padding: 18)
+            .leftAnchor(in: self, padding: 14)
+            .widthAnchor(170)
+            .heightAnchor(25)
         
         exiteButton
             .bottomAnchor(in: versionLabel, attribute: .top, padding: 10)

@@ -24,4 +24,5 @@ enum Icon: String {
     case email = "ic_email"
     case closed = "ic_closed"
     case download = "ic_download"
+    case arrowRight = "ic_arrowRight"
 }

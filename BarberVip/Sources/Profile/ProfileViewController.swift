@@ -60,7 +60,11 @@ class ProfileViewController: CoordinatedViewController {
     func setupCustomView() {
         guard let user = Auth.auth().currentUser?.email else { return }
         guard let isEmailVerified = Auth.auth().currentUser?.isEmailVerified else { return }
-        customView.setup(profileEmail: user, isEmailVerified: isEmailVerified)
+        customView.setup(user: "Renilson Moreira",
+                         email: user,
+                         barbershop: "Barbearia: Carminnati",
+                         city: "São jose/SC",
+                         isEmailVerified: isEmailVerified)
     }
 
     private var authUser : User? {
