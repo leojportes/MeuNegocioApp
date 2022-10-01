@@ -45,7 +45,7 @@ class ProfileViewController: CoordinatedViewController {
     }
     
     private func fetchUser() {
-        viewModel.fetchUser { [ weak self ]user in
+        viewModel.fetchUser { [ weak self ] user in
             DispatchQueue.main.async {
                 self?.customView.user = user.first
             }
