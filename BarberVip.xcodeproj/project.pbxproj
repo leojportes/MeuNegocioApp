@@ -25,7 +25,7 @@
 		52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08228E2310900B1C9F7 /* ErrorView.swift */; };
 		52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08528E2557000B1C9F7 /* CardButtonView.swift */; };
 		52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */; };
-		52B8A08B28E7990500B1C9F7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08A28E7990500B1C9F7 /* UserModel.swift */; };
+		52B8A08B28E7990500B1C9F7 /* UserModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08A28E7990500B1C9F7 /* UserModelList.swift */; };
 		52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */; };
 		52B8A09028E7C95D00B1C9F7 /* UserOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */; };
 		52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */; };
@@ -140,7 +140,7 @@
 		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52B8A08528E2557000B1C9F7 /* CardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonView.swift; sourceTree = "<group>"; };
 		52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewModel.swift; sourceTree = "<group>"; };
-		52B8A08A28E7990500B1C9F7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		52B8A08A28E7990500B1C9F7 /* UserModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelList.swift; sourceTree = "<group>"; };
 		52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingViewController.swift; sourceTree = "<group>"; };
 		52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingView.swift; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 		52B8A08E28E7C90E00B1C9F7 /* UserOnboarding */ = {
 			isa = PBXGroup;
 			children = (
-				52B8A08A28E7990500B1C9F7 /* UserModel.swift */,
+				52B8A08A28E7990500B1C9F7 /* UserModelList.swift */,
 				52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */,
 				52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */,
 				52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */,
@@ -969,7 +969,7 @@
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
 				C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
-				52B8A08B28E7990500B1C9F7 /* UserModel.swift in Sources */,
+				52B8A08B28E7990500B1C9F7 /* UserModelList.swift in Sources */,
 				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,

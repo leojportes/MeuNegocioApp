@@ -20,7 +20,7 @@ protocol HomeViewModelProtocol: AnyObject {
 // MARK: - Protocols
 protocol HomeViewModelOutputProtocol {
     var procedures: Bindable<[GetProcedureModel]> { get }
-    var nameUser: Bindable<UserModel> { get }
+    var nameUser: Bindable<UserModelList> { get }
 }
 
 protocol HomeViewModelInputProtocol {
@@ -34,7 +34,7 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     var input: HomeViewModelInputProtocol { self }
     var output: HomeViewModelOutputProtocol { self }
     var procedures: Bindable<[GetProcedureModel]> = .init([])
-    var nameUser: Bindable<UserModel> = .init([])
+    var nameUser: Bindable<UserModelList> = .init([])
 
     // MARK: - Properties
     private var coordinator: HomeCoordinator?

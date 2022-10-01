@@ -17,7 +17,7 @@ class ProfileView: UIView {
     
     // MARK: - Properties
 
-    var user: UserModelElement? {
+    var user: UserModel? {
         didSet {
             guard let user = user else { return }
             nameUserLabel.text = user.name

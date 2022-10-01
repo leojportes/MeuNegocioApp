@@ -8,9 +8,9 @@
 import Foundation
 
 // MARK: - UserModelElement
-typealias UserModel = [UserModelElement]
+typealias UserModelList = [UserModel]
 
-struct UserModelElement: Decodable {
+struct UserModel: Decodable {
     let id: String
     let name: String
     let barbershop: String
