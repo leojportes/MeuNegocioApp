@@ -6,13 +6,29 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileView: UIView {
     
+    // MARK: - Action Properties
     var logout: Action?
     var closedView: Action?
     var didTapVerifyEmail: Action?
     
+    // MARK: - Properties
+
+    var user: UserModelElement? {
+        didSet {
+            guard let user = user else { return }
+            nameUserLabel.text = user.name
+            emailLabel.text = user.email
+            nameBarberLabel.text = "Barbearia: \(user.barbershop)"
+            cityLabel.text = user.city + "/" + user.state
+        }
+    }
+    
+    // MARK: - Init
+
     init(
         didTapLogout: @escaping Action,
         didTapClosedView: @escaping Action,
@@ -29,6 +45,7 @@ class ProfileView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ViewCode
     lazy var closedButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: Icon.closed.rawValue), for: .normal)
@@ -52,7 +69,7 @@ class ProfileView: UIView {
         return img
     }()
     
-    private lazy var userLabel: UILabel = {
+    private lazy var nameUserLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -88,14 +105,17 @@ class ProfileView: UIView {
     }()
     
     private lazy var emailVerifiedLabel = UILabel() .. {
+        guard let isEmailVerified = Auth.auth().currentUser?.isEmailVerified else { return }
         $0.font = UIFont.systemFont(ofSize: 14)
+        $0.text = isEmailVerified ? "E-mail verificado" : "E-mail não verificado"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private lazy var verifyEmailButton = UIButton() .. {
+        guard let isEmailVerified = Auth.auth().currentUser?.isEmailVerified else { return }
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.roundCorners(cornerRadius: 10)
-        $0.isHidden = true
+        $0.isHidden = isEmailVerified
         $0.setImage(UIImage(named: Icon.arrowRight.rawValue), for: .normal)
         $0.semanticContentAttribute = .forceRightToLeft
         $0.imageEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
@@ -135,15 +155,6 @@ class ProfileView: UIView {
         self.didTapVerifyEmail?()
     }
 
-    func setup(user: String, email: String, barbershop: String, city: String, isEmailVerified: Bool) {
-        userLabel.text = user
-        emailLabel.text = email
-        nameBarberLabel.text = barbershop
-        cityLabel.text = city
-        emailVerifiedLabel.text = isEmailVerified ? "E-mail verificado" : "E-mail não verificado"
-        verifyEmailButton.isHidden = isEmailVerified
-    }
-
 }
 
 extension ProfileView: ViewCodeContract {
@@ -151,7 +162,7 @@ extension ProfileView: ViewCodeContract {
         addSubview(closedButton)
         addSubview(iconView)
         iconView.addSubview(iconImage)
-        addSubview(userLabel)
+        addSubview(nameUserLabel)
         addSubview(emailLabel)
         addSubview(InfoStackView)
         addSubview(verifyEmailButton)
@@ -179,12 +190,12 @@ extension ProfileView: ViewCodeContract {
             .heightAnchor(24)
             .widthAnchor(24)
         
-        userLabel
+        nameUserLabel
             .topAnchor(in: iconView, attribute: .bottom, padding: 25)
             .centerX(in: self)
 
         emailLabel
-            .topAnchor(in: userLabel, attribute: .bottom, padding: 4)
+            .topAnchor(in: nameUserLabel, attribute: .bottom, padding: 4)
             .centerX(in: self)
 //
         InfoStackView

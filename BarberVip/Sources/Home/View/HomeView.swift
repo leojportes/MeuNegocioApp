@@ -26,6 +26,12 @@ final class HomeView: UIView, ViewCodeContract {
         }
     }
     
+    var userName: String = "" {
+        didSet {
+            profileView.setupLayout(nameUser: "Olá, \(userName)" )
+        }
+    }
+    
     // MARK: - Init
     init(
         navigateToReport: @escaping Action,
@@ -60,8 +66,8 @@ final class HomeView: UIView, ViewCodeContract {
     }()
     
     private lazy var profileView: ProfileHeaderView = {
-        let view = ProfileHeaderView(actionButton: weakify { $0.openProfile?() },
-                                      nameUser: "Olá, Renilson")
+        let view = ProfileHeaderView()
+        view.setupAction(actionButton: weakify { $0.openProfile?()})
         return view
     }()
     

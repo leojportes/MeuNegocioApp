@@ -23,6 +23,12 @@ final class LoginCoordinator: BaseCoordinator {
         configuration.navigationController?.removeViewController(LoginViewController.self)
     }
     
+    func navigateToUserOnboarding() {
+        let coordinator = UserOnboardingCoordinator(with: configuration)
+        coordinator.start()
+        configuration.navigationController?.removeViewController(LoginViewController.self)
+    }
+    
     func navigateToForgotPassword() {
         let coordinator = ForgetPasswordCoordinator(with: configuration)
         coordinator.start()

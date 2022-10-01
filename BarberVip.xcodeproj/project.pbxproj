@@ -25,6 +25,12 @@
 		52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08228E2310900B1C9F7 /* ErrorView.swift */; };
 		52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08528E2557000B1C9F7 /* CardButtonView.swift */; };
 		52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */; };
+		52B8A08B28E7990500B1C9F7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08A28E7990500B1C9F7 /* UserModel.swift */; };
+		52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */; };
+		52B8A09028E7C95D00B1C9F7 /* UserOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */; };
+		52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */; };
+		52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */; };
+		52B8A09628E7D47100B1C9F7 /* UserOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */; };
 		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
@@ -134,6 +140,12 @@
 		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52B8A08528E2557000B1C9F7 /* CardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonView.swift; sourceTree = "<group>"; };
 		52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewModel.swift; sourceTree = "<group>"; };
+		52B8A08A28E7990500B1C9F7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingViewController.swift; sourceTree = "<group>"; };
+		52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingView.swift; sourceTree = "<group>"; };
+		52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingCoordinator.swift; sourceTree = "<group>"; };
+		52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingViewModel.swift; sourceTree = "<group>"; };
 		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -280,6 +292,7 @@
 				C0A7418827B198D900391CE6 /* HomeCoordinator.swift */,
 				5249214828C00621006F01DA /* HomeViewModel.swift */,
 				C0A7418327B1989900391CE6 /* HomeViewController.swift */,
+				52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -333,6 +346,18 @@
 				C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		52B8A08E28E7C90E00B1C9F7 /* UserOnboarding */ = {
+			isa = PBXGroup;
+			children = (
+				52B8A08A28E7990500B1C9F7 /* UserModel.swift */,
+				52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */,
+				52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */,
+				52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */,
+				52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */,
+			);
+			path = UserOnboarding;
 			sourceTree = "<group>";
 		};
 		52C4AE7028B563610055E384 /* Profile */ = {
@@ -461,6 +486,7 @@
 		C0A7414327B1955200391CE6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				52B8A08E28E7C90E00B1C9F7 /* UserOnboarding */,
 				52C4AE7B28B999350055E384 /* AddProcedure */,
 				52C4AE7028B563610055E384 /* Profile */,
 				527D06D628AAD5D7001E0BE0 /* CreateAccount */,
@@ -902,6 +928,7 @@
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
 				52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */,
 				C0AFF99D28C460AF00B816AA /* HelpViewModel.swift in Sources */,
+				52B8A09628E7D47100B1C9F7 /* UserOnboardingViewModel.swift in Sources */,
 				C0AFF99928C45B9500B816AA /* HelpView.swift in Sources */,
 				C0AFF99B28C45BA200B816AA /* HelpViewController.swift in Sources */,
 				C0A741D127B1A90500391CE6 /* UIView+AxisAttribute.swift in Sources */,
@@ -923,6 +950,7 @@
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
 				C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */,
 				C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */,
+				52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
 				C016B61728E0AFC4007372E4 /* ProcedureDetailViewController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
@@ -933,6 +961,7 @@
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
+				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,
 				52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
@@ -940,10 +969,12 @@
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
 				C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
+				52B8A08B28E7990500B1C9F7 /* UserModel.swift in Sources */,
 				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
+				52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */,
 				C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */,
 				C0A174CD28E51F6100DB0CE4 /* Date+Ext.swift in Sources */,
 				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
@@ -964,6 +995,7 @@
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
+				52B8A09028E7C95D00B1C9F7 /* UserOnboardingViewController.swift in Sources */,
 				52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */,
 				522D9020289A00E00085575A /* LoginView.swift in Sources */,
 				52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */,

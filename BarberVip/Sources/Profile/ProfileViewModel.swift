@@ -7,6 +7,7 @@
 import FirebaseAuth
 
 protocol ProfileViewModelProtocol {
+    func fetchUser(completion: @escaping (UserModel) -> Void)
     func signOut(resultSignOut: (Bool) -> Void)
     func closedView()
     func logout()
@@ -22,6 +23,24 @@ class ProfileViewModel: ProfileViewModelProtocol {
         self.coordinator = coordinator
     }
     
+    func fetchUser(completion: @escaping (UserModel) -> Void) {
+        guard let email = Auth.auth().currentUser?.email else { return }
+
+        let urlString = "http://54.86.122.10:3000/profile/\(email)"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            do {
+                let result = try JSONDecoder().decode(UserModel.self, from: data)
+                completion(result)
+            }
+            catch {
+                let error = error
+                print(error)
+            }
+        }.resume()
+    }
+    
     func signOut(resultSignOut: (Bool) -> Void) {
         let firebaseAuth = Auth.auth()
         do {
@@ -32,6 +51,8 @@ class ProfileViewModel: ProfileViewModelProtocol {
         }
     }
     
+    
+    // MARK: - Routes
     func closedView() {
         coordinator?.closedView()
     }
