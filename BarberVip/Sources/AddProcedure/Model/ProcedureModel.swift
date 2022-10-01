@@ -15,6 +15,32 @@ struct GetProcedureModel: Decodable {
     let value: String
     let currentDate: String
     let email: String
+//
+//    init(
+//        _id: String,
+//        nameClient: String,
+//        typeProcedure: String,
+//        formPayment: PaymentMethodType,
+//        value: String,
+//        currentDate: String,
+//        email: String,
+//        hasDiscount: Bool = false,
+//        percent: String = ""
+//    ) {
+//        self._id = _id
+//        self.nameClient = nameClient
+//        self.typeProcedure = typeProcedure
+//        self.formPayment = formPayment
+//        self.currentDate = currentDate
+//        self.email = email
+//
+//        if hasDiscount {
+//            self.value = GetProcedureModel.applyDiscount(percent: percent, value: value)
+//        } else {
+//            self.value = value
+//        }
+//    }
+
 }
 
 struct CreateProcedureModel: Codable {

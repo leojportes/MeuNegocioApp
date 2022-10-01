@@ -7,19 +7,23 @@
 
 import Foundation
 import UIKit
+import PDFKit
 
 final class ReportViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    var popAction: Action?
+    var procedures: [GetProcedureModel] = []
+    var amountDiscount: String = "Sem porcentagem aplicada."
+    var pdftable: ConfigurableTable? = nil
     
     // MARK: - Private properties
+    private let viewModel: ReportViewModelProtocol
     private lazy var customView = ReportView(
         didTapDiscountSwitch: { _ in },
-        didTapDownloadDailyHistoric: weakify { print($0.getLast7Days()) },
-        didTapDownloadWeeklyHistoric: { print("didTapDownloadWeeklyHistoric") }
+        didTapDownloadDailyHistoric: weakify { print($0.viewModel.getLast7Days()) },
+        didTapDownloadWeeklyHistoric: {
+        }
     )
-    private let viewModel: ReportViewModelProtocol
     
     // MARK: - Init
     init(viewModel: ReportViewModelProtocol, coordinator: CoordinatorProtocol){
@@ -36,148 +40,144 @@ final class ReportViewController: CoordinatedViewController {
         super.viewDidLoad()
         setupNavigationBar()
         hideKeyboardWhenTappedAround()
-    
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchCurrentProcedure()
+        fetchProcedures()
     }
     
     override func loadView() {
         super.loadView()
         self.view = customView
     }
-    
-    func getLast7Days() -> [String] {
-        return Date.getDates(forLastNDays: 7)
-    }
-    
-    private func fetchCurrentProcedure() {
+
+    // MARK: - Bind methods
+    /// Fetch all procedures.
+    private func fetchProcedures() {
         self.viewModel.getProcedureList { [weak self] result in
             DispatchQueue.main.async {
+                self?.procedures = result
                 self?.setupReportView(result)
             }
         }
     }
 
-    // MARK: - Bind methods
-    
+    /// Setup for report view.
     private func setupReportView(_ response: [GetProcedureModel]) {
+
+        /// Default Values without porcentage interaction.
         self.setupWeeklyAmount(procedures: response)
         self.setupPaymentTypeAmount(procedures: response)
         self.setupDailyAmount(procedures: response)
+        self.shareReportPDF(procedures: response)
         
-        self.customView.didChangeTF = { [weak self] txt in
-            self?.customView.didTapDiscountSwitch = { [weak self] discountSwitch in
-                self?.setupDailyAmount(procedures: response, isOnSwitch: discountSwitch.isOn, percent: txt.text ?? "")
-                self?.setupWeeklyAmount(procedures: response, isOnSwitch: discountSwitch.isOn, percent: txt.text ?? "")
-                self?.setupPaymentTypeAmount(procedures: response, isOnSwitch: discountSwitch.isOn, percent: txt.text ?? "")
+        /// Values with porcentage interaction in textfield.
+        self.customView.didEditingTextField = weakify { weakSelf, txt in
+            weakSelf.customView.didApplyDiscount = weakSelf.weakify { weakSelf, hasDiscount in
+                guard let txt = txt.text else { return }
+                weakSelf.shareReportPDF(procedures: response, hasDiscount, percent: txt)
+                weakSelf.setupDailyAmount(procedures: response, hasDiscount, percent: txt)
+                weakSelf.setupWeeklyAmount(procedures: response, hasDiscount, percent: txt)
+                weakSelf.setupPaymentTypeAmount(procedures: response, hasDiscount, percent: txt)
             }
         }
     }
 
-    private func setupDailyAmount(procedures: [GetProcedureModel], isOnSwitch: Bool = false, percent: String = "") {
-        let today = returnCurrentDate()
-        /// Aqui filtramos os procedimentos do dia atual.
+    /// Configure amout for daily card.
+    private func setupDailyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+        let today = viewModel.returnCurrentDate
+        /// Here we filter the current day's procedures.
         let dailyProcedures = procedures.filter({$0.currentDate == today})
-        /// Aqui somamos todos os recebimentos do dia atual.
-        let makeTotalDailyAmount = self.makeTotalAmount(procedures: dailyProcedures)
+        /// Here we sum all the receipts of the current day.
+        let makeTotalDailyAmount = viewModel.makeTotalAmount(dailyProcedures)
         
-        if isOnSwitch {
-            let percent = calculatePercentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
+        if hasDiscount {
+            let percent = viewModel.calcPercentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
             self.customView.setupDailyCard(percent, "\(dailyProcedures.count)")
         } else {
             self.customView.setupDailyCard(makeTotalDailyAmount, "\(dailyProcedures.count)")
         }
     }
 
-    private func setupWeeklyAmount(procedures: [GetProcedureModel], isOnSwitch: Bool = false, percent: String = "") {
-        /// Aqui filtramos os procedimentos dos últimos 7 dias.
-        let last7Days = self.getLast7Days()
-        let weeklyProcedures = procedures.filter({ last7Days.contains($0.currentDate) }) //totalWeeklyProceduresValue
-        /// Aqui somamos os valores dos procedimentos dos últimos 7 dias.
-        let makeTotalWeeklyAmount = self.makeTotalAmount(procedures: weeklyProcedures)
+    /// Configure amout for weekly card.
+    private func setupWeeklyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+        /// Here we filter the procedures from the last 7 days.
+        let weeklyProcedures = viewModel.weeklyProceduresLast7Days(procedures: procedures)
+        /// Here we add the values ​​of the procedures of the last 7 days.
+        let makeTotalWeeklyAmount = viewModel.makeTotalAmount(weeklyProcedures)
        
-        if isOnSwitch {
-            let percent = calculatePercentageFromString(percent: percent, baseAmount: makeTotalWeeklyAmount)
+        if hasDiscount {
+            let percent = viewModel.calcPercentageFromString(percent: percent, baseAmount: makeTotalWeeklyAmount)
             self.customView.setupWeeklyCard(percent, "\(weeklyProcedures.count)")
         } else {
             self.customView.setupWeeklyCard(makeTotalWeeklyAmount, "\(weeklyProcedures.count)")
         }
     }
 
-    private func setupPaymentTypeAmount(procedures: [GetProcedureModel], isOnSwitch: Bool = false, percent: String = "") {
-        
-        if isOnSwitch {
-            let percentage = percent.replacingOccurrences(of: ".", with: ",")
-            let debitAmount = calculatePercentageFromString(
-                percent: percentage,
-                baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .debit }))
-            )
-            
-            let creditAmount = calculatePercentageFromString(
-                percent: percentage,
-                baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .credit }))
-            )
-            
-            let cashAmount = calculatePercentageFromString(
-                percent: percentage,
-                baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .cash }))
-            )
-
-            let pixAmount = calculatePercentageFromString(
-                percent: percentage,
-                baseAmount: self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .pix }))
-            )
-
+    /// Configure amouts to payment type card.
+    private func setupPaymentTypeAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+       let items = PaymentTypeAmountCardModel(procedures: procedures, viewModel: viewModel)
+        if hasDiscount {
+            let debitAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.debit)
+            let creditAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.credit)
+            let cashAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.cash)
+            let pixAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.pix)
             self.customView.setupPaymentTypeAmountCard(debitAmount, creditAmount, cashAmount, pixAmount)
         } else {
-            let debitAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .debit }))
-            let creditAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .credit }))
-            let cashAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .cash }))
-            let pixAmount = self.makeTotalAmount(procedures: procedures.filter({ $0.formPayment == .pix }))
-            
-            self.customView.setupPaymentTypeAmountCard(debitAmount, creditAmount, cashAmount, pixAmount)
+            self.customView.setupPaymentTypeAmountCard(items.debit, items.credit, items.cash, items.pix)
+        }
+    }
+
+    /// Share report pdf document.
+    private func shareReportPDF(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+        let dailyProcedures = self.viewModel.dailyProcedures(procedures: procedures)
+        let weeklyProcedures = self.viewModel.weeklyProceduresLast7Days(procedures: procedures)
+
+        /// Daily
+        let today = viewModel.returnCurrentDate
+        let makeTotalDailyAmount = viewModel.makeTotalAmount(procedures.filter({$0.currentDate == today}))
+        let percentDaily = viewModel.calcPercentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
+        self.customView.didTapDownloadDailyHistoric = {
+            self.sharePDF(dailyProcedures, PDFModel.dailyTitle, type: .daily, totalAmount: percentDaily, hasDiscount: hasDiscount, percent: percent)
+        }
+        
+        /// Weekly
+        let totalWeeklyAmount = viewModel.makeTotalAmount(weeklyProcedures)
+        let totalPercentWeeklyAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: totalWeeklyAmount)
+        self.customView.didTapDownloadWeeklyHistoric = {
+            self.sharePDF(weeklyProcedures, PDFModel.weeklyTitle, type: .weekly, totalAmount: totalPercentWeeklyAmount, hasDiscount: hasDiscount, percent: percent)
         }
     }
     
     // MARK: - Aux methods
-    private func makeTotalAmount(procedures: [GetProcedureModel]) -> String {
-        let values = procedures.map({
-            $0.value
-                .replacingOccurrences(of: ",", with: ".")
-                .replacingOccurrences(of: " ", with: "")
-        })
-        
-        let sum = values.compactMap(Double.init).reduce(0, +)
-        let format = String(format: "%.2f", sum)
-        
-        let totalAmount = format.replacingOccurrences(of: ".", with: ",")
-        return "\(totalAmount)"
-    }
-    
-    private func returnCurrentDate() -> String {
-        let date = Date()
-        let df = DateFormatter()
-        df.dateFormat = "dd/MM/yyyy"
-        let dateString = df.string(from: date)
-        return dateString
-    }
-
-    private func calculatePercentageFromString(percent: String, baseAmount: String) -> String {
-        guard let porcent = Double(percent) else { return ""}
-        guard let amount = Double(baseAmount.replacingOccurrences(of: ",", with: ".")) else { return ""}
-        let calc = (porcent * amount) / 100
-        let result = String(format: "%.2f", calc)
-        return result
-    }
-
-
     private func setupNavigationBar() {
         title = "Relatórios"
         navigationController?.navigationBar.topItem?.backButtonTitle = ""
         navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         navigationController?.navigationBar.barTintColor = .white
+    }
+
+    /// Creates the pdf based on the registered procedures and opens the sharer.
+    private func createAndSharePDF(titleFilePDF: String) {
+        pdftable = ConfigurableTable()
+        pdftable?.dataSource = self
+        PDFBuilder.shared.createPDF()
+        PDFBuilder.shared.savePdf(titleFile: titleFilePDF)
+    }
+
+    /// Check if you have any reports registered.
+    private func sharePDF(_ procedure: [GetProcedureModel], _ titlePDF: String, type: ReportType, totalAmount: String = "", hasDiscount: Bool = false, percent: String = "") {
+        if procedure.isEmpty {
+            self.showAlert(title: "Ops!", messsage: "Nenhum procedimento \(type.rawValue) cadastrado para gerar relatório")
+        } else {
+            if hasDiscount {
+                self.amountDiscount = "Total com porcentagem de \(percent)% do período \(type.rawValue): R$\(totalAmount)"
+            } else {
+                self.amountDiscount = "Sem porcentagem aplicada."
+            }
+            self.procedures = procedure
+            self.createAndSharePDF(titleFilePDF: titlePDF)
+        }
     }
 }

@@ -10,18 +10,18 @@ import UIKit
 final class ReportView: UIView {
     
     // MARK: - Action properties
-    var didTapDiscountSwitch: (UISwitch) -> Void?
+    var didApplyDiscount: (Bool) -> Void?
     var didTapDownloadDailyHistoric: Action?
     var didTapDownloadWeeklyHistoric: Action?
-    var didChangeTF: (UITextField) -> Void? = { _ in nil }
+    var didEditingTextField: (UITextField) -> Void? = { _ in nil }
     
     // MARK: - Init
     init(
-        didTapDiscountSwitch: @escaping (UISwitch) -> Void?,
+        didTapDiscountSwitch: @escaping (Bool) -> Void?,
         didTapDownloadDailyHistoric: @escaping Action,
         didTapDownloadWeeklyHistoric: @escaping Action
     ) {
-        self.didTapDiscountSwitch = didTapDiscountSwitch
+        self.didApplyDiscount = didTapDiscountSwitch
         self.didTapDownloadDailyHistoric = didTapDownloadDailyHistoric
         self.didTapDownloadWeeklyHistoric = didTapDownloadWeeklyHistoric
         super.init(frame: .zero)
@@ -68,21 +68,23 @@ final class ReportView: UIView {
         font: UIFont.boldSystemFont(ofSize: 16)
     )
     
-    private lazy var applydiscountSwitch = UISwitch() .. {
+    private lazy var applyDiscountStatusView = UIView() .. {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.addTarget(nil, action: #selector(didTapDiscount), for: .valueChanged)
+        $0.roundCorners(cornerRadius: 5)
+        $0.backgroundColor = .BarberColors.grayDescription
     }
     
     private lazy var discountPercentageTextField = CustomTextField(showBaseLine: true) .. {
         $0.textAlignment = .center
-        $0.keyboardType = .numberPad
+        $0.keyboardType = .decimalPad
         $0.placeholder = "Ex: 10%"
+        $0.delegate = self
         $0.addTarget(self, action: #selector(didInputTextfield), for: .editingChanged)
     }
     
     @objc
     func didInputTextfield(sender: UITextField) {
-        self.didChangeTF(sender)
+        self.didEditingTextField(sender)
     }
 
     /// Historic cards
@@ -140,16 +142,6 @@ final class ReportView: UIView {
         paymentTypeAmountCard.loadingIndicatorView(show: false)
     }
     
-    // MARK: - Actions
-    @objc
-    func didTapDiscount(_ sender: UISwitch) {
-        self.didTapDiscountSwitch(sender)
-        switch sender.isOn {
-        case true: print("Ligado")
-        case false: print("Desligado")
-        }
-    }
-
 }
 
 // MARK: - View code contract
@@ -163,7 +155,7 @@ extension ReportView: ViewCodeContract {
         containerView.addSubview(weeklyHistoricCard)
         containerView.addSubview(applydiscountCardView)
         applydiscountCardView.addSubview(applydiscountTitleLabel)
-        applydiscountCardView.addSubview(applydiscountSwitch)
+        applydiscountCardView.addSubview(applyDiscountStatusView)
         applydiscountCardView.addSubview(discountPercentageTextField)
         
         containerView.addSubview(paymentTypeAmountTitle)
@@ -196,9 +188,11 @@ extension ReportView: ViewCodeContract {
             .heightAnchor(20)
             .leftAnchor(in: applydiscountCardView, padding: 15)
         
-        applydiscountSwitch
+        applyDiscountStatusView
             .centerY(in: applydiscountCardView)
             .rightAnchor(in: applydiscountCardView, padding: 15)
+            .heightAnchor(10)
+            .widthAnchor(10)
         
         discountPercentageTextField
             .centerY(in: applydiscountCardView)
@@ -237,4 +231,21 @@ extension ReportView: ViewCodeContract {
         self.backgroundColor = UIColor.BarberColors.lightGray
     }
 
+}
+
+extension ReportView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard !string.isEmpty else { return true }
+        let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string) as String
+        if let num = Double(newText), num >= -1 && num <= 100 { return true } else { return false }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        didApplyDiscount(textField.hasText)
+        applyDiscountStatusView.backgroundColor = textField.hasText ? .BarberColors.greenMedium : .BarberColors.grayDescription
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
 }

@@ -97,8 +97,8 @@ extension HelpView: ViewCodeContract {
         addSubview(wppCardView)
         headerCardView.addSubview(emailButton)
         headerCardView.addSubview(sendEmailButton)
-        wppCardView.addSubview(wppIconButton)
-        wppCardView.addSubview(wppButton)
+//        wppCardView.addSubview(wppIconButton)
+//        wppCardView.addSubview(wppButton)
     }
     
     func setupConstraints() {
@@ -120,24 +120,24 @@ extension HelpView: ViewCodeContract {
             .leftAnchor(in: emailButton, attribute: .right, padding: 15)
             .rightAnchor(in: headerCardView, attribute: .right, padding: 15)
         
-        wppCardView
-            .topAnchor(in: headerCardView, attribute: .bottom, padding: 25)
-            .heightAnchor(60)
-            .leftAnchor(in: self, padding: 15)
-            .leftAnchor(in: self, padding: 15)
-            .centerX(in: self)
+//        wppCardView
+//            .topAnchor(in: headerCardView, attribute: .bottom, padding: 25)
+//            .heightAnchor(60)
+//            .leftAnchor(in: self, padding: 15)
+//            .leftAnchor(in: self, padding: 15)
+//            .centerX(in: self)
 
-        wppIconButton
-            .centerY(in: wppCardView)
-            .leftAnchor(in: wppCardView, padding: 15)
-            .heightAnchor(30)
-            .widthAnchor(30)
+//        wppIconButton
+//            .centerY(in: wppCardView)
+//            .leftAnchor(in: wppCardView, padding: 15)
+//            .heightAnchor(30)
+//            .widthAnchor(30)
         
-        wppButton
-            .centerY(in: wppIconButton)
-            .leftAnchor(in: wppIconButton, attribute: .right, padding: 15)
-            .rightAnchor(in: wppCardView, attribute: .right, padding: 15)
-        
+//        wppButton
+//            .centerY(in: wppIconButton)
+//            .leftAnchor(in: wppIconButton, attribute: .right, padding: 15)
+//            .rightAnchor(in: wppCardView, attribute: .right, padding: 15)
+//
     }
     
     func setupConfiguration() {
