@@ -10,11 +10,11 @@ import UIKit
 class CreateAccountView: UIView {
     
     private var isSecureTextEntry: Bool = false
-    var createAccount: ((String, String, String) -> Void)?
+    var createAccount: ((String, String) -> Void)?
     var closedView: Action?
     
-    override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
+    init() {
+        super.init(frame: .zero)
         setupView()
     }
     
@@ -22,20 +22,28 @@ class CreateAccountView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var scrollView: UIScrollView = {
+   private lazy var scrollView: UIScrollView = {
        let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    lazy var contentView: UIView = {
+    private lazy var contentView: UIView = {
        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
+    private lazy var gripView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .darkGray
+        view.layer.cornerRadius = 2.0
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
-    lazy var eyeButton: UIButton = {
+   private lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
         button.tintColor = .BarberColors.darkGray
@@ -44,38 +52,21 @@ class CreateAccountView: UIView {
         return button
     }()
     
-    lazy var closedButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "ic_arrowUp"), for: .normal)
-        button.setTitleColor(UIColor.BarberColors.darkGray, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handlerClosedButton), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var barberImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "BarberImage")
-        img.contentMode = .scaleAspectFit
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
-    }()
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Barber shop"
-        label.textColor = .BarberColors.darkGray
-        label.font = UIFont.boldSystemFont(ofSize: 35)
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var titleLabel: BarberLabel = {
+        let label = BarberLabel(text: "Informe um e-mail válido e uma senha com \n no minimo 7 digitos para criar a sua conta.",
+                                font: UIFont.systemFont(ofSize: 16),
+                                textColor: .darkGray)
+        label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
     lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "E-mail",
-                                        colorPlaceholder: .systemGray,
+                                        colorPlaceholder: .lightGray,
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
+                                        borderColor: UIColor.systemGray.cgColor,
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
@@ -85,25 +76,13 @@ class CreateAccountView: UIView {
     
     lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Senha",
-                                        colorPlaceholder: .systemGray,
+                                        colorPlaceholder: .lightGray,
                                         textColor: .BarberColors.darkGray,
                                         radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
+                                        borderColor: UIColor.systemGray.cgColor,
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
         textField.textContentType = .oneTimeCode
-        textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
-        textField.setPaddingLeft()
-        return textField
-    }()
-    
-    lazy var nameBarberShopTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Nome da barbearia",
-                                        colorPlaceholder: .systemGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.BarberColors.darkGray.cgColor,
-                                        borderWidth: 0.5)
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
         textField.setPaddingLeft()
         return textField
@@ -136,10 +115,8 @@ class CreateAccountView: UIView {
     func handleTextFieldDidChange(_ textField: UITextField) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        guard let nameBarber = nameBarberShopTextField.text else { return }
         
-        
-        if email.isValidEmail() && !password.isEmpty && !nameBarber.isEmpty{
+        if email.isValidEmail() && password.count >= 7 {
             isEnabledButtonCreateAccount(true)
         }else {
             isEnabledButtonCreateAccount(false)
@@ -148,15 +125,9 @@ class CreateAccountView: UIView {
     
     // MARK: - Action Buttons
     @objc
-    func handlerClosedButton() {
-        closedButton.setImage(UIImage(named: "ic_arrowDown"), for: .normal)
-        closedView?()
-    }
-    
-    @objc
     func handleCreateAccountButton() {
         print("conta criada com sucesso")
-        createAccount?(emailTextField.text ?? "", passwordTextField.text ?? "", nameBarberShopTextField.text ?? "") 
+        createAccount?(emailTextField.text ?? "", passwordTextField.text ?? "")
     }
     
     @objc
@@ -178,75 +149,58 @@ extension CreateAccountView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(closedButton)
-        contentView.addSubview(barberImage)
+        contentView.addSubview(gripView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(emailTextField)
         contentView.addSubview(passwordTextField)
-        contentView.addSubview(nameBarberShopTextField)
         contentView.addSubview(createAccountButton)
         contentView.addSubview(eyeButton)
     }
     
     func setupConstraints() {
-        let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        heightConstraint.priority = UILayoutPriority(400)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -120),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            heightConstraint,
-         ])
+
+        scrollView
+            .topAnchor(in: self)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .bottomAnchor(in: self, layoutOption: .useSafeArea)
         
-        closedButton
-            .topAnchor(in: contentView, attribute: .top, padding: 18)
-            .rightAnchor(in: contentView, attribute: .right, padding: 20)
-            .widthAnchor(24)
-            .heightAnchor(24)
+        contentView
+            .pin(toEdgesOf: scrollView)
+        contentView
+            .widthAnchor(in: scrollView, 1)
+            .heightAnchor(in: scrollView, 1, withLayoutPriorityValue: 250)
         
-        barberImage
-            .topAnchor(in: contentView, attribute: .top, padding: 54)
-            .leftAnchor(in: contentView, attribute: .left, padding: 127)
-            .rightAnchor(in: contentView, attribute: .right, padding: 127)
-            .heightAnchor(66)
+        gripView
+            .topAnchor(in: self, attribute: .top, padding: 11)
+            .centerX(in: self)
+            .widthAnchor(32)
+            .heightAnchor(4)
         
         titleLabel
-            .topAnchor(in: barberImage, attribute: .bottom)
-            .centerX(in: contentView)
+            .topAnchor(in: gripView, attribute: .bottom, padding: 84)
+            .centerX(in: self)
         
         emailTextField
-            .topAnchor(in: titleLabel, attribute: .bottom, padding: 70)
+            .topAnchor(in: titleLabel, attribute: .bottom, padding: 32)
             .leftAnchor(in: contentView, attribute: .left, padding: 16)
             .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         passwordTextField
-            .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 24)
             .leftAnchor(in: contentView, attribute: .left, padding: 16)
             .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         eyeButton
-            .topAnchor(in: emailTextField, attribute: .bottom, padding: 20)
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 24)
             .rightAnchor(in: passwordTextField)
             .widthAnchor(48)
             .heightAnchor(48)
         
-        nameBarberShopTextField
-            .topAnchor(in: passwordTextField, attribute: .bottom, padding: 20)
-            .leftAnchor(in: contentView, attribute: .left, padding: 16)
-            .rightAnchor(in: contentView, attribute: .right, padding: 16)
-            .heightAnchor(48)
-        
         createAccountButton
-            .bottomAnchor(in: contentView, attribute: .bottom, padding: 140)
+            .topAnchor(in: passwordTextField, attribute: .bottom, padding: 48)
             .leftAnchor(in: contentView, attribute: .left, padding: 16)
             .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)

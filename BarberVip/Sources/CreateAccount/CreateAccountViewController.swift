@@ -35,8 +35,8 @@ class CreateAccountViewController: CoordinatedViewController {
     }
     
     private func createAccount() {
-        customView?.createAccount = weakify { weakSelf, email, password, nameBarber in
-            weakSelf.viewModel.createAccount(email, password, nameBarber, resultCreateUser: { result, descriptionError  in
+        customView?.createAccount = weakify { weakSelf, email, password in
+            weakSelf.viewModel.createAccount(email, password, resultCreateUser: { result, descriptionError  in
                 if result {
                     weakSelf.viewModel.closed()
                 } else {

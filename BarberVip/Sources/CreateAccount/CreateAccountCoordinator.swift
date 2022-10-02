@@ -11,7 +11,6 @@ final class CreateAccountCoordinator: BaseCoordinator {
         let viewModel = CreateAccountViewModel(coordinator: self)
         let controller = CreateAccountViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
-        controller.modalPresentationStyle = .fullScreen
         configuration.navigationController?.present(controller, animated: true)
     }
     

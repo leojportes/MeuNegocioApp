@@ -9,7 +9,7 @@ import FirebaseAuth
 import Foundation
 
 protocol CreateAccountViewModelProtocol: AnyObject {
-    func createAccount(_ email: String, _ password: String, _ nameBarber: String, resultCreateUser: @escaping (Bool, String) -> Void)
+    func createAccount(_ email: String, _ password: String, resultCreateUser: @escaping (Bool, String) -> Void)
     func closed()
 }
 
@@ -23,7 +23,7 @@ class CreateAccountViewModel: CreateAccountViewModelProtocol {
         self.coordinator = coordinator
     }
     
-    func createAccount(_ email: String, _ password: String, _ nameBarber: String, resultCreateUser: @escaping (Bool, String) -> Void) {
+    func createAccount(_ email: String, _ password: String, resultCreateUser: @escaping (Bool, String) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if error != nil {
                 guard let typeError = error as? NSError else { return }
