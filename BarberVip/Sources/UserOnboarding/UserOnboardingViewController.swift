@@ -25,6 +25,7 @@ class UserOnboardingViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.delegate = self
+        hideKeyboardWhenTappedAround()
     }
     
     override func loadView() {
@@ -38,19 +39,18 @@ extension UserOnboardingViewController: CreateUserOnboardingProtocol {
     func addUserOnboarding(model: CreateUserModel) {
         customView.continueButton.loadingIndicator(show: true)
         viewModel.createUser(
-            userModel: CreateUserModel(name: model.name,
-                                       barbershop: model.barbershop,
-                                       city: model.city,
-                                       state: model.state,
-                                       email: model.email)) {  [ weak self ] result in
-                                           if result {
-                                               self?.viewModel.navigateToHome()
-                                           }else {
-                                               self?.showAlert(title: "Ocorreu um erro",
-                                                               messsage: "Tente novamente mais tarde")
-                                           }
-                                           self?.customView.continueButton.loadingIndicator(show: true)
-                                       }
+            userModel: CreateUserModel(
+                name: model.name,
+                barbershop: model.barbershop,
+                city: model.city,
+                state: model.state,
+                email: model.email
+            )
+        ) { [weak self] onSuccess in
+            onSuccess ? self?.viewModel.navigateToHome() : self?.showAlert(title: "Ocorreu um erro",
+                                                                        messsage: "Tente novamente.")
+            self?.customView.continueButton.loadingIndicator(show: true)
+        }
     }
     
     func alertEmptyField() {
