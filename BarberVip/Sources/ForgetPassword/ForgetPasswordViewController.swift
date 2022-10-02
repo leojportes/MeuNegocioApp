@@ -29,6 +29,7 @@ class ForgetPasswordViewController: CoordinatedViewController {
         super.viewDidLoad()
         title = "Redefinir senha"
         submitPassword()
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func loadView() {
