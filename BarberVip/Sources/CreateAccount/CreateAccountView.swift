@@ -90,9 +90,9 @@ class CreateAccountView: UIView {
     
     lazy var createAccountButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Criar conta",
-                                        colorTitle: .white,
-                                  radius: 10,
-                                  background: .systemGray)
+                                        colorTitle: .darkGray,
+                                        radius: 10,
+                                        background: .systemGray)
         button.isEnabled = false
         button.addTarget(self, action: #selector(handleCreateAccountButton), for: .touchUpInside)
         return button
