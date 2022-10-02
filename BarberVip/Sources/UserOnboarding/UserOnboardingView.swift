@@ -29,17 +29,21 @@ class UserOnboardingView: UIView {
     }
     
     lazy var titleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Olá, seja bem-vindo(a)!",
-                                font: UIFont.boldSystemFont(ofSize: 28),
-                                textColor: .darkGray)
+        let label = BarberLabel(
+            text: "Olá, seja bem-vindo(a)!",
+            font: UIFont.boldSystemFont(ofSize: 28),
+            textColor: .darkGray
+        )
         label.textAlignment = .center
         return label
     }()
     
     lazy var subTitleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Preencha os dados abaixo para \n personalizarmos a sua experiência.",
-                                font: UIFont.systemFont(ofSize: 16),
-                                textColor: .lightGray)
+        let label = BarberLabel(
+            text: "Preencha os dados abaixo para \n personalizarmos a sua experiência.",
+            font: UIFont.systemFont(ofSize: 16),
+            textColor: .lightGray
+        )
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -55,12 +59,14 @@ class UserOnboardingView: UIView {
     }()
     
     lazy var nameTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Digite seu nome",
-                                        colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.systemGray.cgColor,
-                                        borderWidth: 0.5)
+        let textField = CustomTextField(
+            titlePlaceholder: "Digite seu nome",
+            colorPlaceholder: .lightGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.systemGray.cgColor,
+            borderWidth: 0.5
+        )
         textField.heightAnchor(48)
         textField.setPaddingLeft()
         return textField
@@ -68,45 +74,53 @@ class UserOnboardingView: UIView {
     
     
     lazy var barbershopTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Digite o nome da barbearia",
-                                        colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.systemGray.cgColor,
-                                        borderWidth: 0.5)
+        let textField = CustomTextField(
+            titlePlaceholder: "Digite o nome da barbearia",
+            colorPlaceholder: .lightGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.systemGray.cgColor,
+            borderWidth: 0.5
+        )
         textField.heightAnchor(48)
         textField.setPaddingLeft()
         return textField
     }()
     
     lazy var cityTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Digite o nome da sua cidade",
-                                        colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.systemGray.cgColor,
-                                        borderWidth: 0.5)
+        let textField = CustomTextField(
+            titlePlaceholder: "Digite o nome da sua cidade",
+            colorPlaceholder: .lightGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.systemGray.cgColor,
+            borderWidth: 0.5
+        )
         textField.heightAnchor(48)
         textField.setPaddingLeft()
         return textField
     }()
     
     lazy var stateTextField: CustomTextField = {
-        let textField = CustomTextField(titlePlaceholder: "Digite o nome da seu estado, ex: SC",
-                                        colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
-                                        radius: 5,
-                                        borderColor: UIColor.systemGray.cgColor,
-                                        borderWidth: 0.5)
+        let textField = CustomTextField(
+            titlePlaceholder: "Digite o nome do seu estado. ex: SC",
+            colorPlaceholder: .lightGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.systemGray.cgColor,
+            borderWidth: 0.5
+        )
         textField.heightAnchor(48)
         textField.setPaddingLeft()
         return textField
     }()
     
     lazy var continueButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "Continuar",
-                                        radius: 10,
-                                        background: .BarberColors.lightBrown)
+        let button = CustomSubmitButton(
+            title: "Continuar",
+            radius: 10,
+            background: .BarberColors.lightBrown
+        )
         button.addTarget(self, action: #selector(handleButtonContinue), for: .touchUpInside)
         return button
     }()
@@ -115,10 +129,10 @@ class UserOnboardingView: UIView {
     
     func isSomeEmptyField() -> Bool {
         var result: Bool = false
-        let name = nameTextField.text ?? ""
-        let typeJob = barbershopTextField.text ?? ""
-        let payment = cityTextField.text ?? ""
-        let value = stateTextField.text ?? ""
+        let name = nameTextField.text ?? .stringEmpty
+        let typeJob = barbershopTextField.text ?? .stringEmpty
+        let payment = cityTextField.text ?? .stringEmpty
+        let value = stateTextField.text ?? .stringEmpty
         
         let someAreEmpty = name.isEmpty || typeJob.isEmpty || payment.isEmpty || value.isEmpty
 
@@ -128,18 +142,18 @@ class UserOnboardingView: UIView {
     }
     
     @objc func handleButtonContinue() {
-    
         if isSomeEmptyField() {
             delegate?.alertEmptyField()
         } else {
             guard let email = Auth.auth().currentUser?.email else { return }
-            delegate?.addUserOnboarding(model: CreateUserModel(name: nameTextField.text ?? "",
-                                                                      barbershop: barbershopTextField.text ?? "",
-                                                                      city: cityTextField.text ?? "",
-                                                                      state: stateTextField.text ?? "",
-                                                                      email: email))
+            delegate?.addUserOnboarding(model: CreateUserModel(
+                name: nameTextField.text ?? .stringEmpty,
+                barbershop: barbershopTextField.text ?? .stringEmpty,
+                city: cityTextField.text ?? .stringEmpty,
+                state: stateTextField.text ?? .stringEmpty,
+                email: email)
+            )
         }
-         
     }
     
 }
@@ -180,6 +194,5 @@ extension UserOnboardingView: ViewCodeContract {
     func setupConfiguration() {
         backgroundColor = .white
     }
-    
     
 }

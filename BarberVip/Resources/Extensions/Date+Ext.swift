@@ -23,7 +23,6 @@ extension Date {
             let dateString = dateFormatter.string(from: date)
             arrDates.append(dateString)
         }
-        print(arrDates)
         return arrDates
     }
 }
