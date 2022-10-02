@@ -31,6 +31,7 @@
 		52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */; };
 		52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */; };
 		52B8A09628E7D47100B1C9F7 /* UserOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */; };
+		52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */; };
 		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
@@ -52,9 +53,16 @@
 		C016B61D28E0B3CC007372E4 /* ProcedureDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */; };
 		C016B62028E0D212007372E4 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B61F28E0D212007372E4 /* BottomSheetView.swift */; };
 		C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C2027BEE83500CFCEE0 /* ReportView.swift */; };
-		C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */; };
-		C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */; };
+		C0319C3327BF226300CFCEE0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportViewController.swift */; };
+		C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
+		C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */; };
+		C080E9B328E7D79A00555D80 /* PDFBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B228E7D79A00555D80 /* PDFBuilder.swift */; };
+		C080E9B528E7D80700555D80 /* PDFContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B428E7D80700555D80 /* PDFContent.swift */; };
+		C080E9B728E7D83900555D80 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B628E7D83900555D80 /* Table.swift */; };
+		C080E9B928E7D8CB00555D80 /* PDFConfigurationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B828E7D8CB00555D80 /* PDFConfigurationType.swift */; };
+		C080EB7528E7FB4F00555D80 /* ReportViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080EB7428E7FB4F00555D80 /* ReportViewController+Ext.swift */; };
+		C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */; };
 		C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */; };
 		C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */; };
 		C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */; };
@@ -146,6 +154,7 @@
 		52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingView.swift; sourceTree = "<group>"; };
 		52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingCoordinator.swift; sourceTree = "<group>"; };
 		52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingViewModel.swift; sourceTree = "<group>"; };
+		52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -167,9 +176,16 @@
 		C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailViewModel.swift; sourceTree = "<group>"; };
 		C016B61F28E0D212007372E4 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		C0319C2027BEE83500CFCEE0 /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
-		C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewController.swift; sourceTree = "<group>"; };
-		C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyCoordinator.swift; sourceTree = "<group>"; };
+		C0319C3227BF226300CFCEE0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
+		C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
+		C080E9B228E7D79A00555D80 /* PDFBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBuilder.swift; sourceTree = "<group>"; };
+		C080E9B428E7D80700555D80 /* PDFContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContent.swift; sourceTree = "<group>"; };
+		C080E9B628E7D83900555D80 /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		C080E9B828E7D8CB00555D80 /* PDFConfigurationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFConfigurationType.swift; sourceTree = "<group>"; };
+		C080EB7428E7FB4F00555D80 /* ReportViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportViewController+Ext.swift"; sourceTree = "<group>"; };
+		C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeAmountCardModel.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureTableViewCell.swift; sourceTree = "<group>"; };
 		C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberLabel.swift; sourceTree = "<group>"; };
@@ -423,12 +439,33 @@
 		C0319C1F27BEE81E00CFCEE0 /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				C0319C3227BF226300CFCEE0 /* ReportDailyViewController.swift */,
-				C0319C3727BF229600CFCEE0 /* ReportDailyCoordinator.swift */,
-				52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */,
+				C080EB7628E7FF1500555D80 /* Model */,
+				C0319C3227BF226300CFCEE0 /* ReportViewController.swift */,
+				C080EB7428E7FB4F00555D80 /* ReportViewController+Ext.swift */,
+				C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */,
+				52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */,
 				525A98B628DE38F000920AA5 /* View */,
 			);
 			path = Report;
+			sourceTree = "<group>";
+		};
+		C080E9B128E7D78700555D80 /* PDF */ = {
+			isa = PBXGroup;
+			children = (
+				C080E9B228E7D79A00555D80 /* PDFBuilder.swift */,
+				C080E9B428E7D80700555D80 /* PDFContent.swift */,
+				C080E9B628E7D83900555D80 /* Table.swift */,
+				C080E9B828E7D8CB00555D80 /* PDFConfigurationType.swift */,
+			);
+			path = PDF;
+			sourceTree = "<group>";
+		};
+		C080EB7628E7FF1500555D80 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C0A7410427B1953000391CE6 = {
@@ -564,6 +601,7 @@
 		C0A741A527B1A4EB00391CE6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C080E9B128E7D78700555D80 /* PDF */,
 				C0A741A627B1A4FE00391CE6 /* ActionTypealias.swift */,
 				C0A741BE27B1A8A800391CE6 /* UIView+LayoutGuides.swift */,
 				C0A741C627B1A8C600391CE6 /* UIView+RawAnchors.swift */,
@@ -615,6 +653,7 @@
 				C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */,
 				C0AFFB6428C47D9800B816AA /* Bool+Ext.swift */,
 				C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */,
+				C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -940,9 +979,11 @@
 				C0AF028728C5389600B816AA /* ForgetPasswordView.swift in Sources */,
 				C0AF028528C5373D00B816AA /* ForgetPasswordViewModel.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
+				C080EB7528E7FB4F00555D80 /* ReportViewController+Ext.swift in Sources */,
 				C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */,
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
+				C080E9B528E7D80700555D80 /* PDFContent.swift in Sources */,
 				52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */,
 				52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */,
 				C016B44128DFE10B007372E4 /* PaymentMethodType.swift in Sources */,
@@ -960,12 +1001,14 @@
 				C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */,
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
+				C080E9B928E7D8CB00555D80 /* PDFConfigurationType.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,
 				52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
 				C0A741BF27B1A8A800391CE6 /* UIView+LayoutGuides.swift in Sources */,
+				C080E9B728E7D83900555D80 /* Table.swift in Sources */,
 				C0A741DB27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift in Sources */,
 				C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
@@ -975,13 +1018,19 @@
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
 				52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */,
+				C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */,
+				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
+				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
+				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
+				C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */,
 				C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */,
 				C0A174CD28E51F6100DB0CE4 /* Date+Ext.swift in Sources */,
-				C0319C3327BF226300CFCEE0 /* ReportDailyViewController.swift in Sources */,
+				C0319C3327BF226300CFCEE0 /* ReportViewController.swift in Sources */,
 				52C4AE7F28B999E00055E384 /* AddProcedureViewController.swift in Sources */,
-				52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */,
+				52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
+				C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */,
 				52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */,
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
 				C0319C2127BEE83500CFCEE0 /* ReportView.swift in Sources */,
@@ -999,6 +1048,7 @@
 				52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */,
 				522D9020289A00E00085575A /* LoginView.swift in Sources */,
 				52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */,
+				C080E9B328E7D79A00555D80 /* PDFBuilder.swift in Sources */,
 				52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */,
 				C0A7418F27B199B500391CE6 /* Bindable.swift in Sources */,
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,

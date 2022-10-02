@@ -28,6 +28,10 @@ public extension UIColor {
             return UIColor(named: "grayDescription") ?? UIColor.darkGray
         }
         
+        public static var greenMedium: UIColor {
+            return UIColor(named: "greenMedium") ?? UIColor.darkGray
+        }
+        
         public static var lightGray: UIColor {
             return UIColor(named: "lightGray") ?? UIColor.lightGray
         }

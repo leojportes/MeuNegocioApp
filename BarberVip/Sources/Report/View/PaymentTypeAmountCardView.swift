@@ -148,7 +148,6 @@ final class PaymentTypeAmountCardView: CardView, ViewCodeContract {
             .rightAnchor(in: self, padding: 15)
             .heightAnchor(20)
             .widthAnchor(100)
-  
     }
     
 }

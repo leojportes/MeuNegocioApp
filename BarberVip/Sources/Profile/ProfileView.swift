@@ -16,7 +16,7 @@ class ProfileView: UIView {
     var didTapVerifyEmail: Action?
     
     // MARK: - Properties
-
+    let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     var user: UserModel? {
         didSet {
             guard let user = user else { return }
@@ -24,6 +24,7 @@ class ProfileView: UIView {
             emailLabel.text = user.email
             nameBarberLabel.text = "Barbearia: \(user.barbershop)"
             cityLabel.text = user.city + "/" + user.state
+            InfoStackView.loadingIndicatorView(show: false)
         }
     }
     
@@ -87,10 +88,12 @@ class ProfileView: UIView {
         stack.axis = .vertical
         stack.alignment = .leading
         stack.distribution = .fillEqually
-        stack.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        stack.spacing = 5
+        stack.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         stack.isLayoutMarginsRelativeArrangement = true
         stack.roundCorners(cornerRadius: 10)
         stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.loadingIndicatorView(show: true)
         return stack
     }()
     
@@ -133,8 +136,9 @@ class ProfileView: UIView {
     }()
     
     private lazy var versionLabel: UILabel = {
+        let appVersion = appVersion
         let label = UILabel()
-        label.text = "Versao 1.0.0"
+        label.text = "Versão \(appVersion)"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -197,7 +201,7 @@ extension ProfileView: ViewCodeContract {
         emailLabel
             .topAnchor(in: nameUserLabel, attribute: .bottom, padding: 4)
             .centerX(in: self)
-//
+
         InfoStackView
             .topAnchor(in: emailLabel, attribute: .bottom, padding: 20)
             .leftAnchor(in: self, attribute: .left, padding: 14)
