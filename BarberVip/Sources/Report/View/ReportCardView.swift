@@ -71,6 +71,10 @@ final class ReportCardView: CardView, ViewCodeContract {
         totalProceduresValueLabel.text = totalProceduresValue
         reportDownloadTitleLabel.text = reportDownloadTitle
     }
+    
+    func setupTitleIfHasDiscount(totalAmountTitle: String) {
+        totalAmountTitleLabel.text = totalAmountTitle
+    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

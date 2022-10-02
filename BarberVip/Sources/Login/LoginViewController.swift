@@ -36,18 +36,26 @@ class LoginViewController: CoordinatedViewController {
         self.view = customView
     }
     
+    // MARK: - Private methods
+    private func showError( _ descriptionError: String) {
+        self.showAlert(title: "Atenção", messsage: descriptionError)
+        self.customView.loginButton.loadingIndicator(show: false)
+    }
+    
+    private func checkNewUser() {
+        self.customView.loginButton.loadingIndicator(show: false)
+        viewModel.fetchUser { [ weak self ] result in
+            DispatchQueue.main.async {
+                result.isEmpty ? self?.viewModel.navigateToUserOnboarding() : self?.viewModel.navigateToHome()
+            }
+        }
+    }
 }
 
 extension LoginViewController: LoginScreenActionsProtocol {
     func didTapLogin(_ email: String, _ password: String) {
-        viewModel.authLogin(email, password) { [weak self] authResult, descriptionError in
-            if authResult {
-                self?.viewModel.navigateToHome()
-                self?.customView.loginButton.loadingIndicator(show: false)
-            } else {
-                self?.showAlert(title: "Atenção", messsage: descriptionError)
-                self?.customView.loginButton.loadingIndicator(show: false)
-            }
+        viewModel.authLogin(email, password) { [weak self] onSuccess, descriptionError in
+            onSuccess ? self?.checkNewUser() : self?.showError(descriptionError)
         }
     }
     
@@ -76,7 +84,7 @@ extension LoginViewController: GIDSignInDelegate {
         let credentials = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
         
         viewModel.authLoginGoogle(credentials: credentials) { [ weak self ] result in
-            result ? self?.viewModel.navigateToHome() : self?.showAlert(title: "Houve um erro", messsage: "verifique novamente os campos preenchidos.")
+            result ? self?.checkNewUser() : self?.showError("Tente novamente")
         }
     }
 }

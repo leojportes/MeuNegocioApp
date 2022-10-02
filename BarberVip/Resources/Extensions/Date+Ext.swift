@@ -16,14 +16,13 @@ extension Date {
         var arrDates = [String]()
 
         for _ in 1 ... nDays {
-            date = cal.date(byAdding: Calendar.Component.day, value: -0, to: date)!
+            date = cal.date(byAdding: Calendar.Component.day, value: -1, to: date)!
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"
             let dateString = dateFormatter.string(from: date)
             arrDates.append(dateString)
         }
-        print(arrDates)
         return arrDates
     }
 }

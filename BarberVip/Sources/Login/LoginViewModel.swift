@@ -11,7 +11,9 @@ import FirebaseCore
 protocol LoginViewModelProtocol: AnyObject {
     func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool, String) -> Void)
     func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void)
+    func fetchUser(completion: @escaping (UserModelList) -> Void)
     func navigateToHome()
+    func navigateToUserOnboarding()
     func navigateToForgotPassword()
     func navigateToRegister()
 }
@@ -47,6 +49,24 @@ class LoginViewModel: LoginViewModelProtocol {
         }
     }
     
+    func fetchUser(completion: @escaping (UserModelList) -> Void) {
+        guard let email = Auth.auth().currentUser?.email else { return }
+
+        let urlString = "http://54.86.122.10:3000/profile/\(email)"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            do {
+                let result = try JSONDecoder().decode(UserModelList.self, from: data)
+                completion(result)
+            }
+            catch {
+                let error = error
+                print(error)
+            }
+        }.resume()
+    }
+    
     private func descriptionError(error: NSError) -> String {
         var description: String = .stringEmpty
         
@@ -65,6 +85,10 @@ class LoginViewModel: LoginViewModelProtocol {
     // MARK: - Routes
     func navigateToHome() {
         coordinator?.navigateToHome()
+    }
+    
+    func navigateToUserOnboarding() {
+        coordinator?.navigateToUserOnboarding()
     }
     
     func navigateToForgotPassword() {

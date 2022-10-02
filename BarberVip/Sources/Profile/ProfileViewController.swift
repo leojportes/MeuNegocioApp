@@ -35,13 +35,21 @@ class ProfileViewController: CoordinatedViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupCustomView()
+        fetchUser()
     }
     
     override func loadView() {
         super.loadView()
         navigationController?.navigationBar.barTintColor = .BarberColors.lightBrown
         self.view = customView
+    }
+    
+    private func fetchUser() {
+        viewModel.fetchUser { [ weak self ] user in
+            DispatchQueue.main.async {
+                self?.customView.user = user.first
+            }
+        }
     }
     
     private func closedView() {
@@ -57,11 +65,14 @@ class ProfileViewController: CoordinatedViewController {
         }
     }
     
-    func setupCustomView() {
-        guard let user = Auth.auth().currentUser?.email else { return }
-        guard let isEmailVerified = Auth.auth().currentUser?.isEmailVerified else { return }
-        customView.setup(profileEmail: user, isEmailVerified: isEmailVerified)
-    }
+//    func setupCustomView() {
+//        guard let user = Auth.auth().currentUser?.email else { return }
+//        customView.setup(user: "Renilson Moreira",
+//                         email: user,
+//                         barbershop: "Barbearia: Carminnati",
+//                         city: "São jose/SC",
+//                         isEmailVerified: isEmailVerified)
+//    }
 
     private var authUser : User? {
         return Auth.auth().currentUser

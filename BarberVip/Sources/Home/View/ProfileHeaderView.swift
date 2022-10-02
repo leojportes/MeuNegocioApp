@@ -13,10 +13,8 @@ final class ProfileHeaderView: UIView {
     private var openProfile: Action?
     
     // MARK: - Init    
-    init(actionButton: @escaping Action, nameUser: String) {
+    init() {
         super.init(frame: .zero)
-        self.openProfile = actionButton
-        nameUserLabel.text = nameUser
         setupView()
     }
     
@@ -67,6 +65,15 @@ final class ProfileHeaderView: UIView {
         self.addGestureRecognizer(tapGR)
         self.isUserInteractionEnabled = true
     }
+    
+    func setupLayout(nameUser: String) {
+        nameUserLabel.text = nameUser
+    }
+    
+    func setupAction(actionButton: @escaping Action) {
+        self.openProfile = actionButton
+    }
+
 
 }
 
