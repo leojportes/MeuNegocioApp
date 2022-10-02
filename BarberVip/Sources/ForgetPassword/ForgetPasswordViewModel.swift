@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 protocol ForgetPasswordViewModelProtocol {
-    func resetPassFirebase(email: String)
+    func resetPassFirebase(email: String, completion: @escaping (Bool, String) -> Void)
 }
 
 class ForgetPasswordViewModel: ForgetPasswordViewModelProtocol {
@@ -23,25 +23,32 @@ class ForgetPasswordViewModel: ForgetPasswordViewModelProtocol {
     }
 
     // MARK: - Routes
-    func resetPassFirebase(email: String) {
+    func resetPassFirebase(email: String, completion: @escaping (Bool, String) -> Void) {
         let auth = Auth.auth()
-        let currentController = UIViewController.findCurrentController()
         
         auth.sendPasswordReset(withEmail: email) { error in
-            if let error = error {
-                print(email)
-                currentController?.showAlert(
-                    title: "Ops!",
-                    messsage: error.localizedDescription
-                )
+            if error != nil {
+                guard let typeError = error as? NSError else { return }
+                completion(false, self.descriptionError(error: typeError))
                 return
             }
-            
-            currentController?.showAlert(
-                title: "Atenção",
-                messsage: "Foi enviado um link para redefinir a sua senha no email cadastrado.\n Verifique sua caixa de spam.",
-                completion: { currentController?.dismiss(animated: true) })
+            completion(true, .stringEmpty)
         }
+    }
+    
+    private func descriptionError(error: NSError) -> String {
+        var description: String = .stringEmpty
+        
+        switch error.code {
+        case AuthErrorCode.userNotFound.rawValue:
+            description = "Não existe uma conta com esse email"
+        case AuthErrorCode.invalidEmail.rawValue:
+            description = "E-mail invalido"
+        default:
+            description = "Ocorreu um erro, tente novamente mais tarde"
+        }
+        
+        return description
     }
 
 }

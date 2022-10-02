@@ -10,7 +10,7 @@ import UIKit
 class ForgetPasswordViewController: CoordinatedViewController {
     
     // MARK: - Private properties
-    private lazy var customView = ForgetPasswordView(didTapResetAction: weakify { $0.viewModel?.resetPassFirebase(email: $1) })
+    private lazy var customView = ForgetPasswordView()
 
     private let viewModel: ForgetPasswordViewModelProtocol?
     
@@ -28,11 +28,33 @@ class ForgetPasswordViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Redefinir senha"
+        submitPassword()
     }
 
     override func loadView() {
         super.loadView()
         self.view = customView
+    }
+    
+    private func submitPassword() {
+        customView.didTapResetAction = {
+            guard let email = self.customView.emailTextField.text else { return }
+            self.viewModel?.resetPassFirebase(email: email,
+                                              completion: { [ weak self ] onSuccess, typeError  in
+                onSuccess ? self?.isEmailWasSent(true) : self?.isEmailWasSent(false, typeError)
+                self?.customView.sendButton.loadingIndicator(show: false)
+            })
+        }
+    }
+    
+    private func isEmailWasSent( _ result: Bool, _ error: String = .stringEmpty) {
+        if result {
+            showAlert(title: "Atenção",
+                      messsage: "Foi enviado um link para redefinir a sua senha no email cadastrado.\n Verifique sua caixa de spam.",
+                      completion: { self.dismiss(animated: true) })
+        } else {
+            showAlert(title: "Ops!", messsage: error)
+        }
     }
 
 }
