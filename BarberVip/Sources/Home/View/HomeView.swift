@@ -89,7 +89,7 @@ final class HomeView: UIView, ViewCodeContract {
     }()
     
     lazy var reportCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatório Semanal")
+        let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatórios")
         view.translatesAutoresizingMaskIntoConstraints = false
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReport(_:)))
         view.addGestureRecognizer(tap)
