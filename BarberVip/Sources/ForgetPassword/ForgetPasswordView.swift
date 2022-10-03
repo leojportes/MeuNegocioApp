@@ -32,8 +32,17 @@ final class ForgetPasswordView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
+    
     private lazy var titleLabel: BarberLabel = {
+        let label = BarberLabel(text: "Redefinir senha",
+                                font: UIFont.boldSystemFont(ofSize: 20),
+                                textColor: .darkGray)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+
+    private lazy var subTitleLabel: BarberLabel = {
         let label = BarberLabel(text: "Informe o e-mail cadastrado para enviarmos \n um e-mail de redefinição de senha.",
                                 font: UIFont.systemFont(ofSize: 16),
                                 textColor: .darkGray)
@@ -96,6 +105,7 @@ extension ForgetPasswordView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(gripView)
         addSubview(titleLabel)
+        addSubview(subTitleLabel)
         addSubview(emailTextField)
         addSubview(sendButton)
     }
@@ -108,11 +118,15 @@ extension ForgetPasswordView: ViewCodeContract {
             .heightAnchor(4)
         
         titleLabel
-            .topAnchor(in: gripView, attribute: .bottom, padding: 84)
+            .topAnchor(in: gripView, attribute: .bottom, padding: 44)
+            .centerX(in: self)
+        
+        subTitleLabel
+            .topAnchor(in: titleLabel, attribute: .bottom, padding: 16)
             .centerX(in: self)
         
         emailTextField
-            .topAnchor(in: titleLabel, attribute: .bottom, padding: 32)
+            .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 32)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)

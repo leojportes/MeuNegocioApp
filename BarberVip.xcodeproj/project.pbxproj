@@ -24,14 +24,13 @@
 		52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */; };
 		52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08228E2310900B1C9F7 /* ErrorView.swift */; };
 		52B8A08628E2557000B1C9F7 /* CardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08528E2557000B1C9F7 /* CardButtonView.swift */; };
-		52B8A08828E288A900B1C9F7 /* ReportDailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */; };
+		52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */; };
 		52B8A08B28E7990500B1C9F7 /* UserModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08A28E7990500B1C9F7 /* UserModelList.swift */; };
 		52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */; };
 		52B8A09028E7C95D00B1C9F7 /* UserOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */; };
 		52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */; };
 		52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */; };
 		52B8A09628E7D47100B1C9F7 /* UserOnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */; };
-		52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */; };
 		52C4AE7228B563780055E384 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7128B563780055E384 /* ProfileView.swift */; };
 		52C4AE7428B565BD0055E384 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7328B565BD0055E384 /* ProfileViewController.swift */; };
 		52C4AE7628B566180055E384 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C4AE7528B566180055E384 /* ProfileCoordinator.swift */; };
@@ -147,14 +146,13 @@
 		52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52B8A08528E2557000B1C9F7 /* CardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonView.swift; sourceTree = "<group>"; };
-		52B8A08728E288A900B1C9F7 /* ReportDailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportDailyViewModel.swift; sourceTree = "<group>"; };
+		52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		52B8A08A28E7990500B1C9F7 /* UserModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModelList.swift; sourceTree = "<group>"; };
 		52B8A08C28E7B4D300B1C9F7 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		52B8A08F28E7C95D00B1C9F7 /* UserOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingViewController.swift; sourceTree = "<group>"; };
 		52B8A09128E7C97A00B1C9F7 /* UserOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingView.swift; sourceTree = "<group>"; };
 		52B8A09328E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingCoordinator.swift; sourceTree = "<group>"; };
 		52B8A09528E7D47000B1C9F7 /* UserOnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingViewModel.swift; sourceTree = "<group>"; };
-		52B8A08728E288A900B1C9F7 /* ReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewModel.swift; sourceTree = "<group>"; };
 		52C4AE7128B563780055E384 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		52C4AE7328B565BD0055E384 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		52C4AE7528B566180055E384 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
@@ -1016,7 +1014,7 @@
 				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
-				C0319C3827BF229600CFCEE0 /* ReportDailyCoordinator.swift in Sources */,
+				C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */,
 				52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */,
 				C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */,
 				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
@@ -1231,6 +1229,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ljports.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1255,6 +1254,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ljports.BarberVip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

@@ -53,6 +53,16 @@ class CreateAccountView: UIView {
     }()
     
     private lazy var titleLabel: BarberLabel = {
+        let label = BarberLabel(text: "Criar Conta",
+                                font: UIFont.boldSystemFont(ofSize: 20),
+                                textColor: .darkGray)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    
+    private lazy var subTitleLabel: BarberLabel = {
         let label = BarberLabel(text: "Informe um e-mail válido e uma senha com \n no minimo 7 digitos para criar a sua conta.",
                                 font: UIFont.systemFont(ofSize: 16),
                                 textColor: .darkGray)
@@ -151,6 +161,7 @@ extension CreateAccountView: ViewCodeContract {
         scrollView.addSubview(contentView)
         contentView.addSubview(gripView)
         contentView.addSubview(titleLabel)
+        contentView.addSubview(subTitleLabel)
         contentView.addSubview(emailTextField)
         contentView.addSubview(passwordTextField)
         contentView.addSubview(createAccountButton)
@@ -178,11 +189,15 @@ extension CreateAccountView: ViewCodeContract {
             .heightAnchor(4)
         
         titleLabel
-            .topAnchor(in: gripView, attribute: .bottom, padding: 84)
+            .topAnchor(in: gripView, attribute: .bottom, padding: 44)
+            .centerX(in: self)
+        
+        subTitleLabel
+            .topAnchor(in: titleLabel, attribute: .bottom, padding: 16)
             .centerX(in: self)
         
         emailTextField
-            .topAnchor(in: titleLabel, attribute: .bottom, padding: 32)
+            .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 32)
             .leftAnchor(in: contentView, attribute: .left, padding: 16)
             .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)

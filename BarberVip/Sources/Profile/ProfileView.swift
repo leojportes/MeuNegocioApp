@@ -17,6 +17,7 @@ class ProfileView: UIView {
     
     // MARK: - Properties
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    
     var user: UserModel? {
         didSet {
             guard let user = user else { return }
@@ -136,9 +137,10 @@ class ProfileView: UIView {
     }()
     
     private lazy var versionLabel: UILabel = {
-        let appVersion = appVersion
         let label = UILabel()
-        label.text = "Versão \(appVersion)"
+        if let version = appVersion {
+            label.text = "Versão \(version)"
+        }
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
