@@ -44,34 +44,35 @@ class AddProcedureView: UIView {
         $0.roundCorners(cornerRadius: 2)
     }
     
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.bounces = false
         return scrollView
     }()
     
-    lazy var contentView: UIView = {
+    private lazy var contentView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
-    lazy var barberImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "BarberImage")
-        img.contentMode = .scaleAspectFit
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
-    }()
     
-    lazy var nameTextField: CustomTextField = {
+    private lazy var subTitleLabel: BarberLabel = {
+        let label = BarberLabel(text: "Preencha todos os campos abaixo para \n adicionar um novo procedimento.",
+                                font: UIFont.systemFont(ofSize: 16),
+                                textColor: .darkGray)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+
+    private lazy var nameTextField: CustomTextField = {
         let textField = CustomTextField(
             titlePlaceholder: "Nome do cliente",
-            colorPlaceholder: .systemGray,
+            colorPlaceholder: .lightGray,
             textColor: .BarberColors.darkGray,
             radius: 5,
-            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
             keyboardType: .default
         )
@@ -79,13 +80,13 @@ class AddProcedureView: UIView {
         return textField
     }()
     
-    lazy var typeJobTextField: CustomTextField = {
+    private lazy var typeJobTextField: CustomTextField = {
         let textField = CustomTextField(
             titlePlaceholder: "Tipo de procedimento",
-            colorPlaceholder: .systemGray,
+            colorPlaceholder: .lightGray,
             textColor: .BarberColors.darkGray,
             radius: 5,
-            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
             keyboardType: .default
         )
@@ -93,13 +94,13 @@ class AddProcedureView: UIView {
         return textField
     }()
     
-    lazy var paymentTextField: CustomTextField = {
+    private lazy var paymentTextField: CustomTextField = {
         let textField = CustomTextField(
             titlePlaceholder: "Forma de pagamento",
-            colorPlaceholder: .systemGray,
+            colorPlaceholder: .lightGray,
             textColor: .BarberColors.darkGray,
             radius: 5,
-            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
             keyboardType: .default
         )
@@ -108,13 +109,13 @@ class AddProcedureView: UIView {
         return textField
     }()
     
-    lazy var valueTextField: CustomTextField = {
+    private lazy var valueTextField: CustomTextField = {
         let textField = CustomTextField(
             titlePlaceholder: "R$",
-            colorPlaceholder: .systemGray,
+            colorPlaceholder: .lightGray,
             textColor: .BarberColors.darkGray,
             radius: 5,
-            borderColor: UIColor.BarberColors.darkGray.cgColor,
+            borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
@@ -137,13 +138,13 @@ class AddProcedureView: UIView {
     // MARK: - Methods
 
     @objc
-    func myTextFieldDidChange(_ textField: UITextField) {
+    private func myTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
         }
     }
 
-    func isSomeEmptyField() -> Bool {
+    private func isSomeEmptyField() -> Bool {
         var result: Bool = false
         let name = nameTextField.text ?? ""
         let typeJob = typeJobTextField.text ?? ""
@@ -159,7 +160,7 @@ class AddProcedureView: UIView {
     
     // MARK: - Action Buttons
     @objc
-    func handleAddButton() {
+    private func handleAddButton() {
         if isSomeEmptyField() {
             delegateActions?.alertEmptyField()
         } else {
@@ -181,7 +182,7 @@ extension AddProcedureView: ViewCodeContract {
         addSubview(scrollView)
         addSubview(gripView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(barberImage)
+        contentView.addSubview(subTitleLabel)
         contentView.addSubview(nameTextField)
         contentView.addSubview(typeJobTextField)
         contentView.addSubview(paymentTextField)
@@ -213,14 +214,12 @@ extension AddProcedureView: ViewCodeContract {
             heightConstraint,
          ])
         
-        barberImage
-            .topAnchor(in: contentView, attribute: .top, padding: 60)
-            .leftAnchor(in: contentView, attribute: .left, padding: 127)
-            .rightAnchor(in: contentView, attribute: .right, padding: 127)
-            .heightAnchor(66)
+        subTitleLabel
+            .topAnchor(in: contentView, padding: 60)
+            .centerX(in: contentView)
         
         nameTextField
-            .topAnchor(in: barberImage, attribute: .bottom, padding: 45)
+            .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 32)
             .leftAnchor(in: contentView, attribute: .left, padding: 16)
             .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
