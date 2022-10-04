@@ -26,4 +26,5 @@ enum Icon: String {
     case download = "ic_download"
     case arrowRight = "ic_arrowRight"
     case iconApp = "ic_my-business"
+    case arrowDown = "ic_arrowDown"
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileHeaderView: UIView {
+final class ProfileHeaderView: UIStackView {
     
     // MARK: - Private properties
     private var openProfile: Action?
@@ -18,9 +18,10 @@ final class ProfileHeaderView: UIView {
         setupView()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     // MARK: - Viewcode
     
@@ -34,7 +35,7 @@ final class ProfileHeaderView: UIView {
     
     private lazy var iconImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "ic_profile")
+        img.image = UIImage(named: Icon.profile.rawValue)
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
@@ -49,7 +50,8 @@ final class ProfileHeaderView: UIView {
     
     private lazy var iconArrow: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "ic_arrowDown")
+        img.image = UIImage(named: Icon.arrowDown.rawValue)
+        img.contentMode = .scaleAspectFit
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
@@ -79,17 +81,16 @@ final class ProfileHeaderView: UIView {
 
 extension ProfileHeaderView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(iconView)
-        addSubview(nameUserLabel)
-        addSubview(iconArrow)
+        addArrangedSubview(iconView)
+        addArrangedSubview(nameUserLabel)
+        addArrangedSubview(iconArrow)
+        
         iconView.addSubview(iconImage)
     }
     
     func setupConstraints() {
         
         iconView
-            .centerY(in: self)
-            .leftAnchor(in: self, attribute: .left)
             .heightAnchor(40)
             .widthAnchor(40)
         
@@ -98,14 +99,8 @@ extension ProfileHeaderView: ViewCodeContract {
             .centerY(in: iconView)
             .heightAnchor(20)
             .widthAnchor(20)
-        
-        nameUserLabel
-            .centerY(in: self)
-            .leftAnchor(in: iconView, attribute: .right, padding: 8)
-        
+    
         iconArrow
-            .centerY(in: self)
-            .leftAnchor(in: nameUserLabel, attribute: .right, padding: 4)
             .heightAnchor(15)
             .widthAnchor(15)
     }
@@ -113,5 +108,8 @@ extension ProfileHeaderView: ViewCodeContract {
     func setupConfiguration() {
         self.translatesAutoresizingMaskIntoConstraints = false
         tapGestureRecognizer()
+        self.axis = .horizontal
+        self.distribution = .fill
+        self.spacing = 8
     }
 }

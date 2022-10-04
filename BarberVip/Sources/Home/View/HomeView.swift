@@ -176,8 +176,7 @@ final class HomeView: UIView, ViewCodeContract {
         profileView
             .topAnchor(in: headerView, attribute: .top, padding: 22)
             .leftAnchor(in: headerView, attribute: .left, padding: 10)
-            .widthAnchor(165)
-            .heightAnchor(50)
+            .heightAnchor(40)
         
         /// Section Cards
         sectionCardsView
