@@ -43,29 +43,41 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var barberImage: UIImageView = {
+    lazy var iconStackView: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [myBusinessImage, titleLabel])
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.distribution = .fill
+        stack.alignment = .center
+        stack.spacing = 10
+        return stack
+    }()
+    
+    lazy var myBusinessImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: "BarberImage")
-        img.contentMode = .scaleAspectFit
+        img.heightAnchor(36)
+        img.widthAnchor(36)
+        img.image = UIImage(named: Icon.iconApp.rawValue)
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Barber shop"
-        label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 35)
-        label.translatesAutoresizingMaskIntoConstraints = false
+    lazy var titleLabel: BarberLabel = {
+        let label = BarberLabel(text: "Meu negócio",
+                                font: UIFont.boldSystemFont(ofSize: 20),
+                                textColor: .darkGray)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
         return label
     }()
     
     lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "E-mail cadastrado",
-                                        colorPlaceholder: .systemGray3,
-                                        textColor: .white,
+                                        colorPlaceholder: .lightGray,
+                                        textColor: .black,
                                         radius: 5,
-                                        borderColor: UIColor.white.cgColor,
+                                        borderColor: UIColor.darkGray.cgColor,
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
         textField.setPaddingLeft()
@@ -77,10 +89,10 @@ class LoginView: UIView {
     
     lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Senha",
-                                        colorPlaceholder: .systemGray3,
-                                        textColor: .white,
+                                        colorPlaceholder: .lightGray,
+                                        textColor: .black,
                                         radius: 5,
-                                        borderColor: UIColor.white.cgColor,
+                                        borderColor: UIColor.darkGray.cgColor,
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
         textField.setPaddingLeft()
@@ -91,7 +103,7 @@ class LoginView: UIView {
     
     lazy var loginButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Login",
-                                  colorTitle: .white,
+                                  colorTitle: .darkGray,
                                   radius: 10,
                                   background: .systemGray)
         button.isEnabled = false
@@ -109,14 +121,14 @@ class LoginView: UIView {
     lazy var forgotPasswordLabel: UILabel = {
         let label = UILabel()
         label.text = "Esqueceu sua senha? "
-        label.textColor = .systemGray3
+        label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     lazy var forgotPasswordButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Clique aqui!",
-                                        colorTitle: .white,
+                                        colorTitle: .darkGray,
                                         alignmentText: .left)
         button.addTarget(self, action: #selector(handleForgotPasswordButton), for: .touchUpInside)
         return button
@@ -125,7 +137,7 @@ class LoginView: UIView {
     lazy var orLabel: UILabel = {
         let label = UILabel()
         label.text = "Ou"
-        label.textColor = .systemGray3
+        label.textColor = .darkGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -137,7 +149,7 @@ class LoginView: UIView {
         stack.spacing = 10
         stack.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
         stack.isLayoutMarginsRelativeArrangement = true
-        stack.layer.borderColor = UIColor.white.cgColor
+        stack.layer.borderColor = UIColor.darkGray.cgColor
         stack.layer.borderWidth = 0.5
         stack.layer.cornerRadius = 5
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -154,7 +166,7 @@ class LoginView: UIView {
     
     lazy var signInGoogleButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Login com o google",
-                                        colorTitle: .white)
+                                        colorTitle: .darkGray)
         button.addTarget(self, action: #selector(handlerSignInGoogleButton), for: .touchUpInside)
         return button
     }()
@@ -169,15 +181,14 @@ class LoginView: UIView {
     lazy var registerLabel: UILabel = {
         let label = UILabel()
         label.text = "Não tem uma conta? "
-        label.textColor = .systemGray3
+        label.textColor = .systemGray
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     lazy var registerButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Registre-se",
-                                        colorTitle: .white,
-                                        background: .BarberColors.darkGray)
+                                        colorTitle: .darkGray)
         button.addTarget(self, action: #selector(handlerRegisterButton), for: .touchUpInside)
         return button
     }()
@@ -185,11 +196,9 @@ class LoginView: UIView {
     func isEnabledButtonLogin(_ isEnabled: Bool) {
         if isEnabled {
             loginButton.backgroundColor = .BarberColors.lightBrown
-            loginButton.setTitleColor(.BarberColors.darkGray, for: .normal)
             loginButton.isEnabled = true
         } else {
             loginButton.backgroundColor = .systemGray
-            loginButton.setTitleColor(.white, for: .normal)
             loginButton.isEnabled = false
         }
     }
@@ -198,7 +207,7 @@ class LoginView: UIView {
     @objc func textFieldEditingDidChange(sender: UITextField) {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
-        let isValidLogin = email.isValidEmail() && password.isEmpty.not
+        let isValidLogin = email.isValidEmail() && password.count >= 7
         isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
     }
         
@@ -241,8 +250,7 @@ class LoginView: UIView {
 
 extension LoginView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(titleLabel)
-        addSubview(barberImage)
+        addSubview(iconStackView)
         addSubview(emailTextField)
         addSubview(passwordTextField)
         addSubview(eyeButton)
@@ -254,24 +262,19 @@ extension LoginView: ViewCodeContract {
     }
     
     func setupConstraints() {
-        barberImage
-            .topAnchor(in: self, attribute: .top, padding: 54)
-            .leftAnchor(in: self, attribute: .left, padding: 127)
-            .rightAnchor(in: self, attribute: .right, padding: 127)
-            .heightAnchor(66)
-        
-        titleLabel
-            .topAnchor(in: barberImage, attribute: .bottom)
+        iconStackView
+            .topAnchor(in: self, attribute: .top, padding: 110)
             .centerX(in: self)
+            .heightAnchor(36)
         
         emailTextField
-            .topAnchor(in: titleLabel, attribute: .bottom, padding: 50)
+            .topAnchor(in: iconStackView, attribute: .bottom, padding: 50)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
         
         passwordTextField
-            .topAnchor(in: emailTextField, attribute: .bottom, padding: 16)
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 24)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
@@ -306,6 +309,6 @@ extension LoginView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-        self.backgroundColor = UIColor.BarberColors.darkGray
+        self.backgroundColor = .white
     }
 }

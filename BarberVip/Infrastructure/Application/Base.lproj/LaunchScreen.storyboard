@@ -39,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchScreen" width="126" height="162"/>
+        <image name="launchScreen" width="120" height="120"/>
         <namedColor name="lightBrown">
             <color red="0.89899998903274536" green="0.74599999189376831" blue="0.32300001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
