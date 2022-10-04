@@ -39,6 +39,7 @@ class CustomTextField: UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.keyboardType = keyboardType
         self.isSecureTextEntry = isSecureTextEntry
+        self.setPaddingLeft()
 
         self.addSubview(baseLineview)
         baseLineview

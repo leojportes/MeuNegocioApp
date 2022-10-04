@@ -59,7 +59,6 @@ final class ForgetPasswordView: UIView {
                                         borderColor: UIColor.systemGray.cgColor,
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
-        textField.setPaddingLeft()
         textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField

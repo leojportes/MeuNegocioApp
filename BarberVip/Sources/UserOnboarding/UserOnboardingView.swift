@@ -67,8 +67,8 @@ class UserOnboardingView: UIView {
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
         )
+        textField.delegate = self
         textField.heightAnchor(48)
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -82,8 +82,8 @@ class UserOnboardingView: UIView {
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
         )
+        textField.delegate = self
         textField.heightAnchor(48)
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -96,8 +96,8 @@ class UserOnboardingView: UIView {
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
         )
+        textField.delegate = self
         textField.heightAnchor(48)
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -110,8 +110,8 @@ class UserOnboardingView: UIView {
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
         )
+        textField.delegate = self
         textField.heightAnchor(48)
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -195,4 +195,17 @@ extension UserOnboardingView: ViewCodeContract {
         backgroundColor = .white
     }
     
+}
+
+extension UserOnboardingView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var maxLength: Int = 32
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+
+        if textField == stateTextField {
+            maxLength = 2
+        }
+        return newString.count <= maxLength
+    }
 }

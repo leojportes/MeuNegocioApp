@@ -80,7 +80,6 @@ class LoginView: UIView {
                                         borderColor: UIColor.darkGray.cgColor,
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
-        textField.setPaddingLeft()
         textField.autocapitalizationType = .none
         textField.clearButtonMode = .whileEditing
         textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
@@ -95,7 +94,6 @@ class LoginView: UIView {
                                         borderColor: UIColor.darkGray.cgColor,
                                         borderWidth: 0.5,
                                         isSecureTextEntry: true)
-        textField.setPaddingLeft()
         textField.autocapitalizationType = .none
         textField.addTarget(self, action: #selector(textFieldEditingDidChange), for: .editingChanged)
         return textField

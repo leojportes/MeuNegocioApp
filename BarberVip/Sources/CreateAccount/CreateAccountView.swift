@@ -80,7 +80,6 @@ class CreateAccountView: UIView {
                                         borderWidth: 0.5,
                                         keyboardType: .emailAddress)
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -94,7 +93,6 @@ class CreateAccountView: UIView {
                                         isSecureTextEntry: true)
         textField.textContentType = .oneTimeCode
         textField.addTarget(self, action: #selector(handleTextFieldDidChange(_:)), for: .editingChanged)
-        textField.setPaddingLeft()
         return textField
     }()
     

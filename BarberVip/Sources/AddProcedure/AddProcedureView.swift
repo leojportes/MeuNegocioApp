@@ -76,7 +76,6 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -90,7 +89,6 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
-        textField.setPaddingLeft()
         return textField
     }()
     
@@ -104,7 +102,6 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
-        textField.setPaddingLeft()
         textField.inputView = pickerView
         return textField
     }()
@@ -119,7 +116,6 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
-        textField.setPaddingLeft()
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         return textField
     }()
