@@ -76,6 +76,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
+        textField.delegate = self
         return textField
     }()
     
@@ -89,6 +90,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
+        textField.delegate = self
         return textField
     }()
     
@@ -102,6 +104,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
+        textField.delegate = self
         textField.inputView = pickerView
         return textField
     }()
@@ -116,6 +119,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
+        textField.delegate = self
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         return textField
     }()
@@ -271,3 +275,18 @@ extension AddProcedureView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
+extension AddProcedureView: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var maxLength: Int = 18
+        let currentString = (textField.text ?? "") as NSString
+        let newString = currentString.replacingCharacters(in: range, with: string)
+
+        if textField == valueTextField {
+            maxLength = 11
+        }
+        if textField == typeJobTextField {
+            maxLength = 28
+        }
+        return newString.count <= maxLength
+    }
+}
