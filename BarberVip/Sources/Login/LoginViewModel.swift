@@ -14,7 +14,7 @@ protocol LoginViewModelProtocol: AnyObject {
     func fetchUser(completion: @escaping (UserModelList) -> Void)
     func navigateToHome()
     func navigateToUserOnboarding()
-    func navigateToForgotPassword()
+    func navigateToForgotPassword(email: String)
     func navigateToRegister()
 }
 
@@ -91,8 +91,8 @@ class LoginViewModel: LoginViewModelProtocol {
         coordinator?.navigateToUserOnboarding()
     }
     
-    func navigateToForgotPassword() {
-        coordinator?.navigateToForgotPassword()
+    func navigateToForgotPassword(email: String) {
+        coordinator?.navigateToForgotPassword(email: email)
     }
     
     func navigateToRegister() {

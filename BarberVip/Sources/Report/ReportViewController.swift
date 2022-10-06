@@ -81,7 +81,7 @@ final class ReportViewController: CoordinatedViewController {
     }
 
     /// Configure amout for daily card.
-    private func setupDailyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+    private func setupDailyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
         let today = viewModel.returnCurrentDate
         /// Here we filter the current day's procedures.
         let dailyProcedures = procedures.filter({$0.currentDate == today})
@@ -89,7 +89,7 @@ final class ReportViewController: CoordinatedViewController {
         let makeTotalDailyAmount = viewModel.makeTotalAmount(dailyProcedures)
 
         if hasDiscount {
-            let percentResult = viewModel.calcPercentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
+            let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
             self.customView.setupDailyCard(percentResult, "\(dailyProcedures.count)")
             self.customView.setupDailyTitleIfHasDiscount("\(percent)% do total • hoje")
         } else {
@@ -99,14 +99,14 @@ final class ReportViewController: CoordinatedViewController {
     }
 
     /// Configure amout for weekly card.
-    private func setupWeeklyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+    private func setupWeeklyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
         /// Here we filter the procedures from the last 7 days.
         let weeklyProcedures = viewModel.weeklyProceduresLast7Days(procedures: procedures)
         /// Here we add the values ​​of the procedures of the last 7 days.
         let makeTotalWeeklyAmount = viewModel.makeTotalAmount(weeklyProcedures)
        
         if hasDiscount {
-            let percentResult = viewModel.calcPercentageFromString(percent: percent, baseAmount: makeTotalWeeklyAmount)
+            let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalWeeklyAmount)
             self.customView.setupWeeklyCard(percentResult, "\(weeklyProcedures.count)")
             self.customView.setupWeeklyTitleIfHasDiscount("\(percent)% do total • últimos 7 dias")
         } else {
@@ -116,13 +116,13 @@ final class ReportViewController: CoordinatedViewController {
     }
 
     /// Configure amouts to payment type card.
-    private func setupPaymentTypeAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+    private func setupPaymentTypeAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
        let items = PaymentTypeAmountCardModel(procedures: procedures, viewModel: viewModel)
         if hasDiscount {
-            let debitAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.debit)
-            let creditAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.credit)
-            let cashAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.cash)
-            let pixAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: items.pix)
+            let debitAmount = viewModel.percentageFromString(percent: percent, baseAmount: items.debit)
+            let creditAmount = viewModel.percentageFromString(percent: percent, baseAmount: items.credit)
+            let cashAmount = viewModel.percentageFromString(percent: percent, baseAmount: items.cash)
+            let pixAmount = viewModel.percentageFromString(percent: percent, baseAmount: items.pix)
             self.customView.setupPaymentTypeAmountCard(debitAmount, creditAmount, cashAmount, pixAmount)
         } else {
             self.customView.setupPaymentTypeAmountCard(items.debit, items.credit, items.cash, items.pix)
@@ -130,11 +130,11 @@ final class ReportViewController: CoordinatedViewController {
     }
 
     /// Share report pdf document.
-    private func shareReportPDF(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = "") {
+    private func shareReportPDF(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
         /// Share daily report.
         let dailyProcedures = self.viewModel.dailyProcedures(procedures: procedures)
         let totalDailyAmount = viewModel.makeTotalAmount(procedures.filter({$0.currentDate == viewModel.returnCurrentDate}))
-        let totalPercentDaily = viewModel.calcPercentageFromString(percent: percent, baseAmount: totalDailyAmount)
+        let totalPercentDaily = viewModel.percentageFromString(percent: percent, baseAmount: totalDailyAmount)
         self.customView.didTapDownloadDailyHistoric = {
             self.sharePDF(dailyProcedures, PDFModel.dailyTitle, .daily, totalPercentDaily, hasDiscount, percent)
         }
@@ -142,7 +142,7 @@ final class ReportViewController: CoordinatedViewController {
         /// Share  weekly report.
         let weeklyProcedures = self.viewModel.weeklyProceduresLast7Days(procedures: procedures)
         let totalWeeklyAmount = viewModel.makeTotalAmount(weeklyProcedures)
-        let totalPercentWeeklyAmount = viewModel.calcPercentageFromString(percent: percent, baseAmount: totalWeeklyAmount)
+        let totalPercentWeeklyAmount = viewModel.percentageFromString(percent: percent, baseAmount: totalWeeklyAmount)
         self.customView.didTapDownloadWeeklyHistoric = {
             self.sharePDF(weeklyProcedures, PDFModel.weeklyTitle, .weekly, totalPercentWeeklyAmount, hasDiscount, percent)
         }
@@ -151,7 +151,7 @@ final class ReportViewController: CoordinatedViewController {
     // MARK: - Aux methods
     private func setupNavigationBar() {
         title = "Relatórios"
-        navigationController?.navigationBar.topItem?.backButtonTitle = ""
+        navigationController?.navigationBar.topItem?.backButtonTitle = .stringEmpty
         navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         navigationController?.navigationBar.barTintColor = .white
     }
@@ -164,22 +164,20 @@ final class ReportViewController: CoordinatedViewController {
         PDFBuilder.shared.savePdf(titleFile: titleFilePDF)
     }
 
-    /// Check if you have any reports registered.
+    /// Check if you have any procedure registered.
     private func sharePDF(
         _ procedure: [GetProcedureModel],
         _ titlePDF: String,
         _ type: ReportType,
-        _ totalAmount: String = "",
-        _ hasDiscount: Bool = false, _ percent: String = ""
+        _ totalAmount: String = .stringEmpty,
+        _ hasDiscount: Bool = false, _ percent: String = .stringEmpty
     ) {
         if procedure.isEmpty {
             self.showAlert(title: "Ops!", messsage: "Nenhum procedimento \(type.rawValue) cadastrado para gerar relatório")
         } else {
-            if hasDiscount {
-                self.amountDiscount = "Total com porcentagem de \(percent)% do período \(type.rawValue): R$\(totalAmount)"
-            } else {
-                self.amountDiscount = "Sem porcentagem aplicada."
-            }
+            let hasPercentageText = "Total com porcentagem de \(percent)% do período \(type.rawValue): \(totalAmount)"
+            let hasNoPercentageText = "Sem porcentagem aplicada."
+            self.amountDiscount = hasDiscount ? hasPercentageText : hasNoPercentageText
             self.procedures = procedure
             self.createAndSharePDF(titleFilePDF: titlePDF)
         }

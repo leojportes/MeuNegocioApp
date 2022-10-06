@@ -16,7 +16,7 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
     // MARK: - Init
     init(didTapDelete: @escaping (String) -> Void?) {
         self.didTapDelete = didTapDelete
-        super.init(frame: .zero)
+        super.init(height: 380)
         backgroundColor = .clear
         setupView()
     }
@@ -29,106 +29,82 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
         $0.image = UIImage(named: "ic_pix")
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
+  
+    /// Client
+    private lazy var clientLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDarkest
+        $0.numberOfLines = .zero
+        $0.text = "Cliente:"
+    }
+
+    private lazy var clientValueLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDescription
+        $0.numberOfLines = .zero
+        $0.textAlignment = .right
+        $0.text = "Leonardo Portes"
+    }
+
+    /// Procedure
+    private lazy var procedureLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDarkest
+        $0.numberOfLines = .zero
+        $0.text = "Procedimento:"
+    }
+
+    private lazy var procedureValueLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDescription
+        $0.numberOfLines = .zero
+        $0.textAlignment = .right
+    }
     
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = UIColor(named: "grayDarkest")
-        label.numberOfLines = .zero
-        label.text = "Cliente:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    ///  Payment method
+    private lazy var paymentMethodLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDarkest
+        $0.numberOfLines = .zero
+        $0.text = "Método de pagamento:"
+    }
 
-    private lazy var nameValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(named: "grayDescription")
-        label.numberOfLines = 1
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var paymentMethodValueLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDescription
+        $0.numberOfLines = .zero
+        $0.textAlignment = .right
+    }
     
-    private lazy var procedureLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = UIColor(named: "grayDarkest")
-        label.numberOfLines = .zero
-        label.text = "Procedimento:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    /// Date
+    private lazy var dateLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDarkest
+        $0.numberOfLines = .zero
+        $0.text = "Data:"
+    }
 
-    private lazy var procedureValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(named: "grayDescription")
-        label.numberOfLines = .zero
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var dateValueLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDescription
+        $0.numberOfLines = .zero
+        $0.textAlignment = .right
+    }
     
-    private lazy var priceLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = UIColor(named: "grayDarkest")
-        label.numberOfLines = .zero
-        label.text = "Valor recebido:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private lazy var priceValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(named: "grayDescription")
-        label.numberOfLines = .zero
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var paymentMethodLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = UIColor(named: "grayDarkest")
-        label.numberOfLines = 1
-        label.text = "Método de pagamento:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private lazy var paymentMethodValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(named: "grayDescription")
-        label.numberOfLines = 1
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private lazy var dateLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
-        label.textColor = UIColor(named: "grayDarkest")
-        label.numberOfLines = 1
-        label.text = "Data:"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-
-    private lazy var dateValueLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = UIColor(named: "grayDescription")
-        label.numberOfLines = 1
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    /// Amount
+    ///
+    private lazy var amountLabel = BarberLabel() .. {
+    $0.font = UIFont.boldSystemFont(ofSize: 16)
+    $0.textColor = .BarberColors.grayDarkest
+    $0.numberOfLines = .zero
+    $0.text = "Valor recebido:"
+}
+    private lazy var amountValueLabel = BarberLabel() .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 16)
+        $0.textColor = .BarberColors.grayDescription
+        $0.numberOfLines = .zero
+        $0.text = "R$00,00"
+    }
     
     private(set) lazy var deleteButton: UIButton = {
         let button = UIButton()
@@ -142,97 +118,147 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
         return button
     }()
     
+    private lazy var separatorLine1 = UIView() .. {
+        $0.backgroundColor = .BarberColors.lightGray
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    private lazy var separatorLine2 = UIView() .. {
+        $0.backgroundColor = .BarberColors.lightGray
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+
+    private lazy var separatorLine3 = UIView() .. {
+        $0.backgroundColor = .BarberColors.lightGray
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private lazy var separatorLine4 = UIView() .. {
+        $0.backgroundColor = .BarberColors.lightGray
+        $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        baseView.addSubview(nameLabel)
-        baseView.addSubview(nameValueLabel)
+       
+        baseView.addSubview(clientLabel)
+        baseView.addSubview(clientValueLabel)
+        baseView.addSubview(separatorLine1)
         baseView.addSubview(procedureLabel)
         baseView.addSubview(procedureValueLabel)
+        baseView.addSubview(separatorLine2)
+
         baseView.addSubview(paymentMethodLabel)
         baseView.addSubview(paymentMethodValueLabel)
-        baseView.addSubview(paymentTypeIcon)
-        baseView.addSubview(priceLabel)
-        baseView.addSubview(priceValueLabel)
+        baseView.addSubview(separatorLine3)
+
         baseView.addSubview(dateLabel)
         baseView.addSubview(dateValueLabel)
+        baseView.addSubview(separatorLine4)
+
+        baseView.addSubview(amountLabel)
+        baseView.addSubview(amountValueLabel)
         baseView.addSubview(deleteButton)
     }
 
     func setupConstraints() {
-        nameLabel
-            .topAnchor(in: baseView, padding: 30)
+       
+        clientLabel
+            .topAnchor(in: baseView, padding: 40)
             .leftAnchor(in: baseView, padding: 20)
-            .heightAnchor(30)
-
-        nameValueLabel
-            .topAnchor(in: baseView, padding: 30)
-            .leftAnchor(in: nameLabel, attribute: .right, padding: 10)
-            .heightAnchor(30)
+            .heightAnchor(18)
+            .widthAnchor(120)
+        
+        clientValueLabel
+            .topAnchor(in: baseView, padding: 40)
+            .leftAnchor(in: clientLabel, attribute: .right, padding: 5)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
+        
+        separatorLine1
+            .topAnchor(in: clientLabel, attribute: .bottom, padding: 10)
+            .leftAnchor(in: baseView, padding: 20)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(1)
         
         procedureLabel
-            .topAnchor(in: nameLabel, attribute: .bottom, padding: 5)
+            .topAnchor(in: separatorLine1, attribute: .bottom, padding: 10)
             .leftAnchor(in: baseView, padding: 20)
-            .heightAnchor(30)
+            .heightAnchor(18)
+            .widthAnchor(120)
         
         procedureValueLabel
-            .topAnchor(in: nameValueLabel, attribute: .bottom, padding: 5)
-            .leftAnchor(in: procedureLabel, attribute: .right, padding: 10)
-            .rightAnchor(in: baseView, padding: 5)
-            .heightAnchor(30)
+            .topAnchor(in: separatorLine1, attribute: .bottom, padding: 10)
+            .leftAnchor(in: procedureLabel, attribute: .right, padding: 5)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
         
-        paymentMethodLabel
-            .topAnchor(in: procedureLabel, attribute: .bottom, padding: 5)
+        separatorLine2
+            .topAnchor(in: procedureLabel, attribute: .bottom, padding: 10)
             .leftAnchor(in: baseView, padding: 20)
-            .heightAnchor(30)
-
-        paymentTypeIcon
-            .topAnchor(in: procedureValueLabel, attribute: .bottom, padding: 8)
-            .leftAnchor(in: paymentMethodLabel, attribute: .right, padding: 10)
-            .heightAnchor(25)
-            .widthAnchor(25)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(1)
+    
+        paymentMethodLabel
+            .topAnchor(in: separatorLine2, attribute: .bottom, padding: 10)
+            .leftAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
+            .widthAnchor(190)
         
         paymentMethodValueLabel
-            .topAnchor(in: procedureValueLabel, attribute: .bottom, padding: 8)
-            .leftAnchor(in: paymentTypeIcon, attribute: .right, padding: 5)
-            .heightAnchor(25)
+            .topAnchor(in: separatorLine2, attribute: .bottom, padding: 10)
+            .widthAnchor(100)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
         
-        priceLabel
-            .topAnchor(in: paymentMethodLabel, attribute: .bottom, padding: 8)
+        separatorLine3
+            .topAnchor(in: paymentMethodLabel, attribute: .bottom, padding: 10)
             .leftAnchor(in: baseView, padding: 20)
-            .heightAnchor(25)
-        
-        priceValueLabel
-            .topAnchor(in: paymentMethodValueLabel, attribute: .bottom, padding: 11)
-            .leftAnchor(in: priceLabel, attribute: .right, padding: 10)
-            .heightAnchor(25)
-        
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(1)
+    
         dateLabel
-            .topAnchor(in: priceLabel, attribute: .bottom, padding: 8)
+            .topAnchor(in: separatorLine3, attribute: .bottom, padding: 10)
             .leftAnchor(in: baseView, padding: 20)
-            .heightAnchor(25)
+            .heightAnchor(18)
+            .widthAnchor(120)
         
         dateValueLabel
-            .topAnchor(in: priceValueLabel, attribute: .bottom, padding: 8)
-            .leftAnchor(in: dateLabel, attribute: .right, padding: 10)
-            .heightAnchor(25)
+            .topAnchor(in: separatorLine3, attribute: .bottom, padding: 10)
+            .leftAnchor(in: dateLabel, attribute: .right, padding: 5)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
+        
+        separatorLine4
+            .topAnchor(in: dateLabel, attribute: .bottom, padding: 10)
+            .leftAnchor(in: baseView, padding: 20)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(1)
+        
+        amountLabel
+            .topAnchor(in: separatorLine4, attribute: .bottom, padding: 10)
+            .leftAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
+            .widthAnchor(120)
+        
+        amountValueLabel
+            .topAnchor(in: separatorLine4, attribute: .bottom, padding: 10)
+            .rightAnchor(in: baseView, padding: 20)
+            .heightAnchor(18)
         
         deleteButton
-            .bottomAnchor(in: baseView, padding: 40)
+            .bottomAnchor(in: baseView, padding: 30)
             .leftAnchor(in: baseView, padding: 10)
             .rightAnchor(in: baseView, padding: 10)
             .heightAnchor(45)
     }
     
-    func setupConfiguration() {
-        
-    }
-    
     func setupView(procedure: GetProcedureModel) {
         self.procedure = procedure
-        nameValueLabel.text = procedure.nameClient
+        clientValueLabel.text = procedure.nameClient
         procedureValueLabel.text = procedure.typeProcedure
         paymentMethodValueLabel.text = procedure.formPayment.rawValue
-        priceValueLabel.text = "R$\(procedure.value)"
+        amountValueLabel.text = "R$\(procedure.value)"
         dateValueLabel.text = procedure.currentDate
         setPaymentIcon(method: procedure.formPayment)
     }
@@ -250,6 +276,6 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
     @objc
     private func didTapDeleteButton() {
         self.deleteButton.loadingIndicator(show: true)
-        self.didTapDelete(procedure?._id ?? "")
+        self.didTapDelete(procedure?._id ?? .stringEmpty)
     }
 }

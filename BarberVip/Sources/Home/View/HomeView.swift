@@ -26,7 +26,7 @@ final class HomeView: UIView, ViewCodeContract {
         }
     }
     
-    var userName: String = "" {
+    var userName: String = .stringEmpty {
         didSet {
             profileView.setupLayout(nameUser: "Olá, \(userName)" )
         }
@@ -233,11 +233,13 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
         } else {
             let cell = tableview.dequeueReusableCell(withIdentifier: ProcedureTableViewCell.identifier, for: indexPath) as? ProcedureTableViewCell
             let procedure = procedures[indexPath.row]
+            let amounts = Current.shared.formatterAmounts(amounts: procedures)
+            let amount = amounts[indexPath.row]
             
             cell?.setupCustomCell(
                 title: procedure.nameClient,
                 procedure: procedure.typeProcedure,
-                price: "R$\(procedure.value.replacingOccurrences(of: ".", with: ","))",
+                price: amount,
                 paymentMethod: "\(procedure.currentDate) • \(procedure.formPayment.rawValue)"
             )
             cell?.setPaymentIcon(method: procedure.formPayment)

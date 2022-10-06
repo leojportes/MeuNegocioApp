@@ -109,6 +109,7 @@
 		C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BCE58E27B747E2005805A6 /* Icon.swift */; };
 		C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */; };
 		C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8E70C28E4F01700FD1B57 /* CardView.swift */; };
+		C0F8FCB028EE3CFA00ECEB63 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F8FCAF28EE3CFA00ECEB63 /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +238,7 @@
 		C0BCE58E27B747E2005805A6 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
 		C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weakify+Ext.swift"; sourceTree = "<group>"; };
 		C0C8E70C28E4F01700FD1B57 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C0F8FCAF28EE3CFA00ECEB63 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVipTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.release.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				C0A7414627B1957600391CE6 /* Application */,
+				C0F8FCAF28EE3CFA00ECEB63 /* Currency.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -1027,6 +1030,7 @@
 				52C4AE7F28B999E00055E384 /* AddProcedureViewController.swift in Sources */,
 				52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
+				C0F8FCB028EE3CFA00ECEB63 /* Currency.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */,
 				52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */,

@@ -15,9 +15,10 @@ class ForgetPasswordViewController: CoordinatedViewController {
     private let viewModel: ForgetPasswordViewModelProtocol?
     
     // MARK: - Init
-    init(viewModel: ForgetPasswordViewModelProtocol, coordinator: CoordinatorProtocol) {
+    init(viewModel: ForgetPasswordViewModelProtocol, coordinator: CoordinatorProtocol, email: String) {
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
+        customView.emailTextField.text = email
     }
 
     required public init?(coder: NSCoder) {

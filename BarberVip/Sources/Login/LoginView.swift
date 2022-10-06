@@ -21,6 +21,7 @@ class LoginView: UIView {
     // MARK: - Properties
     private var isSecureTextEntry: Bool = false
     weak var delegateAction: LoginScreenActionsProtocol?
+    var didEditingTextField: (String) -> Void? = { _ in nil }
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -37,7 +38,7 @@ class LoginView: UIView {
     lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .BarberColors.grayDarkest
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleEyeButton), for: .touchUpInside)
         return button
@@ -68,7 +69,6 @@ class LoginView: UIView {
                                 textColor: .darkGray)
         label.textAlignment = .center
         label.numberOfLines = 0
-        return label
         return label
     }()
     
@@ -202,18 +202,19 @@ class LoginView: UIView {
     }
     
     // MARK: - Action TextFields
-    @objc func textFieldEditingDidChange(sender: UITextField) {
+    @objc func textFieldEditingDidChange() {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         let isValidLogin = email.isValidEmail() && password.count >= 7
         isValidLogin ? isEnabledButtonLogin(true) : isEnabledButtonLogin(false)
+        didEditingTextField(email)
     }
         
     // MARK: - Action Buttons
     @objc
     func handleLoginButton() {
         loginButton.loadingIndicator(show: true)
-        delegateAction?.didTapLogin(emailTextField.text ?? "", passwordTextField.text ?? "")
+        delegateAction?.didTapLogin(emailTextField.text.orEmpty, passwordTextField.text.orEmpty)
     }
     
     @objc
@@ -278,7 +279,7 @@ extension LoginView: ViewCodeContract {
             .heightAnchor(48)
         
         eyeButton
-            .topAnchor(in: emailTextField, attribute: .bottom, padding: 16)
+            .topAnchor(in: emailTextField, attribute: .bottom, padding: 24)
             .rightAnchor(in: passwordTextField)
             .widthAnchor(48)
             .heightAnchor(48)

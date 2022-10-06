@@ -13,10 +13,9 @@ class ProcedureDetailCoordinator: BaseCoordinator {
     
     override func start() {
         guard let procedure = procedure else { return }
-        print(procedure)
         let viewModel = ProcedureDetailViewModel(coordinator: self)
         let controller = ProcedureDetailViewController(viewModel: viewModel, coordinator: self, procedure: procedure)
-        controller.modalPresentationStyle = .overFullScreen
+        controller.modalPresentationStyle = .pageSheet
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.isHidden = true

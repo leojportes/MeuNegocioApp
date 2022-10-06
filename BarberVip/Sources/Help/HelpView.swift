@@ -48,7 +48,7 @@ final class HelpView: UIView {
         $0.setTitle("Tire sua dúvida por e-mail", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.setTitleColor(.darkGray, for: .highlighted)
+        $0.setTitleColor(.BarberColors.grayDarkest, for: .highlighted)
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentHorizontalAlignment = .left

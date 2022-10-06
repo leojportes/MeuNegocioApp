@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GetProcedureModel: Decodable {
+public struct GetProcedureModel: Decodable {
     let _id: String
     let nameClient: String
     let typeProcedure: String
@@ -17,7 +17,7 @@ struct GetProcedureModel: Decodable {
     let email: String
 }
 
-struct CreateProcedureModel: Codable {
+public struct CreateProcedureModel: Codable {
     let nameClient: String
     let typeProcedure: String
     let formPayment: String

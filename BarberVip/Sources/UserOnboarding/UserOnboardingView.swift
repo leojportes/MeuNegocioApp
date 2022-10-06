@@ -200,7 +200,7 @@ extension UserOnboardingView: ViewCodeContract {
 extension UserOnboardingView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var maxLength: Int = 32
-        let currentString = (textField.text ?? "") as NSString
+        let currentString = (textField.text.orEmpty) as NSString
         let newString = currentString.replacingCharacters(in: range, with: string)
 
         if textField == stateTextField {

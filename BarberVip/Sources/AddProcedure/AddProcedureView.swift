@@ -146,10 +146,10 @@ class AddProcedureView: UIView {
 
     private func isSomeEmptyField() -> Bool {
         var result: Bool = false
-        let name = nameTextField.text ?? ""
-        let typeJob = typeJobTextField.text ?? ""
-        let payment = paymentTextField.text ?? ""
-        let value = valueTextField.text ?? ""
+        let name = nameTextField.text.orEmpty
+        let typeJob = typeJobTextField.text.orEmpty
+        let payment = paymentTextField.text.orEmpty
+        let value = valueTextField.text.orEmpty
         
         let someAreEmpty = name.isEmpty || typeJob.isEmpty || payment.isEmpty || value.isEmpty
 
@@ -165,12 +165,18 @@ class AddProcedureView: UIView {
             delegateActions?.alertEmptyField()
         } else {
             guard let email = Auth.auth().currentUser?.email else { return }
-            let amount = valueTextField.text?.replacingOccurrences(of: "R$", with: "")
+            let amount = valueTextField.text?
+                .replacingOccurrences(of: "R$", with: "")
+                .dropFirst()
+                .replacingOccurrences(of: ".", with: "")
+                .replacingOccurrences(of: ",", with: ".")
+                .replacingOccurrences(of: " ", with: ".")
+
             delegateActions?.addProcedure(
-                nameClient: nameTextField.text ?? "",
-                typeProcedure: typeJobTextField.text ?? "",
-                formPayment: paymentTextField.text ?? "",
-                value: amount ?? "",
+                nameClient: nameTextField.text.orEmpty,
+                typeProcedure: typeJobTextField.text.orEmpty,
+                formPayment: paymentTextField.text.orEmpty,
+                value: amount.orEmpty,
                 email: email
             )
         }
@@ -278,11 +284,11 @@ extension AddProcedureView: UIPickerViewDelegate, UIPickerViewDataSource {
 extension AddProcedureView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var maxLength: Int = 18
-        let currentString = (textField.text ?? "") as NSString
+        let currentString = (textField.text.orEmpty) as NSString
         let newString = currentString.replacingCharacters(in: range, with: string)
 
         if textField == valueTextField {
-            maxLength = 11
+            maxLength = 13
         }
         if textField == typeJobTextField {
             maxLength = 28

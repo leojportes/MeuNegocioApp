@@ -55,10 +55,10 @@ final class PaymentTypeAmountCardView: CardView, ViewCodeContract {
         cashAmount: String = "R$00,00",
         pixAmount: String = "R$00,00"
     ) {
-        debitAmountLabelValue.text = "R$\(debitAmount)"
-        creditAmountLabelValue.text = "R$\(creditAmount)"
-        cashAmountLabelValue.text = "R$\(cashAmount)"
-        pixAmountLabelValue.text = "R$\(pixAmount)"
+        debitAmountLabelValue.text = "\(debitAmount)"
+        creditAmountLabelValue.text = "\(creditAmount)"
+        cashAmountLabelValue.text = "\(cashAmount)"
+        pixAmountLabelValue.text = "\(pixAmount)"
     }
     
     init() {

@@ -15,6 +15,7 @@ class LoginViewController: CoordinatedViewController {
     // MARK: - Private properties
     private let customView = LoginView()
     private let viewModel: LoginViewModelProtocol
+    var email = ""
 
     init(viewModel: LoginViewModelProtocol, coordinator: CoordinatorProtocol){
         self.viewModel = viewModel
@@ -28,6 +29,7 @@ class LoginViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customView.delegateAction = self
+        customView.didEditingTextField = weakify { $0.email = $1}
         self.hideKeyboardWhenTappedAround()
     }
     
@@ -60,7 +62,7 @@ extension LoginViewController: LoginScreenActionsProtocol {
     }
     
     func didTapForgotPassword() {
-        viewModel.navigateToForgotPassword()
+        viewModel.navigateToForgotPassword(email: self.email)
     }
     
     func didTapRegister() {

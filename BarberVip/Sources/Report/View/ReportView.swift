@@ -110,7 +110,7 @@ final class ReportView: UIView {
         dailyHistoricCard.setup(
             title: "Histórico diário",
             totalAmountTitle: "Total • hoje",
-            totalAmountValue: "R$\(totalAmountValue)",
+            totalAmountValue: "\(totalAmountValue)",
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: "Baixar relatório diário"
         )
@@ -121,7 +121,7 @@ final class ReportView: UIView {
         weeklyHistoricCard.setup(
             title: "Histórico semanal",
             totalAmountTitle: "Total • últimos 7 dias",
-            totalAmountValue: "R$\(totalAmountValue)",
+            totalAmountValue: "\(totalAmountValue)",
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: "Baixar relatório semanal"
         )

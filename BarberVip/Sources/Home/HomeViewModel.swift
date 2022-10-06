@@ -5,7 +5,7 @@
 //  Created by Renilson Moreira on 31/08/22.
 //
 
-import Foundation
+import UIKit
 
 protocol HomeViewModelProtocol: AnyObject {
     var input: HomeViewModelInputProtocol { get }

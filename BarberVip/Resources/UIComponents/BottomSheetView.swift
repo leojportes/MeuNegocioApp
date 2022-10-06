@@ -14,8 +14,10 @@ public class BottomSheetView: UIView {
 
     private(set) lazy var baseView = UIView() .. {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .systemGray6
+        $0.backgroundColor = .white
         $0.roundCorners(cornerRadius: 15, typeCorners: [.topLeft, .topRight])
+        $0.layer.borderColor = UIColor.BarberColors.lightGray.cgColor
+        $0.layer.borderWidth = 1
     }
     
     private lazy var gripView = UIView() .. {
@@ -24,9 +26,11 @@ public class BottomSheetView: UIView {
         $0.roundCorners(cornerRadius: 2)
     }
 
-    public override init(frame: CGRect) {
+    public init(height: CGFloat = 300) {
         super.init(frame: .zero)
         setupView()
+        baseView
+            .heightAnchor(height)
     }
     
     required init?(coder: NSCoder) {
@@ -57,7 +61,6 @@ public class BottomSheetView: UIView {
 
     private func setupView() {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDismiss(recognizer:)))
-        // panGestureRecognizer.cancelsTouchesInView = false
         addGestureRecognizer(panGestureRecognizer)
         backgroundColor = .white
         addSubview(baseView)
@@ -72,7 +75,6 @@ public class BottomSheetView: UIView {
         baseView
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(300)
             .bottomAnchor(in: self, layoutOption: .useMargins)
         roundCorners(cornerRadius: 15, typeCorners: [.topLeft, .topRight])
     }

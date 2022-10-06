@@ -55,12 +55,12 @@ class PDFBuilder: NSObject {
     
     func savePdf(titleFile: String) {
         if let data = pdfFiledata {
-            var docURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).last as NSURL?
-            docURL = docURL?.appendingPathComponent("\(titleFile).pdf") as NSURL?
+            var docURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).first
+            docURL = docURL?.appendingPathComponent("\(titleFile).pdf")
             do {
                 try data.write(to: docURL! as URL)
                 print("PDF save successfully")
-                didSelectPreview(url: docURL! as URL, titleFile: "\(titleFile).pdf")
+                didSelectPreview(url: docURL! as URL)
             } catch {
                 print("Fail to save the pdf!!!")
                 UIViewController.findCurrentController()?.showAlert(title: "Error", messsage: "Fail to save the pdf!!!")
@@ -68,11 +68,11 @@ class PDFBuilder: NSObject {
         }
     }
 
-    func didSelectPreview(url: URL, titleFile: String) {
+    func didSelectPreview(url: URL) {
         let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         UIViewController.findCurrentController()?.present(activityController, animated: true)
         activityController.completionWithItemsHandler = { _, _, _, _ in
-            self.delete(fileName: titleFile)
+            self.delete(fileName: url)
             UIViewController.findCurrentController()?.dismiss(animated: true)
         }
     }
@@ -82,16 +82,15 @@ class PDFBuilder: NSObject {
         pdfContents.append(table)
     }
     
-    func delete(fileName: String){
-        let docDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let filePath = docDir.appendingPathComponent(fileName).absoluteURL
-        do {
-            try FileManager.default.removeItem(at: filePath)
-            print("File deleted")
+    func delete(fileName: URL){
+        if FileManager.default.fileExists(atPath: fileName.path) {
+            do {
+                try FileManager.default.removeItem(at: fileName)
+                print("File deleted")
+            }
+            catch {
+                print("Error")
+            }
         }
-        catch {
-            print("Error")
-        }
-       
     }
 }

@@ -29,8 +29,9 @@ final class LoginCoordinator: BaseCoordinator {
         configuration.navigationController?.removeViewController(LoginViewController.self)
     }
     
-    func navigateToForgotPassword() {
+    func navigateToForgotPassword(email: String) {
         let coordinator = ForgetPasswordCoordinator(with: configuration)
+        coordinator.email = email
         coordinator.start()
     }
     

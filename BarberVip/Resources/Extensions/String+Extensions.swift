@@ -55,10 +55,23 @@ extension String {
         number = NSNumber(value: (double / 100))
         
         // if first number is 0 or all numbers were deleted
-        guard number != 0 as NSNumber else { return "" }
+        guard number != 0 as NSNumber else { return .stringEmpty }
 
-        let currency = formatter.string(from: number) ?? ""
+        let currency = formatter.string(from: number).orEmpty
 
         return currency
     }
+    
+    var decimalsOnly: String {
+        removingCharacters(in: CharacterSet.decimalDigits.inverted)
+    }
+
+    func removingCharacters(in characterSet: CharacterSet) -> String {
+        components(separatedBy: characterSet).joined()
+    }
+
+}
+
+public extension Optional where Wrapped == String {
+    var orEmpty: String { self ?? .stringEmpty }
 }
