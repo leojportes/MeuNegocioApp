@@ -11,8 +11,8 @@
 		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
 		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
 		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
-		521A929828AEA8DD0024865B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 521A929728AEA8DC0024865B /* GoogleService-Info.plist */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
+		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
 		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
@@ -138,8 +138,8 @@
 		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
-		521A929728AEA8DC0024865B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = BarberVip/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
+		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -502,8 +502,8 @@
 		C0A7410F27B1953000391CE6 /* BarberVip */ = {
 			isa = PBXGroup;
 			children = (
+				5229133828EF4573005980D3 /* GoogleService-Info.plist */,
 				C0A7411E27B1953300391CE6 /* Info.plist */,
-				521A929728AEA8DC0024865B /* GoogleService-Info.plist */,
 				C0A7414527B1956B00391CE6 /* Infrastructure */,
 				C0A7414427B1955F00391CE6 /* Resources */,
 				C0A7414327B1955200391CE6 /* Sources */,
@@ -815,8 +815,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */,
+				5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */,
 				C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */,
-				521A929828AEA8DD0024865B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
