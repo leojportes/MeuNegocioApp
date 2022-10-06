@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C0A7410C27B1953000391CE6"
-               BuildableName = "BarberVip.app"
-               BlueprintName = "BarberVip"
-               ReferencedContainer = "container:BarberVip.xcodeproj">
+               BuildableName = "MeuNegocio.app"
+               BlueprintName = "MeuNegocio"
+               ReferencedContainer = "container:MeuNegocio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C0A7412227B1953300391CE6"
-               BuildableName = "BarberVipTests.xctest"
-               BlueprintName = "BarberVipTests"
-               ReferencedContainer = "container:BarberVip.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C0A7412D27B1953400391CE6"
-               BuildableName = "BarberVipUITests.xctest"
-               BlueprintName = "BarberVipUITests"
-               ReferencedContainer = "container:BarberVip.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -65,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C0A7410C27B1953000391CE6"
-            BuildableName = "BarberVip.app"
-            BlueprintName = "BarberVip"
-            ReferencedContainer = "container:BarberVip.xcodeproj">
+            BuildableName = "MeuNegocio.app"
+            BlueprintName = "MeuNegocio"
+            ReferencedContainer = "container:MeuNegocio.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C0A7410C27B1953000391CE6"
-            BuildableName = "BarberVip.app"
-            BlueprintName = "BarberVip"
-            ReferencedContainer = "container:BarberVip.xcodeproj">
+            BuildableName = "MeuNegocio.app"
+            BlueprintName = "MeuNegocio"
+            ReferencedContainer = "container:MeuNegocio.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
