@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import MessageUI
 import SafariServices
 
@@ -74,6 +75,10 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
         let values = proceduresAmounts.map({ $0.plata })
         let amounts = values.map { $0.rawValue.plata.string(currency: .br) }
         return amounts
+    }
+    
+    var isEmailVerified: Bool {
+        Auth.auth().currentUser?.isEmailVerified ?? false
     }
 
 }

@@ -199,7 +199,7 @@ extension ReportView: ViewCodeContract {
             .centerY(in: applydiscountCardView)
             .leftAnchor(in: applydiscountTitleLabel, attribute: .right, padding: 10)
             .heightAnchor(20)
-            .widthAnchor(65)
+            .widthAnchor(72)
         
         /// Historic cards constraints
         dailyHistoricCard

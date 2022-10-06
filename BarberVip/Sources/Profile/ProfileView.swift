@@ -109,14 +109,14 @@ class ProfileView: UIView {
     }()
     
     private lazy var emailVerifiedLabel = UILabel() .. {
-        guard let isEmailVerified = Auth.auth().currentUser?.isEmailVerified else { return }
+        let isEmailVerified = Current.shared.isEmailVerified
         $0.font = UIFont.systemFont(ofSize: 14)
         $0.text = isEmailVerified ? "E-mail verificado" : "E-mail não verificado"
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private lazy var verifyEmailButton = UIButton() .. {
-        guard let isEmailVerified = Auth.auth().currentUser?.isEmailVerified else { return }
+        let isEmailVerified = Current.shared.isEmailVerified
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.roundCorners(cornerRadius: 10)
         $0.isHidden = isEmailVerified

@@ -16,6 +16,7 @@ protocol LoginViewModelProtocol: AnyObject {
     func navigateToUserOnboarding()
     func navigateToForgotPassword(email: String)
     func navigateToRegister()
+    func navigateToCheckYourAccount()
 }
 
 class LoginViewModel: LoginViewModelProtocol {
@@ -98,5 +99,8 @@ class LoginViewModel: LoginViewModelProtocol {
     func navigateToRegister() {
         coordinator?.navigateToRegister()
     }
-    
+
+    func navigateToCheckYourAccount() {
+        coordinator?.checkYourAccount()
+    }
 }

@@ -110,6 +110,10 @@
 		C0C3DA8B28BFC3D500B69047 /* Weakify+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */; };
 		C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C8E70C28E4F01700FD1B57 /* CardView.swift */; };
 		C0F8FCB028EE3CFA00ECEB63 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F8FCAF28EE3CFA00ECEB63 /* Currency.swift */; };
+		C0F8FE6D28EE94CA00ECEB63 /* CheckYourAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F8FE6C28EE94CA00ECEB63 /* CheckYourAccountCoordinator.swift */; };
+		C0F8FE6F28EE94D300ECEB63 /* CheckYourAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F8FE6E28EE94D300ECEB63 /* CheckYourAccountView.swift */; };
+		C0F8FE7128EE94DC00ECEB63 /* CheckYourAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F8FE7028EE94DC00ECEB63 /* CheckYourAccountController.swift */; };
+		C0F8FE7328EE950A00ECEB63 /* CheckYourAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F8FE7228EE950A00ECEB63 /* CheckYourAccountViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +243,10 @@
 		C0C3DA8A28BFC3D500B69047 /* Weakify+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weakify+Ext.swift"; sourceTree = "<group>"; };
 		C0C8E70C28E4F01700FD1B57 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		C0F8FCAF28EE3CFA00ECEB63 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		C0F8FE6C28EE94CA00ECEB63 /* CheckYourAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourAccountCoordinator.swift; sourceTree = "<group>"; };
+		C0F8FE6E28EE94D300ECEB63 /* CheckYourAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourAccountView.swift; sourceTree = "<group>"; };
+		C0F8FE7028EE94DC00ECEB63 /* CheckYourAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourAccountController.swift; sourceTree = "<group>"; };
+		C0F8FE7228EE950A00ECEB63 /* CheckYourAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourAccountViewModel.swift; sourceTree = "<group>"; };
 		C160E37F4A49EE00E9AFA54C /* Pods_BarberVipTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVipTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C42FEC5017D2D9EE905CE413 /* Pods_BarberVip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BarberVip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.release.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
@@ -291,6 +299,7 @@
 		522D901D289A00DF0085575A /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				C0F8FE6B28EE94AD00ECEB63 /* CheckYourAccount */,
 				522D901B289A00C40085575A /* LoginCoordinator.swift */,
 				522D901E289A00DF0085575A /* LoginView.swift */,
 				522D901F289A00DF0085575A /* LoginViewController.swift */,
@@ -684,6 +693,17 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		C0F8FE6B28EE94AD00ECEB63 /* CheckYourAccount */ = {
+			isa = PBXGroup;
+			children = (
+				C0F8FE6C28EE94CA00ECEB63 /* CheckYourAccountCoordinator.swift */,
+				C0F8FE6E28EE94D300ECEB63 /* CheckYourAccountView.swift */,
+				C0F8FE7028EE94DC00ECEB63 /* CheckYourAccountController.swift */,
+				C0F8FE7228EE950A00ECEB63 /* CheckYourAccountViewModel.swift */,
+			);
+			path = CheckYourAccount;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -984,6 +1004,7 @@
 				C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */,
 				C0A7419827B19C9F00391CE6 /* HomeView.swift in Sources */,
 				C0BCE58727B731C2005805A6 /* IconButton.swift in Sources */,
+				C0F8FE6D28EE94CA00ECEB63 /* CheckYourAccountCoordinator.swift in Sources */,
 				C080E9B528E7D80700555D80 /* PDFContent.swift in Sources */,
 				52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */,
 				52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */,
@@ -995,6 +1016,7 @@
 				52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
 				C016B61728E0AFC4007372E4 /* ProcedureDetailViewController.swift in Sources */,
+				C0F8FE7128EE94DC00ECEB63 /* CheckYourAccountController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
@@ -1016,8 +1038,10 @@
 				52B8A08B28E7990500B1C9F7 /* UserModelList.swift in Sources */,
 				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
+				C0F8FE7328EE950A00ECEB63 /* CheckYourAccountViewModel.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */,
+				C0F8FE6F28EE94D300ECEB63 /* CheckYourAccountView.swift in Sources */,
 				52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */,
 				C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */,
 				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,

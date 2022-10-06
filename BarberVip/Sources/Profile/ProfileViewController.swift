@@ -64,22 +64,13 @@ class ProfileViewController: CoordinatedViewController {
             )
         }
     }
-    
-//    func setupCustomView() {
-//        guard let user = Auth.auth().currentUser?.email else { return }
-//        customView.setup(user: "Renilson Moreira",
-//                         email: user,
-//                         barbershop: "Barbearia: Carminnati",
-//                         city: "São jose/SC",
-//                         isEmailVerified: isEmailVerified)
-//    }
 
     private var authUser : User? {
         return Auth.auth().currentUser
     }
 
     public func sendVerificationMail() {
-        if self.authUser != nil && !self.authUser!.isEmailVerified {
+        if self.authUser != nil && Current.shared.isEmailVerified.not {
             self.authUser!.sendEmailVerification(completion: { (error) in
                 self.showAlert(
                     title: "Atenção!",

@@ -32,6 +32,12 @@ class LoginViewController: CoordinatedViewController {
         customView.didEditingTextField = weakify { $0.email = $1}
         self.hideKeyboardWhenTappedAround()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        customView.loginButton.loadingIndicator(show: false)
+        dismissKeyboard()
+    }
     
     override func loadView() {
         super.loadView()
@@ -45,6 +51,12 @@ class LoginViewController: CoordinatedViewController {
     }
     
     private func checkNewUser() {
+        if Current.shared.isEmailVerified.not {
+            DispatchQueue.main.async {
+                self.viewModel.navigateToCheckYourAccount()
+            }
+            return
+        }
         self.customView.loginButton.loadingIndicator(show: false)
         viewModel.fetchUser { [ weak self ] result in
             DispatchQueue.main.async {

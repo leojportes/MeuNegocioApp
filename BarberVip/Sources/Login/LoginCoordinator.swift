@@ -39,6 +39,11 @@ final class LoginCoordinator: BaseCoordinator {
         let coordinator = CreateAccountCoordinator(with: configuration)
         coordinator.start()
     }
+
+    func checkYourAccount() {
+        let coordinator = CheckYourAccountCoordinator(with: configuration)
+        coordinator.start()
+    }
 }
 
 extension UINavigationController {
