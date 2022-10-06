@@ -1,6 +1,6 @@
 //
 //  BarberLabel.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 28/09/22.
 //

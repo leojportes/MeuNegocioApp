@@ -1,14 +1,14 @@
 //
-//  BarberVipTests.swift
-//  BarberVipTests
+//  MeuNegocioTests.swift
+//  MeuNegocioTests
 //
 //  Created by Leonardo Portes on 07/02/22.
 //
 
 import XCTest
-@testable import BarberVip
+@testable import MeuNegocio
 
-class BarberVipTests: XCTestCase {
+class MeuNegocioTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

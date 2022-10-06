@@ -1,6 +1,6 @@
 //
 //  Currency.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 05/10/22.
 //

@@ -1,6 +1,6 @@
 //
 //  PaymentMethodType.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 24/09/22.
 //

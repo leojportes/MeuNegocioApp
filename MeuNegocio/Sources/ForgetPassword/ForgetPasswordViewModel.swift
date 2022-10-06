@@ -1,6 +1,6 @@
 //
 //  ForgetPasswordViewModel.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 04/09/22.
 //

@@ -1,6 +1,6 @@
 //
 //  CardButtonView.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Renilson Moreira on 26/09/22.
 //

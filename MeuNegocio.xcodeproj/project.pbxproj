@@ -72,8 +72,8 @@
 		C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7411227B1953000391CE6 /* SceneDelegate.swift */; };
 		C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0A7411927B1953300391CE6 /* Assets.xcassets */; };
 		C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0A7411B27B1953300391CE6 /* LaunchScreen.storyboard */; };
-		C0A7412827B1953400391CE6 /* BarberVipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7412727B1953400391CE6 /* BarberVipTests.swift */; };
-		C0A7413327B1953400391CE6 /* BarberVipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7413227B1953400391CE6 /* BarberVipUITests.swift */; };
+		C0A7412827B1953400391CE6 /* MeuNegocioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7412727B1953400391CE6 /* MeuNegocioTests.swift */; };
+		C0A7413327B1953400391CE6 /* MeuNegocioUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7413227B1953400391CE6 /* MeuNegocioUITests.swift */; };
 		C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7416227B197DE00391CE6 /* BaseCoordinator.swift */; };
 		C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7416A27B1980300391CE6 /* Coordinator.swift */; };
 		C0A7417027B1981E00391CE6 /* CoordinatorConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A7416F27B1981E00391CE6 /* CoordinatorConfiguration.swift */; };
@@ -210,10 +210,10 @@
 		C0A7411C27B1953300391CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0A7411E27B1953300391CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0A7412327B1953300391CE6 /* MeuNegocioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeuNegocioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0A7412727B1953400391CE6 /* BarberVipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberVipTests.swift; sourceTree = "<group>"; };
+		C0A7412727B1953400391CE6 /* MeuNegocioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeuNegocioTests.swift; sourceTree = "<group>"; };
 		C0A7412927B1953400391CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0A7412E27B1953400391CE6 /* MeuNegocioUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeuNegocioUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0A7413227B1953400391CE6 /* BarberVipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberVipUITests.swift; sourceTree = "<group>"; };
+		C0A7413227B1953400391CE6 /* MeuNegocioUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeuNegocioUITests.swift; sourceTree = "<group>"; };
 		C0A7413427B1953400391CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0A7416227B197DE00391CE6 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		C0A7416A27B1980300391CE6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -526,7 +526,7 @@
 		C0A7412627B1953400391CE6 /* MeuNegocioTests */ = {
 			isa = PBXGroup;
 			children = (
-				C0A7412727B1953400391CE6 /* BarberVipTests.swift */,
+				C0A7412727B1953400391CE6 /* MeuNegocioTests.swift */,
 				C0A7412927B1953400391CE6 /* Info.plist */,
 			);
 			path = MeuNegocioTests;
@@ -535,7 +535,7 @@
 		C0A7413127B1953400391CE6 /* MeuNegocioUITests */ = {
 			isa = PBXGroup;
 			children = (
-				C0A7413227B1953400391CE6 /* BarberVipUITests.swift */,
+				C0A7413227B1953400391CE6 /* MeuNegocioUITests.swift */,
 				C0A7413427B1953400391CE6 /* Info.plist */,
 			);
 			path = MeuNegocioUITests;
@@ -1100,7 +1100,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0A7412827B1953400391CE6 /* BarberVipTests.swift in Sources */,
+				C0A7412827B1953400391CE6 /* MeuNegocioTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1108,7 +1108,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0A7413327B1953400391CE6 /* BarberVipUITests.swift in Sources */,
+				C0A7413327B1953400391CE6 /* MeuNegocioUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

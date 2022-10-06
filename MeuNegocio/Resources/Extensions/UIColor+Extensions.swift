@@ -1,6 +1,6 @@
 //
 //  UIColor+Extensions.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 11/02/22.
 //

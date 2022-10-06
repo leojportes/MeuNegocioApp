@@ -1,6 +1,6 @@
 //
 //  CheckYourAccountCoordinator.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 06/10/22.
 //

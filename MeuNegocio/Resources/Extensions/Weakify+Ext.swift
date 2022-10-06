@@ -1,6 +1,6 @@
 //
 //  Weakify+Ext.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Leonardo Portes on 31/08/22.
 //

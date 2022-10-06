@@ -1,6 +1,6 @@
 //
 //  UserModel.swift
-//  BarberVip
+//  MeuNegocio
 //
 //  Created by Renilson Moreira on 30/09/22.
 //
