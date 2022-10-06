@@ -134,7 +134,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		114D0EC1AB5EEE04CE7BCA8C /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip-BarberVipUITests.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1BBAABF10EDEEFBE228E5E7F /* Pods-MeuNegocio-MeuNegocioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio-MeuNegocioUITests.release.xcconfig"; path = "Target Support Files/Pods-MeuNegocio-MeuNegocioUITests/Pods-MeuNegocio-MeuNegocioUITests.release.xcconfig"; sourceTree = "<group>"; };
 		2DB8F208EE971E258BE28F19 /* Pods_MeuNegocioTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocioTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -176,7 +175,6 @@
 		9B12E7B38629F4F8CF32B9E9 /* Pods-MeuNegocioTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocioTests.release.xcconfig"; path = "Target Support Files/Pods-MeuNegocioTests/Pods-MeuNegocioTests.release.xcconfig"; sourceTree = "<group>"; };
 		A763DF36C8992494B8D43931 /* Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocio-MeuNegocioUITests/Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A812FC4DE1C1536796589F86 /* Pods-MeuNegocioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocioTests.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocioTests/Pods-MeuNegocioTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.debug.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.debug.xcconfig"; sourceTree = "<group>"; };
 		BFDA773EF76D5958779A60D2 /* Pods_MeuNegocio_MeuNegocioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocio_MeuNegocioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureModel.swift; sourceTree = "<group>"; };
 		C016B44028DFE10B007372E4 /* PaymentMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodType.swift; sourceTree = "<group>"; };
@@ -255,10 +253,6 @@
 		C0F8FE7028EE94DC00ECEB63 /* CheckYourAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourAccountController.swift; sourceTree = "<group>"; };
 		C0F8FE7228EE950A00ECEB63 /* CheckYourAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckYourAccountViewModel.swift; sourceTree = "<group>"; };
 		CF1F82365079616D8B4B8EFD /* Pods_MeuNegocio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip.release.xcconfig"; path = "Target Support Files/Pods-BarberVip/Pods-BarberVip.release.xcconfig"; sourceTree = "<group>"; };
-		E60179A7D313D54E7AC3CC8C /* Pods-BarberVipTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVipTests.release.xcconfig"; path = "Target Support Files/Pods-BarberVipTests/Pods-BarberVipTests.release.xcconfig"; sourceTree = "<group>"; };
-		F05890684EE76FDB98729E18 /* Pods-BarberVipTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVipTests.debug.xcconfig"; path = "Target Support Files/Pods-BarberVipTests/Pods-BarberVipTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FCF12B4CFC6E23D786CAA542 /* Pods-BarberVip-BarberVipUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BarberVip-BarberVipUITests.release.xcconfig"; path = "Target Support Files/Pods-BarberVip-BarberVipUITests/Pods-BarberVip-BarberVipUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,12 +286,6 @@
 		3A35A252472B7D91FF4B006E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BFBDFE8555763F7AEF72B9BE /* Pods-BarberVip.debug.xcconfig */,
-				DC47428406BE70C901F989E8 /* Pods-BarberVip.release.xcconfig */,
-				114D0EC1AB5EEE04CE7BCA8C /* Pods-BarberVip-BarberVipUITests.debug.xcconfig */,
-				FCF12B4CFC6E23D786CAA542 /* Pods-BarberVip-BarberVipUITests.release.xcconfig */,
-				F05890684EE76FDB98729E18 /* Pods-BarberVipTests.debug.xcconfig */,
-				E60179A7D313D54E7AC3CC8C /* Pods-BarberVipTests.release.xcconfig */,
 				74DC456717022ECD73517F3E /* Pods-MeuNegocio.debug.xcconfig */,
 				80E8B08C5E3D8B166829EB01 /* Pods-MeuNegocio.release.xcconfig */,
 				A763DF36C8992494B8D43931 /* Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig */,
