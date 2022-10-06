@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-9R-Am1">
-                                <rect key="frame" x="144" y="372" width="126" height="162"/>
+                                <rect key="frame" x="142" y="383" width="130" height="130"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="1Zo-7c-yce"/>
-                                    <constraint firstAttribute="width" constant="126" id="LoB-Hf-sKA"/>
+                                    <constraint firstAttribute="height" constant="130" id="1Zo-7c-yce"/>
+                                    <constraint firstAttribute="width" constant="130" id="LoB-Hf-sKA"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" name="lightBrown"/>
                         <constraints>
                             <constraint firstItem="AAG-9R-Am1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5iT-iy-4nl"/>
-                            <constraint firstItem="AAG-9R-Am1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Fxi-vi-5e5"/>
+                            <constraint firstItem="AAG-9R-Am1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-5" id="Fxi-vi-5e5"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -39,7 +39,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launchScreen" width="120" height="120"/>
+        <image name="launchScreen" width="512" height="512"/>
         <namedColor name="lightBrown">
             <color red="0.89899998903274536" green="0.74599999189376831" blue="0.32300001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
