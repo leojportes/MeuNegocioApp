@@ -134,7 +134,7 @@ class CreateAccountView: UIView {
     // MARK: - Action Buttons
     @objc
     func handleCreateAccountButton() {
-        print("conta criada com sucesso")
+        createAccountButton.loadingIndicator(show: true)
         createAccount?(emailTextField.text.orEmpty, passwordTextField.text.orEmpty)
     }
     

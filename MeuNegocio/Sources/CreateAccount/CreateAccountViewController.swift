@@ -37,8 +37,9 @@ class CreateAccountViewController: CoordinatedViewController {
     private func createAccount() {
         customView?.createAccount = weakify { weakSelf, email, password in
             weakSelf.viewModel.createAccount(email, password, resultCreateUser: { result, descriptionError  in
+                weakSelf.customView?.createAccountButton.loadingIndicator(show: false)
                 if result {
-                    weakSelf.viewModel.closed()
+                    weakSelf.accountCreatedSuccessfully()
                 } else {
                     weakSelf.showAlert(title: "Atenção", messsage: descriptionError)
                 }
@@ -46,5 +47,12 @@ class CreateAccountViewController: CoordinatedViewController {
         }
         customView?.closedView = weakify { $0.viewModel.closed()}
     }
+    
+    private func accountCreatedSuccessfully() {
+        showAlert(title: "Parabéns!", messsage: "Conta criada com sucesso.") {
+            self.viewModel.closed()
+        }
+    }
+
     
 }
