@@ -19,6 +19,7 @@ class ForgetPasswordViewController: CoordinatedViewController {
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
         customView.emailTextField.text = email
+        customView.isEnabledSendButton(email.isEmpty.not)
     }
 
     required public init?(coder: NSCoder) {

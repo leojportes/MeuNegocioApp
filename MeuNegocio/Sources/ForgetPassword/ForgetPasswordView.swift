@@ -74,7 +74,7 @@ final class ForgetPasswordView: UIView {
         return button
     }()
 
-    private func isEnabledSendButton(_ isEnabled: Bool) {
+    func isEnabledSendButton(_ isEnabled: Bool) {
         if isEnabled {
             sendButton.backgroundColor = .BarberColors.lightBrown
             sendButton.isEnabled = true

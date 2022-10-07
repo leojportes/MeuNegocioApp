@@ -109,11 +109,9 @@ class CreateAccountView: UIView {
     func isEnabledButtonCreateAccount(_ isEnabled: Bool) {
         if isEnabled {
             createAccountButton.backgroundColor = .BarberColors.lightBrown
-            createAccountButton.setTitleColor(.BarberColors.darkGray, for: .normal)
             createAccountButton.isEnabled = true
         }else {
             createAccountButton.backgroundColor = .systemGray
-            createAccountButton.setTitleColor(.white, for: .normal)
             createAccountButton.isEnabled = false
         }
     }
