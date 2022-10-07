@@ -13,15 +13,15 @@ protocol AddProcedureActionsProtocol: AnyObject {
     func alertEmptyField()
 }
 
-class AddProcedureView: UIView {
+class AddProcedureView: MNView {
     
     // MARK: - Properties
     weak var delegateActions: AddProcedureActionsProtocol?
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
     
     // MARK: - Init
-    override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
+    override init() {
+        super.init()
         setupView()
     }
     
@@ -44,19 +44,6 @@ class AddProcedureView: UIView {
         $0.roundCorners(cornerRadius: 2)
     }
     
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.bounces = false
-        return scrollView
-    }()
-    
-    private lazy var contentView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private lazy var subTitleLabel: BarberLabel = {
         let label = BarberLabel(text: "Preencha todos os campos abaixo para \n adicionar um novo procedimento.",
                                 font: UIFont.systemFont(ofSize: 16),
@@ -64,6 +51,15 @@ class AddProcedureView: UIView {
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
+    }()
+    
+    lazy var containerStack: UIStackView = {
+        let stack = UIStackView(arrangedSubviews: [nameTextField, typeJobTextField, paymentTextField, valueTextField])
+        stack.axis = .vertical
+        stack.spacing = 24
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
     }()
 
     private lazy var nameTextField: CustomTextField = {
@@ -76,6 +72,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
+        textField.heightAnchor(48)
         textField.delegate = self
         return textField
     }()
@@ -90,6 +87,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
+        textField.heightAnchor(48)
         textField.delegate = self
         return textField
     }()
@@ -104,6 +102,7 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .default
         )
+        textField.heightAnchor(48)
         textField.delegate = self
         textField.inputView = pickerView
         return textField
@@ -119,6 +118,23 @@ class AddProcedureView: UIView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
+        textField.heightAnchor(48)
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
+        return textField
+    }()
+    
+    private lazy var teste: CustomTextField = {
+        let textField = CustomTextField(
+            titlePlaceholder: "R$",
+            colorPlaceholder: .lightGray,
+            textColor: .BarberColors.darkGray,
+            radius: 5,
+            borderColor: UIColor.systemGray.cgColor,
+            borderWidth: 0.5,
+            keyboardType: .numberPad
+        )
+        textField.heightAnchor(48)
         textField.delegate = self
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         return textField
@@ -185,15 +201,10 @@ class AddProcedureView: UIView {
 }
 extension AddProcedureView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(scrollView)
         addSubview(gripView)
-        scrollView.addSubview(contentView)
-        contentView.addSubview(subTitleLabel)
-        contentView.addSubview(nameTextField)
-        contentView.addSubview(typeJobTextField)
-        contentView.addSubview(paymentTextField)
-        contentView.addSubview(valueTextField)
-        contentView.addSubview(addButton)
+        addSubview(subTitleLabel)
+        addSubview(containerStack)
+        addSubview(addButton)
     }
     
     func setupConstraints() {
@@ -203,55 +214,20 @@ extension AddProcedureView: ViewCodeContract {
             .centerX(in: self)
             .heightAnchor(4)
             .widthAnchor(34)
-
-        let heightConstraint = contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        heightConstraint.priority = UILayoutPriority(400)
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: gripView.bottomAnchor, constant: 10),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -160),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            heightConstraint,
-         ])
         
         subTitleLabel
-            .topAnchor(in: contentView, padding: 60)
-            .centerX(in: contentView)
+            .topAnchor(in: self, padding: 80)
+            .centerX(in: self)
         
-        nameTextField
-            .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 32)
-            .leftAnchor(in: contentView, attribute: .left, padding: 16)
-            .rightAnchor(in: contentView, attribute: .right, padding: 16)
-            .heightAnchor(48)
-        
-        typeJobTextField
-            .topAnchor(in: nameTextField, attribute: .bottom, padding: 24)
-            .leftAnchor(in: contentView, attribute: .left, padding: 16)
-            .rightAnchor(in: contentView, attribute: .right, padding: 16)
-            .heightAnchor(48)
-        
-        paymentTextField
-            .topAnchor(in: typeJobTextField, attribute: .bottom, padding: 24)
-            .leftAnchor(in: contentView, attribute: .left, padding: 16)
-            .rightAnchor(in: contentView, attribute: .right, padding: 16)
-            .heightAnchor(48)
-        
-        valueTextField
-            .topAnchor(in: paymentTextField, attribute: .bottom, padding: 24)
-            .leftAnchor(in: contentView, attribute: .left, padding: 16)
-            .rightAnchor(in: contentView, attribute: .right, padding: 16)
-            .heightAnchor(48)
+        containerStack
+            .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 30)
+            .leftAnchor(in: self, attribute: .left, padding: 16)
+            .rightAnchor(in: self, attribute: .right, padding: 16)
     
         addButton
-            .topAnchor(in: valueTextField, attribute: .bottom, padding: 54)
-            .leftAnchor(in: contentView, attribute: .left, padding: 16)
-            .rightAnchor(in: contentView, attribute: .right, padding: 16)
+            .topAnchor(in: containerStack, attribute: .bottom, padding: 54)
+            .leftAnchor(in: self, attribute: .left, padding: 16)
+            .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
     }
     
@@ -294,5 +270,13 @@ extension AddProcedureView: UITextFieldDelegate {
             maxLength = 28
         }
         return newString.count <= maxLength
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
     }
 }

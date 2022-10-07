@@ -13,14 +13,14 @@ protocol CreateUserOnboardingProtocol: AnyObject {
     func alertEmptyField()
 }
 
-class UserOnboardingView: UIView {
+class UserOnboardingView: MNView {
 
     // MARK: - Properties
     weak var delegate: CreateUserOnboardingProtocol?
-    
+        
     // MARK: - Init
-    init() {
-        super.init(frame: .zero)
+    override init() {
+        super.init()
         setupView()
     }
     
@@ -155,7 +155,6 @@ class UserOnboardingView: UIView {
             )
         }
     }
-    
 }
 
 extension UserOnboardingView: ViewCodeContract {
@@ -207,5 +206,13 @@ extension UserOnboardingView: UITextFieldDelegate {
             maxLength = 2
         }
         return newString.count <= maxLength
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        self.activeTextField = nil
     }
 }
