@@ -75,7 +75,7 @@ class UserOnboardingView: UIView {
     
     lazy var barbershopTextField: CustomTextField = {
         let textField = CustomTextField(
-            titlePlaceholder: "Digite o nome da barbearia",
+            titlePlaceholder: "Digite o nome da sua empresa",
             colorPlaceholder: .lightGray,
             textColor: .BarberColors.darkGray,
             radius: 5,

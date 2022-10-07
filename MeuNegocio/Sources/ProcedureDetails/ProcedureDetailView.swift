@@ -255,10 +255,11 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
     
     func setupView(procedure: GetProcedureModel) {
         self.procedure = procedure
+        let amount = Double(procedure.value) ?? 0.0
         clientValueLabel.text = procedure.nameClient
         procedureValueLabel.text = procedure.typeProcedure
         paymentMethodValueLabel.text = procedure.formPayment.rawValue
-        amountValueLabel.text = "R$\(procedure.value)"
+        amountValueLabel.text = amount.plata.string(currency: .br)
         dateValueLabel.text = procedure.currentDate
         setPaymentIcon(method: procedure.formPayment)
     }
@@ -269,7 +270,7 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
         case .cash: paymentTypeIcon.image = UIImage(named: "ic_cash")
         case .credit: paymentTypeIcon.image = UIImage(named: "ic_card")
         case .debit: paymentTypeIcon.image = UIImage(named: "ic_card")
-        case .other: paymentTypeIcon.image = UIImage(named: "ic_cash") // WIP - Adicionar um ícone para .other
+        case .other: paymentTypeIcon.image = UIImage(named: "ic_cash")
         }
     }
 

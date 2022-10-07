@@ -83,7 +83,7 @@ class ReportViewModel: ReportViewModelProtocol {
         
         guard let percentage = Double(percent) else { return ""}
    
-        let percentageAmount = STNPercentage(rawValue: (percentage * amount) / 100)
+        let percentageAmount = Percentage(rawValue: (percentage * amount) / 100)
             .rawValue
             .rounded(.down)
             .plata
@@ -94,9 +94,9 @@ class ReportViewModel: ReportViewModelProtocol {
 }
 
 private extension String {
-    var percentage: STNPercentage? {
+    var percentage: Percentage? {
         if let doubleValue = Double(self) {
-            return STNPercentage(rawValue: doubleValue)
+            return Percentage(rawValue: doubleValue)
         }
         return nil
     }
@@ -104,7 +104,7 @@ private extension String {
 
 import Foundation
 ///
-public struct STNPercentage: RawRepresentable, ExpressibleByIntegerLiteral {
+public struct Percentage: RawRepresentable, ExpressibleByIntegerLiteral {
     public typealias IntegerLiteralType = Double
 
     public var rawValue: Double
@@ -161,18 +161,18 @@ public struct STNPercentage: RawRepresentable, ExpressibleByIntegerLiteral {
 
 // MARK: - CustomDebugStringConvertible
 
-extension STNPercentage: CustomDebugStringConvertible {
+extension Percentage: CustomDebugStringConvertible {
     public var debugDescription: String { formattedValue }
 }
 
 // MARK: - Equatable, Comparable, Hashable
 
-extension STNPercentage: Equatable, Comparable, Codable {
-    public static func == (lhs: STNPercentage, rhs: STNPercentage) -> Bool {
+extension Percentage: Equatable, Comparable, Codable {
+    public static func == (lhs: Percentage, rhs: Percentage) -> Bool {
         lhs.rawValue == rhs.rawValue
     }
 
-    public static func < (lhs: STNPercentage, rhs: STNPercentage) -> Bool {
+    public static func < (lhs: Percentage, rhs: Percentage) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 

@@ -15,7 +15,7 @@ extension ReportViewController: PDFConfigurableTableDataSource {
     }
     
     func getPageLogo(table: ConfigurableTable!) -> String! {
-        "BarberImage"
+        "ic_my-business"
     }
     
     func getHeaderVisiblity(table: ConfigurableTable!) -> Bool! {
@@ -40,7 +40,7 @@ extension ReportViewController: PDFConfigurableTableDataSource {
         let amounts = Current.shared.formatterAmounts(amounts: procedures)
         let amount = amounts[indexRow! - 1]
 
-        let column1 = ConfigurableTable.make_image_cell(imageName:"ic_\(procedure.formPayment).png")
+        let column1 = ConfigurableTable.make_string_cell(val: procedure.formPayment.rawValue)
         let column2 = ConfigurableTable.make_string_cell(val: procedure.nameClient)
         let column3 = ConfigurableTable.make_string_cell(val: procedure.currentDate)
         let column4 = ConfigurableTable.make_string_cell(val: amount)
