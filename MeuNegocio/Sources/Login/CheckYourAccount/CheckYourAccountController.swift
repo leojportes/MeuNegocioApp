@@ -49,10 +49,11 @@ class CheckYourAccountController: CoordinatedViewController {
                 self.showAlert(
                     title: "Atenção!",
                     messsage: "Foi enviado para seu email um link de verificação. Após verificar, retorne ao app para efetuar o login. \n Verifique sua caixa de spam."
-                )
+                ) {self.customView.verifiedEmailButton.loadingIndicator(show: false)}
             }
-        } else { self.showAlert() }
-        self.customView.verifiedEmailButton.loadingIndicator(show: false)
+        } else {
+            self.showAlert() { self.customView.verifiedEmailButton.loadingIndicator(show: false)}
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
