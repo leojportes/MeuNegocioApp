@@ -22,32 +22,6 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
     }
 
     // MARK: - Public methods
-    
-    // - Paramiters
-    // - sendTo: [String]
-    //   Default value = ["mybarbersuport@gmail.com"]
-    // - subject: String
-    //   Default value = "Tenho uma dúvida"
-    // - body: String
-    //   Default value = ""
-    // - isHTML: Bool
-    //   Default value = false
-    /// Method that presents the composition of email.
-    public func openMailCompose(
-        sendTo: [String] = ["mybarbersuport@gmail.com"],
-        subject: String = "Tenho uma dúvida",
-        body: String = "",
-        isHTML: Bool = false
-    ) -> MFMailComposeViewController {
-        lazy var mailComposeController = MFMailComposeViewController() .. {
-            $0.mailComposeDelegate = self
-            $0.setToRecipients(["mybarbersuport@gmail.com"])
-            $0.setSubject("")
-            $0.setMessageBody("", isHTML: false)
-        }
-        mailComposeController.modalPresentationStyle = .pageSheet
-        return mailComposeController
-    }
 
     public func openWhatsapp(title: String, messsage: String) {
         let currentController = UIViewController.findCurrentController()

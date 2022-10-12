@@ -17,11 +17,17 @@ class HelpViewController: CoordinatedViewController, MFMailComposeViewController
     )
     
     private let viewModel: HelpViewModelProtocol
-    
+
     func openMailCompose() {
-        let vc = Current.shared.openMailCompose()
-        vc.mailComposeDelegate = self
-        self.present(vc, animated: true)
+        let mailComposeController = MFMailComposeViewController() .. {
+            $0.mailComposeDelegate = self
+            $0.setToRecipients(["innovatestechsc@gmail.com"])
+            $0.setSubject("Tenho uma dúvida")
+            $0.setMessageBody("", isHTML: false)
+            $0.modalPresentationStyle = .pageSheet
+            $0.mailComposeDelegate = self
+        }
+        self.present(mailComposeController, animated: true)
     }
 
     // MARK: - Init

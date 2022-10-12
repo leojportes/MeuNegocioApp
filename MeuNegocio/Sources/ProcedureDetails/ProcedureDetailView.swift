@@ -248,8 +248,8 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
         
         deleteButton
             .bottomAnchor(in: baseView, padding: 30)
-            .leftAnchor(in: baseView, padding: 10)
-            .rightAnchor(in: baseView, padding: 10)
+            .leftAnchor(in: baseView, padding: 20)
+            .rightAnchor(in: baseView, padding: 20)
             .heightAnchor(45)
     }
     

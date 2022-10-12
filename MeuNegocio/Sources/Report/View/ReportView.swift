@@ -248,6 +248,8 @@ extension ReportView: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+        didTapDownloadWeeklyHistoric = nil
+        didTapDownloadDailyHistoric = nil
     }
 
 }
