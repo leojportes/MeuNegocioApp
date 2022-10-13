@@ -11,6 +11,7 @@ import FirebaseCore
 protocol LoginViewModelProtocol: AnyObject {
     func authLogin(_ email: String, _ password: String, resultLogin: @escaping (Bool, String) -> Void)
     func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void)
+    func authLoginApple(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void)
     func fetchUser(completion: @escaping (UserModelList) -> Void)
     func navigateToHome()
     func navigateToUserOnboarding()
@@ -41,6 +42,16 @@ class LoginViewModel: LoginViewModelProtocol {
     }
     
     func authLoginGoogle(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void) {
+        Auth.auth().signIn(with: credentials) { (result, error) in
+            if error != nil {
+                resultAuth(false)
+            }else {
+                resultAuth(true)
+            }
+        }
+    }
+    
+    func authLoginApple(credentials: AuthCredential, resultAuth: @escaping (Bool) -> Void) {
         Auth.auth().signIn(with: credentials) { (result, error) in
             if error != nil {
                 resultAuth(false)

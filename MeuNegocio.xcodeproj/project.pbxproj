@@ -152,6 +152,7 @@
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
 		52B1854028EFADB300907FA0 /* MNView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNView.swift; sourceTree = "<group>"; };
+		52B1854228F787D100907FA0 /* MeuNegocio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MeuNegocio.entitlements; sourceTree = "<group>"; };
 		52B8A08028E2231F00B1C9F7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 		52B8A08228E2310900B1C9F7 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52B8A08528E2557000B1C9F7 /* CardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButtonView.swift; sourceTree = "<group>"; };
@@ -494,6 +495,7 @@
 		C0A7410F27B1953000391CE6 /* MeuNegocio */ = {
 			isa = PBXGroup;
 			children = (
+				52B1854228F787D100907FA0 /* MeuNegocio.entitlements */,
 				5229133828EF4573005980D3 /* GoogleService-Info.plist */,
 				C0A7411E27B1953300391CE6 /* Info.plist */,
 				C0A7414527B1956B00391CE6 /* Infrastructure */,
@@ -1255,8 +1257,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
@@ -1283,7 +1287,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;

@@ -14,6 +14,7 @@ protocol LoginScreenActionsProtocol: AnyObject {
     func didTapForgotPassword()
     func didTapRegister()
     func didTapSignInGoogle()
+    func didTapSignInApple()
 }
 
 class LoginView: UIView {
@@ -169,6 +170,15 @@ class LoginView: UIView {
         return button
     }()
     
+    lazy var testeAppleButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Login apple", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(handlerSignInAppleButton), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var registerStackView: UIStackView = {
         let container = UIStackView(arrangedSubviews: [registerLabel, registerButton])
         container.axis = .horizontal
@@ -228,6 +238,11 @@ class LoginView: UIView {
     }
     
     @objc
+    func handlerSignInAppleButton() {
+        delegateAction?.didTapSignInApple()
+    }
+    
+    @objc
     func handlerRegisterButton() {
         delegateAction?.didTapRegister()
     }
@@ -257,6 +272,8 @@ extension LoginView: ViewCodeContract {
         addSubview(forgotPasswordStackView)
         addSubview(orLabel)
         addSubview(singInGoogleStackView)
+        // MARK: Ajustar.
+        addSubview(testeAppleButton)
         addSubview(registerStackView)
     }
     
@@ -301,6 +318,12 @@ extension LoginView: ViewCodeContract {
         singInGoogleStackView
             .topAnchor(in: orLabel, attribute: .bottom, padding: 20)
             .centerX(in: self)
+        
+        testeAppleButton
+            .topAnchor(in: singInGoogleStackView, attribute: .bottom, padding: 16)
+            .leftAnchor(in: self, attribute: .left, padding: 16)
+            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .heightAnchor(36)
         
         registerStackView
             .bottomAnchor(in: self, attribute: .bottom, padding: 20)

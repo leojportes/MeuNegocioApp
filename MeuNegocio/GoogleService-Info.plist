@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>innovatestechsc</string>
+	<string>Innovationstechsc</string>
 	<key>PROJECT_ID</key>
 	<string>meu-negocio-36813</string>
 	<key>STORAGE_BUCKET</key>
 	<string>meu-negocio-36813.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:602785726170:ios:df36f66c61a23e4fde2fe3</string>
 </dict>
