@@ -1,0 +1,16 @@
+**/.DS_Store
+BarberVip.xcworkspace/
+
+
+# Cocoapods
+Pods/*
+Podfile.lock
+Pods/Pods.xcodeproj/xcuserdata/*
+Pods/Pods.xcodeproj/xcuserdata/
+BarberVip/Pods/
+Pods/
+
+# Xcuserdata
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
