@@ -17,12 +17,19 @@ final class HomeView: UIView, ViewCodeContract {
     var openHelp: Action?
     var openProcedureDetails: (GetProcedureModel) -> Void?
     var didPullRefresh: Action?
+    var didSelectIndexClosure: (UISegmentedControl) -> Void?
 
     // MARK: - Properties
     var procedures: [GetProcedureModel] = [] {
         didSet {
             tableview.reloadData()
             tableview.loadingIndicatorView(show: false)
+        }
+    }
+
+    var filterRange: String = "" {
+        didSet {
+            filterRangeValue.text = filterRange
         }
     }
     
@@ -40,7 +47,8 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToAddProcedure: @escaping Action,
         navigateToHelp: @escaping Action,
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
-        didPullRefresh: @escaping Action
+        didPullRefresh: @escaping Action,
+        didSelectIndexClosure: @escaping (UISegmentedControl) -> Void?
     ) {
         self.openReport = navigateToReport
         self.openAlertAction = alertAction
@@ -49,6 +57,7 @@ final class HomeView: UIView, ViewCodeContract {
         self.openHelp = navigateToHelp
         self.openProcedureDetails = openProcedureDetails
         self.didPullRefresh = didPullRefresh
+        self.didSelectIndexClosure = didSelectIndexClosure
         super.init(frame: .zero)
         setupView()
     }
@@ -135,6 +144,47 @@ final class HomeView: UIView, ViewCodeContract {
         table.loadingIndicatorView()
         return table
     }()
+
+    private lazy var totalReceiptCard = CardView()
+
+    private lazy var totalLabel = BarberLabel(text: "Valor total recebido") .. {
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.textColor = .BarberColors.grayDescription
+    }
+
+    private lazy var totalValueLabel = BarberLabel() .. {
+        $0.text = "R$ 4.405,90"
+        $0.font = UIFont.boldSystemFont(ofSize: 20)
+        
+    }
+
+    private lazy var proceduresLabel = BarberLabel() .. {
+        $0.text = "Procedimentos"
+        $0.textAlignment = .right
+        $0.font = UIFont.boldSystemFont(ofSize: 15)
+        $0.textColor = .BarberColors.grayDescription
+    }
+
+    private lazy var proceduresValueLabel = BarberLabel() .. {
+        $0.text = "45"
+        $0.textAlignment = .right
+        $0.font = UIFont.boldSystemFont(ofSize: 20)
+    }
+    
+    private lazy var filterView = FilterSegmentedControl(
+        didSelectIndexClosure: weakify { $0.didSelectIndexClosure($1) }
+    )
+
+    private(set) lazy var filterRangeLabel = BarberLabel(
+        text: "Período:",
+        font: UIFont.boldSystemFont(ofSize: 15),
+        textColor: .BarberColors.grayDarkest
+    )
+    
+    private(set) lazy var filterRangeValue = BarberLabel(
+        font: UIFont.boldSystemFont(ofSize: 14),
+        textColor: .BarberColors.grayDescription
+    )
     
     // MARK: - Actions Cards
     @objc private func pullToRefresh() {
@@ -158,6 +208,14 @@ final class HomeView: UIView, ViewCodeContract {
         addSubview(headerView)
         addSubview(sectionCardsView)
         addSubview(mainBaseView)
+        sectionCardsView.addSubview(totalReceiptCard)
+        totalReceiptCard.addSubview(totalLabel)
+        totalReceiptCard.addSubview(totalValueLabel)
+        totalReceiptCard.addSubview(proceduresLabel)
+        totalReceiptCard.addSubview(proceduresValueLabel)
+        sectionCardsView.addSubview(filterView)
+        sectionCardsView.addSubview(filterRangeLabel)
+        sectionCardsView.addSubview(filterRangeValue)
         
         headerView.addSubview(profileView)
         sectionCardsView.addSubview(cardStackView)
@@ -183,13 +241,39 @@ final class HomeView: UIView, ViewCodeContract {
             .topAnchor(in: headerView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(152)
+            .heightAnchor(320)
         
         cardStackView
-            .centerY(in: sectionCardsView)
+            .topAnchor(in: headerView, attribute: .bottom, padding: 20)
             .leftAnchor(in: sectionCardsView, attribute: .left, padding: 10)
             .rightAnchor(in: sectionCardsView, attribute: .right, padding: 10)
             .heightAnchor(106)
+    
+        totalReceiptCard
+            .topAnchor(in: cardStackView, attribute: .bottom, padding: 25)
+            .leftAnchor(in: sectionCardsView, padding: 15)
+            .rightAnchor(in: sectionCardsView, padding: 15 )
+            .heightAnchor(80)
+    
+        totalLabel
+            .topAnchor(in: totalReceiptCard, padding: 20)
+            .leftAnchor(in: totalReceiptCard, padding: 20)
+            .widthAnchor(150)
+
+        totalValueLabel
+            .topAnchor(in: totalLabel, attribute: .bottom, padding: 2)
+            .leftAnchor(in: totalReceiptCard, padding: 20)
+            .widthAnchor(200)
+
+        proceduresLabel
+            .topAnchor(in: totalReceiptCard, padding: 20)
+            .rightAnchor(in: totalReceiptCard, padding: 20)
+            .widthAnchor(150)
+
+        proceduresValueLabel
+            .topAnchor(in: proceduresLabel, attribute: .bottom, padding: 2)
+            .rightAnchor(in: totalReceiptCard, padding: 20)
+            .widthAnchor(50)
         
         /// Main
         mainBaseView
@@ -198,6 +282,23 @@ final class HomeView: UIView, ViewCodeContract {
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
         
+        filterView
+            .bottomAnchor(in: filterRangeLabel, attribute: .top)
+            .heightAnchor(45)
+            .leftAnchor(in: sectionCardsView)
+            .rightAnchor(in: sectionCardsView)
+        
+        filterRangeLabel
+            .bottomAnchor(in: sectionCardsView)
+            .leftAnchor(in: sectionCardsView, padding: 15)
+            .heightAnchor(25)
+
+        filterRangeValue
+            .bottomAnchor(in: sectionCardsView)
+            .leftAnchor(in: filterRangeLabel, attribute: .right, padding: 5)
+            .widthAnchor(240)
+            .heightAnchor(25)
+
         tableview
             .topAnchor(in: mainBaseView)
             .leftAnchor(in: mainBaseView, padding: 0)
@@ -218,9 +319,7 @@ final class HomeView: UIView, ViewCodeContract {
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if procedures.isEmpty{
-            return 1
-        }
+        if procedures.isEmpty { return 1 }
         return procedures.count
     }
     

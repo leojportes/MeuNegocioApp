@@ -56,6 +56,7 @@
 		C0319C3327BF226300CFCEE0 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3227BF226300CFCEE0 /* ReportViewController.swift */; };
 		C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
+		C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */; };
 		C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */; };
 		C080E9B328E7D79A00555D80 /* PDFBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B228E7D79A00555D80 /* PDFBuilder.swift */; };
 		C080E9B528E7D80700555D80 /* PDFContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B428E7D80700555D80 /* PDFContent.swift */; };
@@ -190,6 +191,7 @@
 		C0319C3227BF226300CFCEE0 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
+		C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSegmentedControl.swift; sourceTree = "<group>"; };
 		C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		C080E9B228E7D79A00555D80 /* PDFBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBuilder.swift; sourceTree = "<group>"; };
 		C080E9B428E7D80700555D80 /* PDFContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContent.swift; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 				C0A174CE28E5342300DB0CE4 /* TappedView.swift */,
 				52B1854028EFADB300907FA0 /* MNView.swift */,
 				52B1854328F900E800907FA0 /* CardSessionView.swift */,
+				C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1036,6 +1039,7 @@
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C080E9B928E7D8CB00555D80 /* PDFConfigurationType.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
+				C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */,
 				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,
 				52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
