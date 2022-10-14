@@ -36,7 +36,7 @@ class LoginView: UIView {
     }
     
     // MARK: - View Code
-    lazy var eyeButton: UIButton = {
+    private lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
         button.tintColor = .BarberColors.grayDarkest
@@ -45,7 +45,7 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var iconStackView: UIStackView = {
+    private lazy var iconStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [myBusinessImage, titleLabel])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
@@ -55,7 +55,7 @@ class LoginView: UIView {
         return stack
     }()
     
-    lazy var myBusinessImage: UIImageView = {
+    private lazy var myBusinessImage: UIImageView = {
         let img = UIImageView()
         img.heightAnchor(36)
         img.widthAnchor(36)
@@ -64,7 +64,7 @@ class LoginView: UIView {
         return img
     }()
     
-    lazy var titleLabel: BarberLabel = {
+    private lazy var titleLabel: BarberLabel = {
         let label = BarberLabel(text: "Meu negócio",
                                 font: UIFont.boldSystemFont(ofSize: 20),
                                 textColor: .darkGray)
@@ -73,7 +73,7 @@ class LoginView: UIView {
         return label
     }()
     
-    lazy var emailTextField: CustomTextField = {
+    private lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "E-mail cadastrado",
                                         colorPlaceholder: .lightGray,
                                         textColor: .black,
@@ -87,7 +87,7 @@ class LoginView: UIView {
         return textField
     }()
     
-    lazy var passwordTextField: CustomTextField = {
+    private lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Senha",
                                         colorPlaceholder: .lightGray,
                                         textColor: .black,
@@ -110,14 +110,14 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var forgotPasswordStackView: UIStackView = {
+    private lazy var forgotPasswordStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [forgotPasswordLabel, forgotPasswordButton])
         stack.axis = .horizontal
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    lazy var forgotPasswordLabel: UILabel = {
+    private lazy var forgotPasswordLabel: UILabel = {
         let label = UILabel()
         label.text = "Esqueceu sua senha? "
         label.textColor = .systemGray
@@ -125,7 +125,7 @@ class LoginView: UIView {
         return label
     }()
     
-    lazy var forgotPasswordButton: CustomSubmitButton = {
+    private lazy var forgotPasswordButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Clique aqui!",
                                         colorTitle: .darkGray,
                                         alignmentText: .left)
@@ -133,7 +133,7 @@ class LoginView: UIView {
         return button
     }()
     
-    lazy var orLabel: UILabel = {
+    private lazy var orLabel: UILabel = {
         let label = UILabel()
         label.text = "Ou"
         label.textColor = .darkGray
@@ -141,52 +141,58 @@ class LoginView: UIView {
         return label
     }()
     
-    lazy var singInGoogleStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [signInGoogleImageView, signInGoogleButton])
-        stack.axis = .horizontal
+    private lazy var providersStackView: UIStackView = {
+       let stack = UIStackView(arrangedSubviews: [containerGoogle, containerApple])
+        stack.axis = .vertical
         stack.distribution = .fill
-        stack.spacing = 10
-        stack.layoutMargins = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
-        stack.isLayoutMarginsRelativeArrangement = true
-        stack.layer.borderColor = UIColor.darkGray.cgColor
-        stack.layer.borderWidth = 0.5
-        stack.layer.cornerRadius = 5
+        stack.spacing = 16
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    lazy var signInGoogleImageView: UIImageView = {
-        let container = UIImageView()
-        container.image = UIImage(named: "ic_google")
-        container.contentMode = .scaleAspectFit
-        container.translatesAutoresizingMaskIntoConstraints = false
-        return container
+    private lazy var containerGoogle: TappedView = {
+        let view = TappedView()
+        view.layer.borderColor = UIColor.darkGray.cgColor
+        view.layer.borderWidth = 0.5
+        view.layer.cornerRadius = 10
+        view.heightAnchor(48)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setup(action: weakify {$0.handlerSignInGoogleButton()})
+        return view
     }()
     
-    lazy var signInGoogleButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "Login com o google",
-                                        colorTitle: .darkGray)
-        button.addTarget(self, action: #selector(handlerSignInGoogleButton), for: .touchUpInside)
-        return button
+    private lazy var cardSessionGoogle: CardSessionView = {
+        let view = CardSessionView(icon: Icon.google.rawValue,
+                                   title: "Iniciar sessão com o Google",
+                                   titleColor: .black)
+        return view
     }()
     
-    lazy var testeAppleButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Login apple", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(handlerSignInAppleButton), for: .touchUpInside)
-        return button
+    private lazy var containerApple: TappedView = {
+        let view = TappedView()
+        view.backgroundColor = .black
+        view.layer.cornerRadius = 10
+        view.heightAnchor(48)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setup(action: weakify {$0.handlerSignInAppleButton()})
+        return view
     }()
     
-    lazy var registerStackView: UIStackView = {
+    private lazy var cardSessionApple: CardSessionView = {
+        let view = CardSessionView(icon: Icon.apple.rawValue,
+                                   title: "Iniciar sessão com a Apple",
+                                   titleColor: .white)
+        return view
+    }()
+    
+    private lazy var registerStackView: UIStackView = {
         let container = UIStackView(arrangedSubviews: [registerLabel, registerButton])
         container.axis = .horizontal
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
     
-    lazy var registerLabel: UILabel = {
+    private lazy var registerLabel: UILabel = {
         let label = UILabel()
         label.text = "Não tem uma conta? "
         label.textColor = .systemGray
@@ -194,14 +200,14 @@ class LoginView: UIView {
         return label
     }()
     
-    lazy var registerButton: CustomSubmitButton = {
+    private lazy var registerButton: CustomSubmitButton = {
         let button = CustomSubmitButton(title: "Registre-se",
                                         colorTitle: .darkGray)
         button.addTarget(self, action: #selector(handlerRegisterButton), for: .touchUpInside)
         return button
     }()
     
-    func isEnabledButtonLogin(_ isEnabled: Bool) {
+    private func isEnabledButtonLogin(_ isEnabled: Bool) {
         if isEnabled {
             loginButton.backgroundColor = .BarberColors.lightBrown
             loginButton.isEnabled = true
@@ -212,7 +218,7 @@ class LoginView: UIView {
     }
     
     // MARK: - Action TextFields
-    @objc func textFieldEditingDidChange() {
+    @objc private func textFieldEditingDidChange() {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         let isValidLogin = email.isValidEmail() && password.count >= 7
@@ -222,33 +228,33 @@ class LoginView: UIView {
         
     // MARK: - Action Buttons
     @objc
-    func handleLoginButton() {
+    private func handleLoginButton() {
         loginButton.loadingIndicator(show: true)
         delegateAction?.didTapLogin(emailTextField.text.orEmpty, passwordTextField.text.orEmpty)
     }
     
     @objc
-    func handleForgotPasswordButton() {
+    private func handleForgotPasswordButton() {
         delegateAction?.didTapForgotPassword()
     }
     
     @objc
-    func handlerSignInGoogleButton() {
+    private func handlerSignInGoogleButton() {
         delegateAction?.didTapSignInGoogle()
     }
     
     @objc
-    func handlerSignInAppleButton() {
+    private func handlerSignInAppleButton() {
         delegateAction?.didTapSignInApple()
     }
     
     @objc
-    func handlerRegisterButton() {
+    private func handlerRegisterButton() {
         delegateAction?.didTapRegister()
     }
 
     @objc
-    func handleEyeButton() {
+    private func handleEyeButton() {
         if isSecureTextEntry {
             isSecureTextEntry = false
             eyeButton.setImage(UIImage(systemName: "eye"), for: .normal)
@@ -271,15 +277,15 @@ extension LoginView: ViewCodeContract {
         addSubview(loginButton)
         addSubview(forgotPasswordStackView)
         addSubview(orLabel)
-        addSubview(singInGoogleStackView)
-        // MARK: Ajustar.
-        addSubview(testeAppleButton)
+        addSubview(providersStackView)
+        containerGoogle.addSubview(cardSessionGoogle)
+        containerApple.addSubview(cardSessionApple)
         addSubview(registerStackView)
     }
     
     func setupConstraints() {
         iconStackView
-            .topAnchor(in: self, attribute: .top, padding: 110)
+            .topAnchor(in: self, attribute: .top, padding: 80)
             .centerX(in: self)
             .heightAnchor(36)
         
@@ -315,15 +321,18 @@ extension LoginView: ViewCodeContract {
             .topAnchor(in: forgotPasswordStackView, attribute: .bottom, padding: 20)
             .centerX(in: self)
         
-        singInGoogleStackView
-            .topAnchor(in: orLabel, attribute: .bottom, padding: 20)
-            .centerX(in: self)
-        
-        testeAppleButton
-            .topAnchor(in: singInGoogleStackView, attribute: .bottom, padding: 16)
+        providersStackView
+            .topAnchor(in: orLabel, attribute: .bottom, padding: 16)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
-            .heightAnchor(36)
+        
+        cardSessionGoogle
+            .centerX(in: containerGoogle)
+            .centerY(in: containerGoogle)
+        
+        cardSessionApple
+            .centerX(in: containerApple)
+            .centerY(in: containerApple)
         
         registerStackView
             .bottomAnchor(in: self, attribute: .bottom, padding: 20)
