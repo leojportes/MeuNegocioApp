@@ -322,7 +322,7 @@ extension LoginView: ViewCodeContract {
             .centerX(in: self)
         
         providersStackView
-            .topAnchor(in: orLabel, attribute: .bottom, padding: 16)
+            .topAnchor(in: orLabel, attribute: .bottom, padding: 20)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
         
