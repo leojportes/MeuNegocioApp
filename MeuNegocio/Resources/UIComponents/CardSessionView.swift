@@ -8,7 +8,7 @@
 import UIKit
 
 class CardSessionView: UIView {
-    init(icon: String, title: String, titleColor: UIColor) {
+    init(icon: String, title: String, titleColor: UIColor, isHiddenArrow: Bool = true) {
         super.init(frame: .zero)
         iconImageView.image = UIImage(named: icon)
         titleLabel.text = title
@@ -33,12 +33,21 @@ class CardSessionView: UIView {
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
+    
+    private lazy var iconArrow: UIImageView = {
+        let container = UIImageView()
+        container.image = UIImage(named: Icon.arrowRight.rawValue)
+        container.contentMode = .scaleAspectFit
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
 }
 
 extension CardSessionView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(iconImageView)
         addSubview(titleLabel)
+        addSubview(iconArrow)
     }
     
     func setupConstraints() {
@@ -52,6 +61,12 @@ extension CardSessionView: ViewCodeContract {
         titleLabel
             .leftAnchor(in: iconImageView, attribute: .right, padding: 8)
             .rightAnchor(in: self)
+            .centerY(in: iconImageView)
+        
+        iconArrow
+            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .heightAnchor(20)
+            .widthAnchor(20)
             .centerY(in: iconImageView)
     }
     
