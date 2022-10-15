@@ -65,6 +65,7 @@ final class ReportViewController: CoordinatedViewController {
         self.setupWeeklyAmount(procedures: response)
         self.setupPaymentTypeAmount(procedures: response)
         self.setupDailyAmount(procedures: response)
+        self.setupMonthlyAmount(procedures: response)
         self.shareReportPDF(procedures: response)
         
         /// Values with porcentage interaction in textfield.
@@ -75,6 +76,7 @@ final class ReportViewController: CoordinatedViewController {
                 weakSelf.shareReportPDF(procedures: response, hasDiscount, percent: percent)
                 weakSelf.setupDailyAmount(procedures: response, hasDiscount, percent: percent)
                 weakSelf.setupWeeklyAmount(procedures: response, hasDiscount, percent: percent)
+                weakSelf.setupMonthlyAmount(procedures: response, hasDiscount, percent: percent)
                 weakSelf.setupPaymentTypeAmount(procedures: response, hasDiscount, percent: percent)
             }
         }
@@ -115,6 +117,23 @@ final class ReportViewController: CoordinatedViewController {
         }
     }
 
+    /// Configure amout for weekly card.
+    private func setupMonthlyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
+        /// Here we filter the procedures from the last 30 days.
+        let monthlyProcedures = viewModel.monthlyProceduresLast30Days(procedures: procedures)
+        /// Here we add the values ​​of the procedures of the last 30 days.
+        let makeTotalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
+       
+        if hasDiscount {
+            let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalMonthlyAmount)
+            self.customView.setupWeeklyCard(percentResult, "\(monthlyProcedures.count)")
+            self.customView.setupMonthlyTitleIfHasDiscount("\(percent)% do total • últimos 30 dias")
+        } else {
+            self.customView.setupMonthlyCard(makeTotalMonthlyAmount, "\(monthlyProcedures.count)")
+            self.customView.setupMonthlyTitleIfHasDiscount("Total • últimos 30 dias")
+        }
+    }
+
     /// Configure amouts to payment type card.
     private func setupPaymentTypeAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
        let items = PaymentTypeAmountCardModel(procedures: procedures, viewModel: viewModel)
@@ -145,6 +164,14 @@ final class ReportViewController: CoordinatedViewController {
         let totalPercentWeeklyAmount = viewModel.percentageFromString(percent: percent, baseAmount: totalWeeklyAmount)
         self.customView.didTapDownloadWeeklyHistoric = {
             self.sharePDF(weeklyProcedures, PDFModel.weeklyTitle, .weekly, totalPercentWeeklyAmount, hasDiscount, percent)
+        }
+    
+        /// Share  monthly report.
+        let monthlyProcedures = self.viewModel.monthlyProceduresLast30Days(procedures: procedures)
+        let totalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
+        let totalPercentMonthlyAmount = viewModel.percentageFromString(percent: percent, baseAmount: totalMonthlyAmount)
+        self.customView.didTapDownloadMonthlyHistoric = {
+            self.sharePDF(monthlyProcedures, PDFModel.monthlyTitle, .weekly, totalPercentMonthlyAmount, hasDiscount, percent)
         }
     }
     

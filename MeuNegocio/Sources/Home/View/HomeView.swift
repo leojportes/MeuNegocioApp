@@ -27,6 +27,12 @@ final class HomeView: UIView, ViewCodeContract {
         }
     }
 
+    var currentIndex: Int = 0 {
+        didSet {
+            filterView.currentIndex = currentIndex
+        }
+    }
+
     var filterRange: String = "" {
         didSet {
             filterRangeValue.text = filterRange
@@ -171,8 +177,10 @@ final class HomeView: UIView, ViewCodeContract {
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }
     
-    private lazy var filterView = FilterSegmentedControl(
-        didSelectIndexClosure: weakify { $0.didSelectIndexClosure($1) }
+    lazy var filterView = FilterSegmentedControl(
+        didSelectIndexClosure: weakify {
+            $0.didSelectIndexClosure($1)
+        }
     )
 
     private(set) lazy var filterRangeLabel = BarberLabel(

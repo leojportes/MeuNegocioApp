@@ -13,6 +13,7 @@ final class ReportView: UIView {
     var didApplyDiscount: ((Bool) -> Void)?
     var didTapDownloadDailyHistoric: Action?
     var didTapDownloadWeeklyHistoric: Action?
+    var didTapDownloadMonthlyHistoric: Action?
     var didEditingTextField: (UITextField) -> Void? = { _ in nil }
     
     // MARK: - Init
@@ -88,6 +89,10 @@ final class ReportView: UIView {
     private lazy var weeklyHistoricCard = ReportCardView(
         didTapReportDownload: weakify { $0.didTapDownloadWeeklyHistoric?() }
     ) .. { $0.loadingIndicatorView(show: true) }
+
+    private lazy var monthlyHistoricCard = ReportCardView(
+        didTapReportDownload: weakify { $0.didTapDownloadMonthlyHistoric?() }
+    ) .. { $0.loadingIndicatorView(show: true) }
     
     private lazy var paymentTypeAmountTitle = BarberLabel(
         text: "Métodos de pagamento",
@@ -100,6 +105,10 @@ final class ReportView: UIView {
     
     func setupDailyTitleIfHasDiscount(_ dailyTotalAmountTitle: String) {
         dailyHistoricCard.setupTitleIfHasDiscount(totalAmountTitle: dailyTotalAmountTitle)
+    }
+
+    func setupMonthlyTitleIfHasDiscount(_ monthlyTotalAmountTitle: String) {
+        monthlyHistoricCard.setupTitleIfHasDiscount(totalAmountTitle: monthlyTotalAmountTitle)
     }
     
     /// Payment methods amount
@@ -126,6 +135,17 @@ final class ReportView: UIView {
             reportDownloadTitle: "Baixar relatório semanal"
         )
         weeklyHistoricCard.loadingIndicatorView(show: false)
+    }
+
+    func setupMonthlyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
+        monthlyHistoricCard.setup(
+            title: "Histórico mensal",
+            totalAmountTitle: "Total • últimos 30 dias",
+            totalAmountValue: "\(totalAmountValue)",
+            totalProceduresValue: totalProceduresValue,
+            reportDownloadTitle: "Baixar relatório mensal"
+        )
+        monthlyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupPaymentTypeAmountCard(
@@ -155,6 +175,7 @@ extension ReportView: ViewCodeContract {
         containerView.addSubview(dailyHistoricCard)
         containerView.addSubview(weeklyHistoricCard)
         containerView.addSubview(applydiscountCardView)
+        containerView.addSubview(monthlyHistoricCard)
         applydiscountCardView.addSubview(applydiscountTitleLabel)
         applydiscountCardView.addSubview(applyDiscountStatusView)
         applydiscountCardView.addSubview(discountPercentageTextField)
@@ -169,7 +190,7 @@ extension ReportView: ViewCodeContract {
             .topAnchor(in: self)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .bottomAnchor(in: self, layoutOption: .useSafeArea)
+            .bottomAnchor(in: self, layoutOption: .useMargins)
         
         containerView
             .pin(toEdgesOf: scrollView)
@@ -213,9 +234,15 @@ extension ReportView: ViewCodeContract {
             .leftAnchor(in: containerView, padding: 15)
             .rightAnchor(in: containerView, padding: 15)
             .heightAnchor(145)
+    
+        monthlyHistoricCard
+            .topAnchor(in: weeklyHistoricCard, attribute: .bottom, padding: 20)
+            .leftAnchor(in: containerView, padding: 15)
+            .rightAnchor(in: containerView, padding: 15)
+            .heightAnchor(145)
         
         paymentTypeAmountTitle
-            .topAnchor(in: weeklyHistoricCard, attribute: .bottom, padding: 20)
+            .topAnchor(in: monthlyHistoricCard, attribute: .bottom, padding: 20)
             .leftAnchor(in: containerView, padding: 18)
             .heightAnchor(20)
         

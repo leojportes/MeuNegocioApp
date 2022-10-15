@@ -8,9 +8,15 @@
 import UIKit
 
 final class FilterSegmentedControl: UIView, ViewCodeContract {
-
+    
     private var items: [String]
     private var didSelectIndexClosure: (UISegmentedControl) -> Void?
+    
+    var currentIndex: Int = 0 {
+        didSet {
+            segmentedControl.selectedSegmentIndex = self.currentIndex
+        }
+    }
     
     init(
         items: [String] = ["Todos", "Hoje","7 dias","30 dias"],
