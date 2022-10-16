@@ -150,7 +150,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return view.window!
+        return view.window ?? UIWindow()
     }
 }
 

@@ -61,8 +61,11 @@ class ProfileViewController: CoordinatedViewController {
     }
     
     private func deleteAccount() {
-        self.showDeleteAlert(title: "Essa ação é irreversível",
-                             messsage: "Todos os seus dados serão removidos. \n  Tem certeza que deseja deletar sua conta?") {
+        self.showDeleteAlert(
+            title: "Essa ação é irreversível",
+            messsage: "Todos os seus dados serão removidos. \n  Tem certeza que deseja deletar sua conta?",
+            closedScreen: false
+        ) {
             self.viewModel.deleteAccount { [ weak self ] result in
                 result ? self?.viewModel.logout() : self?.showAlert(
                     title: "Ocorreu um erro",

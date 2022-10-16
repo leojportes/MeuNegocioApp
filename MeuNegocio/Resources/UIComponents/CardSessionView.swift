@@ -13,6 +13,7 @@ class CardSessionView: UIView {
         iconImageView.image = UIImage(named: icon)
         titleLabel.text = title
         titleLabel.textColor = titleColor
+        iconArrow.isHidden = isHiddenArrow
         setupView()
     }
     
