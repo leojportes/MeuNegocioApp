@@ -54,6 +54,7 @@ class PDFBuilder: NSObject {
     // MARK: - Public methods
     
     func savePdf(titleFile: String) {
+        
         if let data = pdfFiledata {
             var docURL = (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)).first
             docURL = docURL?.appendingPathComponent("\(titleFile).pdf")
@@ -61,6 +62,7 @@ class PDFBuilder: NSObject {
                 try data.write(to: docURL! as URL)
                 print("PDF save successfully")
                 didSelectPreview(url: docURL! as URL)
+                self.pdfContents.removeAll()
             } catch {
                 print("Fail to save the pdf!!!")
                 UIViewController.findCurrentController()?.showAlert(title: "Error", messsage: "Fail to save the pdf!!!")
@@ -72,7 +74,6 @@ class PDFBuilder: NSObject {
         let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         UIViewController.findCurrentController()?.present(activityController, animated: true)
         activityController.completionWithItemsHandler = { _, _, _, _ in
-            self.delete(fileName: url)
             UIViewController.findCurrentController()?.dismiss(animated: true)
         }
     }
@@ -80,17 +81,5 @@ class PDFBuilder: NSObject {
     func configureTable(configDict : NSMutableDictionary, headerArray : [String]?, dataArray : [[ColumnCell]]) {
         let table = Table(configDict:configDict, tableDataItems:dataArray , tableDataHeaderTitles:headerArray)
         pdfContents.append(table)
-    }
-    
-    func delete(fileName: URL){
-        if FileManager.default.fileExists(atPath: fileName.path) {
-            do {
-                try FileManager.default.removeItem(at: fileName)
-                print("File deleted")
-            }
-            catch {
-                print("Error")
-            }
-        }
     }
 }
