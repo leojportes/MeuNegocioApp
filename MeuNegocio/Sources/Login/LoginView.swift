@@ -49,7 +49,6 @@ class LoginView: UIView {
         let stack = UIStackView(arrangedSubviews: [myBusinessImage, titleLabel])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.distribution = .fill
         stack.alignment = .center
         stack.spacing = 10
         return stack
@@ -68,7 +67,7 @@ class LoginView: UIView {
         let label = BarberLabel(text: "Meu negócio",
                                 font: UIFont.boldSystemFont(ofSize: 20),
                                 textColor: .darkGray)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -287,6 +286,7 @@ extension LoginView: ViewCodeContract {
         iconStackView
             .topAnchor(in: self, attribute: .top, padding: 80)
             .centerX(in: self)
+            .widthAnchor(200)
             .heightAnchor(36)
         
         emailTextField

@@ -14,12 +14,16 @@ final class ReportCardView: CardView, ViewCodeContract {
     // MARK: - View code
     private lazy var titleLabel = BarberLabel(
         font: UIFont.boldSystemFont(ofSize: 16)
-    )
+    ) .. {
+        $0.accessibilityTraits = .header
+    }
     
     private lazy var totalAmountTitleLabel = BarberLabel(
         font: UIFont.boldSystemFont(ofSize: 14),
         textColor: .BarberColors.grayDescription
-    )
+    ) .. {
+        $0.accessibilityTraits = .none
+    }
     
     private lazy var totalAmountValueLabel = BarberLabel()
     
@@ -29,6 +33,7 @@ final class ReportCardView: CardView, ViewCodeContract {
         textColor: .BarberColors.grayDescription
     ) .. {
         $0.textAlignment = .right
+        $0.accessibilityTraits = .none
     }
 
     private lazy var totalProceduresValueLabel = BarberLabel()
@@ -43,7 +48,9 @@ final class ReportCardView: CardView, ViewCodeContract {
 
     private lazy var reportDownloadTitleLabel = BarberLabel(
         font: UIFont.boldSystemFont(ofSize: 14)
-    )
+    ) .. {
+        $0.accessibilityTraits = .button
+    }
 
     private lazy var reportDownloadIcon = UIImageView() .. {
         $0.image = UIImage(named: Icon.download.rawValue)
@@ -144,6 +151,17 @@ final class ReportCardView: CardView, ViewCodeContract {
             .rightAnchor(in: reportDownloadView, padding: 15)
             .widthAnchor(20)
             .heightAnchor(20)
+    }
+
+    func setupConfiguration() {
+        self.accessibilityElements = [
+            titleLabel,
+            totalAmountTitleLabel,
+            totalAmountValueLabel,
+            proceduresTitleLabel,
+            totalProceduresValueLabel,
+            reportDownloadTitleLabel
+        ]
     }
 
 }
