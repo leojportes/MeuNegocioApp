@@ -57,6 +57,7 @@
 		C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */; };
 		C0319C4327BF3B2100CFCEE0 /* ScrollToTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */; };
 		C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */; };
+		C036EAA528FBB69D0049C80D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C036EAA428FBB69D0049C80D /* Constants.swift */; };
 		C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */; };
 		C080E9B328E7D79A00555D80 /* PDFBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B228E7D79A00555D80 /* PDFBuilder.swift */; };
 		C080E9B528E7D80700555D80 /* PDFContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080E9B428E7D80700555D80 /* PDFContent.swift */; };
@@ -192,6 +193,7 @@
 		C0319C3727BF229600CFCEE0 /* ReportCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCoordinator.swift; sourceTree = "<group>"; };
 		C0319C4227BF3B2100CFCEE0 /* ScrollToTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollToTopButton.swift; sourceTree = "<group>"; };
 		C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSegmentedControl.swift; sourceTree = "<group>"; };
+		C036EAA428FBB69D0049C80D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C080E9AF28E7CBDC00555D80 /* Array+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Ext.swift"; sourceTree = "<group>"; };
 		C080E9B228E7D79A00555D80 /* PDFBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFBuilder.swift; sourceTree = "<group>"; };
 		C080E9B428E7D80700555D80 /* PDFContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFContent.swift; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				C0A741D527B1A92500391CE6 /* AutoLayoutOption.swift */,
 				C0A741DA27B1A93E00391CE6 /* NSLayoutDimension+Extension.swift */,
 				C0A741DF27B1A95700391CE6 /* Padding.swift */,
+				C036EAA428FBB69D0049C80D /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1032,6 +1035,7 @@
 				C0F8FE7128EE94DC00ECEB63 /* CheckYourAccountController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
+				C036EAA528FBB69D0049C80D /* Constants.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
 				5249214928C00621006F01DA /* HomeViewModel.swift in Sources */,
 				C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */,

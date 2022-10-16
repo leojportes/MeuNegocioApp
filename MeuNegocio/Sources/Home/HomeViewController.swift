@@ -46,6 +46,7 @@ final class HomeViewController: CoordinatedViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         bindProperties()
+        self.customView.currentIndex = 0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,7 +59,10 @@ final class HomeViewController: CoordinatedViewController {
         viewModel.output.procedures.bind() { [weak self] result in
             self?.customView.procedures = result.reversed()
             self?.procedures = result.reversed()
-            self?.setInitialFilterDateRange(result)
+            self?.setInitialFilterDateRange(result.reversed())
+            self?.customView.totalValueLabel.text = self?.viewModel.input.makeTotalAmounts(result)
+            self?.customView.totalReceiptCard.loadingIndicatorView(show: false)
+            self?.customView.proceduresValueLabel.text = "\(result.count)"
         }
         
         viewModel.output.nameUser.bind { [weak self] result in
@@ -105,8 +109,7 @@ final class HomeViewController: CoordinatedViewController {
     
     func todayProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
         let procedures = procedures.filter({$0.currentDate == returnCurrentDate})
-        let dates = procedures.map { $0.currentDate }
-        customView.filterRange = "\(dates.first ?? "")"
+        customView.filterRange = returnCurrentDate
         return procedures
     }
 

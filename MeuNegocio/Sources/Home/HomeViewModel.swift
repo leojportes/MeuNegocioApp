@@ -15,6 +15,7 @@ protocol HomeViewModelProtocol: AnyObject {
     func navigateToAddProcedure()
     func navigateToHelp()
     func openProcedureDetails(_ procedure: GetProcedureModel)
+    func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String
 }
 
 // MARK: - Protocols
@@ -25,6 +26,7 @@ protocol HomeViewModelOutputProtocol {
 
 protocol HomeViewModelInputProtocol {
     func viewDidLoad()
+    func makeTotalAmounts(_ procedures: [GetProcedureModel]) -> String
 }
 
 class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
@@ -61,6 +63,15 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
         }
     }
 
+    /// We set up the total value of the procedure.
+    func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String {
+        let proceduresAmounts: [Double] = procedures.map({ Double($0.value) ?? 00.00 })
+        let values = proceduresAmounts.map({ $0.plata })
+        let amount = values.map { $0 }
+        let sum = amount.reduce(0, +)
+        return sum.rawValue.plata.string(currency: .br)
+    }
+
     // MARK: - Routes
     func navigateToReport() {
         coordinator?.navigateTo(.Report)
@@ -88,6 +99,10 @@ extension HomeViewModel: HomeViewModelInputProtocol {
     func viewDidLoad() {
         fetchProcedureItems()
         fetchUser()
+    }
+
+    func makeTotalAmounts(_ procedures: [GetProcedureModel]) -> String {
+        makeTotalAmount(procedures)
     }
 }
 

@@ -151,17 +151,18 @@ final class HomeView: UIView, ViewCodeContract {
         return table
     }()
 
-    private lazy var totalReceiptCard = CardView()
+    private(set) lazy var totalReceiptCard = CardView() .. {
+        $0.loadingIndicatorView(show: true)
+    }
 
     private lazy var totalLabel = BarberLabel(text: "Valor total recebido") .. {
         $0.font = UIFont.boldSystemFont(ofSize: 15)
         $0.textColor = .BarberColors.grayDescription
     }
 
-    private lazy var totalValueLabel = BarberLabel() .. {
-        $0.text = "R$ 4.405,90"
+    private(set) lazy var totalValueLabel = BarberLabel() .. {
+        $0.text = "R$ 00,00"
         $0.font = UIFont.boldSystemFont(ofSize: 20)
-        
     }
 
     private lazy var proceduresLabel = BarberLabel() .. {
@@ -171,8 +172,8 @@ final class HomeView: UIView, ViewCodeContract {
         $0.textColor = .BarberColors.grayDescription
     }
 
-    private lazy var proceduresValueLabel = BarberLabel() .. {
-        $0.text = "45"
+    private(set) lazy var proceduresValueLabel = BarberLabel() .. {
+        $0.text = "0"
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }

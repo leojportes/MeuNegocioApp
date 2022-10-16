@@ -36,5 +36,5 @@ struct PDFModel {
     static let title = "Relatório de procedimentos"
     static let dailyTitle = "RelatorioDiario"
     static let weeklyTitle = "RelatorioSemanal"
-    static let monthlyTitle = "RelatorioSemanal"
+    static let monthlyTitle = "RelatorioMensal"
 }

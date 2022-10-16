@@ -58,7 +58,7 @@ final class ReportView: UIView {
     /// Apply discount
     private lazy var applydiscountCardView = CardView()
     private lazy var applydiscountTitleLabel = BarberLabel(
-        text: "Aplicar porcentagem:",
+        text: ReportConsts.applyPercent,
         font: UIFont.boldSystemFont(ofSize: 16)
     )
     
@@ -71,7 +71,7 @@ final class ReportView: UIView {
     private lazy var discountPercentageTextField = CustomTextField(showBaseLine: true) .. {
         $0.textAlignment = .center
         $0.keyboardType = .decimalPad
-        $0.placeholder = "Ex: 10%"
+        $0.placeholder = ReportConsts.placeholderApplyPercent
         $0.delegate = self
         $0.addTarget(self, action: #selector(didInputTextfield), for: .editingChanged)
     }
@@ -95,7 +95,7 @@ final class ReportView: UIView {
     ) .. { $0.loadingIndicatorView(show: true) }
     
     private lazy var paymentTypeAmountTitle = BarberLabel(
-        text: "Métodos de pagamento",
+        text: ReportConsts.paymentMethods,
         font: UIFont.boldSystemFont(ofSize: 16)
     )
     
@@ -117,33 +117,33 @@ final class ReportView: UIView {
     // MARK: - Bind methods
     func setupDailyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
         dailyHistoricCard.setup(
-            title: "Histórico diário",
-            totalAmountTitle: "Total • hoje",
+            title: ReportConsts.dailyHistoric,
+            totalAmountTitle: ReportConsts.dailyTotal,
             totalAmountValue: "\(totalAmountValue)",
             totalProceduresValue: totalProceduresValue,
-            reportDownloadTitle: "Baixar relatório diário"
+            reportDownloadTitle: ReportConsts.dailyReportDownload
         )
         dailyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupWeeklyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
         weeklyHistoricCard.setup(
-            title: "Histórico semanal",
-            totalAmountTitle: "Total • últimos 7 dias",
+            title: ReportConsts.weeklyHistoric,
+            totalAmountTitle: ReportConsts.weeklyTotal,
             totalAmountValue: "\(totalAmountValue)",
             totalProceduresValue: totalProceduresValue,
-            reportDownloadTitle: "Baixar relatório semanal"
+            reportDownloadTitle: ReportConsts.weeklyReportDownload
         )
         weeklyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupMonthlyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
         monthlyHistoricCard.setup(
-            title: "Histórico mensal",
-            totalAmountTitle: "Total • últimos 30 dias",
+            title: ReportConsts.monthlyHistoric,
+            totalAmountTitle: ReportConsts.monthlyTotal,
             totalAmountValue: "\(totalAmountValue)",
             totalProceduresValue: totalProceduresValue,
-            reportDownloadTitle: "Baixar relatório mensal"
+            reportDownloadTitle: ReportConsts.monthlyReportDownload
         )
         monthlyHistoricCard.loadingIndicatorView(show: false)
     }
@@ -274,9 +274,10 @@ extension ReportView: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-        didTapDownloadWeeklyHistoric = nil
-        didTapDownloadDailyHistoric = nil
+        textField.text = .stringEmpty
+        didTapDownloadWeeklyHistoric = { self.endEditing(true) }
+        didTapDownloadDailyHistoric = { self.endEditing(true) }
+        didTapDownloadMonthlyHistoric = { self.endEditing(true) }
     }
 
 }
