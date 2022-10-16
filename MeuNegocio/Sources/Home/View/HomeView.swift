@@ -310,10 +310,9 @@ final class HomeView: UIView, ViewCodeContract {
 
         tableview
             .topAnchor(in: mainBaseView)
-            .leftAnchor(in: mainBaseView, padding: 0)
-            .rightAnchor(in: mainBaseView, padding: 0)
-            .bottomAnchor(in: mainBaseView, layoutOption: .useMargins)
-        
+            .leftAnchor(in: mainBaseView)
+            .rightAnchor(in: mainBaseView)
+            .bottomAnchor(in: mainBaseView, padding: -1, layoutOption: .useMargins)
     }
     
     func setupConfiguration() {
