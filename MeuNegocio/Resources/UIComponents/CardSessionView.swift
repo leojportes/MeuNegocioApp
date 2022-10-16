@@ -8,12 +8,14 @@
 import UIKit
 
 class CardSessionView: UIView {
-    init(icon: String, title: String, titleColor: UIColor, isHiddenArrow: Bool = true) {
+    init(icon: String, title: String, titleColor: UIColor, isHiddenArrow: Bool = true, heightIcon: CGFloat = 24) {
         super.init(frame: .zero)
         iconImageView.image = UIImage(named: icon)
         titleLabel.text = title
         titleLabel.textColor = titleColor
         iconArrow.isHidden = isHiddenArrow
+        iconImageView.heightAnchor(heightIcon)
+        iconImageView.widthAnchor(heightIcon)
         setupView()
     }
     
@@ -56,8 +58,6 @@ extension CardSessionView: ViewCodeContract {
             .topAnchor(in: self)
             .bottomAnchor(in: self)
             .leftAnchor(in: self)
-            .heightAnchor(24)
-            .widthAnchor(24)
         
         titleLabel
             .leftAnchor(in: iconImageView, attribute: .right, padding: 8)
