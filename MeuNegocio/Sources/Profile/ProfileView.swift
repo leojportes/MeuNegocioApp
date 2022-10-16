@@ -84,7 +84,7 @@ class ProfileView: UIView {
         stack.layoutMargins = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
         stack.isLayoutMarginsRelativeArrangement = true
         stack.roundCorners(cornerRadius: 10)
-        stack.addShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25), size: CGSize(width: 0, height: 4), opacity: 1, radius: 4)
+        stack.addShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25), size: CGSize(width: 0, height: 3), opacity: 0.5, radius: 4)
         stack.clipsToBounds = false
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.loadingIndicatorView(show: true)
@@ -112,9 +112,9 @@ class ProfileView: UIView {
         return label
     }()
     
-    private lazy var logoutAccount: CardSessionView = {
+    private lazy var logoutAccountView: CardIconAndTitleView = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleLogout))
-        let view = CardSessionView(
+        let view = CardIconAndTitleView(
             icon: Icon.logoutAccount.rawValue,
             title: "Sair do aplicativo",
             titleColor: .BarberColors.grayDarkest,
@@ -126,9 +126,9 @@ class ProfileView: UIView {
         return view
     }()
     
-    private lazy var deleteAccountButton: CardSessionView = {
+    private lazy var deleteAccountView: CardIconAndTitleView = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleDeleteAccount))
-        let view = CardSessionView(
+        let view = CardIconAndTitleView(
             icon: Icon.deleteAccount.rawValue,
             title: "Encerrar conta",
             titleColor: .BarberColors.grayDarkest,
@@ -169,8 +169,8 @@ extension ProfileView: ViewCodeContract {
         iconView.addSubview(firstNameLabel)
         addSubview(nameUserLabel)
         addSubview(InfoStackView)
-        addSubview(deleteAccountButton)
-        addSubview(logoutAccount)
+        addSubview(deleteAccountView)
+        addSubview(logoutAccountView)
         addSubview(versionLabel)
     }
     
@@ -201,14 +201,14 @@ extension ProfileView: ViewCodeContract {
             .leftAnchor(in: self, attribute: .left, padding: 14)
             .rightAnchor(in: self, attribute: .right, padding: 14)
         
-        logoutAccount
+        logoutAccountView
             .topAnchor(in: InfoStackView, attribute: .bottom, padding: 46)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(56)
         
-        deleteAccountButton
-            .topAnchor(in: logoutAccount, attribute: .bottom)
+        deleteAccountView
+            .topAnchor(in: logoutAccountView, attribute: .bottom)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(56)

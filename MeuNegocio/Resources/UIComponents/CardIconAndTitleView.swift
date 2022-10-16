@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CardSessionView: UIView {
+class CardIconAndTitleView: UIView {
     init(icon: String, title: String, titleColor: UIColor, isHiddenArrow: Bool = true, heightIcon: CGFloat = 24) {
         super.init(frame: .zero)
         iconImageView.image = UIImage(named: icon)
@@ -46,7 +46,7 @@ class CardSessionView: UIView {
     }()
 }
 
-extension CardSessionView: ViewCodeContract {
+extension CardIconAndTitleView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(iconImageView)
         addSubview(titleLabel)
@@ -65,7 +65,7 @@ extension CardSessionView: ViewCodeContract {
             .centerY(in: iconImageView)
         
         iconArrow
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .rightAnchor(in: self, attribute: .right)
             .heightAnchor(20)
             .widthAnchor(20)
             .centerY(in: iconImageView)

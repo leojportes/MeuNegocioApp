@@ -161,8 +161,8 @@ class LoginView: UIView {
         return view
     }()
     
-    private lazy var cardSessionGoogle: CardSessionView = {
-        let view = CardSessionView(icon: Icon.google.rawValue,
+    private lazy var cardSessionGoogle: CardIconAndTitleView = {
+        let view = CardIconAndTitleView(icon: Icon.google.rawValue,
                                    title: "Iniciar sessão com o Google",
                                    titleColor: .black)
         return view
@@ -178,8 +178,8 @@ class LoginView: UIView {
         return view
     }()
     
-    private lazy var cardSessionApple: CardSessionView = {
-        let view = CardSessionView(icon: Icon.apple.rawValue,
+    private lazy var cardSessionApple: CardIconAndTitleView = {
+        let view = CardIconAndTitleView(icon: Icon.apple.rawValue,
                                    title: "Iniciar sessão com a Apple",
                                    titleColor: .white)
         return view

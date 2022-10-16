@@ -33,11 +33,9 @@ final class ProfileHeaderView: UIStackView {
         return container
     }()
     
-    private lazy var iconImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: Icon.profile.rawValue)
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
+    private lazy var iconImage: BarberLabel = {
+        let label = BarberLabel(font: UIFont.boldSystemFont(ofSize: 16))
+        return label
     }()
     
     private lazy var nameUserLabel: UILabel = {
@@ -69,7 +67,8 @@ final class ProfileHeaderView: UIStackView {
     }
     
     func setupLayout(nameUser: String) {
-        nameUserLabel.text = nameUser
+        iconImage.text = "\(nameUser.prefix(2).uppercased())"
+        nameUserLabel.text = "Olá, \(nameUser)"
     }
     
     func setupAction(actionButton: @escaping Action) {
@@ -97,8 +96,7 @@ extension ProfileHeaderView: ViewCodeContract {
         iconImage
             .centerX(in: iconView)
             .centerY(in: iconView)
-            .heightAnchor(20)
-            .widthAnchor(20)
+ 
     
         iconArrow
             .heightAnchor(15)
