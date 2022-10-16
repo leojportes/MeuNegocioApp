@@ -1275,6 +1275,7 @@
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=*]" = arm64;
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				LD_RUNPATH_SEARCH_PATHS = (
