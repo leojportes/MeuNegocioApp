@@ -34,6 +34,22 @@ extension UIView {
         self.layer.shadowRadius = radius
     }
     
+    func addTopBorder(with color: UIColor? = .BarberColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
+        addSubview(border)
+    }
+    
+    func addBottomBorder(with color: UIColor? = .BarberColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
+        addSubview(border)
+    }
+    
 }
 
 extension CACornerMask {

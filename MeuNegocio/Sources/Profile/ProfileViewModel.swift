@@ -9,7 +9,7 @@ import FirebaseAuth
 protocol ProfileViewModelProtocol {
     func fetchUser(completion: @escaping (UserModelList) -> Void)
     func signOut(resultSignOut: (Bool) -> Void)
-    func closedView()
+    func deleteAccount(result: @escaping (Bool) -> Void)
     func logout()
 }
 
@@ -17,6 +17,8 @@ class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Properties
     private var coordinator: ProfileCoordinator?
+    private let user = Auth.auth().currentUser
+
     
     // MARK: - Init
     init(coordinator: ProfileCoordinator?) {
@@ -51,12 +53,18 @@ class ProfileViewModel: ProfileViewModelProtocol {
         }
     }
     
-    
-    // MARK: - Routes
-    func closedView() {
-        coordinator?.closedView()
+    func deleteAccount(result: @escaping (Bool) -> Void) {
+        user?.delete { error in
+            if error != nil {
+                result(false)
+            } else {
+                result(true)
+            }
+        }
     }
     
+    
+    // MARK: - Routes
     func logout() {
         coordinator?.closed()
     }
