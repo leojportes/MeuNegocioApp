@@ -41,7 +41,7 @@ final class HomeView: UIView, ViewCodeContract {
     
     var userName: String = .stringEmpty {
         didSet {
-            profileView.setupLayout(nameUser: "Olá, \(userName)" )
+            profileView.setupLayout(nameUser: userName )
         }
     }
     
