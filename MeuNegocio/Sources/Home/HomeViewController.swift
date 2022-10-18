@@ -11,6 +11,7 @@ final class HomeViewController: CoordinatedViewController {
     
     // MARK: - Properties
     private let viewModel: HomeViewModelProtocol
+    private var procedures: [GetProcedureModel] = []
 
     // MARK: - View
     private lazy var customView = HomeView(
@@ -20,7 +21,8 @@ final class HomeViewController: CoordinatedViewController {
         navigateToAddProcedure: weakify { $0.viewModel.navigateToAddProcedure() },
         navigateToHelp: weakify { $0.viewModel.navigateToHelp() },
         openProcedureDetails: weakify { $0.viewModel.openProcedureDetails($1) },
-        didPullRefresh: weakify { $0.didPullToRefresh() }
+        didPullRefresh: weakify { $0.didPullToRefresh() },
+        didSelectIndexClosure: weakify { $0.didSelectFilter($1) }
     )
 
     // MARK: - Init
@@ -44,6 +46,7 @@ final class HomeViewController: CoordinatedViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         bindProperties()
+        self.customView.currentIndex = 0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,6 +58,11 @@ final class HomeViewController: CoordinatedViewController {
         viewModel.input.viewDidLoad()
         viewModel.output.procedures.bind() { [weak self] result in
             self?.customView.procedures = result.reversed()
+            self?.procedures = result.reversed()
+            self?.setInitialFilterDateRange(result.reversed())
+            self?.customView.totalValueLabel.text = self?.viewModel.input.makeTotalAmounts(result)
+            self?.customView.totalReceiptCard.loadingIndicatorView(show: false)
+            self?.customView.proceduresValueLabel.text = "\(result.count)"
         }
         
         viewModel.output.nameUser.bind { [weak self] result in
@@ -64,9 +72,25 @@ final class HomeViewController: CoordinatedViewController {
         
         reloadData()
     }
+    
+    private func setInitialFilterDateRange(_ procedures: [GetProcedureModel]) {
+        let dates = procedures.map { $0.currentDate }
+        let firstDate = dates.first ?? ""
+        let lastDate = dates.last ?? ""
+        
+        if procedures.count > 1 && firstDate != lastDate {
+            self.customView.filterRange = "\(firstDate) - \(lastDate)"
+        } else if procedures.count >= 1 {
+            self.customView.filterRange = "\(firstDate)"
+        }
+
+        self.customView.filterRangeValue.isHidden = procedures.isEmpty
+        self.customView.filterRangeLabel.isHidden = procedures.isEmpty
+    }
 
     private func didPullToRefresh() {
         bindProperties()
+        self.customView.currentIndex = 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.customView.tableview.refreshControl?.endRefreshing()
             self.reloadData()
@@ -76,5 +100,37 @@ final class HomeViewController: CoordinatedViewController {
     private func reloadData() {
         self.customView.tableview.reloadData()
     }
+    
+    private func filteredProcedures(procedures: [GetProcedureModel], lastDays: Int) -> [GetProcedureModel] {
+        let lastDaysDates = Date.getDates(forLastNDays: lastDays)
+        self.customView.filterRange = "\(lastDaysDates.first ?? "") - \(lastDaysDates.last ?? "")"
+        return procedures.filter({ lastDaysDates.contains($0.currentDate) })
+    }
+    
+    func todayProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
+        let procedures = procedures.filter({$0.currentDate == returnCurrentDate})
+        customView.filterRange = returnCurrentDate
+        return procedures
+    }
 
+    var returnCurrentDate: String = {
+        let date = Date()
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        let dateString = df.string(from: date)
+        return dateString
+    }()
+
+    private func didSelectFilter(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            setInitialFilterDateRange(procedures)
+            self.customView.procedures = procedures
+
+        case 1: self.customView.procedures = todayProcedures(procedures: procedures)
+        case 2: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
+        case 3: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
+        default: break
+        }
+    }
 }

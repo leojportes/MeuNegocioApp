@@ -13,7 +13,7 @@ final class ReportViewController: CoordinatedViewController {
     
     // MARK: - Properties
     var procedures: [GetProcedureModel] = []
-    var amountDiscount: String = "Sem porcentagem aplicada."
+    var amountDiscount: String = ReportConsts.noPorcentApplyed
     var pdftable: ConfigurableTable? = nil
     
     // MARK: - Private properties
@@ -65,6 +65,7 @@ final class ReportViewController: CoordinatedViewController {
         self.setupWeeklyAmount(procedures: response)
         self.setupPaymentTypeAmount(procedures: response)
         self.setupDailyAmount(procedures: response)
+        self.setupMonthlyAmount(procedures: response)
         self.shareReportPDF(procedures: response)
         
         /// Values with porcentage interaction in textfield.
@@ -75,6 +76,7 @@ final class ReportViewController: CoordinatedViewController {
                 weakSelf.shareReportPDF(procedures: response, hasDiscount, percent: percent)
                 weakSelf.setupDailyAmount(procedures: response, hasDiscount, percent: percent)
                 weakSelf.setupWeeklyAmount(procedures: response, hasDiscount, percent: percent)
+                weakSelf.setupMonthlyAmount(procedures: response, hasDiscount, percent: percent)
                 weakSelf.setupPaymentTypeAmount(procedures: response, hasDiscount, percent: percent)
             }
         }
@@ -91,10 +93,10 @@ final class ReportViewController: CoordinatedViewController {
         if hasDiscount {
             let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
             self.customView.setupDailyCard(percentResult, "\(dailyProcedures.count)")
-            self.customView.setupDailyTitleIfHasDiscount("\(percent)% do total • hoje")
+            self.customView.setupDailyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.today)")
         } else {
             self.customView.setupDailyCard(makeTotalDailyAmount, "\(dailyProcedures.count)")
-            self.customView.setupDailyTitleIfHasDiscount("Total • hoje")
+            self.customView.setupDailyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.today)")
         }
     }
 
@@ -108,10 +110,27 @@ final class ReportViewController: CoordinatedViewController {
         if hasDiscount {
             let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalWeeklyAmount)
             self.customView.setupWeeklyCard(percentResult, "\(weeklyProcedures.count)")
-            self.customView.setupWeeklyTitleIfHasDiscount("\(percent)% do total • últimos 7 dias")
+            self.customView.setupWeeklyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.last7days)")
         } else {
             self.customView.setupWeeklyCard(makeTotalWeeklyAmount, "\(weeklyProcedures.count)")
-            self.customView.setupWeeklyTitleIfHasDiscount("Total • últimos 7 dias")
+            self.customView.setupWeeklyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.last7days)")
+        }
+    }
+
+    /// Configure amout for Monthly card.
+    private func setupMonthlyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
+        /// Here we filter the procedures from the last 30 days.
+        let monthlyProcedures = viewModel.monthlyProceduresLast30Days(procedures: procedures)
+        /// Here we add the values ​​of the procedures of the last 30 days.
+        let makeTotalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
+        
+        if hasDiscount {
+            let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalMonthlyAmount)
+            self.customView.setupMonthlyCard(percentResult, "\(monthlyProcedures.count)")
+            self.customView.setupMonthlyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.last30days)")
+        } else {
+            self.customView.setupMonthlyCard(makeTotalMonthlyAmount, "\(monthlyProcedures.count)")
+            self.customView.setupMonthlyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.last30days)")
         }
     }
 
@@ -146,11 +165,19 @@ final class ReportViewController: CoordinatedViewController {
         self.customView.didTapDownloadWeeklyHistoric = {
             self.sharePDF(weeklyProcedures, PDFModel.weeklyTitle, .weekly, totalPercentWeeklyAmount, hasDiscount, percent)
         }
+    
+        /// Share  monthly report.
+        let monthlyProcedures = self.viewModel.monthlyProceduresLast30Days(procedures: procedures)
+        let totalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
+        let totalPercentMonthlyAmount = viewModel.percentageFromString(percent: percent, baseAmount: totalMonthlyAmount)
+        self.customView.didTapDownloadMonthlyHistoric = {
+            self.sharePDF(monthlyProcedures, PDFModel.monthlyTitle, .weekly, totalPercentMonthlyAmount, hasDiscount, percent)
+        }
     }
     
     // MARK: - Aux methods
     private func setupNavigationBar() {
-        title = "Relatórios"
+        title = ReportConsts.reports
         navigationController?.navigationBar.topItem?.backButtonTitle = .stringEmpty
         navigationController?.navigationBar.tintColor = .BarberColors.darkGray
         navigationController?.navigationBar.barTintColor = .white
@@ -173,10 +200,10 @@ final class ReportViewController: CoordinatedViewController {
         _ hasDiscount: Bool = false, _ percent: String = .stringEmpty
     ) {
         if procedure.isEmpty {
-            self.showAlert(title: "Ops!", messsage: "Nenhum procedimento \(type.rawValue) cadastrado para gerar relatório")
+            self.showAlert(title: MNConstants.ops, messsage: "\(ReportConsts.withOutProcedure) \(type.rawValue) \(ReportConsts.reportGenerate)")
         } else {
-            let hasPercentageText = "Total com porcentagem de \(percent)% do período \(type.rawValue): \(totalAmount)"
-            let hasNoPercentageText = "Sem porcentagem aplicada."
+            let hasPercentageText = "\(ReportConsts.totalPercent) \(percent)\(ReportConsts.atRange) \(type.rawValue): \(totalAmount)"
+            let hasNoPercentageText = ReportConsts.noPorcentApplyed
             self.amountDiscount = hasDiscount ? hasPercentageText : hasNoPercentageText
             self.procedures = procedure
             self.createAndSharePDF(titleFilePDF: titlePDF)
