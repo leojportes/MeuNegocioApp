@@ -151,33 +151,10 @@ final class HomeView: UIView, ViewCodeContract {
         return table
     }()
 
-    private(set) lazy var totalReceiptCard = CardView() .. {
+    lazy var totalReceiptCard = TotalReceiptCardView() .. {
         $0.loadingIndicatorView(show: true)
     }
 
-    private lazy var totalLabel = BarberLabel(text: "Valor total recebido") .. {
-        $0.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = .BarberColors.grayDescription
-    }
-
-    private(set) lazy var totalValueLabel = BarberLabel() .. {
-        $0.text = "R$ 00,00"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-    }
-
-    private lazy var proceduresLabel = BarberLabel() .. {
-        $0.text = "Procedimentos"
-        $0.textAlignment = .right
-        $0.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = .BarberColors.grayDescription
-    }
-
-    private(set) lazy var proceduresValueLabel = BarberLabel() .. {
-        $0.text = "0"
-        $0.textAlignment = .right
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-    }
-    
     lazy var filterView = FilterSegmentedControl(
         didSelectIndexClosure: weakify {
             $0.didSelectIndexClosure($1)
@@ -218,10 +195,6 @@ final class HomeView: UIView, ViewCodeContract {
         addSubview(sectionCardsView)
         addSubview(mainBaseView)
         sectionCardsView.addSubview(totalReceiptCard)
-        totalReceiptCard.addSubview(totalLabel)
-        totalReceiptCard.addSubview(totalValueLabel)
-        totalReceiptCard.addSubview(proceduresLabel)
-        totalReceiptCard.addSubview(proceduresValueLabel)
         sectionCardsView.addSubview(filterView)
         sectionCardsView.addSubview(filterRangeLabel)
         sectionCardsView.addSubview(filterRangeValue)
@@ -263,26 +236,6 @@ final class HomeView: UIView, ViewCodeContract {
             .leftAnchor(in: sectionCardsView, padding: 15)
             .rightAnchor(in: sectionCardsView, padding: 15 )
             .heightAnchor(80)
-    
-        totalLabel
-            .topAnchor(in: totalReceiptCard, padding: 20)
-            .leftAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(150)
-
-        totalValueLabel
-            .topAnchor(in: totalLabel, attribute: .bottom, padding: 2)
-            .leftAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(200)
-
-        proceduresLabel
-            .topAnchor(in: totalReceiptCard, padding: 20)
-            .rightAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(150)
-
-        proceduresValueLabel
-            .topAnchor(in: proceduresLabel, attribute: .bottom, padding: 2)
-            .rightAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(50)
         
         /// Main
         mainBaseView

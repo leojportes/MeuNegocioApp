@@ -60,9 +60,10 @@ final class HomeViewController: CoordinatedViewController {
             self?.customView.procedures = result.reversed()
             self?.procedures = result.reversed()
             self?.setInitialFilterDateRange(result.reversed())
-            self?.customView.totalValueLabel.text = self?.viewModel.input.makeTotalAmounts(result)
+            self?.customView.totalReceiptCard.setupCardValues(
+                totalValues: self?.viewModel.input.makeTotalAmounts(result),
+                procedureValue: "\(result.count)")
             self?.customView.totalReceiptCard.loadingIndicatorView(show: false)
-            self?.customView.proceduresValueLabel.text = "\(result.count)"
         }
         
         viewModel.output.nameUser.bind { [weak self] result in
