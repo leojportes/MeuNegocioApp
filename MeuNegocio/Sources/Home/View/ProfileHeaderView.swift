@@ -100,6 +100,7 @@ extension ProfileHeaderView: ViewCodeContract {
     
     func setupConstraints() {
         containerStackView
+            .topAnchor(in: self)
             .leftAnchor(in: self, padding: 16)
             .bottomAnchor(in: self, padding: 12)
             .heightAnchor(40)
@@ -112,7 +113,6 @@ extension ProfileHeaderView: ViewCodeContract {
             .centerX(in: iconView)
             .centerY(in: iconView)
  
-    
         iconArrow
             .heightAnchor(15)
             .widthAnchor(15)

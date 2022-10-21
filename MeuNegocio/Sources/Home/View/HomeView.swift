@@ -166,7 +166,7 @@ final class HomeView: UIView, ViewCodeContract {
     func setupConstraints() {
         
         profileHeaderView
-            .topAnchor(in: self, attribute: .top, layoutOption: .useMargins)
+            .topAnchor(in: self, layoutOption: .useMargins)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .heightAnchor(70)
