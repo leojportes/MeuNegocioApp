@@ -53,10 +53,8 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     
     func setupConstraints() {
         segmentedControl
-            .heightAnchor(30)
-            .centerY(in: self)
-            .leftAnchor(in: self, padding: 15)
-            .rightAnchor(in: self, padding: 15)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
     }
 
 }

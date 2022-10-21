@@ -10,6 +10,7 @@
 		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
 		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
 		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
+		5213DCF928FF839A00AFC980 /* TotalReceiptCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
@@ -144,6 +145,7 @@
 		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalReceiptCardView.swift; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = MeuNegocio/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			children = (
 				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
 				C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */,
+				5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1031,6 +1034,7 @@
 				C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */,
 				52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
+				5213DCF928FF839A00AFC980 /* TotalReceiptCardView.swift in Sources */,
 				C016B61728E0AFC4007372E4 /* ProcedureDetailViewController.swift in Sources */,
 				C0F8FE7128EE94DC00ECEB63 /* CheckYourAccountController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
