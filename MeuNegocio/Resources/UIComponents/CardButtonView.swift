@@ -86,28 +86,9 @@ extension CardButtonView: ViewCodeContract {
             .bottomAnchor(in: container, attribute: .bottom)
     }
     
+    func setupConfiguration() {
+        self.widthAnchor(85)
+    }
     
 }
 
-class PeriodView: UIView {
-    
-    init() {
-        super.init(frame: .zero)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-extension PeriodView: ViewCodeContract {
-    func setupHierarchy() {
-        <#code#>
-    }
-    
-    func setupConstraints() {
-        <#code#>
-    }
-    
-    
-}

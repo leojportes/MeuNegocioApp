@@ -8,12 +8,16 @@
 import UIKit
 
 class CardIconAndTitleView: UIView {
-    init(icon: String, title: String, titleColor: UIColor, isHiddenArrow: Bool = true, heightIcon: CGFloat = 24) {
+    
+    var spacing: CGFloat = 8
+    
+    init(icon: String, title: String, titleColor: UIColor, isHiddenArrow: Bool = true, heightIcon: CGFloat = 24, spacing: CGFloat = 8) {
         super.init(frame: .zero)
         iconImageView.image = UIImage(named: icon)
         titleLabel.text = title
         titleLabel.textColor = titleColor
         iconArrow.isHidden = isHiddenArrow
+        self.spacing = spacing
         iconImageView.heightAnchor(heightIcon)
         iconImageView.widthAnchor(heightIcon)
         setupView()
@@ -60,7 +64,7 @@ extension CardIconAndTitleView: ViewCodeContract {
             .leftAnchor(in: self)
         
         titleLabel
-            .leftAnchor(in: iconImageView, attribute: .right, padding: 8)
+            .leftAnchor(in: iconImageView, attribute: .right, padding: spacing)
             .rightAnchor(in: self)
             .centerY(in: iconImageView)
         

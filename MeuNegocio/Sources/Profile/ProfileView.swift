@@ -119,7 +119,8 @@ class ProfileView: UIView {
             title: "Sair do aplicativo",
             titleColor: .BarberColors.grayDarkest,
             isHiddenArrow: false,
-            heightIcon: 18)
+            heightIcon: 18,
+            spacing: 16)
         view.addTopBorder()
         view.addBottomBorder()
         view.addGestureRecognizer(tap)
@@ -133,8 +134,8 @@ class ProfileView: UIView {
             title: "Encerrar conta",
             titleColor: .BarberColors.grayDarkest,
             isHiddenArrow: false,
-            heightIcon: 18
-        )
+            heightIcon: 18,
+            spacing: 16)
         view.addTopBorder()
         view.addBottomBorder()
         view.addGestureRecognizer(tap)

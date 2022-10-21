@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileHeaderView: UIStackView {
+final class ProfileHeaderView: UIView {
     
     // MARK: - Private properties
     private var openProfile: Action?
@@ -24,6 +24,16 @@ final class ProfileHeaderView: UIStackView {
     
     
     // MARK: - Viewcode
+    
+    lazy var containerStackView: UIStackView = {
+        let container = UIStackView()
+        container.axis = .horizontal
+        container.distribution = .fill
+        container.spacing = 8
+        container.translatesAutoresizingMaskIntoConstraints = false
+        tapGestureRecognizer()
+        return container
+    }()
     
     private lazy var iconView: UIView = {
         let container = UIView()
@@ -80,14 +90,19 @@ final class ProfileHeaderView: UIStackView {
 
 extension ProfileHeaderView: ViewCodeContract {
     func setupHierarchy() {
-        addArrangedSubview(iconView)
-        addArrangedSubview(nameUserLabel)
-        addArrangedSubview(iconArrow)
+        addSubview(containerStackView)
+        containerStackView.addArrangedSubview(iconView)
+        containerStackView.addArrangedSubview(nameUserLabel)
+        containerStackView.addArrangedSubview(iconArrow)
         
         iconView.addSubview(iconImage)
     }
     
     func setupConstraints() {
+        containerStackView
+            .leftAnchor(in: self, padding: 16)
+            .bottomAnchor(in: self, padding: 12)
+            .heightAnchor(40)
         
         iconView
             .heightAnchor(40)
@@ -105,9 +120,5 @@ extension ProfileHeaderView: ViewCodeContract {
     
     func setupConfiguration() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        tapGestureRecognizer()
-        self.axis = .horizontal
-        self.distribution = .fill
-        self.spacing = 8
     }
 }

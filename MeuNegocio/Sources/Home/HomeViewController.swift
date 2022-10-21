@@ -85,8 +85,8 @@ final class HomeViewController: CoordinatedViewController {
             self.customView.filterRange = "\(firstDate)"
         }
 
-        self.customView.filterRangeValue.isHidden = procedures.isEmpty
-        self.customView.filterRangeLabel.isHidden = procedures.isEmpty
+        self.customView.filterView.filterRangeValue.isHidden = procedures.isEmpty
+        self.customView.filterView.filterRangeLabel.isHidden = procedures.isEmpty
     }
 
     private func didPullToRefresh() {

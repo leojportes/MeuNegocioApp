@@ -35,13 +35,13 @@ final class HomeView: UIView, ViewCodeContract {
 
     var filterRange: String = "" {
         didSet {
-            filterRangeValue.text = filterRange
+            filterView.filterRangeValue.text = filterRange
         }
     }
     
     var userName: String = .stringEmpty {
         didSet {
-            profileView.setupLayout(nameUser: userName )
+            profileHeaderView.setupLayout(nameUser: userName )
         }
     }
     
@@ -73,19 +73,9 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     // MARK: - Header
-    private lazy var headerStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .fillEqually
-        stack.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-        stack.isLayoutMarginsRelativeArrangement = true
-        stack.backgroundColor = .BarberColors.lightBrown
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    private lazy var profileView: ProfileHeaderView = {
+    private lazy var profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        view.backgroundColor = .BarberColors.lightBrown
         view.setupAction(actionButton: weakify { $0.openProfile?()})
         return view
     }()
@@ -96,46 +86,20 @@ final class HomeView: UIView, ViewCodeContract {
         stack.backgroundColor = .BarberColors.lightGray
         stack.axis = .vertical
         stack.spacing = 16
-        stack.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+        stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 8, right: 16)
         stack.isLayoutMarginsRelativeArrangement = true
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    lazy var cardStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [reportCard, infoCard, moreCard])
-        stack.axis = .horizontal
-        stack.distribution = .fillEqually
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
-    lazy var reportCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatórios")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReport(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
-    }()
-    
-    lazy var infoCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.help.rawValue, title: "Informações")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardInfo(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
-    }()
-    
-    lazy var moreCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.more.rawValue, title: "Adicionar")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardMore(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
+    lazy var menuCardsView: MenuCardView = {
+        let container = MenuCardView(
+            closureReport: { self.openReport?() },
+            closureInfoCard: { self.openHelp?() },
+            closureMore: { self.openAddProcedure?() })
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
     
     lazy var totalReceiptCard = TotalReceiptCardView() .. {
@@ -146,23 +110,6 @@ final class HomeView: UIView, ViewCodeContract {
         didSelectIndexClosure: weakify {
             $0.didSelectIndexClosure($1)
         }
-    )
-    
-    lazy var periodView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-
-    private(set) lazy var filterRangeLabel = BarberLabel(
-        text: "Período:",
-        font: UIFont.boldSystemFont(ofSize: 15),
-        textColor: .BarberColors.grayDarkest
-    )
-    
-    private(set) lazy var filterRangeValue = BarberLabel(
-        font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .BarberColors.grayDescription
     )
     
     // MARK: - Main
@@ -205,33 +152,27 @@ final class HomeView: UIView, ViewCodeContract {
 
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        addSubview(headerStackView)
+        addSubview(profileHeaderView)
         addSubview(sectionCardsView)
         addSubview(mainBaseView)
-        headerStackView.addArrangedSubview(profileView)
         
-        sectionCardsView.addArrangedSubview(cardStackView)
+        sectionCardsView.addArrangedSubview(menuCardsView)
         sectionCardsView.addArrangedSubview(totalReceiptCard)
         sectionCardsView.addArrangedSubview(filterView)
-        sectionCardsView.addArrangedSubview(periodView)
-        
-        periodView.addSubview(filterRangeLabel)
-        periodView.addSubview(filterRangeValue)
         
         mainBaseView.addSubview(tableview)
     }
     
     func setupConstraints() {
         
-        /// Header
-        headerStackView
-            .topAnchor(in: self, attribute: .top, layoutOption: .useSafeArea)
+        profileHeaderView
+            .topAnchor(in: self, attribute: .top, layoutOption: .useMargins)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
+            .heightAnchor(70)
         
-        /// Section Cards
         sectionCardsView
-            .topAnchor(in: headerStackView, attribute: .bottom)
+            .topAnchor(in: profileHeaderView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
 
@@ -240,20 +181,7 @@ final class HomeView: UIView, ViewCodeContract {
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self)
-        
-        filterView
-            .heightAnchor(30)
-        
-        filterRangeLabel
-            .topAnchor(in: periodView)
-            .leftAnchor(in: periodView)
-            .bottomAnchor(in: periodView)
-        
-        filterRangeValue
-            .topAnchor(in: periodView)
-            .leftAnchor(in: filterRangeLabel, attribute: .right, padding: 6)
-            .bottomAnchor(in: periodView)
-        
+
         tableview
             .topAnchor(in: mainBaseView)
             .leftAnchor(in: mainBaseView)
