@@ -30,6 +30,7 @@ final class ProfileHeaderView: UIView {
         container.axis = .horizontal
         container.distribution = .fill
         container.spacing = 8
+        container.backgroundColor = .red
         container.translatesAutoresizingMaskIntoConstraints = false
         tapGestureRecognizer()
         return container
@@ -100,10 +101,8 @@ extension ProfileHeaderView: ViewCodeContract {
     
     func setupConstraints() {
         containerStackView
-            .topAnchor(in: self)
             .leftAnchor(in: self, padding: 16)
             .bottomAnchor(in: self, padding: 12)
-            .heightAnchor(40)
         
         iconView
             .heightAnchor(40)
