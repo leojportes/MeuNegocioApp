@@ -10,7 +10,7 @@ import UIKit
 protocol HomeViewModelProtocol: AnyObject {
     var input: HomeViewModelInputProtocol { get }
     var output: HomeViewModelOutputProtocol { get }
-    func navigateToReport()
+    func navigateToReport(procedures: [GetProcedureModel])
     func navigateToProfile()
     func navigateToAddProcedure()
     func navigateToHelp()
@@ -73,8 +73,8 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     }
 
     // MARK: - Routes
-    func navigateToReport() {
-        coordinator?.navigateTo(.Report)
+    func navigateToReport(procedures: [GetProcedureModel]) {
+        coordinator?.navigateTo(.Report(procedures))
     }
 
     func navigateToProfile() {

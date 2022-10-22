@@ -8,7 +8,7 @@
 import Foundation
 
 enum TypeScreen {
-    case Report
+    case Report([GetProcedureModel])
     case Profile
     case AddProcedure
     case Help
@@ -25,7 +25,7 @@ final class HomeCoordinator: BaseCoordinator {
     
     func navigateTo(_ event: TypeScreen) {
         switch event {
-        case .Report: openReport()
+        case let .Report(procedures): openReport(procedures: procedures)
         case .Profile: openProfile()
         case .AddProcedure: openAddProcedure()
         case .Help: openHelp()
@@ -37,8 +37,8 @@ final class HomeCoordinator: BaseCoordinator {
 extension HomeCoordinator {
     
     // MARK: - Routes
-    private func openReport() {
-        ReportCoordinator(with: configuration).start()
+    private func openReport(procedures: [GetProcedureModel]) {
+        ReportCoordinator(with: configuration).start(procedures: procedures)
     }
 
     private func openProfile() {

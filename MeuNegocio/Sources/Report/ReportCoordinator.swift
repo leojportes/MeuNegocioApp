@@ -8,9 +8,9 @@
 import Foundation
 
 final class ReportCoordinator: BaseCoordinator {
-    override func start() {
+    func start(procedures: [GetProcedureModel]) {
         let viewModel = ReportViewModel()
-        let controller = ReportViewController(viewModel: viewModel, coordinator: self)
+        let controller = ReportViewController(viewModel: viewModel, coordinator: self, procedures: procedures)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = true
         configuration.navigationController?.pushViewController(controller, animated: true)

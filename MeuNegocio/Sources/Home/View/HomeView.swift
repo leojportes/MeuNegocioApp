@@ -180,7 +180,7 @@ final class HomeView: UIView, ViewCodeContract {
             .topAnchor(in: sectionCardsView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .bottomAnchor(in: self)
+            .bottomAnchor(in: self, layoutOption: .useMargins)
 
         tableview
             .topAnchor(in: mainBaseView)

@@ -12,7 +12,7 @@ import PDFKit
 final class ReportViewController: CoordinatedViewController {
     
     // MARK: - Properties
-    var procedures: [GetProcedureModel] = []
+    var procedures: [GetProcedureModel]
     var amountDiscount: String = ReportConsts.noPorcentApplyed
     var pdftable: ConfigurableTable? = nil
     
@@ -21,7 +21,8 @@ final class ReportViewController: CoordinatedViewController {
     private lazy var customView = ReportView()
     
     // MARK: - Init
-    init(viewModel: ReportViewModelProtocol, coordinator: CoordinatorProtocol){
+    init(viewModel: ReportViewModelProtocol, coordinator: CoordinatorProtocol, procedures: [GetProcedureModel]) {
+        self.procedures = procedures
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
@@ -48,14 +49,9 @@ final class ReportViewController: CoordinatedViewController {
     }
 
     // MARK: - Bind methods
-    /// Fetch all procedures.
+    /// Bind all procedures.
     private func fetchProcedures() {
-        self.viewModel.getProcedureList { [weak self] result in
-            DispatchQueue.main.async {
-                self?.procedures = result
-                self?.setupReportView(result)
-            }
-        }
+        self.setupReportView(procedures)
     }
 
     /// Setup for report view.

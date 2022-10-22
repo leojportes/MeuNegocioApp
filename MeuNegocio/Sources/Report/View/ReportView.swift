@@ -83,16 +83,13 @@ final class ReportView: UIView {
 
     /// Historic cards
     private lazy var dailyHistoricCard = ReportCardView(
-        didTapReportDownload: weakify { $0.didTapDownloadDailyHistoric?() }
-    ) .. { $0.loadingIndicatorView(show: true) }
+        didTapReportDownload: weakify { $0.didTapDownloadDailyHistoric?() })
 
     private lazy var weeklyHistoricCard = ReportCardView(
-        didTapReportDownload: weakify { $0.didTapDownloadWeeklyHistoric?() }
-    ) .. { $0.loadingIndicatorView(show: true) }
+        didTapReportDownload: weakify { $0.didTapDownloadWeeklyHistoric?() })
 
     private lazy var monthlyHistoricCard = ReportCardView(
-        didTapReportDownload: weakify { $0.didTapDownloadMonthlyHistoric?() }
-    ) .. { $0.loadingIndicatorView(show: true) }
+        didTapReportDownload: weakify { $0.didTapDownloadMonthlyHistoric?() })
     
     private lazy var paymentTypeAmountTitle = MNLabel(
         text: ReportConsts.paymentMethods,
@@ -112,7 +109,7 @@ final class ReportView: UIView {
     }
     
     /// Payment methods amount
-    private lazy var paymentTypeAmountCard = PaymentTypeAmountCardView() .. { $0.loadingIndicatorView(show: true) }
+    private lazy var paymentTypeAmountCard = PaymentTypeAmountCardView()
     
     // MARK: - Bind methods
     func setupDailyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
@@ -123,7 +120,6 @@ final class ReportView: UIView {
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: ReportConsts.dailyReportDownload
         )
-        dailyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupWeeklyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
@@ -134,7 +130,6 @@ final class ReportView: UIView {
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: ReportConsts.weeklyReportDownload
         )
-        weeklyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupMonthlyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
@@ -145,7 +140,6 @@ final class ReportView: UIView {
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: ReportConsts.monthlyReportDownload
         )
-        monthlyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupPaymentTypeAmountCard(
@@ -160,7 +154,6 @@ final class ReportView: UIView {
             cashAmount: cashAmount,
             pixAmount: pixAmount
         )
-        paymentTypeAmountCard.loadingIndicatorView(show: false)
     }
     
 }
