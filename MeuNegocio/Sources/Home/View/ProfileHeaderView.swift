@@ -31,7 +31,6 @@ final class ProfileHeaderView: UIView {
         container.axis = .horizontal
         container.distribution = .fill
         container.spacing = 8
-        container.backgroundColor = .red
         container.addGestureRecognizer(tapProfile)
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
