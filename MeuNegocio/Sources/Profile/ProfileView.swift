@@ -58,25 +58,25 @@ class ProfileView: UIView {
     
     private lazy var iconView: UIView = {
         let container = UIView()
-        container.backgroundColor = .BarberColors.lightBrown
+        container.backgroundColor = .MNColors.lightBrown
         container.roundCorners(cornerRadius: 30)
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
     
-    private lazy var firstNameLabel: BarberLabel = {
-        let label = BarberLabel(font: UIFont.boldSystemFont(ofSize: 16))
+    private lazy var firstNameLabel: MNLabel = {
+        let label = MNLabel(font: UIFont.boldSystemFont(ofSize: 16))
         return label
     }()
     
-    private lazy var nameUserLabel: BarberLabel = {
-        let label = BarberLabel(font: UIFont.boldSystemFont(ofSize: 16))
+    private lazy var nameUserLabel: MNLabel = {
+        let label = MNLabel(font: UIFont.boldSystemFont(ofSize: 16))
         return label
     }()
     
     lazy var InfoStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [companyLabel, cityLabel, emailLabel])
-        stack.backgroundColor = .BarberColors.lightGray
+        stack.backgroundColor = .MNColors.lightGray
         stack.axis = .vertical
         stack.alignment = .leading
         stack.distribution = .fillEqually
@@ -91,24 +91,24 @@ class ProfileView: UIView {
         return stack
     }()
     
-    lazy var companyLabel: BarberLabel = {
-        let label = BarberLabel(
+    lazy var companyLabel: MNLabel = {
+        let label = MNLabel(
             font: UIFont.boldSystemFont(ofSize: 16),
-            textColor: .BarberColors.grayDescription)
+            textColor: .MNColors.grayDescription)
         return label
     }()
     
-    lazy var cityLabel: BarberLabel = {
-        let label = BarberLabel(
+    lazy var cityLabel: MNLabel = {
+        let label = MNLabel(
             font: UIFont.boldSystemFont(ofSize: 16),
-            textColor: .BarberColors.grayDescription)
+            textColor: .MNColors.grayDescription)
         return label
     }()
     
-    private lazy var emailLabel: BarberLabel = {
-        let label = BarberLabel(
+    private lazy var emailLabel: MNLabel = {
+        let label = MNLabel(
             font: UIFont.boldSystemFont(ofSize: 16),
-            textColor: .BarberColors.grayDescription)
+            textColor: .MNColors.grayDescription)
         return label
     }()
     
@@ -117,7 +117,7 @@ class ProfileView: UIView {
         let view = CardIconAndTitleView(
             icon: Icon.logoutAccount.rawValue,
             title: "Sair do aplicativo",
-            titleColor: .BarberColors.grayDarkest,
+            titleColor: .MNColors.grayDarkest,
             isHiddenArrow: false,
             heightIcon: 18,
             spacing: 16)
@@ -132,7 +132,7 @@ class ProfileView: UIView {
         let view = CardIconAndTitleView(
             icon: Icon.deleteAccount.rawValue,
             title: "Encerrar conta",
-            titleColor: .BarberColors.grayDarkest,
+            titleColor: .MNColors.grayDarkest,
             isHiddenArrow: false,
             heightIcon: 18,
             spacing: 16)
@@ -143,8 +143,8 @@ class ProfileView: UIView {
     }()
     
     
-    private lazy var versionLabel: BarberLabel = {
-        let label = BarberLabel(font: .boldSystemFont(ofSize: 14))
+    private lazy var versionLabel: MNLabel = {
+        let label = MNLabel(font: .boldSystemFont(ofSize: 14))
         if let version = appVersion {
             label.text = "Versão \(version)"
         }

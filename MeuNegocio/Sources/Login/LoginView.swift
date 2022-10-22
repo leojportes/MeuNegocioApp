@@ -39,7 +39,7 @@ class LoginView: UIView {
     private lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
-        button.tintColor = .BarberColors.grayDarkest
+        button.tintColor = .MNColors.grayDarkest
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleEyeButton), for: .touchUpInside)
         return button
@@ -63,8 +63,8 @@ class LoginView: UIView {
         return img
     }()
     
-    private lazy var titleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Meu negócio",
+    private lazy var titleLabel: MNLabel = {
+        let label = MNLabel(text: "Meu negócio",
                                 font: UIFont.boldSystemFont(ofSize: 20),
                                 textColor: .darkGray)
         label.textAlignment = .left
@@ -208,7 +208,7 @@ class LoginView: UIView {
     
     private func isEnabledButtonLogin(_ isEnabled: Bool) {
         if isEnabled {
-            loginButton.backgroundColor = .BarberColors.lightBrown
+            loginButton.backgroundColor = .MNColors.lightBrown
             loginButton.isEnabled = true
         } else {
             loginButton.backgroundColor = .systemGray

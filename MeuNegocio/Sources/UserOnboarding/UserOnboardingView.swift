@@ -28,8 +28,8 @@ class UserOnboardingView: MNView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var titleLabel: BarberLabel = {
-        let label = BarberLabel(
+    lazy var titleLabel: MNLabel = {
+        let label = MNLabel(
             text: "Olá, seja bem-vindo(a)!",
             font: UIFont.boldSystemFont(ofSize: 28),
             textColor: .darkGray
@@ -38,8 +38,8 @@ class UserOnboardingView: MNView {
         return label
     }()
     
-    lazy var subTitleLabel: BarberLabel = {
-        let label = BarberLabel(
+    lazy var subTitleLabel: MNLabel = {
+        let label = MNLabel(
             text: "Preencha os dados abaixo para \n personalizarmos a sua experiência.",
             font: UIFont.systemFont(ofSize: 16),
             textColor: .lightGray
@@ -62,7 +62,7 @@ class UserOnboardingView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Digite seu nome",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
@@ -77,7 +77,7 @@ class UserOnboardingView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Digite o nome da sua empresa",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
@@ -91,7 +91,7 @@ class UserOnboardingView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Digite o nome da sua cidade",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
@@ -105,7 +105,7 @@ class UserOnboardingView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Digite o nome do seu estado. ex: SC",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5
@@ -119,7 +119,7 @@ class UserOnboardingView: MNView {
         let button = CustomSubmitButton(
             title: "Continuar",
             radius: 10,
-            background: .BarberColors.lightBrown
+            background: .MNColors.lightBrown
         )
         button.addTarget(self, action: #selector(handleButtonContinue), for: .touchUpInside)
         return button

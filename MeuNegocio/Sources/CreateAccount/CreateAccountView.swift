@@ -46,14 +46,14 @@ class CreateAccountView: UIView {
    private lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
-        button.tintColor = .BarberColors.darkGray
+        button.tintColor = .MNColors.darkGray
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleEyeButton), for: .touchUpInside)
         return button
     }()
     
-    private lazy var titleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Criar Conta",
+    private lazy var titleLabel: MNLabel = {
+        let label = MNLabel(text: "Criar Conta",
                                 font: UIFont.boldSystemFont(ofSize: 20),
                                 textColor: .darkGray)
         label.textAlignment = .center
@@ -62,8 +62,8 @@ class CreateAccountView: UIView {
     }()
     
     
-    private lazy var subTitleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Informe um e-mail válido e uma senha com \n no minimo 7 digitos para criar a sua conta.",
+    private lazy var subTitleLabel: MNLabel = {
+        let label = MNLabel(text: "Informe um e-mail válido e uma senha com \n no minimo 7 digitos para criar a sua conta.",
                                 font: UIFont.systemFont(ofSize: 16),
                                 textColor: .darkGray)
         label.textAlignment = .center
@@ -74,7 +74,7 @@ class CreateAccountView: UIView {
     lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "E-mail",
                                         colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
+                                        textColor: .MNColors.darkGray,
                                         radius: 5,
                                         borderColor: UIColor.systemGray.cgColor,
                                         borderWidth: 0.5,
@@ -86,7 +86,7 @@ class CreateAccountView: UIView {
     lazy var passwordTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "Senha",
                                         colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
+                                        textColor: .MNColors.darkGray,
                                         radius: 5,
                                         borderColor: UIColor.systemGray.cgColor,
                                         borderWidth: 0.5,
@@ -108,7 +108,7 @@ class CreateAccountView: UIView {
     
     func isEnabledButtonCreateAccount(_ isEnabled: Bool) {
         if isEnabled {
-            createAccountButton.backgroundColor = .BarberColors.lightBrown
+            createAccountButton.backgroundColor = .MNColors.lightBrown
             createAccountButton.isEnabled = true
         }else {
             createAccountButton.backgroundColor = .systemGray

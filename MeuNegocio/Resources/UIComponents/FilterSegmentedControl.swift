@@ -41,22 +41,22 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     
     private lazy var segmentedControl: UISegmentedControl = {
         let seg = UISegmentedControl(items: items)
-        seg.selectedSegmentTintColor = .BarberColors.lightBrown
+        seg.selectedSegmentTintColor = .MNColors.lightBrown
         seg.selectedSegmentIndex = 0
         seg.translatesAutoresizingMaskIntoConstraints = false
         seg.addTarget(self, action: #selector(didSelectIndex(_:)), for: .valueChanged)
         return seg
     }()
     
-    private(set) lazy var filterRangeLabel = BarberLabel(
+    private(set) lazy var filterRangeLabel = MNLabel(
         text: "Período:",
         font: UIFont.boldSystemFont(ofSize: 15),
-        textColor: .BarberColors.grayDarkest
+        textColor: .MNColors.grayDarkest
     )
     
-    lazy var filterRangeValue = BarberLabel(
+    lazy var filterRangeValue = MNLabel(
         font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .BarberColors.grayDescription
+        textColor: .MNColors.grayDescription
     )
     
     @objc

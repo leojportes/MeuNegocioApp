@@ -11,7 +11,7 @@ import UIKit
 class CustomTextField: UITextField {
     
     private lazy var baseLineview = UIView() .. {
-        $0.backgroundColor = .BarberColors.grayDescription
+        $0.backgroundColor = .MNColors.grayDescription
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.isHidden = true
     }
@@ -19,7 +19,7 @@ class CustomTextField: UITextField {
     init(
         titlePlaceholder: String = "",
         colorPlaceholder: UIColor = .lightGray,
-        textColor: UIColor = .BarberColors.grayDarkest,
+        textColor: UIColor = .MNColors.grayDarkest,
         radius: CGFloat = 0,
         borderColor: CGColor = UIColor.clear.cgColor,
         borderWidth: CGFloat = 0,

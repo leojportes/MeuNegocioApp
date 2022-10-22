@@ -69,7 +69,7 @@
 		C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */; };
 		C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */; };
 		C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */; };
-		C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */; };
+		C0A174C928E4F65700DB0CE4 /* MNLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174C828E4F65700DB0CE4 /* MNLabel.swift */; };
 		C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */; };
 		C0A174CD28E51F6100DB0CE4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */; };
 		C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CE28E5342300DB0CE4 /* TappedView.swift */; };
@@ -207,7 +207,7 @@
 		C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeAmountCardModel.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureTableViewCell.swift; sourceTree = "<group>"; };
-		C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberLabel.swift; sourceTree = "<group>"; };
+		C0A174C828E4F65700DB0CE4 /* MNLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNLabel.swift; sourceTree = "<group>"; };
 		C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCardView.swift; sourceTree = "<group>"; };
 		C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C0A174CE28E5342300DB0CE4 /* TappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappedView.swift; sourceTree = "<group>"; };
@@ -686,7 +686,7 @@
 				52B8A08228E2310900B1C9F7 /* ErrorView.swift */,
 				52B8A08528E2557000B1C9F7 /* CardButtonView.swift */,
 				C0C8E70C28E4F01700FD1B57 /* CardView.swift */,
-				C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */,
+				C0A174C828E4F65700DB0CE4 /* MNLabel.swift */,
 				C0A174CE28E5342300DB0CE4 /* TappedView.swift */,
 				52B1854028EFADB300907FA0 /* MNView.swift */,
 				C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */,
@@ -1061,7 +1061,7 @@
 				C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
 				52B8A08B28E7990500B1C9F7 /* UserModelList.swift in Sources */,
-				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
+				C0A174C928E4F65700DB0CE4 /* MNLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0F8FE7328EE950A00ECEB63 /* CheckYourAccountViewModel.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
@@ -1069,7 +1069,7 @@
 				C0F8FE6F28EE94D300ECEB63 /* CheckYourAccountView.swift in Sources */,
 				52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */,
 				C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */,
-				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
+				C0A174C928E4F65700DB0CE4 /* MNLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */,

@@ -9,7 +9,7 @@ import UIKit
 
 public extension UIColor {
     
-    struct BarberColors {
+    struct MNColors {
         
         // MARK: - Home colors
         public static var lightBrown: UIColor {

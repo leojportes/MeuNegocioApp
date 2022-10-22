@@ -75,7 +75,7 @@ final class HomeView: UIView, ViewCodeContract {
     // MARK: - Header
     private lazy var profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
-        view.backgroundColor = .BarberColors.lightBrown
+        view.backgroundColor = .MNColors.lightBrown
         view.setupAction(actionButton: weakify { $0.openProfile?()})
         return view
     }()
@@ -83,7 +83,7 @@ final class HomeView: UIView, ViewCodeContract {
     // MARK: - Section Cards
     private lazy var sectionCardsView: UIStackView = {
         let stack = UIStackView()
-        stack.backgroundColor = .BarberColors.lightGray
+        stack.backgroundColor = .MNColors.lightGray
         stack.axis = .vertical
         stack.spacing = 16
         stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 8, right: 16)
@@ -190,7 +190,7 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     func setupConfiguration() {
-        self.backgroundColor = .BarberColors.lightGray
+        self.backgroundColor = .MNColors.lightGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }

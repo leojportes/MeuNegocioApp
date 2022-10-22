@@ -16,7 +16,7 @@ public class BottomSheetView: UIView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = .white
         $0.roundCorners(cornerRadius: 15, typeCorners: [.topLeft, .topRight])
-        $0.layer.borderColor = UIColor.BarberColors.lightGray.cgColor
+        $0.layer.borderColor = UIColor.MNColors.lightGray.cgColor
         $0.layer.borderWidth = 1
     }
     

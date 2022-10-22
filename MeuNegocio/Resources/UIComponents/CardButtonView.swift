@@ -29,7 +29,7 @@ class CardButtonView: UIView {
     
     lazy var containerView: UIView = {
         let container = UIView()
-        container.backgroundColor = .BarberColors.lightBrown
+        container.backgroundColor = .MNColors.lightBrown
         container.roundCorners(cornerRadius: 42, all: true)
         container.translatesAutoresizingMaskIntoConstraints = false
         return container

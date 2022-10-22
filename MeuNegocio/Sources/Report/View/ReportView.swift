@@ -38,7 +38,7 @@ final class ReportView: UIView {
     lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.BarberColors.lightGray
+        view.backgroundColor = UIColor.MNColors.lightGray
         return view
     }()
     
@@ -57,7 +57,7 @@ final class ReportView: UIView {
 
     /// Apply discount
     private lazy var applydiscountCardView = CardView()
-    private lazy var applydiscountTitleLabel = BarberLabel(
+    private lazy var applydiscountTitleLabel = MNLabel(
         text: ReportConsts.applyPercent,
         font: UIFont.boldSystemFont(ofSize: 16)
     )
@@ -65,7 +65,7 @@ final class ReportView: UIView {
     private lazy var applyDiscountStatusView = UIView() .. {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.roundCorners(cornerRadius: 5)
-        $0.backgroundColor = .BarberColors.grayDescription
+        $0.backgroundColor = .MNColors.grayDescription
     }
     
     private lazy var discountPercentageTextField = CustomTextField(showBaseLine: true) .. {
@@ -94,7 +94,7 @@ final class ReportView: UIView {
         didTapReportDownload: weakify { $0.didTapDownloadMonthlyHistoric?() }
     ) .. { $0.loadingIndicatorView(show: true) }
     
-    private lazy var paymentTypeAmountTitle = BarberLabel(
+    private lazy var paymentTypeAmountTitle = MNLabel(
         text: ReportConsts.paymentMethods,
         font: UIFont.boldSystemFont(ofSize: 16)
     )
@@ -256,7 +256,7 @@ extension ReportView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-        self.backgroundColor = UIColor.BarberColors.lightGray
+        self.backgroundColor = UIColor.MNColors.lightGray
     }
 
 }
@@ -270,7 +270,7 @@ extension ReportView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         didApplyDiscount?(textField.hasText)
-        applyDiscountStatusView.backgroundColor = textField.hasText ? .BarberColors.greenMedium : .BarberColors.grayDescription
+        applyDiscountStatusView.backgroundColor = textField.hasText ? .MNColors.greenMedium : .MNColors.grayDescription
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {

@@ -27,12 +27,13 @@ final class ProfileHeaderView: UIView {
     
     lazy var containerStackView: UIStackView = {
         let container = UIStackView()
+        let tapProfile = UITapGestureRecognizer(target: self, action: #selector(tappedView))
         container.axis = .horizontal
         container.distribution = .fill
         container.spacing = 8
         container.backgroundColor = .red
+        container.addGestureRecognizer(tapProfile)
         container.translatesAutoresizingMaskIntoConstraints = false
-        tapGestureRecognizer()
         return container
     }()
     
@@ -44,8 +45,8 @@ final class ProfileHeaderView: UIView {
         return container
     }()
     
-    private lazy var iconImage: BarberLabel = {
-        let label = BarberLabel(font: UIFont.boldSystemFont(ofSize: 16))
+    private lazy var iconImage: MNLabel = {
+        let label = MNLabel(font: UIFont.boldSystemFont(ofSize: 16))
         return label
     }()
     
@@ -69,12 +70,6 @@ final class ProfileHeaderView: UIView {
         if sender.state == .ended {
             self.openProfile?()
         }
-    }
-    
-    private func tapGestureRecognizer() {
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.tappedView))
-        self.addGestureRecognizer(tapGR)
-        self.isUserInteractionEnabled = true
     }
     
     func setupLayout(nameUser: String) {

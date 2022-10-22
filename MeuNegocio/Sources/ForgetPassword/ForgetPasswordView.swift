@@ -33,8 +33,8 @@ final class ForgetPasswordView: UIView {
         return view
     }()
     
-    private lazy var titleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Redefinir senha",
+    private lazy var titleLabel: MNLabel = {
+        let label = MNLabel(text: "Redefinir senha",
                                 font: UIFont.boldSystemFont(ofSize: 20),
                                 textColor: .darkGray)
         label.textAlignment = .center
@@ -42,8 +42,8 @@ final class ForgetPasswordView: UIView {
         return label
     }()
 
-    private lazy var subTitleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Informe o e-mail cadastrado para enviarmos \n um e-mail de redefinição de senha.",
+    private lazy var subTitleLabel: MNLabel = {
+        let label = MNLabel(text: "Informe o e-mail cadastrado para enviarmos \n um e-mail de redefinição de senha.",
                                 font: UIFont.systemFont(ofSize: 16),
                                 textColor: .darkGray)
         label.textAlignment = .center
@@ -54,7 +54,7 @@ final class ForgetPasswordView: UIView {
     lazy var emailTextField: CustomTextField = {
         let textField = CustomTextField(titlePlaceholder: "E-mail cadastrado",
                                         colorPlaceholder: .lightGray,
-                                        textColor: .BarberColors.darkGray,
+                                        textColor: .MNColors.darkGray,
                                         radius: 5,
                                         borderColor: UIColor.systemGray.cgColor,
                                         borderWidth: 0.5,
@@ -76,7 +76,7 @@ final class ForgetPasswordView: UIView {
 
     func isEnabledSendButton(_ isEnabled: Bool) {
         if isEnabled {
-            sendButton.backgroundColor = .BarberColors.lightBrown
+            sendButton.backgroundColor = .MNColors.lightBrown
             sendButton.isEnabled = true
         } else {
             sendButton.backgroundColor = .systemGray

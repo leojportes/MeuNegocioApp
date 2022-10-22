@@ -179,7 +179,7 @@ final class ReportViewController: CoordinatedViewController {
     private func setupNavigationBar() {
         title = ReportConsts.reports
         navigationController?.navigationBar.topItem?.backButtonTitle = .stringEmpty
-        navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        navigationController?.navigationBar.tintColor = .MNColors.darkGray
         navigationController?.navigationBar.barTintColor = .white
     }
 

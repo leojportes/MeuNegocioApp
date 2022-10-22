@@ -20,24 +20,24 @@ class TotalReceiptCardView: CardView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var totalLabel = BarberLabel(text: "Valor total recebido") .. {
+    private lazy var totalLabel = MNLabel(text: "Valor total recebido") .. {
         $0.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
     }
 
-    private(set) lazy var totalValueLabel = BarberLabel() .. {
+    private(set) lazy var totalValueLabel = MNLabel() .. {
         $0.text = "R$ 00,00"
         $0.font = UIFont.boldSystemFont(ofSize: 20)
     }
 
-    private lazy var proceduresLabel = BarberLabel() .. {
+    private lazy var proceduresLabel = MNLabel() .. {
         $0.text = "Procedimentos"
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
     }
 
-    private(set) lazy var proceduresValueLabel = BarberLabel() .. {
+    private(set) lazy var proceduresValueLabel = MNLabel() .. {
         $0.text = "0"
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 20)
