@@ -8,7 +8,6 @@
 import Foundation
 
 protocol ReportViewModelProtocol {
-    func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void)
     func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String
     func dailyProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel]
     func weeklyProceduresLast7Days(procedures: [GetProcedureModel]) -> [GetProcedureModel]
@@ -31,14 +30,6 @@ class ReportViewModel: ReportViewModelProtocol {
         let dateString = df.string(from: date)
         return dateString
     }()
-    
-    // MARK: - Fetch methods
-    /// Get all procedures list.
-    func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void) {
-        service.getProcedureList { result in
-            completion(result)
-        }
-    }
     
     // MARK: - Public methods
     
