@@ -9,43 +9,43 @@ import UIKit
 
 final class PaymentTypeAmountCardView: CardView, ViewCodeContract {
     
-    private lazy var debitAmountLabel = BarberLabel(text: "Débito") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
-    private lazy var creditAmountLabel = BarberLabel(text: "Crédito") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
-    private lazy var cashAmountLabel = BarberLabel(text: "Dinheiro") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
-    private lazy var pixAmountLabel = BarberLabel(text: "Pix") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
+    private lazy var debitAmountLabel = MNLabel(text: "Débito") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
+    private lazy var creditAmountLabel = MNLabel(text: "Crédito") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
+    private lazy var cashAmountLabel = MNLabel(text: "Dinheiro") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
+    private lazy var pixAmountLabel = MNLabel(text: "Pix") .. { $0.font = UIFont.boldSystemFont(ofSize: 15) }
     
-    private lazy var debitAmountLabelValue = BarberLabel() .. {
+    private lazy var debitAmountLabelValue = MNLabel() .. {
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 15)
     }
     
-    private lazy var creditAmountLabelValue = BarberLabel() .. {
+    private lazy var creditAmountLabelValue = MNLabel() .. {
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 15)
     }
     
-    private lazy var cashAmountLabelValue = BarberLabel() .. {
+    private lazy var cashAmountLabelValue = MNLabel() .. {
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 15)
     }
     
-    private lazy var pixAmountLabelValue = BarberLabel() .. {
+    private lazy var pixAmountLabelValue = MNLabel() .. {
         $0.textAlignment = .right
         $0.font = UIFont.boldSystemFont(ofSize: 15)
     }
     
     private lazy var separatorLine1 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private lazy var separatorLine2 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private lazy var separatorLine3 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     

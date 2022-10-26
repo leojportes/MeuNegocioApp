@@ -32,6 +32,7 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = customView
+        tappedOutViewBottomSheetDismiss()
         customView.setupView(procedure: procedure)
     }
 

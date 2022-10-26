@@ -7,12 +7,12 @@
 
 import UIKit
 
-class BarberLabel: UILabel {
+class MNLabel: UILabel {
     
     init(
         text: String = "",
         font: UIFont = UIFont.boldSystemFont(ofSize: 17),
-        textColor: UIColor = .BarberColors.grayDarkest
+        textColor: UIColor = .MNColors.grayDarkest
     ) {
         super.init(frame: .zero)
         self.translatesAutoresizingMaskIntoConstraints = false

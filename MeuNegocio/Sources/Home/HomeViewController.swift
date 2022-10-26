@@ -15,7 +15,7 @@ final class HomeViewController: CoordinatedViewController {
 
     // MARK: - View
     private lazy var customView = HomeView(
-        navigateToReport: weakify { $0.viewModel.navigateToReport()},
+        navigateToReport: weakify { $0.viewModel.navigateToReport(procedures: $0.procedures)},
         alertAction: weakify { $0.showAlert()},
         navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
         navigateToAddProcedure: weakify { $0.viewModel.navigateToAddProcedure() },
@@ -60,9 +60,10 @@ final class HomeViewController: CoordinatedViewController {
             self?.customView.procedures = result.reversed()
             self?.procedures = result.reversed()
             self?.setInitialFilterDateRange(result.reversed())
-            self?.customView.totalValueLabel.text = self?.viewModel.input.makeTotalAmounts(result)
+            self?.customView.totalReceiptCard.setupCardValues(
+                totalValues: self?.viewModel.input.makeTotalAmounts(result),
+                procedureValue: "\(result.count)")
             self?.customView.totalReceiptCard.loadingIndicatorView(show: false)
-            self?.customView.proceduresValueLabel.text = "\(result.count)"
         }
         
         viewModel.output.nameUser.bind { [weak self] result in
@@ -84,8 +85,8 @@ final class HomeViewController: CoordinatedViewController {
             self.customView.filterRange = "\(firstDate)"
         }
 
-        self.customView.filterRangeValue.isHidden = procedures.isEmpty
-        self.customView.filterRangeLabel.isHidden = procedures.isEmpty
+        self.customView.filterView.filterRangeValue.isHidden = procedures.isEmpty
+        self.customView.filterView.filterRangeLabel.isHidden = procedures.isEmpty
     }
 
     private func didPullToRefresh() {

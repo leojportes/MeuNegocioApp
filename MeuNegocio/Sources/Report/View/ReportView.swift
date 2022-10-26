@@ -38,7 +38,7 @@ final class ReportView: UIView {
     lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.BarberColors.lightGray
+        view.backgroundColor = UIColor.MNColors.lightGray
         return view
     }()
     
@@ -57,7 +57,7 @@ final class ReportView: UIView {
 
     /// Apply discount
     private lazy var applydiscountCardView = CardView()
-    private lazy var applydiscountTitleLabel = BarberLabel(
+    private lazy var applydiscountTitleLabel = MNLabel(
         text: ReportConsts.applyPercent,
         font: UIFont.boldSystemFont(ofSize: 16)
     )
@@ -65,7 +65,7 @@ final class ReportView: UIView {
     private lazy var applyDiscountStatusView = UIView() .. {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.roundCorners(cornerRadius: 5)
-        $0.backgroundColor = .BarberColors.grayDescription
+        $0.backgroundColor = .MNColors.grayDescription
     }
     
     private lazy var discountPercentageTextField = CustomTextField(showBaseLine: true) .. {
@@ -83,18 +83,15 @@ final class ReportView: UIView {
 
     /// Historic cards
     private lazy var dailyHistoricCard = ReportCardView(
-        didTapReportDownload: weakify { $0.didTapDownloadDailyHistoric?() }
-    ) .. { $0.loadingIndicatorView(show: true) }
+        didTapReportDownload: weakify { $0.didTapDownloadDailyHistoric?() })
 
     private lazy var weeklyHistoricCard = ReportCardView(
-        didTapReportDownload: weakify { $0.didTapDownloadWeeklyHistoric?() }
-    ) .. { $0.loadingIndicatorView(show: true) }
+        didTapReportDownload: weakify { $0.didTapDownloadWeeklyHistoric?() })
 
     private lazy var monthlyHistoricCard = ReportCardView(
-        didTapReportDownload: weakify { $0.didTapDownloadMonthlyHistoric?() }
-    ) .. { $0.loadingIndicatorView(show: true) }
+        didTapReportDownload: weakify { $0.didTapDownloadMonthlyHistoric?() })
     
-    private lazy var paymentTypeAmountTitle = BarberLabel(
+    private lazy var paymentTypeAmountTitle = MNLabel(
         text: ReportConsts.paymentMethods,
         font: UIFont.boldSystemFont(ofSize: 16)
     )
@@ -112,7 +109,7 @@ final class ReportView: UIView {
     }
     
     /// Payment methods amount
-    private lazy var paymentTypeAmountCard = PaymentTypeAmountCardView() .. { $0.loadingIndicatorView(show: true) }
+    private lazy var paymentTypeAmountCard = PaymentTypeAmountCardView()
     
     // MARK: - Bind methods
     func setupDailyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
@@ -123,7 +120,6 @@ final class ReportView: UIView {
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: ReportConsts.dailyReportDownload
         )
-        dailyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupWeeklyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
@@ -134,7 +130,6 @@ final class ReportView: UIView {
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: ReportConsts.weeklyReportDownload
         )
-        weeklyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupMonthlyCard(_ totalAmountValue: String, _ totalProceduresValue: String) {
@@ -145,7 +140,6 @@ final class ReportView: UIView {
             totalProceduresValue: totalProceduresValue,
             reportDownloadTitle: ReportConsts.monthlyReportDownload
         )
-        monthlyHistoricCard.loadingIndicatorView(show: false)
     }
 
     func setupPaymentTypeAmountCard(
@@ -160,7 +154,6 @@ final class ReportView: UIView {
             cashAmount: cashAmount,
             pixAmount: pixAmount
         )
-        paymentTypeAmountCard.loadingIndicatorView(show: false)
     }
     
 }
@@ -256,7 +249,7 @@ extension ReportView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-        self.backgroundColor = UIColor.BarberColors.lightGray
+        self.backgroundColor = UIColor.MNColors.lightGray
     }
 
 }
@@ -270,7 +263,7 @@ extension ReportView: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         didApplyDiscount?(textField.hasText)
-        applyDiscountStatusView.backgroundColor = textField.hasText ? .BarberColors.greenMedium : .BarberColors.grayDescription
+        applyDiscountStatusView.backgroundColor = textField.hasText ? .MNColors.greenMedium : .MNColors.grayDescription
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {

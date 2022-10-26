@@ -92,7 +92,7 @@ final class ProcedureTableViewCell: UITableViewCell, ViewCodeContract {
 
     lazy var separatorLine = UIView() .. {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .BarberColors.separatorGray
+        $0.backgroundColor = .MNColors.separatorGray
         $0.heightAnchor(1)
     }
     

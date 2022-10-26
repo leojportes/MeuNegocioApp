@@ -34,7 +34,7 @@ class AddProcedureView: MNView {
     private lazy var pickerView = UIPickerView() .. {
         $0.delegate = self
         $0.dataSource = self
-        $0.backgroundColor = .BarberColors.yellowDark
+        $0.backgroundColor = .MNColors.yellowDark
         $0.selectRow(2, inComponent: 0, animated: true)
     }
 
@@ -44,8 +44,8 @@ class AddProcedureView: MNView {
         $0.roundCorners(cornerRadius: 2)
     }
     
-    private lazy var subTitleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Preencha todos os campos abaixo para \n adicionar um novo procedimento.",
+    private lazy var subTitleLabel: MNLabel = {
+        let label = MNLabel(text: "Preencha todos os campos abaixo para \n adicionar um novo procedimento.",
                                 font: UIFont.systemFont(ofSize: 16),
                                 textColor: .darkGray)
         label.textAlignment = .center
@@ -66,7 +66,7 @@ class AddProcedureView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Nome do cliente",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
@@ -81,7 +81,7 @@ class AddProcedureView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Tipo de procedimento",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
@@ -96,7 +96,7 @@ class AddProcedureView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "Forma de pagamento",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
@@ -112,7 +112,7 @@ class AddProcedureView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "R$",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
@@ -128,7 +128,7 @@ class AddProcedureView: MNView {
         let textField = CustomTextField(
             titlePlaceholder: "R$",
             colorPlaceholder: .lightGray,
-            textColor: .BarberColors.darkGray,
+            textColor: .MNColors.darkGray,
             radius: 5,
             borderColor: UIColor.systemGray.cgColor,
             borderWidth: 0.5,
@@ -143,9 +143,9 @@ class AddProcedureView: MNView {
     lazy var addButton: CustomSubmitButton = {
         let button = CustomSubmitButton(
             title: "Adicionar",
-            colorTitle: .BarberColors.darkGray,
+            colorTitle: .MNColors.darkGray,
             radius: 10,
-            background: .BarberColors.lightBrown
+            background: .MNColors.lightBrown
         )
         button.addTarget(self, action: #selector(handleAddButton), for: .touchUpInside)
         return button

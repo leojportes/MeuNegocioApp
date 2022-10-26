@@ -34,7 +34,7 @@ extension UIView {
         self.layer.shadowRadius = radius
     }
     
-    func addTopBorder(with color: UIColor? = .BarberColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
+    func addTopBorder(with color: UIColor? = .MNColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
         let border = UIView()
         border.backgroundColor = color
         border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
@@ -42,7 +42,7 @@ extension UIView {
         addSubview(border)
     }
     
-    func addBottomBorder(with color: UIColor? = .BarberColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
+    func addBottomBorder(with color: UIColor? = .MNColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
         let border = UIView()
         border.backgroundColor = color
         border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]

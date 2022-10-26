@@ -30,4 +30,5 @@ enum Icon: String {
     case apple = "ic_apple"
     case deleteAccount = "ic_deleteAccount"
     case logoutAccount = "ic_logout"
+    case history = "ic_history"
 }

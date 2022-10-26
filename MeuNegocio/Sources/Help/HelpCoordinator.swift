@@ -14,7 +14,7 @@ class HelpCoordinator: BaseCoordinator {
         let controller = HelpViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
-        configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
     

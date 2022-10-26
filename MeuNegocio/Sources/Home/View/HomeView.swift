@@ -35,13 +35,13 @@ final class HomeView: UIView, ViewCodeContract {
 
     var filterRange: String = "" {
         didSet {
-            filterRangeValue.text = filterRange
+            filterView.filterRangeValue.text = filterRange
         }
     }
     
     var userName: String = .stringEmpty {
         didSet {
-            profileView.setupLayout(nameUser: userName )
+            profileHeaderView.setupLayout(nameUser: userName )
         }
     }
     
@@ -73,62 +73,44 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     // MARK: - Header
-    private lazy var headerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .BarberColors.lightBrown
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var profileView: ProfileHeaderView = {
+    private lazy var profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        view.backgroundColor = .MNColors.lightBrown
         view.setupAction(actionButton: weakify { $0.openProfile?()})
         return view
     }()
     
     // MARK: - Section Cards
-    private lazy var sectionCardsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .BarberColors.lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var cardStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [reportCard, infoCard, moreCard])
-        stack.axis = .horizontal
-        stack.spacing = 15
-        stack.distribution = .fillEqually
+    private lazy var sectionCardsView: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .MNColors.lightGray
+        stack.axis = .vertical
+        stack.spacing = 16
+        stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 8, right: 16)
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    lazy var reportCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatórios")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReport(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
+    lazy var menuCardsView: MenuCardView = {
+        let container = MenuCardView(
+            closureReport: { self.openReport?() },
+            closureInfoCard: { self.openHelp?() },
+            closureMore: { self.openAddProcedure?() })
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
     
-    lazy var infoCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.help.rawValue, title: "Informações")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardInfo(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
-    }()
+    lazy var totalReceiptCard = TotalReceiptCardView() .. {
+        $0.loadingIndicatorView(show: true)
+    }
     
-    lazy var moreCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.more.rawValue, title: "Adicionar")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardMore(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
-    }()
+    lazy var filterView = FilterSegmentedControl(
+        didSelectIndexClosure: weakify {
+            $0.didSelectIndexClosure($1)
+        }
+    )
     
     // MARK: - Main
     private lazy var mainBaseView: UIView = {
@@ -150,50 +132,6 @@ final class HomeView: UIView, ViewCodeContract {
         table.loadingIndicatorView()
         return table
     }()
-
-    private(set) lazy var totalReceiptCard = CardView() .. {
-        $0.loadingIndicatorView(show: true)
-    }
-
-    private lazy var totalLabel = BarberLabel(text: "Valor total recebido") .. {
-        $0.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = .BarberColors.grayDescription
-    }
-
-    private(set) lazy var totalValueLabel = BarberLabel() .. {
-        $0.text = "R$ 00,00"
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-    }
-
-    private lazy var proceduresLabel = BarberLabel() .. {
-        $0.text = "Procedimentos"
-        $0.textAlignment = .right
-        $0.font = UIFont.boldSystemFont(ofSize: 15)
-        $0.textColor = .BarberColors.grayDescription
-    }
-
-    private(set) lazy var proceduresValueLabel = BarberLabel() .. {
-        $0.text = "0"
-        $0.textAlignment = .right
-        $0.font = UIFont.boldSystemFont(ofSize: 20)
-    }
-    
-    lazy var filterView = FilterSegmentedControl(
-        didSelectIndexClosure: weakify {
-            $0.didSelectIndexClosure($1)
-        }
-    )
-
-    private(set) lazy var filterRangeLabel = BarberLabel(
-        text: "Período:",
-        font: UIFont.boldSystemFont(ofSize: 15),
-        textColor: .BarberColors.grayDarkest
-    )
-    
-    private(set) lazy var filterRangeValue = BarberLabel(
-        font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .BarberColors.grayDescription
-    )
     
     // MARK: - Actions Cards
     @objc private func pullToRefresh() {
@@ -214,99 +152,35 @@ final class HomeView: UIView, ViewCodeContract {
 
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        addSubview(headerView)
+        addSubview(profileHeaderView)
         addSubview(sectionCardsView)
         addSubview(mainBaseView)
-        sectionCardsView.addSubview(totalReceiptCard)
-        totalReceiptCard.addSubview(totalLabel)
-        totalReceiptCard.addSubview(totalValueLabel)
-        totalReceiptCard.addSubview(proceduresLabel)
-        totalReceiptCard.addSubview(proceduresValueLabel)
-        sectionCardsView.addSubview(filterView)
-        sectionCardsView.addSubview(filterRangeLabel)
-        sectionCardsView.addSubview(filterRangeValue)
         
-        headerView.addSubview(profileView)
-        sectionCardsView.addSubview(cardStackView)
+        sectionCardsView.addArrangedSubview(menuCardsView)
+        sectionCardsView.addArrangedSubview(totalReceiptCard)
+        sectionCardsView.addArrangedSubview(filterView)
+        
         mainBaseView.addSubview(tableview)
     }
     
     func setupConstraints() {
         
-        /// Header
-        headerView
+        profileHeaderView
             .topAnchor(in: self, layoutOption: .useMargins)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(80)
+            .heightAnchor(70)
         
-        profileView
-            .topAnchor(in: headerView, attribute: .top, padding: 22)
-            .leftAnchor(in: headerView, attribute: .left, padding: 10)
-            .heightAnchor(40)
-        
-        /// Section Cards
         sectionCardsView
-            .topAnchor(in: headerView, attribute: .bottom)
+            .topAnchor(in: profileHeaderView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(320)
-        
-        cardStackView
-            .topAnchor(in: headerView, attribute: .bottom, padding: 20)
-            .leftAnchor(in: sectionCardsView, attribute: .left, padding: 10)
-            .rightAnchor(in: sectionCardsView, attribute: .right, padding: 10)
-            .heightAnchor(106)
-    
-        totalReceiptCard
-            .topAnchor(in: cardStackView, attribute: .bottom, padding: 25)
-            .leftAnchor(in: sectionCardsView, padding: 15)
-            .rightAnchor(in: sectionCardsView, padding: 15 )
-            .heightAnchor(80)
-    
-        totalLabel
-            .topAnchor(in: totalReceiptCard, padding: 20)
-            .leftAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(150)
 
-        totalValueLabel
-            .topAnchor(in: totalLabel, attribute: .bottom, padding: 2)
-            .leftAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(200)
-
-        proceduresLabel
-            .topAnchor(in: totalReceiptCard, padding: 20)
-            .rightAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(150)
-
-        proceduresValueLabel
-            .topAnchor(in: proceduresLabel, attribute: .bottom, padding: 2)
-            .rightAnchor(in: totalReceiptCard, padding: 20)
-            .widthAnchor(50)
-        
-        /// Main
         mainBaseView
             .topAnchor(in: sectionCardsView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
-        
-        filterView
-            .bottomAnchor(in: filterRangeLabel, attribute: .top)
-            .heightAnchor(45)
-            .leftAnchor(in: sectionCardsView)
-            .rightAnchor(in: sectionCardsView)
-        
-        filterRangeLabel
-            .bottomAnchor(in: sectionCardsView)
-            .leftAnchor(in: sectionCardsView, padding: 15)
-            .heightAnchor(25)
-
-        filterRangeValue
-            .bottomAnchor(in: sectionCardsView)
-            .leftAnchor(in: filterRangeLabel, attribute: .right, padding: 5)
-            .widthAnchor(240)
-            .heightAnchor(25)
 
         tableview
             .topAnchor(in: mainBaseView)
@@ -316,7 +190,7 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     func setupConfiguration() {
-        self.backgroundColor = .BarberColors.lightGray
+        self.backgroundColor = .MNColors.lightGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }

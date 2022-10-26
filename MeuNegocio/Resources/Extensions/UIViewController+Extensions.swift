@@ -79,3 +79,17 @@ extension UIWindow {
         UIApplication.shared.windows.first(where: { $0.isKeyWindow })
     }
 }
+
+extension UIViewController {
+
+    /// We apply it to the viewDidLoad that receives a bottomSheet, so that when we click outside the bottomsheet, it is dismissed.
+    public func tappedOutViewBottomSheetDismiss() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    @objc
+    private func handleDismiss() {
+        self.dismiss(animated: true)
+    }
+}

@@ -33,14 +33,31 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private lazy var container: UIView = {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
     private lazy var segmentedControl: UISegmentedControl = {
         let seg = UISegmentedControl(items: items)
-        seg.selectedSegmentTintColor = .BarberColors.lightBrown
+        seg.selectedSegmentTintColor = .MNColors.lightBrown
         seg.selectedSegmentIndex = 0
         seg.translatesAutoresizingMaskIntoConstraints = false
         seg.addTarget(self, action: #selector(didSelectIndex(_:)), for: .valueChanged)
         return seg
     }()
+    
+    private(set) lazy var filterRangeLabel = MNLabel(
+        text: "Período:",
+        font: UIFont.boldSystemFont(ofSize: 15),
+        textColor: .MNColors.grayDarkest
+    )
+    
+    lazy var filterRangeValue = MNLabel(
+        font: UIFont.boldSystemFont(ofSize: 14),
+        textColor: .MNColors.grayDescription
+    )
     
     @objc
     private func didSelectIndex(_ sender: UISegmentedControl) {
@@ -48,15 +65,34 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     }
 
     func setupHierarchy() {
-        addSubview(segmentedControl)
+        addSubview(container)
+        container.addSubview(segmentedControl)
+        container.addSubview(filterRangeLabel)
+        container.addSubview(filterRangeValue)
     }
     
     func setupConstraints() {
+        container
+            .topAnchor(in: self)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .bottomAnchor(in: self)
+        
         segmentedControl
+            .topAnchor(in: container)
+            .leftAnchor(in: container)
+            .rightAnchor(in: container)
             .heightAnchor(30)
-            .centerY(in: self)
-            .leftAnchor(in: self, padding: 15)
-            .rightAnchor(in: self, padding: 15)
+        
+        filterRangeLabel
+            .topAnchor(in: segmentedControl, attribute: .bottom, padding: 6)
+            .leftAnchor(in: container, padding: 4)
+            .bottomAnchor(in: container, attribute: .bottom)
+        
+        filterRangeValue
+            .topAnchor(in: segmentedControl, attribute: .bottom, padding: 6)
+            .leftAnchor(in: filterRangeLabel, attribute: .right, padding: 6)
+            .bottomAnchor(in: container, attribute: .bottom)
     }
 
 }

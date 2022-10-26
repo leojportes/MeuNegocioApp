@@ -10,6 +10,8 @@
 		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
 		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
 		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
+		5213DCF928FF839A00AFC980 /* TotalReceiptCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */; };
+		5213DCFD2903508900AFC980 /* MenuCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DCFC2903508900AFC980 /* MenuCardView.swift */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
@@ -67,7 +69,7 @@
 		C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */; };
 		C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */; };
 		C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */; };
-		C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */; };
+		C0A174C928E4F65700DB0CE4 /* MNLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174C828E4F65700DB0CE4 /* MNLabel.swift */; };
 		C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */; };
 		C0A174CD28E51F6100DB0CE4 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */; };
 		C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A174CE28E5342300DB0CE4 /* TappedView.swift */; };
@@ -144,6 +146,8 @@
 		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalReceiptCardView.swift; sourceTree = "<group>"; };
+		5213DCFC2903508900AFC980 /* MenuCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCardView.swift; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = MeuNegocio/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -203,7 +207,7 @@
 		C080EB7728E7FF3300555D80 /* PaymentTypeAmountCardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeAmountCardModel.swift; sourceTree = "<group>"; };
 		C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C09BB5C427B81AD300C91F48 /* ProcedureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureTableViewCell.swift; sourceTree = "<group>"; };
-		C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarberLabel.swift; sourceTree = "<group>"; };
+		C0A174C828E4F65700DB0CE4 /* MNLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNLabel.swift; sourceTree = "<group>"; };
 		C0A174CA28E4F68B00DB0CE4 /* ReportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportCardView.swift; sourceTree = "<group>"; };
 		C0A174CC28E51F6100DB0CE4 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		C0A174CE28E5342300DB0CE4 /* TappedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappedView.swift; sourceTree = "<group>"; };
@@ -378,6 +382,8 @@
 			children = (
 				C0A7419727B19C9F00391CE6 /* HomeView.swift */,
 				C09BB5BF27B7EB6100C91F48 /* ProfileHeaderView.swift */,
+				5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */,
+				5213DCFC2903508900AFC980 /* MenuCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -680,7 +686,7 @@
 				52B8A08228E2310900B1C9F7 /* ErrorView.swift */,
 				52B8A08528E2557000B1C9F7 /* CardButtonView.swift */,
 				C0C8E70C28E4F01700FD1B57 /* CardView.swift */,
-				C0A174C828E4F65700DB0CE4 /* BarberLabel.swift */,
+				C0A174C828E4F65700DB0CE4 /* MNLabel.swift */,
 				C0A174CE28E5342300DB0CE4 /* TappedView.swift */,
 				52B1854028EFADB300907FA0 /* MNView.swift */,
 				C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */,
@@ -1031,6 +1037,7 @@
 				C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */,
 				52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */,
 				522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */,
+				5213DCF928FF839A00AFC980 /* TotalReceiptCardView.swift in Sources */,
 				C016B61728E0AFC4007372E4 /* ProcedureDetailViewController.swift in Sources */,
 				C0F8FE7128EE94DC00ECEB63 /* CheckYourAccountController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
@@ -1054,7 +1061,7 @@
 				C0C8E70D28E4F01700FD1B57 /* CardView.swift in Sources */,
 				52DC01AE28BE454F0048237C /* UIButton+Extensions.swift in Sources */,
 				52B8A08B28E7990500B1C9F7 /* UserModelList.swift in Sources */,
-				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
+				C0A174C928E4F65700DB0CE4 /* MNLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0F8FE7328EE950A00ECEB63 /* CheckYourAccountViewModel.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
@@ -1062,7 +1069,7 @@
 				C0F8FE6F28EE94D300ECEB63 /* CheckYourAccountView.swift in Sources */,
 				52B8A09228E7C97A00B1C9F7 /* UserOnboardingView.swift in Sources */,
 				C080EB7828E7FF3300555D80 /* PaymentTypeAmountCardModel.swift in Sources */,
-				C0A174C928E4F65700DB0CE4 /* BarberLabel.swift in Sources */,
+				C0A174C928E4F65700DB0CE4 /* MNLabel.swift in Sources */,
 				52C4AE8128B99AE90055E384 /* AddProcedureCoordinator.swift in Sources */,
 				C0A7418927B198D900391CE6 /* HomeCoordinator.swift in Sources */,
 				C0319C3827BF229600CFCEE0 /* ReportCoordinator.swift in Sources */,
@@ -1095,6 +1102,7 @@
 				C080E9B328E7D79A00555D80 /* PDFBuilder.swift in Sources */,
 				52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */,
 				C0A7418F27B199B500391CE6 /* Bindable.swift in Sources */,
+				5213DCFD2903508900AFC980 /* MenuCardView.swift in Sources */,
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,
 				C016B61B28E0B341007372E4 /* ProcedureDetailCoordinator.swift in Sources */,
 				C0AFFB6528C47D9800B816AA /* Bool+Ext.swift in Sources */,
@@ -1272,7 +1280,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
@@ -1301,7 +1309,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
