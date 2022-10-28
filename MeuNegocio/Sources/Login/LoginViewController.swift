@@ -72,13 +72,7 @@ class LoginViewController: CoordinatedViewController {
 extension LoginViewController: LoginScreenActionsProtocol {
     func didTapLogin(_ email: String, _ password: String) {
         viewModel.authLogin(email, password) { [weak self] onSuccess, descriptionError in
-            if onSuccess {
-                self?.checkNewUser()
-                MNUserDefaults.set(value: email, forKey: MNKeys.email)
-                MNUserDefaults.set(value: password, forKey: MNKeys.password)
-            } else {
-                self?.showError(descriptionError)
-            }
+            onSuccess ? self?.checkNewUser() : self?.showError(descriptionError)
         }
     }
     
