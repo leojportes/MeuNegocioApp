@@ -21,9 +21,15 @@ class CardButtonView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var container: UIView = {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
     lazy var containerView: UIView = {
         let container = UIView()
-        container.backgroundColor = .BarberColors.lightBrown
+        container.backgroundColor = .MNColors.lightBrown
         container.roundCorners(cornerRadius: 42, all: true)
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
@@ -47,17 +53,24 @@ class CardButtonView: UIView {
 
 extension CardButtonView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(containerView)
-        addSubview(titleLabel)
+        addSubview(container)
+        container.addSubview(containerView)
+        container.addSubview(titleLabel)
         
         containerView.addSubview(iconView)
     }
     
     func setupConstraints() {
         
-        containerView
+        container
             .topAnchor(in: self)
-            .centerX(in: self)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .bottomAnchor(in: self)
+        
+        containerView
+            .topAnchor(in: container, attribute: .top)
+            .centerX(in: container)
             .heightAnchor(85)
             .widthAnchor(85)
         
@@ -69,8 +82,13 @@ extension CardButtonView: ViewCodeContract {
         
         titleLabel
             .topAnchor(in: containerView, attribute: .bottom, padding: 10)
-            .centerX(in: self)
+            .centerX(in: containerView)
+            .bottomAnchor(in: container, attribute: .bottom)
     }
     
+    func setupConfiguration() {
+        self.widthAnchor(85)
+    }
     
 }
+

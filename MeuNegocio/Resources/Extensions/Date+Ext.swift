@@ -12,11 +12,12 @@ extension Date {
         let cal = NSCalendar.current
         // start with today
         var date = cal.startOfDay(for: Date())
+        date = cal.date(byAdding: .day, value: 1, to: date)!
 
         var arrDates = [String]()
 
         for _ in 1 ... nDays {
-            date = cal.date(byAdding: Calendar.Component.day, value: -1, to: date)!
+            date = cal.date(byAdding: .day, value: -1, to: date)!
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy"

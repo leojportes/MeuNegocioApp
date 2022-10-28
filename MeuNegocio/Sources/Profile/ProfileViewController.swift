@@ -13,8 +13,7 @@ class ProfileViewController: CoordinatedViewController {
     // MARK: - Private properties
     private lazy var customView = ProfileView(
         didTapLogout: weakify { $0.logout() },
-        didTapClosedView: weakify { $0.closedView()},
-        didTapVerifyEmail: weakify { $0.sendVerificationMail() }
+        didTapdeleteAccount: weakify { $0.deleteAccount() }
     )
 
     private let viewModel: ProfileViewModelProtocol
@@ -40,7 +39,7 @@ class ProfileViewController: CoordinatedViewController {
     
     override func loadView() {
         super.loadView()
-        navigationController?.navigationBar.barTintColor = .BarberColors.lightBrown
+        navigationController?.navigationBar.barTintColor = .MNColors.lightBrown
         self.view = customView
     }
     
@@ -52,16 +51,28 @@ class ProfileViewController: CoordinatedViewController {
         }
     }
     
-    private func closedView() {
-        viewModel.closedView()
-    }
-    
     private func logout() {
         viewModel.signOut { [ weak self ] result in
             result ? self?.viewModel.logout() : self?.showAlert(
                 title: "Ocorreu um erro",
                 messsage: "Tente novamente mais tarde"
             )
+        }
+    }
+    
+    private func deleteAccount() {
+        self.showDeleteAlert(
+            title: "Essa ação é irreversível",
+            messsage: "Todos os seus dados serão removidos. \n  Tem certeza que deseja deletar sua conta?",
+            closedScreen: false
+        ) {
+            self.viewModel.deleteDatabaseData { [ weak self ] delete in
+                DispatchQueue.main.async {
+                    delete ? self?.viewModel.logout() : self?.showAlert(
+                        title: "Ocorreu um erro ao excluir sua conta",
+                        messsage: "Tente novamente mais tarde.")
+                }
+            }
         }
     }
 

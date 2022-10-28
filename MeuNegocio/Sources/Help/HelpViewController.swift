@@ -27,7 +27,9 @@ class HelpViewController: CoordinatedViewController, MFMailComposeViewController
             $0.modalPresentationStyle = .pageSheet
             $0.mailComposeDelegate = self
         }
-        self.present(mailComposeController, animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.present(mailComposeController, animated: true)
+        }
     }
 
     // MARK: - Init

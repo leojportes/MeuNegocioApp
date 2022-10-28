@@ -39,7 +39,7 @@ class LoginView: UIView {
     private lazy var eyeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
-        button.tintColor = .BarberColors.grayDarkest
+        button.tintColor = .MNColors.grayDarkest
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleEyeButton), for: .touchUpInside)
         return button
@@ -49,7 +49,6 @@ class LoginView: UIView {
         let stack = UIStackView(arrangedSubviews: [myBusinessImage, titleLabel])
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.distribution = .fill
         stack.alignment = .center
         stack.spacing = 10
         return stack
@@ -64,11 +63,11 @@ class LoginView: UIView {
         return img
     }()
     
-    private lazy var titleLabel: BarberLabel = {
-        let label = BarberLabel(text: "Meu negócio",
+    private lazy var titleLabel: MNLabel = {
+        let label = MNLabel(text: "Meu negócio",
                                 font: UIFont.boldSystemFont(ofSize: 20),
                                 textColor: .darkGray)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -161,8 +160,8 @@ class LoginView: UIView {
         return view
     }()
     
-    private lazy var cardSessionGoogle: CardSessionView = {
-        let view = CardSessionView(icon: Icon.google.rawValue,
+    private lazy var cardSessionGoogle: CardIconAndTitleView = {
+        let view = CardIconAndTitleView(icon: Icon.google.rawValue,
                                    title: "Iniciar sessão com o Google",
                                    titleColor: .black)
         return view
@@ -178,8 +177,8 @@ class LoginView: UIView {
         return view
     }()
     
-    private lazy var cardSessionApple: CardSessionView = {
-        let view = CardSessionView(icon: Icon.apple.rawValue,
+    private lazy var cardSessionApple: CardIconAndTitleView = {
+        let view = CardIconAndTitleView(icon: Icon.apple.rawValue,
                                    title: "Iniciar sessão com a Apple",
                                    titleColor: .white)
         return view
@@ -209,7 +208,7 @@ class LoginView: UIView {
     
     private func isEnabledButtonLogin(_ isEnabled: Bool) {
         if isEnabled {
-            loginButton.backgroundColor = .BarberColors.lightBrown
+            loginButton.backgroundColor = .MNColors.lightBrown
             loginButton.isEnabled = true
         } else {
             loginButton.backgroundColor = .systemGray
@@ -287,6 +286,7 @@ extension LoginView: ViewCodeContract {
         iconStackView
             .topAnchor(in: self, attribute: .top, padding: 80)
             .centerX(in: self)
+            .widthAnchor(200)
             .heightAnchor(36)
         
         emailTextField

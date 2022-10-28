@@ -13,7 +13,7 @@ class ProfileCoordinator: BaseCoordinator {
         let controller = ProfileViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
-        configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray
         configuration.navigationController?.present(controller, animated: true)
     }
     
@@ -22,9 +22,5 @@ class ProfileCoordinator: BaseCoordinator {
         configuration.navigationController?.dismiss(animated: true)
         configuration.navigationController?.viewControllers.removeAll()
         coordinator.start()
-    }
-    
-    func closedView() {
-        configuration.navigationController?.dismiss(animated: true)
     }
 }

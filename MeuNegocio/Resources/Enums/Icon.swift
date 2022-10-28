@@ -28,4 +28,7 @@ enum Icon: String {
     case iconApp = "ic_my-business"
     case arrowDown = "ic_arrowDown"
     case apple = "ic_apple"
+    case deleteAccount = "ic_deleteAccount"
+    case logoutAccount = "ic_logout"
+    case history = "ic_history"
 }

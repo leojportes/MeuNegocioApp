@@ -12,26 +12,31 @@ final class ReportCardView: CardView, ViewCodeContract {
     private var didTapReportDownload: Action?
 
     // MARK: - View code
-    private lazy var titleLabel = BarberLabel(
+    private lazy var titleLabel = MNLabel(
         font: UIFont.boldSystemFont(ofSize: 16)
-    )
+    ) .. {
+        $0.accessibilityTraits = .header
+    }
     
-    private lazy var totalAmountTitleLabel = BarberLabel(
+    private lazy var totalAmountTitleLabel = MNLabel(
         font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .BarberColors.grayDescription
-    )
+        textColor: .MNColors.grayDescription
+    ) .. {
+        $0.accessibilityTraits = .none
+    }
     
-    private lazy var totalAmountValueLabel = BarberLabel()
+    private lazy var totalAmountValueLabel = MNLabel()
     
-    private lazy var proceduresTitleLabel = BarberLabel(
+    private lazy var proceduresTitleLabel = MNLabel(
         text: "Procedimentos",
         font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .BarberColors.grayDescription
+        textColor: .MNColors.grayDescription
     ) .. {
         $0.textAlignment = .right
+        $0.accessibilityTraits = .none
     }
 
-    private lazy var totalProceduresValueLabel = BarberLabel()
+    private lazy var totalProceduresValueLabel = MNLabel()
 
     // MARK: - Download View
     private lazy var reportDownloadView = TappedView() .. {
@@ -41,9 +46,11 @@ final class ReportCardView: CardView, ViewCodeContract {
         $0.setup(action: weakify { $0.didTapReportDownload?() })
     }
 
-    private lazy var reportDownloadTitleLabel = BarberLabel(
+    private lazy var reportDownloadTitleLabel = MNLabel(
         font: UIFont.boldSystemFont(ofSize: 14)
-    )
+    ) .. {
+        $0.accessibilityTraits = .button
+    }
 
     private lazy var reportDownloadIcon = UIImageView() .. {
         $0.image = UIImage(named: Icon.download.rawValue)
@@ -144,6 +151,17 @@ final class ReportCardView: CardView, ViewCodeContract {
             .rightAnchor(in: reportDownloadView, padding: 15)
             .widthAnchor(20)
             .heightAnchor(20)
+    }
+
+    func setupConfiguration() {
+        self.accessibilityElements = [
+            titleLabel,
+            totalAmountTitleLabel,
+            totalAmountValueLabel,
+            proceduresTitleLabel,
+            totalProceduresValueLabel,
+            reportDownloadTitleLabel
+        ]
     }
 
 }

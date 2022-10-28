@@ -38,7 +38,7 @@ final class HelpView: UIView {
 
     private lazy var headerCardView = UIView() .. {
         $0.roundCorners(cornerRadius: 20)
-        $0.backgroundColor = .BarberColors.yellowDark
+        $0.backgroundColor = .MNColors.yellowDark
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.borderColor = UIColor.clear.cgColor
         $0.layer.borderWidth = 1
@@ -46,9 +46,9 @@ final class HelpView: UIView {
 
     private lazy var sendEmailButton = UIButton() .. {
         $0.setTitle("Tire sua dúvida por e-mail", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
+        $0.setTitleColor(.MNColors.grayDarkest, for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.setTitleColor(.BarberColors.grayDarkest, for: .highlighted)
+        $0.setTitleColor(.black, for: .highlighted)
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.contentHorizontalAlignment = .left
@@ -57,7 +57,7 @@ final class HelpView: UIView {
 
     private lazy var wppCardView = UIView() .. {
         $0.roundCorners(cornerRadius: 20)
-        $0.backgroundColor = .BarberColors.yellowDark
+        $0.backgroundColor = .MNColors.yellowDark
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.layer.borderColor = UIColor.clear.cgColor
         $0.layer.borderWidth = 1
@@ -65,7 +65,7 @@ final class HelpView: UIView {
 
     private lazy var wppButton = UIButton() .. {
         $0.setTitle("Chame-nos no whatsapp", for: .normal)
-        $0.setTitleColor(.BarberColors.grayDarkest, for: .normal)
+        $0.setTitleColor(.MNColors.grayDarkest, for: .normal)
         $0.setTitleColor(.darkGray, for: .highlighted)
         $0.backgroundColor = .clear
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -142,7 +142,7 @@ extension HelpView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-        backgroundColor = .BarberColors.lightBrown
+        backgroundColor = .MNColors.lightBrown
     }
     
 }

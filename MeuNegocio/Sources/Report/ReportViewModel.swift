@@ -8,10 +8,10 @@
 import Foundation
 
 protocol ReportViewModelProtocol {
-    func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void)
     func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String
     func dailyProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel]
     func weeklyProceduresLast7Days(procedures: [GetProcedureModel]) -> [GetProcedureModel]
+    func monthlyProceduresLast30Days(procedures: [GetProcedureModel]) -> [GetProcedureModel]
     func percentageFromString(percent: String, baseAmount: String) -> String
     func getLast7Days() -> [String]
     var returnCurrentDate: String { get set }
@@ -30,14 +30,6 @@ class ReportViewModel: ReportViewModelProtocol {
         let dateString = df.string(from: date)
         return dateString
     }()
-    
-    // MARK: - Fetch methods
-    /// Get all procedures list.
-    func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void) {
-        service.getProcedureList { result in
-            completion(result)
-        }
-    }
     
     // MARK: - Public methods
     
@@ -67,6 +59,13 @@ class ReportViewModel: ReportViewModelProtocol {
     func weeklyProceduresLast7Days(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
         let last7Days = self.getLast7Days()
         let weeklyProcedures = procedures.filter({ last7Days.contains($0.currentDate) })
+        return weeklyProcedures
+    }
+
+    /// Get procedures for the last 30 days.
+    func monthlyProceduresLast30Days(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
+        let last30Days = Date.getDates(forLastNDays: 30)
+        let weeklyProcedures = procedures.filter({ last30Days.contains($0.currentDate) })
         return weeklyProcedures
     }
     

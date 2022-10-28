@@ -31,11 +31,14 @@ extension UIViewController {
     func showDeleteAlert(
         title: String = "Atenção!",
         messsage: String = "Deseja deletar este procedimento?\n Esta ação é irreversível.",
+        closedScreen: Bool = false,
         completion: @escaping () -> Void? = { nil }
     ) {
         let alert = UIAlertController(title: title, message: messsage, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "Cancelar", style: .cancel) { _ in
-            self.dismiss(animated: true)
+            if closedScreen {
+                self.dismiss(animated: true)
+            }
         }
         let confirm = UIAlertAction(title: "Deletar", style: .default) { _ in completion() }
         alert.addAction(cancel)
@@ -74,5 +77,19 @@ public extension UIViewController {
 extension UIWindow {
     public static var keyWindow: UIWindow? {
         UIApplication.shared.windows.first(where: { $0.isKeyWindow })
+    }
+}
+
+extension UIViewController {
+
+    /// We apply it to the viewDidLoad that receives a bottomSheet, so that when we click outside the bottomsheet, it is dismissed.
+    public func tappedOutViewBottomSheetDismiss() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleDismiss))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+
+    @objc
+    private func handleDismiss() {
+        self.dismiss(animated: true)
     }
 }

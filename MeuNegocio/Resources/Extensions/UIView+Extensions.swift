@@ -34,6 +34,22 @@ extension UIView {
         self.layer.shadowRadius = radius
     }
     
+    func addTopBorder(with color: UIColor? = .MNColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleTopMargin]
+        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
+        addSubview(border)
+    }
+    
+    func addBottomBorder(with color: UIColor? = .MNColors.separatorGray, andWidth borderWidth: CGFloat = 1) {
+        let border = UIView()
+        border.backgroundColor = color
+        border.autoresizingMask = [.flexibleWidth, .flexibleBottomMargin]
+        border.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
+        addSubview(border)
+    }
+    
 }
 
 extension CACornerMask {
@@ -48,12 +64,12 @@ extension UIView {
         if show {
             DispatchQueue.main.async {
                 let indicator = UIActivityIndicatorView()
+                self.addSubview(indicator)
                 let buttonHeight = self.bounds.size.height
                 let buttonWidth = self.bounds.size.width
                 indicator.center = CGPoint(x: buttonWidth/2, y: buttonHeight/2)
                 indicator.color = .darkGray
                 self.layer.opacity = 0.5
-                self.addSubview(indicator)
                 indicator.startAnimating()
             }
         } else {

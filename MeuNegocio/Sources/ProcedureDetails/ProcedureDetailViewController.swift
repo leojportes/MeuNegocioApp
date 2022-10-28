@@ -32,6 +32,7 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = customView
+        tappedOutViewBottomSheetDismiss()
         customView.setupView(procedure: procedure)
     }
 
@@ -51,7 +52,7 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     }
 
     private func didTapDelete(procedure: String) {
-        self.showDeleteAlert() {
+        self.showDeleteAlert(closedScreen: true) {
             self.viewModel.deleteProcedure(procedure) { message in
                 DispatchQueue.main.async {
                     self.showAlert(title: "", messsage: message) {

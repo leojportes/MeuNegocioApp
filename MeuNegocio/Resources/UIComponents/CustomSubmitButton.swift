@@ -10,7 +10,7 @@ import UIKit
 
 class CustomSubmitButton: UIButton {
     init(title: String,
-         colorTitle: UIColor = .BarberColors.darkGray,
+         colorTitle: UIColor = .MNColors.darkGray,
          radius: Int = 0,
          background: UIColor = .clear,
          alignmentText: ContentHorizontalAlignment = .center,

@@ -17,6 +17,7 @@ final class HomeView: UIView, ViewCodeContract {
     var openHelp: Action?
     var openProcedureDetails: (GetProcedureModel) -> Void?
     var didPullRefresh: Action?
+    var didSelectIndexClosure: (UISegmentedControl) -> Void?
 
     // MARK: - Properties
     var procedures: [GetProcedureModel] = [] {
@@ -25,10 +26,22 @@ final class HomeView: UIView, ViewCodeContract {
             tableview.loadingIndicatorView(show: false)
         }
     }
+
+    var currentIndex: Int = 0 {
+        didSet {
+            filterView.currentIndex = currentIndex
+        }
+    }
+
+    var filterRange: String = "" {
+        didSet {
+            filterView.filterRangeValue.text = filterRange
+        }
+    }
     
     var userName: String = .stringEmpty {
         didSet {
-            profileView.setupLayout(nameUser: "Olá, \(userName)" )
+            profileHeaderView.setupLayout(nameUser: userName )
         }
     }
     
@@ -40,7 +53,8 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToAddProcedure: @escaping Action,
         navigateToHelp: @escaping Action,
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
-        didPullRefresh: @escaping Action
+        didPullRefresh: @escaping Action,
+        didSelectIndexClosure: @escaping (UISegmentedControl) -> Void?
     ) {
         self.openReport = navigateToReport
         self.openAlertAction = alertAction
@@ -49,6 +63,7 @@ final class HomeView: UIView, ViewCodeContract {
         self.openHelp = navigateToHelp
         self.openProcedureDetails = openProcedureDetails
         self.didPullRefresh = didPullRefresh
+        self.didSelectIndexClosure = didSelectIndexClosure
         super.init(frame: .zero)
         setupView()
     }
@@ -58,62 +73,44 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     // MARK: - Header
-    private lazy var headerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .BarberColors.lightBrown
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var profileView: ProfileHeaderView = {
+    private lazy var profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView()
+        view.backgroundColor = .MNColors.lightBrown
         view.setupAction(actionButton: weakify { $0.openProfile?()})
         return view
     }()
     
     // MARK: - Section Cards
-    private lazy var sectionCardsView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .BarberColors.lightGray
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    lazy var cardStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [reportCard, infoCard, moreCard])
-        stack.axis = .horizontal
-        stack.spacing = 15
-        stack.distribution = .fillEqually
+    private lazy var sectionCardsView: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .MNColors.lightGray
+        stack.axis = .vertical
+        stack.spacing = 16
+        stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 8, right: 16)
+        stack.isLayoutMarginsRelativeArrangement = true
+        stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
-    lazy var reportCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.report.rawValue, title: "Relatórios")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardReport(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
+    lazy var menuCardsView: MenuCardView = {
+        let container = MenuCardView(
+            closureReport: { self.openReport?() },
+            closureInfoCard: { self.openHelp?() },
+            closureMore: { self.openAddProcedure?() })
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
     
-    lazy var infoCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.help.rawValue, title: "Informações")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardInfo(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
-    }()
+    lazy var totalReceiptCard = TotalReceiptCardView() .. {
+        $0.loadingIndicatorView(show: true)
+    }
     
-    lazy var moreCard: CardButtonView = {
-        let view = CardButtonView(icon: Icon.more.rawValue, title: "Adicionar")
-        view.translatesAutoresizingMaskIntoConstraints = false
-        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapCardMore(_:)))
-        view.addGestureRecognizer(tap)
-        view.addShadow()
-        return view
-    }()
+    lazy var filterView = FilterSegmentedControl(
+        didSelectIndexClosure: weakify {
+            $0.didSelectIndexClosure($1)
+        }
+    )
     
     // MARK: - Main
     private lazy var mainBaseView: UIView = {
@@ -155,59 +152,45 @@ final class HomeView: UIView, ViewCodeContract {
 
     // MARK: - Viewcode methods
     func setupHierarchy() {
-        addSubview(headerView)
+        addSubview(profileHeaderView)
         addSubview(sectionCardsView)
         addSubview(mainBaseView)
         
-        headerView.addSubview(profileView)
-        sectionCardsView.addSubview(cardStackView)
+        sectionCardsView.addArrangedSubview(menuCardsView)
+        sectionCardsView.addArrangedSubview(totalReceiptCard)
+        sectionCardsView.addArrangedSubview(filterView)
+        
         mainBaseView.addSubview(tableview)
     }
     
     func setupConstraints() {
         
-        /// Header
-        headerView
+        profileHeaderView
             .topAnchor(in: self, layoutOption: .useMargins)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(80)
+            .heightAnchor(70)
         
-        profileView
-            .topAnchor(in: headerView, attribute: .top, padding: 22)
-            .leftAnchor(in: headerView, attribute: .left, padding: 10)
-            .heightAnchor(40)
-        
-        /// Section Cards
         sectionCardsView
-            .topAnchor(in: headerView, attribute: .bottom)
+            .topAnchor(in: profileHeaderView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
-            .heightAnchor(152)
-        
-        cardStackView
-            .centerY(in: sectionCardsView)
-            .leftAnchor(in: sectionCardsView, attribute: .left, padding: 10)
-            .rightAnchor(in: sectionCardsView, attribute: .right, padding: 10)
-            .heightAnchor(106)
-        
-        /// Main
+
         mainBaseView
             .topAnchor(in: sectionCardsView, attribute: .bottom)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
             .bottomAnchor(in: self, layoutOption: .useMargins)
-        
+
         tableview
             .topAnchor(in: mainBaseView)
-            .leftAnchor(in: mainBaseView, padding: 0)
-            .rightAnchor(in: mainBaseView, padding: 0)
-            .bottomAnchor(in: mainBaseView, layoutOption: .useMargins)
-        
+            .leftAnchor(in: mainBaseView)
+            .rightAnchor(in: mainBaseView)
+            .bottomAnchor(in: mainBaseView, padding: -1, layoutOption: .useMargins)
     }
     
     func setupConfiguration() {
-        self.backgroundColor = .BarberColors.lightGray
+        self.backgroundColor = .MNColors.lightGray
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }
@@ -218,9 +201,7 @@ final class HomeView: UIView, ViewCodeContract {
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if procedures.isEmpty{
-            return 1
-        }
+        if procedures.isEmpty { return 1 }
         return procedures.count
     }
     

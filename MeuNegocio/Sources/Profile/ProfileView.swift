@@ -12,8 +12,7 @@ class ProfileView: UIView {
     
     // MARK: - Action Properties
     var logout: Action?
-    var closedView: Action?
-    var didTapVerifyEmail: Action?
+    var deleteAccount: Action?
     
     // MARK: - Properties
     let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -22,9 +21,10 @@ class ProfileView: UIView {
         didSet {
             guard let user = user else { return }
             nameUserLabel.text = user.name
-            emailLabel.text = user.email
-            nameBarberLabel.text = "Empresa: \(user.barbershop)"
-            cityLabel.text = user.city + "/" + user.state
+            firstNameLabel.text = "\(user.name.prefix(2).uppercased())"
+            companyLabel.text = "Empresa: \(user.barbershop)"
+            cityLabel.text = "Cidade: \(user.city + "/" + user.state)"
+            emailLabel.text = "Email: \(user.email)"
             InfoStackView.loadingIndicatorView(show: false)
         }
     }
@@ -33,12 +33,10 @@ class ProfileView: UIView {
 
     init(
         didTapLogout: @escaping Action,
-        didTapClosedView: @escaping Action,
-        didTapVerifyEmail: @escaping Action
+        didTapdeleteAccount: @escaping Action
     ) {
         self.logout = didTapLogout
-        self.closedView = didTapClosedView
-        self.didTapVerifyEmail = didTapVerifyEmail
+        self.deleteAccount = didTapdeleteAccount
         super.init(frame: .zero)
         setupView()
     }
@@ -48,150 +46,173 @@ class ProfileView: UIView {
     }
     
     // MARK: - ViewCode
-    lazy var closedButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: Icon.closed.rawValue), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(didTapClosed), for: .touchUpInside)
-        return button
+    
+    private lazy var gripView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .darkGray
+        view.layer.cornerRadius = 2.0
+        view.layer.masksToBounds = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private lazy var iconView: UIView = {
         let container = UIView()
-        container.backgroundColor = .lightText
+        container.backgroundColor = .MNColors.lightBrown
         container.roundCorners(cornerRadius: 30)
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
     
-    private lazy var iconImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "ic_profile")
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
-    }()
-    
-    private lazy var nameUserLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var firstNameLabel: MNLabel = {
+        let label = MNLabel(font: UIFont.boldSystemFont(ofSize: 16))
         return label
     }()
-
-    private lazy var emailLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
+    
+    private lazy var nameUserLabel: MNLabel = {
+        let label = MNLabel(font: UIFont.boldSystemFont(ofSize: 16))
         return label
     }()
     
     lazy var InfoStackView: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [nameBarberLabel, cityLabel])
-        stack.backgroundColor = .BarberColors.yellowDark
+        let stack = UIStackView(arrangedSubviews: [companyLabel, cityLabel, emailLabel])
+        stack.backgroundColor = .MNColors.lightGray
         stack.axis = .vertical
         stack.alignment = .leading
         stack.distribution = .fillEqually
-        stack.spacing = 5
-        stack.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        stack.spacing = 6
+        stack.layoutMargins = UIEdgeInsets(top: 12, left: 20, bottom: 12, right: 20)
         stack.isLayoutMarginsRelativeArrangement = true
         stack.roundCorners(cornerRadius: 10)
+        stack.addShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25), size: CGSize(width: 0, height: 3), opacity: 0.5, radius: 4)
+        stack.clipsToBounds = false
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.loadingIndicatorView(show: true)
         return stack
     }()
     
-    lazy var nameBarberLabel: BarberLabel = {
-        let label = BarberLabel(font: UIFont.systemFont(ofSize: 14))
+    lazy var companyLabel: MNLabel = {
+        let label = MNLabel(
+            font: UIFont.boldSystemFont(ofSize: 16),
+            textColor: .MNColors.grayDescription)
         return label
     }()
     
-    lazy var cityLabel: BarberLabel = {
-        let label = BarberLabel(font: UIFont.systemFont(ofSize: 14))
+    lazy var cityLabel: MNLabel = {
+        let label = MNLabel(
+            font: UIFont.boldSystemFont(ofSize: 16),
+            textColor: .MNColors.grayDescription)
         return label
     }()
-
-    private lazy var exiteButton: CustomSubmitButton = {
-        let button = CustomSubmitButton(title: "Sair da conta", colorTitle: .white, background: .BarberColors.darkGray)
-        button.addTarget(self, action: #selector(handleLogoutButton), for: .touchUpInside)
-        return button
+    
+    private lazy var emailLabel: MNLabel = {
+        let label = MNLabel(
+            font: UIFont.boldSystemFont(ofSize: 16),
+            textColor: .MNColors.grayDescription)
+        return label
     }()
     
-    private lazy var versionLabel: UILabel = {
-        let label = UILabel()
+    private lazy var logoutAccountView: CardIconAndTitleView = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleLogout))
+        let view = CardIconAndTitleView(
+            icon: Icon.logoutAccount.rawValue,
+            title: "Sair do aplicativo",
+            titleColor: .MNColors.grayDarkest,
+            isHiddenArrow: false,
+            heightIcon: 18,
+            spacing: 16)
+        view.addTopBorder()
+        view.addBottomBorder()
+        view.addGestureRecognizer(tap)
+        return view
+    }()
+    
+    private lazy var deleteAccountView: CardIconAndTitleView = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDeleteAccount))
+        let view = CardIconAndTitleView(
+            icon: Icon.deleteAccount.rawValue,
+            title: "Encerrar conta",
+            titleColor: .MNColors.grayDarkest,
+            isHiddenArrow: false,
+            heightIcon: 18,
+            spacing: 16)
+        view.addTopBorder()
+        view.addBottomBorder()
+        view.addGestureRecognizer(tap)
+        return view
+    }()
+    
+    
+    private lazy var versionLabel: MNLabel = {
+        let label = MNLabel(font: .boldSystemFont(ofSize: 14))
         if let version = appVersion {
             label.text = "Versão \(version)"
         }
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     // MARK: - Action Buttons
     @objc
-    func didTapClosed() {
-        self.closedView?()
-    }
-    
-    @objc
-    func handleLogoutButton() {
+    func handleLogout() {
         self.logout?()
     }
     
     @objc
-    func didTapverifyEmailAction() {
-        self.didTapVerifyEmail?()
+    func handleDeleteAccount() {
+        self.deleteAccount?()
     }
-
 }
 
 extension ProfileView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(closedButton)
+        addSubview(gripView)
         addSubview(iconView)
-        iconView.addSubview(iconImage)
+        iconView.addSubview(firstNameLabel)
         addSubview(nameUserLabel)
-        addSubview(emailLabel)
         addSubview(InfoStackView)
-        addSubview(exiteButton)
+        addSubview(deleteAccountView)
+        addSubview(logoutAccountView)
         addSubview(versionLabel)
     }
     
     func setupConstraints() {
         
-        closedButton
-            .topAnchor(in: self, padding: 30)
-            .rightAnchor(in: self, padding: 15)
-            .heightAnchor(18)
-            .widthAnchor(18)
-
-        iconView
-            .topAnchor(in: self, padding: 70)
+        gripView
+            .topAnchor(in: self, attribute: .top, padding: 11)
             .centerX(in: self)
+            .widthAnchor(32)
+            .heightAnchor(4)
+        
+        iconView
+            .topAnchor(in: gripView, padding: 44)
+            .leftAnchor(in: self, padding: 16)
             .heightAnchor(60)
             .widthAnchor(60)
         
-        iconImage
+        firstNameLabel
             .centerX(in: iconView)
             .centerY(in: iconView)
-            .heightAnchor(24)
-            .widthAnchor(24)
         
         nameUserLabel
-            .topAnchor(in: iconView, attribute: .bottom, padding: 25)
-            .centerX(in: self)
-
-        emailLabel
-            .topAnchor(in: nameUserLabel, attribute: .bottom, padding: 4)
-            .centerX(in: self)
+            .leftAnchor(in: iconView, attribute: .right, padding: 12)
+            .centerY(in: iconView)
 
         InfoStackView
-            .topAnchor(in: emailLabel, attribute: .bottom, padding: 20)
+            .topAnchor(in: iconView, attribute: .bottom, padding: 40)
             .leftAnchor(in: self, attribute: .left, padding: 14)
             .rightAnchor(in: self, attribute: .right, padding: 14)
-            .heightAnchor(80)
         
-        exiteButton
-            .bottomAnchor(in: versionLabel, attribute: .top, padding: 10)
+        logoutAccountView
+            .topAnchor(in: InfoStackView, attribute: .bottom, padding: 46)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
-            .heightAnchor(48)
+            .heightAnchor(56)
+        
+        deleteAccountView
+            .topAnchor(in: logoutAccountView, attribute: .bottom)
+            .leftAnchor(in: self, attribute: .left, padding: 16)
+            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .heightAnchor(56)
         
         versionLabel
             .bottomAnchor(in: self, attribute: .bottom, padding: 10)
@@ -200,7 +221,7 @@ extension ProfileView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-        backgroundColor = .BarberColors.lightBrown
+        backgroundColor = .white
     }
     
 }

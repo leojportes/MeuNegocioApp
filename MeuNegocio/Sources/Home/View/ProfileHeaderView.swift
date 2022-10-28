@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProfileHeaderView: UIStackView {
+final class ProfileHeaderView: UIView {
     
     // MARK: - Private properties
     private var openProfile: Action?
@@ -25,6 +25,17 @@ final class ProfileHeaderView: UIStackView {
     
     // MARK: - Viewcode
     
+    lazy var containerStackView: UIStackView = {
+        let container = UIStackView()
+        let tapProfile = UITapGestureRecognizer(target: self, action: #selector(tappedView))
+        container.axis = .horizontal
+        container.distribution = .fill
+        container.spacing = 8
+        container.addGestureRecognizer(tapProfile)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
     private lazy var iconView: UIView = {
         let container = UIView()
         container.backgroundColor = .lightText
@@ -33,11 +44,9 @@ final class ProfileHeaderView: UIStackView {
         return container
     }()
     
-    private lazy var iconImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: Icon.profile.rawValue)
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
+    private lazy var iconImage: MNLabel = {
+        let label = MNLabel(font: UIFont.boldSystemFont(ofSize: 16))
+        return label
     }()
     
     private lazy var nameUserLabel: UILabel = {
@@ -62,14 +71,9 @@ final class ProfileHeaderView: UIStackView {
         }
     }
     
-    private func tapGestureRecognizer() {
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(self.tappedView))
-        self.addGestureRecognizer(tapGR)
-        self.isUserInteractionEnabled = true
-    }
-    
     func setupLayout(nameUser: String) {
-        nameUserLabel.text = nameUser
+        iconImage.text = "\(nameUser.prefix(2).uppercased())"
+        nameUserLabel.text = "Olá, \(nameUser)"
     }
     
     func setupAction(actionButton: @escaping Action) {
@@ -81,14 +85,18 @@ final class ProfileHeaderView: UIStackView {
 
 extension ProfileHeaderView: ViewCodeContract {
     func setupHierarchy() {
-        addArrangedSubview(iconView)
-        addArrangedSubview(nameUserLabel)
-        addArrangedSubview(iconArrow)
+        addSubview(containerStackView)
+        containerStackView.addArrangedSubview(iconView)
+        containerStackView.addArrangedSubview(nameUserLabel)
+        containerStackView.addArrangedSubview(iconArrow)
         
         iconView.addSubview(iconImage)
     }
     
     func setupConstraints() {
+        containerStackView
+            .leftAnchor(in: self, padding: 16)
+            .bottomAnchor(in: self, padding: 12)
         
         iconView
             .heightAnchor(40)
@@ -97,9 +105,7 @@ extension ProfileHeaderView: ViewCodeContract {
         iconImage
             .centerX(in: iconView)
             .centerY(in: iconView)
-            .heightAnchor(20)
-            .widthAnchor(20)
-    
+ 
         iconArrow
             .heightAnchor(15)
             .widthAnchor(15)
@@ -107,9 +113,5 @@ extension ProfileHeaderView: ViewCodeContract {
     
     func setupConfiguration() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        tapGestureRecognizer()
-        self.axis = .horizontal
-        self.distribution = .fill
-        self.spacing = 8
     }
 }

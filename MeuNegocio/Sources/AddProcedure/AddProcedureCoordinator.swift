@@ -13,7 +13,7 @@ class AddProcedureCoordinator: BaseCoordinator {
         let controller = AddProcedureViewController(viewModel: viewModel, coordinator: self)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = String.stringEmpty
-        configuration.navigationController?.navigationBar.tintColor = .BarberColors.darkGray
+        configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray
         configuration.navigationController?.present(controller, animated: true)
     }
     

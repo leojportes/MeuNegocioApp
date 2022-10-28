@@ -31,77 +31,77 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
     }
   
     /// Client
-    private lazy var clientLabel = BarberLabel() .. {
+    private lazy var clientLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDarkest
+        $0.textColor = .MNColors.grayDarkest
         $0.numberOfLines = .zero
         $0.text = "Cliente:"
     }
 
-    private lazy var clientValueLabel = BarberLabel() .. {
+    private lazy var clientValueLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
         $0.numberOfLines = .zero
         $0.textAlignment = .right
         $0.text = "Leonardo Portes"
     }
 
     /// Procedure
-    private lazy var procedureLabel = BarberLabel() .. {
+    private lazy var procedureLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDarkest
+        $0.textColor = .MNColors.grayDarkest
         $0.numberOfLines = .zero
         $0.text = "Procedimento:"
     }
 
-    private lazy var procedureValueLabel = BarberLabel() .. {
+    private lazy var procedureValueLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
         $0.numberOfLines = .zero
         $0.textAlignment = .right
     }
     
     ///  Payment method
-    private lazy var paymentMethodLabel = BarberLabel() .. {
+    private lazy var paymentMethodLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDarkest
+        $0.textColor = .MNColors.grayDarkest
         $0.numberOfLines = .zero
         $0.text = "Método de pagamento:"
     }
 
-    private lazy var paymentMethodValueLabel = BarberLabel() .. {
+    private lazy var paymentMethodValueLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
         $0.numberOfLines = .zero
         $0.textAlignment = .right
     }
     
     /// Date
-    private lazy var dateLabel = BarberLabel() .. {
+    private lazy var dateLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDarkest
+        $0.textColor = .MNColors.grayDarkest
         $0.numberOfLines = .zero
         $0.text = "Data:"
     }
 
-    private lazy var dateValueLabel = BarberLabel() .. {
+    private lazy var dateValueLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
         $0.numberOfLines = .zero
         $0.textAlignment = .right
     }
     
     /// Amount
     ///
-    private lazy var amountLabel = BarberLabel() .. {
+    private lazy var amountLabel = MNLabel() .. {
     $0.font = UIFont.boldSystemFont(ofSize: 16)
-    $0.textColor = .BarberColors.grayDarkest
+    $0.textColor = .MNColors.grayDarkest
     $0.numberOfLines = .zero
     $0.text = "Valor recebido:"
 }
-    private lazy var amountValueLabel = BarberLabel() .. {
+    private lazy var amountValueLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
-        $0.textColor = .BarberColors.grayDescription
+        $0.textColor = .MNColors.grayDescription
         $0.numberOfLines = .zero
         $0.text = "R$00,00"
     }
@@ -119,22 +119,22 @@ final class ProcedureDetailView: BottomSheetView, ViewCodeContract {
     }()
     
     private lazy var separatorLine1 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private lazy var separatorLine2 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private lazy var separatorLine3 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private lazy var separatorLine4 = UIView() .. {
-        $0.backgroundColor = .BarberColors.lightGray
+        $0.backgroundColor = .MNColors.lightGray
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
     

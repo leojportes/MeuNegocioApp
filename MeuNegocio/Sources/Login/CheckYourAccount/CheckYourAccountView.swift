@@ -40,7 +40,7 @@ class CheckYourAccountView: UIView, ViewCodeContract {
         let button = CustomSubmitButton(title: "Verificar conta",
                                   colorTitle: .darkGray,
                                   radius: 10,
-                                  background: .BarberColors.lightBrown)
+                                  background: .MNColors.lightBrown)
         button.addTarget(self, action: #selector(handleLoginButton), for: .touchUpInside)
         return button
     }()
