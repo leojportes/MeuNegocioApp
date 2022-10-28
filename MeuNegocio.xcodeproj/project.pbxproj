@@ -17,7 +17,7 @@
 		5213DD04290B694500AFC980 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD03290B694500AFC980 /* StartCoordinator.swift */; };
 		5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD06290B69C200AFC980 /* StartViewController.swift */; };
 		5213DD09290B6A5300AFC980 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD08290B6A5300AFC980 /* StartViewModel.swift */; };
-		5213DD0B290B6D6700AFC980 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD0A290B6D6700AFC980 /* StartView.swift */; };
+		5213DD15290B860C00AFC980 /* teste1.json in Resources */ = {isa = PBXBuildFile; fileRef = 5213DD14290B860B00AFC980 /* teste1.json */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
@@ -159,7 +159,7 @@
 		5213DD03290B694500AFC980 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
 		5213DD06290B69C200AFC980 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5213DD08290B6A5300AFC980 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
-		5213DD0A290B6D6700AFC980 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		5213DD14290B860B00AFC980 /* teste1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teste1.json; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = MeuNegocio/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -336,7 +336,6 @@
 				5213DD03290B694500AFC980 /* StartCoordinator.swift */,
 				5213DD06290B69C200AFC980 /* StartViewController.swift */,
 				5213DD08290B6A5300AFC980 /* StartViewModel.swift */,
-				5213DD0A290B6D6700AFC980 /* StartView.swift */,
 			);
 			path = StartApp;
 			sourceTree = "<group>";
@@ -613,6 +612,7 @@
 		C0A7414627B1957600391CE6 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				5213DD14290B860B00AFC980 /* teste1.json */,
 				C0A7411927B1953300391CE6 /* Assets.xcassets */,
 				C0A7411027B1953000391CE6 /* AppDelegate.swift */,
 				C0A7411227B1953000391CE6 /* SceneDelegate.swift */,
@@ -869,6 +869,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */,
+				5213DD15290B860C00AFC980 /* teste1.json in Resources */,
 				5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */,
 				C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */,
 			);
@@ -1063,7 +1064,6 @@
 				C0F8FE6D28EE94CA00ECEB63 /* CheckYourAccountCoordinator.swift in Sources */,
 				C080E9B528E7D80700555D80 /* PDFContent.swift in Sources */,
 				52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */,
-				5213DD0B290B6D6700AFC980 /* StartView.swift in Sources */,
 				52B8A08328E2310900B1C9F7 /* ErrorView.swift in Sources */,
 				52B1854428F900E800907FA0 /* CardIconAndTitleView.swift in Sources */,
 				C016B44128DFE10B007372E4 /* PaymentMethodType.swift in Sources */,

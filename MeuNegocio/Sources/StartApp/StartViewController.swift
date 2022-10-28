@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import Lottie
 
 class StartViewController: CoordinatedViewController {
     
-    let customView = StartView()
     private let viewModel: StartViewModelProtocol
+    private var animationView: AnimationView?
     
     init(viewModel: StartViewModelProtocol, coordinator: CoordinatorProtocol){
         self.viewModel = viewModel
@@ -23,15 +24,22 @@ class StartViewController: CoordinatedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func loadView() {
-        super.loadView()
-        self.view = customView
+        view.backgroundColor = .white
+        showAnimation()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.validate()
+    }
+    
+    private func showAnimation() {
+        animationView = .init(name: "teste1")
+        animationView!.frame = view.bounds
+        animationView!.contentMode = .scaleAspectFit
+        animationView!.loopMode = .loop
+        animationView!.animationSpeed = 0.5
+        view.addSubview(animationView!)
+        animationView!.play()
     }
 }
