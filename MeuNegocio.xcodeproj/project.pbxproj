@@ -18,6 +18,7 @@
 		5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD06290B69C200AFC980 /* StartViewController.swift */; };
 		5213DD09290B6A5300AFC980 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD08290B6A5300AFC980 /* StartViewModel.swift */; };
 		5213DD15290B860C00AFC980 /* teste1.json in Resources */ = {isa = PBXBuildFile; fileRef = 5213DD14290B860B00AFC980 /* teste1.json */; };
+		5213DD17290C4C2300AFC980 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD16290C4C2300AFC980 /* KeychainService.swift */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
@@ -160,6 +161,7 @@
 		5213DD06290B69C200AFC980 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5213DD08290B6A5300AFC980 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		5213DD14290B860B00AFC980 /* teste1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teste1.json; sourceTree = "<group>"; };
+		5213DD16290C4C2300AFC980 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = MeuNegocio/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				5213DCFF290AFC3A00AFC980 /* MNUserDefaults.swift */,
 				5213DD01290B27BB00AFC980 /* MNKeys.swift */,
+				5213DD16290C4C2300AFC980 /* KeychainService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1086,6 +1089,7 @@
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C080E9B928E7D8CB00555D80 /* PDFConfigurationType.swift in Sources */,
+				5213DD17290C4C2300AFC980 /* KeychainService.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */,
 				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,

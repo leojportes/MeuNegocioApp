@@ -36,8 +36,7 @@ class LoginViewModel: LoginViewModelProtocol {
                 guard let typeError = error as? NSError else { return }
                 resultLogin(false, self.descriptionError(error: typeError))
             } else {
-                MNUserDefaults.set(value: email, forKey: MNKeys.email)
-                MNUserDefaults.set(value: password, forKey: MNKeys.password)
+                KeychainService.saveCredentials(email: email, password: password)
                 resultLogin(true, .stringEmpty)
             }
         }

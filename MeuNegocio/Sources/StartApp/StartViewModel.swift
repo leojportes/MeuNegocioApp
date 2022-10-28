@@ -23,12 +23,13 @@ class StartViewModel: StartViewModelProtocol {
     }
     
     func validate() {
-        let email = MNUserDefaults.get(stringForKey: MNKeys.email) ?? ""
-        let password = MNUserDefaults.get(stringForKey: MNKeys.password) ?? ""
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             /// Checa se existe valor na chave
-            if MNUserDefaults.checkExistenceKey(key: MNKeys.email) {
+            let data = KeychainService.loadCredentials()
+            if KeychainService.verifyIfExists() {
+                guard let email = data.first else { return }
+                guard let password = data.last else { return }
+                
                 Auth.auth().signIn(withEmail: email,
                                    password:  password) { _, error in
                     if error != nil {
@@ -43,3 +44,4 @@ class StartViewModel: StartViewModelProtocol {
         }
     }
 }
+
