@@ -34,7 +34,7 @@ class StartViewController: CoordinatedViewController {
     }
     
     private func showAnimation() {
-        animationView = .init(name: "teste1")
+        animationView = .init(name: "loading")
         animationView!.frame = view.bounds
         animationView!.contentMode = .scaleAspectFit
         animationView!.loopMode = .loop

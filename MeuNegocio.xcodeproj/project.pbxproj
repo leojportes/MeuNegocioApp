@@ -17,7 +17,6 @@
 		5213DD04290B694500AFC980 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD03290B694500AFC980 /* StartCoordinator.swift */; };
 		5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD06290B69C200AFC980 /* StartViewController.swift */; };
 		5213DD09290B6A5300AFC980 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD08290B6A5300AFC980 /* StartViewModel.swift */; };
-		5213DD15290B860C00AFC980 /* teste1.json in Resources */ = {isa = PBXBuildFile; fileRef = 5213DD14290B860B00AFC980 /* teste1.json */; };
 		5213DD17290C4C2300AFC980 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD16290C4C2300AFC980 /* KeychainService.swift */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
@@ -26,6 +25,7 @@
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
 		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
 		5249214928C00621006F01DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249214828C00621006F01DA /* HomeViewModel.swift */; };
+		52597A8629144F0200B71FBC /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 52597A8529144F0200B71FBC /* loading.json */; };
 		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
 		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
 		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
@@ -160,7 +160,6 @@
 		5213DD03290B694500AFC980 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
 		5213DD06290B69C200AFC980 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		5213DD08290B6A5300AFC980 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
-		5213DD14290B860B00AFC980 /* teste1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = teste1.json; sourceTree = "<group>"; };
 		5213DD16290C4C2300AFC980 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = MeuNegocio/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -169,6 +168,7 @@
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = MeuNegocio/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		52597A8529144F0200B71FBC /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
@@ -615,7 +615,7 @@
 		C0A7414627B1957600391CE6 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				5213DD14290B860B00AFC980 /* teste1.json */,
+				52597A8529144F0200B71FBC /* loading.json */,
 				C0A7411927B1953300391CE6 /* Assets.xcassets */,
 				C0A7411027B1953000391CE6 /* AppDelegate.swift */,
 				C0A7411227B1953000391CE6 /* SceneDelegate.swift */,
@@ -872,8 +872,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */,
-				5213DD15290B860C00AFC980 /* teste1.json in Resources */,
 				5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */,
+				52597A8629144F0200B71FBC /* loading.json in Resources */,
 				C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
