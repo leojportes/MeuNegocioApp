@@ -8,7 +8,5 @@
 import Foundation
 
 public enum MNKeys {
-    // auto login
-    public static let email = "email"
-    public static let password = "password"
+    public static let authenticated = "authenticated"
 }
