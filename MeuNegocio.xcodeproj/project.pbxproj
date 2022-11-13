@@ -12,6 +12,12 @@
 		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
 		5213DCF928FF839A00AFC980 /* TotalReceiptCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */; };
 		5213DCFD2903508900AFC980 /* MenuCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DCFC2903508900AFC980 /* MenuCardView.swift */; };
+		5213DD00290AFC3A00AFC980 /* MNUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DCFF290AFC3A00AFC980 /* MNUserDefaults.swift */; };
+		5213DD02290B27BB00AFC980 /* MNKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD01290B27BB00AFC980 /* MNKeys.swift */; };
+		5213DD04290B694500AFC980 /* StartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD03290B694500AFC980 /* StartCoordinator.swift */; };
+		5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD06290B69C200AFC980 /* StartViewController.swift */; };
+		5213DD09290B6A5300AFC980 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD08290B6A5300AFC980 /* StartViewModel.swift */; };
+		5213DD17290C4C2300AFC980 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5213DD16290C4C2300AFC980 /* KeychainService.swift */; };
 		521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A929928AEBFE40024865B /* LoginViewModel.swift */; };
 		5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5229133828EF4573005980D3 /* GoogleService-Info.plist */; };
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
@@ -19,6 +25,7 @@
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
 		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
 		5249214928C00621006F01DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249214828C00621006F01DA /* HomeViewModel.swift */; };
+		52597A8629144F0200B71FBC /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 52597A8529144F0200B71FBC /* loading.json */; };
 		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
 		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
 		527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */; };
@@ -148,6 +155,12 @@
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		5213DCF828FF839A00AFC980 /* TotalReceiptCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalReceiptCardView.swift; sourceTree = "<group>"; };
 		5213DCFC2903508900AFC980 /* MenuCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCardView.swift; sourceTree = "<group>"; };
+		5213DCFF290AFC3A00AFC980 /* MNUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNUserDefaults.swift; sourceTree = "<group>"; };
+		5213DD01290B27BB00AFC980 /* MNKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MNKeys.swift; sourceTree = "<group>"; };
+		5213DD03290B694500AFC980 /* StartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartCoordinator.swift; sourceTree = "<group>"; };
+		5213DD06290B69C200AFC980 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		5213DD08290B6A5300AFC980 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
+		5213DD16290C4C2300AFC980 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		521A929928AEBFE40024865B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = MeuNegocio/Sources/Login/LoginViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5229133828EF4573005980D3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -155,6 +168,7 @@
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = MeuNegocio/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		52597A8529144F0200B71FBC /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
 		527D06DB28AADB36001E0BE0 /* CreateAccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCoordinator.swift; sourceTree = "<group>"; };
@@ -307,6 +321,26 @@
 				D66E9A8974038C5963B6202D /* Pods-MeuNegocioTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		5213DCFE290AFC0F00AFC980 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5213DCFF290AFC3A00AFC980 /* MNUserDefaults.swift */,
+				5213DD01290B27BB00AFC980 /* MNKeys.swift */,
+				5213DD16290C4C2300AFC980 /* KeychainService.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5213DD05290B699400AFC980 /* StartApp */ = {
+			isa = PBXGroup;
+			children = (
+				5213DD03290B694500AFC980 /* StartCoordinator.swift */,
+				5213DD06290B69C200AFC980 /* StartViewController.swift */,
+				5213DD08290B6A5300AFC980 /* StartViewModel.swift */,
+			);
+			path = StartApp;
 			sourceTree = "<group>";
 		};
 		522D901D289A00DF0085575A /* Login */ = {
@@ -538,6 +572,7 @@
 		C0A7414327B1955200391CE6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5213DD05290B699400AFC980 /* StartApp */,
 				52B8A08E28E7C90E00B1C9F7 /* UserOnboarding */,
 				52C4AE7B28B999350055E384 /* AddProcedure */,
 				52C4AE7028B563610055E384 /* Profile */,
@@ -555,6 +590,7 @@
 		C0A7414427B1955F00391CE6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5213DCFE290AFC0F00AFC980 /* Utils */,
 				C0AFF7D028C454DD00B816AA /* Operators */,
 				C0BCE59327B747E9005805A6 /* Enums */,
 				C0BCE58527B731A3005805A6 /* UIComponents */,
@@ -579,6 +615,7 @@
 		C0A7414627B1957600391CE6 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				52597A8529144F0200B71FBC /* loading.json */,
 				C0A7411927B1953300391CE6 /* Assets.xcassets */,
 				C0A7411027B1953000391CE6 /* AppDelegate.swift */,
 				C0A7411227B1953000391CE6 /* SceneDelegate.swift */,
@@ -836,6 +873,7 @@
 			files = (
 				C0A7411D27B1953300391CE6 /* LaunchScreen.storyboard in Resources */,
 				5229133928EF4573005980D3 /* GoogleService-Info.plist in Resources */,
+				52597A8629144F0200B71FBC /* loading.json in Resources */,
 				C0A7411A27B1953300391CE6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1017,6 +1055,7 @@
 				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
 				C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */,
+				5213DD04290B694500AFC980 /* StartCoordinator.swift in Sources */,
 				C0AF028128C536C600B816AA /* ForgetPasswordViewController.swift in Sources */,
 				C0AF028728C5389600B816AA /* ForgetPasswordView.swift in Sources */,
 				C0AF028528C5373D00B816AA /* ForgetPasswordViewModel.swift in Sources */,
@@ -1032,6 +1071,7 @@
 				52B1854428F900E800907FA0 /* CardIconAndTitleView.swift in Sources */,
 				C016B44128DFE10B007372E4 /* PaymentMethodType.swift in Sources */,
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,
+				5213DD02290B27BB00AFC980 /* MNKeys.swift in Sources */,
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
 				C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */,
 				C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */,
@@ -1049,6 +1089,7 @@
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
 				521A929A28AEBFE40024865B /* LoginViewModel.swift in Sources */,
 				C080E9B928E7D8CB00555D80 /* PDFConfigurationType.swift in Sources */,
+				5213DD17290C4C2300AFC980 /* KeychainService.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */,
 				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,
@@ -1081,6 +1122,7 @@
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0F8FCB028EE3CFA00ECEB63 /* Currency.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
+				5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */,
 				C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */,
 				52B8A08128E2232000B1C9F7 /* ErrorTableViewCell.swift in Sources */,
 				C0A741D627B1A92500391CE6 /* AutoLayoutOption.swift in Sources */,
@@ -1095,6 +1137,7 @@
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
+				5213DD00290AFC3A00AFC980 /* MNUserDefaults.swift in Sources */,
 				52B8A09028E7C95D00B1C9F7 /* UserOnboardingViewController.swift in Sources */,
 				52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */,
 				522D9020289A00E00085575A /* LoginView.swift in Sources */,
@@ -1103,6 +1146,7 @@
 				52C4AE7828B705A00055E384 /* UIViewController+Extensions.swift in Sources */,
 				C0A7418F27B199B500391CE6 /* Bindable.swift in Sources */,
 				5213DCFD2903508900AFC980 /* MenuCardView.swift in Sources */,
+				5213DD09290B6A5300AFC980 /* StartViewModel.swift in Sources */,
 				C0BCE58F27B747E2005805A6 /* Icon.swift in Sources */,
 				C016B61B28E0B341007372E4 /* ProcedureDetailCoordinator.swift in Sources */,
 				C0AFFB6528C47D9800B816AA /* Bool+Ext.swift in Sources */,
@@ -1280,7 +1324,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
@@ -1289,7 +1333,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Innovationstechsc.MeuNegocio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1309,7 +1353,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
@@ -1318,7 +1362,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Innovationstechsc.MeuNegocio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

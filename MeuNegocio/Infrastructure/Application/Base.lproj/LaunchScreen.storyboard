@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="AAG-9R-Am1">
-                                <rect key="frame" x="142" y="383" width="130" height="130"/>
+                                <rect key="frame" x="142" y="388" width="130" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="1Zo-7c-yce"/>
                                     <constraint firstAttribute="width" constant="130" id="LoB-Hf-sKA"/>
@@ -29,7 +29,7 @@
                         <color key="backgroundColor" name="lightBrown"/>
                         <constraints>
                             <constraint firstItem="AAG-9R-Am1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5iT-iy-4nl"/>
-                            <constraint firstItem="AAG-9R-Am1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-5" id="Fxi-vi-5e5"/>
+                            <constraint firstItem="AAG-9R-Am1" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Fxi-vi-5e5"/>
                         </constraints>
                     </view>
                 </viewController>

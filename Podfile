@@ -7,6 +7,7 @@ target 'MeuNegocio' do
   pod 'FirebaseAuth', '9.4.0'
   pod 'FirebaseFirestore', '9.4.0'
   pod 'GoogleSignIn', '5.0.2'
+  pod 'lottie-ios'
 
   target 'MeuNegocioTests' do
     inherit! :search_paths
