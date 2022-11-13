@@ -23,7 +23,6 @@ class StartViewModel: StartViewModelProtocol {
     }
     
     func validate() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             /// Checa se existe valor na chave
             let data = KeychainService.loadCredentials()
             if KeychainService.verifyIfExists() {
@@ -41,7 +40,6 @@ class StartViewModel: StartViewModelProtocol {
             } else {
                 self.coordinator?.navigateToLogin()
             }
-        }
     }
 }
 
