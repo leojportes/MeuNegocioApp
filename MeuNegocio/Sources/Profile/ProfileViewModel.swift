@@ -85,6 +85,7 @@ class ProfileViewModel: ProfileViewModelProtocol {
     
     // MARK: - Routes
     func logout() {
+        KeychainService.deleteCredentials()
         coordinator?.closed()
     }
 }

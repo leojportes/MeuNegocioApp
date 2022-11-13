@@ -13,6 +13,7 @@ final class ReportCoordinator: BaseCoordinator {
         let controller = ReportViewController(viewModel: viewModel, coordinator: self, procedures: procedures)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.isHidden = true
+        configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
 }
