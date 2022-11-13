@@ -11,7 +11,7 @@ protocol HomeViewModelProtocol: AnyObject {
     var input: HomeViewModelInputProtocol { get }
     var output: HomeViewModelOutputProtocol { get }
     func navigateToReport(procedures: [GetProcedureModel])
-    func navigateToProfile()
+    func navigateToProfile(_ userData: UserModelList)
     func navigateToAddProcedure()
     func navigateToHelp()
     func openProcedureDetails(_ procedure: GetProcedureModel)
@@ -77,8 +77,8 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
         coordinator?.navigateTo(.Report(procedures))
     }
 
-    func navigateToProfile() {
-        coordinator?.navigateTo(.Profile)
+    func navigateToProfile(_ userData: UserModelList) {
+        coordinator?.navigateTo(.Profile(userData))
     }
 
     func navigateToAddProcedure() {

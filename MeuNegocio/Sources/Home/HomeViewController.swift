@@ -12,12 +12,13 @@ final class HomeViewController: CoordinatedViewController {
     // MARK: - Properties
     private let viewModel: HomeViewModelProtocol
     private var procedures: [GetProcedureModel] = []
+    private var userData: UserModelList = []
 
     // MARK: - View
     private lazy var customView = HomeView(
         navigateToReport: weakify { $0.viewModel.navigateToReport(procedures: $0.procedures)},
         alertAction: weakify { $0.showAlert()},
-        navigateToProfile: weakify { $0.viewModel.navigateToProfile() },
+        navigateToProfile: weakify { $0.viewModel.navigateToProfile($0.userData) },
         navigateToAddProcedure: weakify { $0.viewModel.navigateToAddProcedure() },
         navigateToHelp: weakify { $0.viewModel.navigateToHelp() },
         openProcedureDetails: weakify { $0.viewModel.openProcedureDetails($1) },
@@ -67,8 +68,8 @@ final class HomeViewController: CoordinatedViewController {
         }
         
         viewModel.output.nameUser.bind { [weak self] result in
-            guard let name = result.first?.name else { return }
-            self?.customView.userName = name
+            self?.userData = result
+            self?.customView.userName = result.first?.name ?? ""
         }
         
         reloadData()

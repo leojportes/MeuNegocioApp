@@ -25,7 +25,6 @@ class ProfileView: UIView {
             companyLabel.text = "Empresa: \(user.barbershop)"
             cityLabel.text = "Cidade: \(user.city + "/" + user.state)"
             emailLabel.text = "Email: \(user.email)"
-            InfoStackView.loadingIndicatorView(show: false)
         }
     }
     
@@ -87,7 +86,6 @@ class ProfileView: UIView {
         stack.addShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.25), size: CGSize(width: 0, height: 3), opacity: 0.5, radius: 4)
         stack.clipsToBounds = false
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.loadingIndicatorView(show: true)
         return stack
     }()
     
