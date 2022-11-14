@@ -21,7 +21,7 @@ protocol HomeViewModelProtocol: AnyObject {
 // MARK: - Protocols
 protocol HomeViewModelOutputProtocol {
     var procedures: Bindable<[GetProcedureModel]> { get }
-    var nameUser: Bindable<UserModelList> { get }
+    var userData: Bindable<UserModelList> { get }
 }
 
 protocol HomeViewModelInputProtocol {
@@ -36,7 +36,7 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     var input: HomeViewModelInputProtocol { self }
     var output: HomeViewModelOutputProtocol { self }
     var procedures: Bindable<[GetProcedureModel]> = .init([])
-    var nameUser: Bindable<UserModelList> = .init([])
+    var userData: Bindable<UserModelList> = .init([])
 
     // MARK: - Properties
     private var coordinator: HomeCoordinator?
@@ -55,10 +55,10 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
         }
     }
     
-    private func fetchUser() {
+    private func fetchUserData() {
         service.fetchUser { result in
             DispatchQueue.main.async {
-                self.nameUser.value = result
+                self.userData.value = result
             }
         }
     }
@@ -98,7 +98,7 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
 extension HomeViewModel: HomeViewModelInputProtocol {
     func viewDidLoad() {
         fetchProcedureItems()
-        fetchUser()
+        fetchUserData()
     }
 
     func makeTotalAmounts(_ procedures: [GetProcedureModel]) -> String {

@@ -67,7 +67,7 @@ final class HomeViewController: CoordinatedViewController {
             self?.customView.totalReceiptCard.loadingIndicatorView(show: false)
         }
         
-        viewModel.output.nameUser.bind { [weak self] result in
+        viewModel.output.userData.bind { [weak self] result in
             self?.userData = result
             self?.customView.userName = result.first?.name ?? ""
         }
