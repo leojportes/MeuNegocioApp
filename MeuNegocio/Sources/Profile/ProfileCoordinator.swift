@@ -8,9 +8,9 @@
 import UIKit
 
 class ProfileCoordinator: BaseCoordinator {
-    override func start() {
+    func start(userData: UserModelList) {
         let viewModel = ProfileViewModel(coordinator: self)
-        let controller = ProfileViewController(viewModel: viewModel, coordinator: self)
+        let controller = ProfileViewController(viewModel: viewModel, coordinator: self, userData: userData)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray

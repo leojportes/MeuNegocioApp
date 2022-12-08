@@ -17,9 +17,11 @@ class ProfileViewController: CoordinatedViewController {
     )
 
     private let viewModel: ProfileViewModelProtocol
+    private let userData: UserModelList
     
-    init(viewModel: ProfileViewModelProtocol, coordinator: CoordinatorProtocol){
+    init(viewModel: ProfileViewModelProtocol, coordinator: CoordinatorProtocol, userData: UserModelList){
         self.viewModel = viewModel
+        self.userData = userData
         super.init(coordinator: coordinator)
     }
     
@@ -30,11 +32,7 @@ class ProfileViewController: CoordinatedViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Perfil"
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        fetchUser()
+        setUserData()
     }
     
     override func loadView() {
@@ -43,12 +41,8 @@ class ProfileViewController: CoordinatedViewController {
         self.view = customView
     }
     
-    private func fetchUser() {
-        viewModel.fetchUser { [ weak self ] user in
-            DispatchQueue.main.async {
-                self?.customView.user = user.first
-            }
-        }
+    private func setUserData() {
+        self.customView.user = userData.first
     }
     
     private func logout() {
