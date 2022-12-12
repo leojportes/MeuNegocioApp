@@ -41,6 +41,7 @@ final class HomeViewController: CoordinatedViewController {
         super.viewDidLoad()
         self.view = customView
         bindProperties()
+        setTutorial()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +54,20 @@ final class HomeViewController: CoordinatedViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func setTutorial() {
+//        let controller = TutorialViewController()
+//        controller.modalPresentationStyle = .fullScreen
+//        navigationController?.present(controller, animated: true)
+//        var count: Int = 0
+//        if MNUserDefaults.get(intForKey: "tutorial") ?? 0 < 1 {
+//            count += 1
+//            MNUserDefaults.set(value: count, forKey: "tutorial")
+//            let controller = TutorialViewController()
+//            controller.modalPresentationStyle = .formSheet
+//            navigationController?.present(controller, animated: true)
+//        }
     }
 
     private func bindProperties() {

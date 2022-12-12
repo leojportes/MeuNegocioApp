@@ -19,7 +19,7 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     }
     
     init(
-        items: [String] = ["Todos", "Hoje","7 dias","30 dias"],
+        items: [String] = ["Todos", "Hoje","7 dias","30 dias", "Personalizado"],
         didSelectIndexClosure: @escaping (UISegmentedControl) -> Void
     ) {
         self.items = items
@@ -43,6 +43,7 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
         let seg = UISegmentedControl(items: items)
         seg.selectedSegmentTintColor = .MNColors.lightBrown
         seg.selectedSegmentIndex = 0
+        seg.numberOfSegments = 0
         seg.translatesAutoresizingMaskIntoConstraints = false
         seg.addTarget(self, action: #selector(didSelectIndex(_:)), for: .valueChanged)
         return seg
