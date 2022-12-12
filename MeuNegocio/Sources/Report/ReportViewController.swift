@@ -167,7 +167,7 @@ final class ReportViewController: CoordinatedViewController {
         let totalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
         let totalPercentMonthlyAmount = viewModel.percentageFromString(percent: percent, baseAmount: totalMonthlyAmount)
         self.customView.didTapDownloadMonthlyHistoric = {
-            self.sharePDF(monthlyProcedures, PDFModel.monthlyTitle, .weekly, totalPercentMonthlyAmount, hasDiscount, percent)
+            self.sharePDF(monthlyProcedures, PDFModel.monthlyTitle, .monthly, totalPercentMonthlyAmount, hasDiscount, percent)
         }
     }
     
