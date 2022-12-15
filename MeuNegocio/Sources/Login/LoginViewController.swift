@@ -95,7 +95,7 @@ extension LoginViewController: LoginScreenActionsProtocol {
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
-        request.requestedScopes = [.fullName, .email]
+        request.requestedScopes = [.email]
         request.nonce = sha256(nonce)
 
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
