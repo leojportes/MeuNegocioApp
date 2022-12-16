@@ -9,4 +9,5 @@ import Foundation
 
 public enum MNKeys {
     public static let authenticated = "authenticated"
+    public static let firstNameApple = "firstNameApple"
 }
