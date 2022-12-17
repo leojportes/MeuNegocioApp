@@ -38,6 +38,7 @@ class LoginViewModel: LoginViewModelProtocol {
             } else {
                 MNUserDefaults.set(value: true, forKey: MNKeys.authenticated)
                 KeychainService.saveCredentials(email: email, password: password)
+                MNUserDefaults.remove(key: MNKeys.loginWithApple)
                 resultLogin(true, .stringEmpty)
             }
         }
@@ -49,6 +50,7 @@ class LoginViewModel: LoginViewModelProtocol {
                 resultAuth(false)
             }else {
                 resultAuth(true)
+                MNUserDefaults.remove(key: MNKeys.loginWithApple)
             }
         }
     }
@@ -59,6 +61,7 @@ class LoginViewModel: LoginViewModelProtocol {
                 resultAuth(false)
             }else {
                 resultAuth(true)
+                MNUserDefaults.set(value: true, forKey: MNKeys.loginWithApple)
             }
         }
     }

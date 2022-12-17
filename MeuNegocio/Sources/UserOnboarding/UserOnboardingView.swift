@@ -129,9 +129,16 @@ class UserOnboardingView: MNView {
     // MARK: - Actions
     
     func checkIfItIsAppleLogin() {
-        if let name = MNUserDefaults.get(stringForKey: MNKeys.firstNameApple) {
+        let name = MNUserDefaults.get(stringForKey: MNKeys.nameAppleID) ?? .stringEmpty
+        let isLoginApple = MNUserDefaults.get(boolForKey: MNKeys.loginWithApple) ?? false
+        if isLoginApple {
             titleLabel.text = "Olá \(name), \n seja bem-vindo(a)!"
+            nameTextField.text = name
             nameTextField.isHidden = true
+        } else {
+            titleLabel.text = "Olá, seja bem-vindo(a)!"
+            nameTextField.text = .stringEmpty
+            nameTextField.isHidden = false
         }
     }
     

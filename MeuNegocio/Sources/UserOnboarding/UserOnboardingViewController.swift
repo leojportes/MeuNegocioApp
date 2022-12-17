@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class UserOnboardingViewController: CoordinatedViewController {
 
@@ -44,13 +45,16 @@ extension UserOnboardingViewController: CreateUserOnboardingProtocol {
                 barbershop: model.barbershop,
                 city: model.city,
                 state: model.state,
-                email: model.email
-            )
-        ) { [weak self] onSuccess in
-            onSuccess ? self?.viewModel.navigateToHome() : self?.showAlert(title: "Ocorreu um erro",
-                                                                        messsage: "Tente novamente.")
-            self?.customView.continueButton.loadingIndicator(show: true)
-        }
+                email: model.email)) { [weak self] onSuccess in
+                    if onSuccess {
+                        self?.viewModel.navigateToHome()
+                        guard let email = Auth.auth().currentUser?.email else { return }
+                        MNUserDefaults.set(value: true, forKey: email)
+                    } else {
+                        self?.showAlert(title: "Ocorreu um erro", messsage: "Tente novamente.")
+                    }
+                    self?.customView.continueButton.loadingIndicator(show: true)
+                }
     }
     
     func alertEmptyField() {

@@ -138,7 +138,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             
             if let firstName = appleIDCredential.fullName?.givenName {
-                MNUserDefaults.set(value: firstName, forKey: MNKeys.firstNameApple)
+                MNUserDefaults.set(value: firstName, forKey: MNKeys.nameAppleID)
             }
 
             // Initialize a Firebase credential.
