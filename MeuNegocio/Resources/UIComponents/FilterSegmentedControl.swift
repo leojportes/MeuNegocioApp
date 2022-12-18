@@ -19,7 +19,7 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     }
     
     init(
-        items: [String] = ["Todos", "Hoje","7 dias","30 dias"],
+        items: [String] = ["Todos", "Hoje", "7 dias", "Este mês"],
         didSelectIndexClosure: @escaping (UISegmentedControl) -> Void
     ) {
         self.items = items

@@ -64,7 +64,7 @@ class ReportViewModel: ReportViewModelProtocol {
 
     /// Get procedures for the last 30 days.
     func monthlyProceduresLast30Days(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
-        let last30Days = Date.getDates(forLastNDays: 30)
+        let last30Days = Date.getDatesOfCurrentMonth()
         let weeklyProcedures = procedures.filter({ last30Days.contains($0.currentDate) })
         return weeklyProcedures
     }

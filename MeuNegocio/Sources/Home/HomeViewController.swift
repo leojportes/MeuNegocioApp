@@ -103,12 +103,16 @@ final class HomeViewController: CoordinatedViewController {
         self.customView.tableview.reloadData()
     }
     
-    private func filteredProcedures(procedures: [GetProcedureModel], lastDays: Int) -> [GetProcedureModel] {
-        let lastDaysDates = Date.getDates(forLastNDays: lastDays)
-        self.customView.filterRange = "\(lastDaysDates.first ?? "") - \(lastDaysDates.last ?? "")"
+    private func filteredProcedures(
+        procedures: [GetProcedureModel],
+        lastDays: Int = 0,
+        isMonthly: Bool = false
+    ) -> [GetProcedureModel] {
+        let lastDaysDates = isMonthly ? Date.getDatesOfCurrentMonth() : Date.getDates(forLastNDays: lastDays)
+        self.customView.filterRange = "\(lastDaysDates.last ?? "") - \(lastDaysDates.first ?? "")"
         return procedures.filter({ lastDaysDates.contains($0.currentDate) })
     }
-    
+
     func todayProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
         let procedures = procedures.filter({$0.currentDate == returnCurrentDate})
         customView.filterRange = returnCurrentDate
@@ -131,7 +135,7 @@ final class HomeViewController: CoordinatedViewController {
 
         case 1: self.customView.procedures = todayProcedures(procedures: procedures)
         case 2: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
-        case 3: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
+        case 3: self.customView.procedures = filteredProcedures(procedures: procedures, isMonthly: true)
         default: break
         }
     }
