@@ -47,7 +47,7 @@ final class HomeViewController: CoordinatedViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         bindProperties()
-        self.customView.currentIndex = 0
+        self.customView.currentIndexFilter = .all
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -92,9 +92,9 @@ final class HomeViewController: CoordinatedViewController {
 
     private func didPullToRefresh() {
         bindProperties()
-        self.customView.currentIndex = 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.customView.tableview.refreshControl?.endRefreshing()
+            self.customView.currentIndexFilter = .all
             self.reloadData()
         }
     }
@@ -123,18 +123,16 @@ final class HomeViewController: CoordinatedViewController {
         return dateString
     }()
 
-    private func didSelectFilter(_ sender: String) {
-        switch sender {
-        case "Todos":
+    private func didSelectFilter(_ type: ButtonFilterType) {
+        switch type {
+        case .all:
             setInitialFilterDateRange(procedures)
             self.customView.procedures = procedures
-
-        case "Hoje": self.customView.procedures = todayProcedures(procedures: procedures)
-        case "7 dias": self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
-        case "30 dias": self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
-        case "Personalizado":
-            print("custom")
-        default: break
+            
+        case .today: self.customView.procedures = todayProcedures(procedures: procedures)
+        case .sevenDays: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
+        case .thirtyDays: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
+        case .custom: print("custom")
         }
     }
 }

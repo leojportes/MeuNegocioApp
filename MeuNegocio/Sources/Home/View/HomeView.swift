@@ -17,7 +17,7 @@ final class HomeView: UIView, ViewCodeContract {
     var openHelp: Action?
     var openProcedureDetails: (GetProcedureModel) -> Void?
     var didPullRefresh: Action?
-    var didSelectIndexClosure: (String) -> Void?
+    var didSelectIndexClosure: (ButtonFilterType) -> Void?
 
     // MARK: - Properties
     var procedures: [GetProcedureModel] = [] {
@@ -27,9 +27,9 @@ final class HomeView: UIView, ViewCodeContract {
         }
     }
 
-    var currentIndex: Int = 0 {
+    var currentIndexFilter: ButtonFilterType = .all {
         didSet {
-            filterView.currentIndex = currentIndex
+            filterView.currentIndexFilter = currentIndexFilter
         }
     }
 
@@ -54,7 +54,7 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToHelp: @escaping Action,
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
         didPullRefresh: @escaping Action,
-        didSelectIndexClosure: @escaping (String) -> Void?
+        didSelectIndexClosure: @escaping (ButtonFilterType) -> Void?
     ) {
         self.openReport = navigateToReport
         self.openAlertAction = alertAction
