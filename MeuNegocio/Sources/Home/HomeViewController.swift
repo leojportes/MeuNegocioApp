@@ -123,17 +123,18 @@ final class HomeViewController: CoordinatedViewController {
         return dateString
     }()
 
-    private func didSelectFilter(_ sender: UIButton) {
-        self.customView.procedures = todayProcedures(procedures: procedures)
-//        switch sender {
-//        case 0:
-//            setInitialFilterDateRange(procedures)
-//            self.customView.procedures = procedures
-//
-//        case 1: self.customView.procedures = todayProcedures(procedures: procedures)
-//        case 2: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
-//        case 3: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
-//        default: break
-//        }
+    private func didSelectFilter(_ sender: String) {
+        switch sender {
+        case "Todos":
+            setInitialFilterDateRange(procedures)
+            self.customView.procedures = procedures
+
+        case "Hoje": self.customView.procedures = todayProcedures(procedures: procedures)
+        case "7 dias": self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
+        case "30 dias": self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
+        case "Personalizado":
+            print("custom")
+        default: break
+        }
     }
 }

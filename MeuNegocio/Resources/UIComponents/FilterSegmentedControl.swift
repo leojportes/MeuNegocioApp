@@ -10,19 +10,16 @@ import UIKit
 final class FilterSegmentedControl: UIView {
     
     private var items: [String]
-    private var didSelectIndexClosure: (UIButton) -> Void?
+    private var didSelectIndexClosure: (String) -> Void?
     
     var segmentedControlButtons: [UIButton] = []
-    
-    let items2  = ["All Fruits", "Orange", "Grapes", "Banana",  "Mango", "papaya", "coconut", "django"]
-    let allFruits = UIButton().createSegmentedControlButton(setTitle: "All Fruits")
-    let orange = UIButton().createSegmentedControlButton(setTitle: "Orange")
-    let grapes = UIButton().createSegmentedControlButton(setTitle: "Grapes")
-    let banana = UIButton().createSegmentedControlButton(setTitle: "Banana")
-    let mango = UIButton().createSegmentedControlButton(setTitle: "Mango")
-    let papaya = UIButton().createSegmentedControlButton(setTitle: "Papaya")
-    let coconut = UIButton().createSegmentedControlButton(setTitle: "coconut")
-    let django = UIButton().createSegmentedControlButton(setTitle: "django")
+        
+    let all = UIButton().createSegmentedControlButton(setTitle: "Todos")
+    let today = UIButton().createSegmentedControlButton(setTitle: "Hoje")
+    let sevenDays = UIButton().createSegmentedControlButton(setTitle: "7 dias")
+    let thirtyDays = UIButton().createSegmentedControlButton(setTitle: "30 dias")
+    let custom = UIButton().createSegmentedControlButton(setTitle: "Personalizado")
+
     
     let segmentedControlBackgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
     
@@ -33,10 +30,10 @@ final class FilterSegmentedControl: UIView {
     }
     
     init(
-        items: [String] = ["Todos", "Hoje","7 dias","30 dias"],
-        didSelectIndexClosure: @escaping (UIButton) -> Void
+        items: [String] = ["Todos", "Hoje","7 dias","30 dias", "Personalizado"],
+        didSelectIndexClosure: @escaping (String) -> Void
     ) {
-        self.segmentedControlButtons = [allFruits,orange,banana,mango,papaya,coconut,django,grapes]
+        self.segmentedControlButtons = [all, today, sevenDays, thirtyDays, custom]
         self.items = items
         self.didSelectIndexClosure = didSelectIndexClosure
         super.init(frame: .zero)
@@ -48,19 +45,11 @@ final class FilterSegmentedControl: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    private lazy var container: UIView = {
-//        let container = UIView()
-//        container.translatesAutoresizingMaskIntoConstraints = false
-//        return container
-//    }()
-//
-    
     private lazy var segmentedControl: UISegmentedControl = {
-        let seg = UISegmentedControl(items: items2)
+        let seg = UISegmentedControl(items: items)
         seg.selectedSegmentTintColor = .MNColors.lightBrown
         seg.selectedSegmentIndex = 0
         seg.translatesAutoresizingMaskIntoConstraints = false
-//        seg.addTarget(self, action: #selector(didSelectIndex(_:)), for: .valueChanged)
         return seg
     }()
     
@@ -123,11 +112,11 @@ final class FilterSegmentedControl: UIView {
     }
     
     @objc func handleSegmentedControlButtons(sender: UIButton) {
-        self.didSelectIndexClosure(sender)
             for button in segmentedControlButtons {
                 if button == sender {
                     UIView.animate(withDuration: 0.2, delay: 0.1, options: .transitionFlipFromLeft) {
                         button.backgroundColor = .white
+                        self.didSelectIndexClosure(button.titleLabel?.text ?? .stringEmpty)
                     }
 
                 } else {
@@ -147,7 +136,6 @@ extension UIButton {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(to, for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.widthAnchor.constraint(equalToConstant: 90).isActive = true
         button.heightAnchor.constraint(equalToConstant: 30).isActive = true
         button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
         button.layer.cornerRadius = 6

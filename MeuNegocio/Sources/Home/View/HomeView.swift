@@ -17,7 +17,7 @@ final class HomeView: UIView, ViewCodeContract {
     var openHelp: Action?
     var openProcedureDetails: (GetProcedureModel) -> Void?
     var didPullRefresh: Action?
-    var didSelectIndexClosure: (UIButton) -> Void?
+    var didSelectIndexClosure: (String) -> Void?
 
     // MARK: - Properties
     var procedures: [GetProcedureModel] = [] {
@@ -54,7 +54,7 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToHelp: @escaping Action,
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
         didPullRefresh: @escaping Action,
-        didSelectIndexClosure: @escaping (UIButton) -> Void?
+        didSelectIndexClosure: @escaping (String) -> Void?
     ) {
         self.openReport = navigateToReport
         self.openAlertAction = alertAction
