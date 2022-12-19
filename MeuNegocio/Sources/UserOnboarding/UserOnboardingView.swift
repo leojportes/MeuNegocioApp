@@ -35,6 +35,7 @@ class UserOnboardingView: MNView {
             textColor: .darkGray
         )
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -127,6 +128,20 @@ class UserOnboardingView: MNView {
     
     // MARK: - Actions
     
+    func checkIfItIsAppleLogin() {
+        let name = MNUserDefaults.get(stringForKey: MNKeys.nameAppleID) ?? .stringEmpty
+        let isLoginApple = MNUserDefaults.get(boolForKey: MNKeys.loginWithApple) ?? false
+        if isLoginApple {
+            titleLabel.text = "Olá \(name), \n seja bem-vindo(a)!"
+            nameTextField.text = name
+            nameTextField.isHidden = true
+        } else {
+            titleLabel.text = "Olá, seja bem-vindo(a)!"
+            nameTextField.text = .stringEmpty
+            nameTextField.isHidden = false
+        }
+    }
+    
     func isSomeEmptyField() -> Bool {
         var result: Bool = false
         let name = nameTextField.text ?? .stringEmpty
@@ -192,6 +207,7 @@ extension UserOnboardingView: ViewCodeContract {
     
     func setupConfiguration() {
         backgroundColor = .white
+        checkIfItIsAppleLogin()
     }
     
 }
