@@ -29,6 +29,7 @@ struct PaymentTypeAmountCardModel {
 enum ReportType: String {
     case daily = "diário"
     case weekly = "semanal"
+    case monthly = "mensal"
 }
 
 struct PDFModel {
