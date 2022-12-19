@@ -82,7 +82,8 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     }
 
     func navigateToAddProcedure() {
-        coordinator?.navigateTo(.AddProcedure)
+        coordinator?.navigateTo(.rateApp)
+//        coordinator?.navigateTo(.AddProcedure)
     }
 
     func navigateToHelp() {
