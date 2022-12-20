@@ -50,11 +50,34 @@ final class RateAppView: UIView {
         return label
     }()
     
-    lazy var iconImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: "emoji_bad")
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
+    lazy var stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.backgroundColor = .blue
+        stack.distribution = .fillProportionally
+        stack.axis = .horizontal
+        stack.spacing = 20
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    lazy var emojiBad: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+        return emoji
+    }()
+    
+    lazy var emojiBad1: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+        return emoji
+    }()
+    
+    lazy var emojiBad2: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+        return emoji
+    }()
+    
+    lazy var emojiBad3: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+        return emoji
     }()
     
     // MARK: Actions
@@ -73,6 +96,12 @@ extension RateAppView: ViewCodeContract {
         addSubview(container)
         container.addSubview(closedButton)
         container.addSubview(titleLabel)
+        container.addSubview(stackView)
+        
+        stackView.addArrangedSubview(emojiBad)
+        stackView.addArrangedSubview(emojiBad1)
+        stackView.addArrangedSubview(emojiBad2)
+        stackView.addArrangedSubview(emojiBad3)
     }
     
     func setupConstraints() {
@@ -80,23 +109,87 @@ extension RateAppView: ViewCodeContract {
         container
             .centerX(in: self)
             .centerY(in: self)
-            .heightAnchor(150)
+            .heightAnchor(170)
             .widthAnchor(300)
         
         closedButton
-            .topAnchor(in: container, padding: 16)
-            .rightAnchor(in: container, padding: 16)
+            .topAnchor(in: container, padding: 20)
+            .rightAnchor(in: container, padding: 20)
             .widthAnchor(16)
             .heightAnchor(16)
         
         titleLabel
-            .topAnchor(in: container, padding: 16)
-            .leftAnchor(in: container, padding: 16)
+            .topAnchor(in: container, padding: 24)
+            .leftAnchor(in: stackView, attribute: .left)
+        
+        stackView
+            .topAnchor(in: titleLabel, attribute: .bottom, padding: 16)
+            .centerX(in: container)
         
     }
     
     func setupConfiguration() {
        backgroundColor = .clear
     }
+    
+}
+
+
+class EmojiView: UIView {
+    
+    let image: String?
+    let title: String?
+    
+    init(image: String, title: String) {
+        self.image = image
+        self.title = title
+        super.init(frame: .zero)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var iconImage: UIImageView = {
+        let img = UIImageView()
+        img.image = UIImage(named: image ?? "")
+        img.translatesAutoresizingMaskIntoConstraints = false
+        return img
+    }()
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = title
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+}
+
+extension EmojiView: ViewCodeContract {
+    func setupHierarchy() {
+        addSubview(iconImage)
+        addSubview(titleLabel)
+    }
+    
+    func setupConstraints() {
+        iconImage
+            .topAnchor(in: self)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
+            .heightAnchor(45)
+            .widthAnchor(45)
+        
+        titleLabel
+            .topAnchor(in: iconImage, attribute: .bottom, padding: 4)
+            .centerX(in: iconImage)
+    }
+    
+    func setupConfiguration() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = .blue
+    }
+    
     
 }
