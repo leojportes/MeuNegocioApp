@@ -8,11 +8,22 @@
 import Foundation
 import UIKit
 
+enum EmojiType: String {
+    case bad = "Ruim"
+    case good = "Boa"
+    case regular = "Regular"
+    case great = "Excelente"
+}
+
+protocol ActionRateAppProtocol: AnyObject {
+    func typeEmojiSelected(type: EmojiType)
+    func close()
+}
+
 final class RateAppView: UIView {
     
     // MARK: Properties
-    
-    var closureClose: Action?
+    weak var delegate: ActionRateAppProtocol?
     
     // MARK: Init
     init() {
@@ -28,9 +39,13 @@ final class RateAppView: UIView {
     
     lazy var container: UIView = {
         let container = UIView()
-        container.backgroundColor = .MNColors.darkGray
-        container.layer.cornerRadius = 10
+        container.backgroundColor = .MNColors.grayRateApp
+        container.layer.cornerRadius = 15
         container.translatesAutoresizingMaskIntoConstraints = false
+        container.layer.shadowColor = UIColor.black.cgColor
+        container.layer.shadowOpacity = 0.3
+        container.layer.shadowOffset = CGSize(width: 0.0, height: 1)
+        container.layer.shadowRadius = 2
         return container
     }()
     
@@ -46,48 +61,51 @@ final class RateAppView: UIView {
         let label = UILabel()
         label.text = "Como está sua experiência \ncom o aplicativo?"
         label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     lazy var stackView: UIStackView = {
         let stack = UIStackView()
-        stack.backgroundColor = .blue
         stack.distribution = .fillProportionally
         stack.axis = .horizontal
-        stack.spacing = 20
+        stack.spacing = 30
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
     
     lazy var emojiBad: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+        let emoji = EmojiView(image: "emoji_bad", title: .bad)
+        emoji.setup(action: { self.didTapEmoji(.bad) })
         return emoji
     }()
     
-    lazy var emojiBad1: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+    lazy var emojiRegular: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: .regular)
+        emoji.setup(action: { self.didTapEmoji(.regular) })
         return emoji
     }()
     
-    lazy var emojiBad2: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+    lazy var emojiGood: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: .good)
+        emoji.setup(action: { self.didTapEmoji(.good) })
         return emoji
     }()
     
-    lazy var emojiBad3: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: "Ruim")
+    lazy var emojiGreat: EmojiView = {
+        let emoji = EmojiView(image: "emoji_bad", title: .great)
+        emoji.setup(action: { self.didTapEmoji(.great) })
         return emoji
     }()
     
     // MARK: Actions
-    
     @objc func didTapClose() {
-        closureClose?()
+        delegate?.close()
     }
     
-    func configure(closureClose: @escaping Action) {
-        self.closureClose = closureClose
+    func didTapEmoji(_ name: EmojiType) {
+        delegate?.typeEmojiSelected(type: name)
     }
 }
 
@@ -99,9 +117,9 @@ extension RateAppView: ViewCodeContract {
         container.addSubview(stackView)
         
         stackView.addArrangedSubview(emojiBad)
-        stackView.addArrangedSubview(emojiBad1)
-        stackView.addArrangedSubview(emojiBad2)
-        stackView.addArrangedSubview(emojiBad3)
+        stackView.addArrangedSubview(emojiRegular)
+        stackView.addArrangedSubview(emojiGood)
+        stackView.addArrangedSubview(emojiGreat)
     }
     
     func setupConstraints() {
@@ -113,17 +131,19 @@ extension RateAppView: ViewCodeContract {
             .widthAnchor(300)
         
         closedButton
-            .topAnchor(in: container, padding: 20)
+            .centerY(in: titleLabel)
             .rightAnchor(in: container, padding: 20)
             .widthAnchor(16)
             .heightAnchor(16)
         
         titleLabel
-            .topAnchor(in: container, padding: 24)
+            .topAnchor(in: container, padding: 16)
             .leftAnchor(in: stackView, attribute: .left)
+            .rightAnchor(in: stackView, attribute: .right)
         
         stackView
             .topAnchor(in: titleLabel, attribute: .bottom, padding: 16)
+            .bottomAnchor(in: container, padding: 24)
             .centerX(in: container)
         
     }
@@ -131,65 +151,4 @@ extension RateAppView: ViewCodeContract {
     func setupConfiguration() {
        backgroundColor = .clear
     }
-    
-}
-
-
-class EmojiView: UIView {
-    
-    let image: String?
-    let title: String?
-    
-    init(image: String, title: String) {
-        self.image = image
-        self.title = title
-        super.init(frame: .zero)
-        setupView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    lazy var iconImage: UIImageView = {
-        let img = UIImageView()
-        img.image = UIImage(named: image ?? "")
-        img.translatesAutoresizingMaskIntoConstraints = false
-        return img
-    }()
-    
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.text = title
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-}
-
-extension EmojiView: ViewCodeContract {
-    func setupHierarchy() {
-        addSubview(iconImage)
-        addSubview(titleLabel)
-    }
-    
-    func setupConstraints() {
-        iconImage
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .heightAnchor(45)
-            .widthAnchor(45)
-        
-        titleLabel
-            .topAnchor(in: iconImage, attribute: .bottom, padding: 4)
-            .centerX(in: iconImage)
-    }
-    
-    func setupConfiguration() {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = .blue
-    }
-    
-    
 }

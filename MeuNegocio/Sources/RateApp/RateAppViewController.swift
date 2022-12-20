@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import MessageUI
 
 class RateAppViewController: CoordinatedViewController {
     
@@ -25,7 +26,7 @@ class RateAppViewController: CoordinatedViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        closeView()
+        customView.delegate = self
     }
     
     override func loadView() {
@@ -33,7 +34,52 @@ class RateAppViewController: CoordinatedViewController {
         self.view = customView
     }
     
-    private func closeView() {
-        customView.configure(closureClose: weakify { $0.viewModel.close() })
+    func sendEmailToInnovates() {
+        let mailComposeController = MFMailComposeViewController() .. {
+            $0.mailComposeDelegate = self
+            $0.setToRecipients(["innovatestechsc@gmail.com"])
+            $0.setSubject("Tenho uma dúvida")
+            $0.setMessageBody("", isHTML: false)
+            $0.modalPresentationStyle = .pageSheet
+            $0.mailComposeDelegate = self
+        }
+        DispatchQueue.main.async {
+            self.navigationController?.present(mailComposeController, animated: true)
+        }
+    }
+}
+
+extension RateAppViewController: ActionRateAppProtocol {
+    func typeEmojiSelected(type: EmojiType) {
+        switch type {
+        case .great, .good, .regular:
+            viewModel.goToReview()
+        case .bad:
+            dismiss(animated: true) {
+                self.sendEmailToInnovates()
+            }
+        }
+    }
+    
+    func close() {
+        viewModel.close()
+    }
+}
+
+// MARK: - MFMailComposeViewController Delegate
+extension RateAppViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        /// You should switch the result only after dismissing the controller
+        controller.dismiss(animated: true) {
+            let message: String
+            switch result {
+            case .sent: message = "Mensagem enviada com sucesso!"
+            case .saved: message = "Mensagem salva!"
+            case .cancelled: message = "Mensagem cancelada!"
+            case .failed:  message = "Erro desconhecido!"
+            @unknown default: fatalError()
+            }
+            self.showAlert(title: "E-mail", messsage: message)
+        }
     }
 }

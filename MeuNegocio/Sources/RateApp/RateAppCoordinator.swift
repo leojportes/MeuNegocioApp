@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class RateAppCoordinator: BaseCoordinator {
 
@@ -20,5 +21,17 @@ class RateAppCoordinator: BaseCoordinator {
     
     func close() {
         configuration.navigationController?.dismiss(animated: true)
+    }
+    
+    func goToReview() {
+        configuration.navigationController?.dismiss(animated: true, completion: {
+            if let url = URL(string: "https://www.hackingwithswift.com") {
+                UIApplication.shared.open(url)
+            }
+        })
+    }
+    
+    func sendImprovementEmail() {
+        print("enviar email")
     }
 }

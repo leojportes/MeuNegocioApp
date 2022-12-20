@@ -7,6 +7,7 @@
 
 protocol RateAppViewModelProtocol {
     func close()
+    func goToReview()
 }
 
 class RateAppViewModel: RateAppViewModelProtocol {
@@ -22,5 +23,8 @@ class RateAppViewModel: RateAppViewModelProtocol {
     func close() {
         coordinator?.close()
     }
-    
+
+    func goToReview() {
+        coordinator?.goToReview()
+    }
 }

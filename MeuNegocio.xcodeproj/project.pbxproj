@@ -56,6 +56,7 @@
 		52ECF870295106BA00C6230A /* RateAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF86F295106BA00C6230A /* RateAppViewController.swift */; };
 		52ECF8722951092700C6230A /* RateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF8712951092700C6230A /* RateAppCoordinator.swift */; };
 		52ECF874295112A100C6230A /* RateAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF873295112A100C6230A /* RateAppViewModel.swift */; };
+		52ECF876295160E200C6230A /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF875295160E200C6230A /* EmojiView.swift */; };
 		6DC92EDA59C9AABBC0EFB31C /* Pods_MeuNegocio_MeuNegocioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12373934365FD2041805703E /* Pods_MeuNegocio_MeuNegocioUITests.framework */; };
 		B594CBE925F51042746B6C33 /* Pods_MeuNegocio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68845A59EE9CD2EFFD23B9B8 /* Pods_MeuNegocio.framework */; };
 		C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */; };
@@ -204,6 +205,7 @@
 		52ECF86F295106BA00C6230A /* RateAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewController.swift; sourceTree = "<group>"; };
 		52ECF8712951092700C6230A /* RateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppCoordinator.swift; sourceTree = "<group>"; };
 		52ECF873295112A100C6230A /* RateAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewModel.swift; sourceTree = "<group>"; };
+		52ECF875295160E200C6230A /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		68845A59EE9CD2EFFD23B9B8 /* Pods_MeuNegocio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F9C997EEE88AD0D87C3A97 /* Pods-MeuNegocio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocio/Pods-MeuNegocio.debug.xcconfig"; sourceTree = "<group>"; };
 		B301BF0212414E2B8C58B7C9 /* Pods-MeuNegocioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocioTests.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocioTests/Pods-MeuNegocioTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				52ECF86F295106BA00C6230A /* RateAppViewController.swift */,
 				52ECF8712951092700C6230A /* RateAppCoordinator.swift */,
 				52ECF873295112A100C6230A /* RateAppViewModel.swift */,
+				52ECF875295160E200C6230A /* EmojiView.swift */,
 			);
 			path = RateApp;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0F8FCB028EE3CFA00ECEB63 /* Currency.swift in Sources */,
+				52ECF876295160E200C6230A /* EmojiView.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */,
 				C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */,
