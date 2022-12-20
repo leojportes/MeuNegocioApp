@@ -11,66 +11,51 @@ enum ButtonFilterType: String {
     case all = "Todos"
     case today = "Hoje"
     case sevenDays = "7 dias"
-    case thirtyDays = "30 dias"
+    case thirtyDays = "Este mês"
     case custom = "Personalizado"
 }
 
-final class FilterSegmentedControl: UIView {
-    
-    private var items: [String]
+final class FilterSegmentedControl: UIView, ViewCodeContract {
+
     private var didSelectIndexClosure: (ButtonFilterType) -> Void?
     
     var segmentedControlButtons: [UIButton] = []
     
-    let all = UIButton().createSegmentedControlButton(setTitle: "Todos")
-    let today = UIButton().createSegmentedControlButton(setTitle: "Hoje")
-    let sevenDays = UIButton().createSegmentedControlButton(setTitle: "7 dias")
-    let thirtyDays = UIButton().createSegmentedControlButton(setTitle: "30 dias")
-    let custom = UIButton().createSegmentedControlButton(setTitle: "Personalizado")
-    
+    let all = SegmentedControlButton(title: ButtonFilterType.all.rawValue)
+    let today = SegmentedControlButton(title: ButtonFilterType.today.rawValue)
+    let sevenDays = SegmentedControlButton(title: ButtonFilterType.sevenDays.rawValue)
+    let thirtyDays = SegmentedControlButton(title: ButtonFilterType.thirtyDays.rawValue)
+    let custom = SegmentedControlButton(title: ButtonFilterType.custom.rawValue)
+
     var currentIndexFilter: ButtonFilterType = .all {
         didSet {
             if currentIndexFilter == .all {
                 handleSegmentedControlButtons(sender: UIButton())
-                all.backgroundColor = .white
+                all.backgroundColor = .MNColors.lightBrown
             }
         }
     }
     
-    init(
-        items: [String] = ["Todos", "Hoje","7 dias","30 dias", "Personalizado"],
-        didSelectIndexClosure: @escaping (ButtonFilterType) -> Void
-    ) {
+    // MARK: - Init
+    init(didSelectIndexClosure: @escaping (ButtonFilterType) -> Void) {
         self.segmentedControlButtons = [all, today, sevenDays, thirtyDays, custom]
-        self.items = items
         self.didSelectIndexClosure = didSelectIndexClosure
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
-        configureView()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private(set) lazy var filterRangeLabel = MNLabel(
-        text: "Período:",
-        font: UIFont.boldSystemFont(ofSize: 15),
-        textColor: .MNColors.grayDarkest
-    )
-    
-    lazy var filterRangeValue = MNLabel(
-        font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .MNColors.grayDescription
-    )
-    
-    lazy var container: UIView = {
+    private lazy var container: UIView = {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
     
-    lazy var stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: segmentedControlButtons)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -79,42 +64,18 @@ final class FilterSegmentedControl: UIView {
         return stackView
     }()
     
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.contentSize = CGSize(width: .zero, height: 50)
+        scrollView.contentSize = CGSize(width: .zero, height: 30)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    
-    func configureView() {
-        addSubview(container)
-        container.addSubview(scrollView)
-        scrollView.addSubview(stackView)
-        segmentedControlButtons.forEach {$0.addTarget(self, action: #selector(handleSegmentedControlButtons(sender:)), for: .touchUpInside)}
-        
-        NSLayoutConstraint.activate([
-            container.topAnchor.constraint(equalTo: topAnchor),
-            container.leadingAnchor.constraint(equalTo: leadingAnchor),
-            container.trailingAnchor.constraint(equalTo: trailingAnchor),
-            container.bottomAnchor.constraint(equalTo: bottomAnchor),
-            container.heightAnchor.constraint(equalToConstant: 50),
-            
-            scrollView.topAnchor.constraint(equalTo: container.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            scrollView.heightAnchor.constraint(equalToConstant: 50),
-            
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 40)
-        ])
-    }
     
     @objc func handleSegmentedControlButtons(sender: UIButton) {
         for button in segmentedControlButtons {
             if button == sender {
-                button.backgroundColor = .white
+                button.backgroundColor = .MNColors.lightBrown
                 let title = button.titleLabel?.text ?? .stringEmpty
                 self.didSelectIndexClosure(ButtonFilterType(rawValue: title) ?? .all)
             } else {
@@ -122,19 +83,67 @@ final class FilterSegmentedControl: UIView {
             }
         }
     }
+
+    func setupHierarchy() {
+        addSubview(container)
+        container.addSubview(scrollView)
+        scrollView.addSubview(stackView)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            container.topAnchor.constraint(equalTo: topAnchor),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor),
+            container.heightAnchor.constraint(equalToConstant: 30),
+
+            scrollView.topAnchor.constraint(equalTo: container.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            scrollView.heightAnchor.constraint(equalToConstant: 30),
+
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    func setupConfiguration() {
+        segmentedControlButtons.forEach {
+            $0.addTarget(
+                self,
+                action: #selector(handleSegmentedControlButtons(sender:)),
+                for: .touchUpInside
+            )
+        }
+    }
 }
 
-extension UIButton {
-    func createSegmentedControlButton(setTitle to: String) -> UIButton {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle(to, for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
-        button.layer.cornerRadius = 6
-        button.layer.borderWidth = 0.5
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        button.layer.borderColor = UIColor.black.cgColor
-        return button
+class SegmentedControlButton: UIButton {
+
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Init
+    init(title: String) {
+        super.init(frame: .zero)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setTitle(title, for: .normal)
+        self.titleLabel?.font = .systemFont(ofSize: 14)
+        self.setTitleColor(.black, for: .normal)
+        self.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
+        self.roundCorners(cornerRadius: 15)
+        self.addShadow()
+        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        self.layer.borderColor = UIColor.black.cgColor
+    }
+
 }

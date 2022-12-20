@@ -60,7 +60,6 @@ final class HomeViewController: CoordinatedViewController {
         viewModel.output.procedures.bind() { [weak self] result in
             self?.customView.procedures = result.reversed()
             self?.procedures = result.reversed()
-            self?.setInitialFilterDateRange(result.reversed())
             self?.customView.totalReceiptCard.setupCardValues(
                 totalValues: self?.viewModel.input.makeTotalAmounts(result),
                 procedureValue: "\(result.count)")
@@ -73,21 +72,6 @@ final class HomeViewController: CoordinatedViewController {
         }
         
         reloadData()
-    }
-    
-    private func setInitialFilterDateRange(_ procedures: [GetProcedureModel]) {
-        let dates = procedures.map { $0.currentDate }
-        let firstDate = dates.first ?? ""
-        let lastDate = dates.last ?? ""
-        
-        if procedures.count > 1 && firstDate != lastDate {
-            self.customView.filterRange = "\(firstDate) - \(lastDate)"
-        } else if procedures.count >= 1 {
-            self.customView.filterRange = "\(firstDate)"
-        }
-
-        self.customView.filterView.filterRangeValue.isHidden = procedures.isEmpty
-        self.customView.filterView.filterRangeLabel.isHidden = procedures.isEmpty
     }
 
     private func didPullToRefresh() {
@@ -103,15 +87,17 @@ final class HomeViewController: CoordinatedViewController {
         self.customView.tableview.reloadData()
     }
     
-    private func filteredProcedures(procedures: [GetProcedureModel], lastDays: Int) -> [GetProcedureModel] {
-        let lastDaysDates = Date.getDates(forLastNDays: lastDays)
-        self.customView.filterRange = "\(lastDaysDates.first ?? "") - \(lastDaysDates.last ?? "")"
+    private func filteredProcedures(
+            procedures: [GetProcedureModel],
+            lastDays: Int = 0,
+            isMonthly: Bool = false
+    ) -> [GetProcedureModel] {
+        let lastDaysDates = isMonthly ? Date.getDatesOfCurrentMonth() : Date.getDates(forLastNDays: lastDays)
         return procedures.filter({ lastDaysDates.contains($0.currentDate) })
     }
     
     func todayProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
         let procedures = procedures.filter({$0.currentDate == returnCurrentDate})
-        customView.filterRange = returnCurrentDate
         return procedures
     }
 
@@ -125,13 +111,10 @@ final class HomeViewController: CoordinatedViewController {
 
     private func didSelectFilter(_ type: ButtonFilterType) {
         switch type {
-        case .all:
-            setInitialFilterDateRange(procedures)
-            self.customView.procedures = procedures
-            
+        case .all: self.customView.procedures = procedures
         case .today: self.customView.procedures = todayProcedures(procedures: procedures)
         case .sevenDays: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
-        case .thirtyDays: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
+        case .thirtyDays: self.customView.procedures = filteredProcedures(procedures: procedures, isMonthly: true)
         case .custom: print("custom")
         }
     }

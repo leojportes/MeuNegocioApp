@@ -32,12 +32,6 @@ final class HomeView: UIView, ViewCodeContract {
             filterView.currentIndexFilter = currentIndexFilter
         }
     }
-
-    var filterRange: String = "" {
-        didSet {
-            filterView.filterRangeValue.text = filterRange
-        }
-    }
     
     var userName: String = .stringEmpty {
         didSet {

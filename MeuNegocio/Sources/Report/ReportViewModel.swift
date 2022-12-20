@@ -11,7 +11,7 @@ protocol ReportViewModelProtocol {
     func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String
     func dailyProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel]
     func weeklyProceduresLast7Days(procedures: [GetProcedureModel]) -> [GetProcedureModel]
-    func monthlyProceduresLast30Days(procedures: [GetProcedureModel]) -> [GetProcedureModel]
+    func monthlyProceduresThisMonth(procedures: [GetProcedureModel]) -> [GetProcedureModel]
     func percentageFromString(percent: String, baseAmount: String) -> String
     func getLast7Days() -> [String]
     var returnCurrentDate: String { get set }
@@ -62,11 +62,11 @@ class ReportViewModel: ReportViewModelProtocol {
         return weeklyProcedures
     }
 
-    /// Get procedures for the last 30 days.
-    func monthlyProceduresLast30Days(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
-        let last30Days = Date.getDates(forLastNDays: 30)
-        let weeklyProcedures = procedures.filter({ last30Days.contains($0.currentDate) })
-        return weeklyProcedures
+    /// Get procedures for this month.
+    func monthlyProceduresThisMonth(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
+        let thisMonth = Date.getDatesOfCurrentMonth()
+        let monthlyProcedures = procedures.filter({ thisMonth.contains($0.currentDate) })
+        return monthlyProcedures
     }
     
     /// Calculates the percentage from a given string.
