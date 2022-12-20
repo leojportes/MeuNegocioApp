@@ -141,7 +141,6 @@ class SegmentedControlButton: UIButton {
         self.setTitleColor(.black, for: .normal)
         self.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
         self.roundCorners(cornerRadius: 15)
-        self.addShadow()
         self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         self.layer.borderColor = UIColor.black.cgColor
     }
