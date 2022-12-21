@@ -48,7 +48,7 @@ class LoginViewModel: LoginViewModelProtocol {
         Auth.auth().signIn(with: credentials) { (result, error) in
             if error != nil {
                 resultAuth(false)
-            }else {
+            } else {
                 resultAuth(true)
                 MNUserDefaults.remove(key: MNKeys.loginWithApple)
             }
@@ -59,7 +59,7 @@ class LoginViewModel: LoginViewModelProtocol {
         Auth.auth().signIn(with: credentials) { (result, error) in
             if error != nil {
                 resultAuth(false)
-            }else {
+            } else {
                 resultAuth(true)
                 MNUserDefaults.set(value: true, forKey: MNKeys.loginWithApple)
             }
