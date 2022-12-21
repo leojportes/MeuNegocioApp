@@ -9,13 +9,15 @@ import Foundation
 import UIKit
 import MessageUI
 
-class RateAppViewController: CoordinatedViewController {
+class RateAppViewController: CoordinatedViewController, MFMailComposeViewControllerDelegate {
     
     private let customView = RateAppView()
     private let viewModel: RateAppViewModelProtocol
+    private let navigation: UINavigationController
 
     // MARK: - Init
-    init(coordinator: CoordinatorProtocol, viewModel: RateAppViewModelProtocol){
+    init(coordinator: CoordinatorProtocol, viewModel: RateAppViewModelProtocol, navigation: UINavigationController){
+        self.navigation = navigation
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
@@ -38,13 +40,27 @@ class RateAppViewController: CoordinatedViewController {
         let mailComposeController = MFMailComposeViewController() .. {
             $0.mailComposeDelegate = self
             $0.setToRecipients(["innovatestechsc@gmail.com"])
-            $0.setSubject("Tenho uma dúvida")
+            $0.setSubject("Sugestão de melhoria")
             $0.setMessageBody("", isHTML: false)
             $0.modalPresentationStyle = .pageSheet
-            $0.mailComposeDelegate = self
         }
         DispatchQueue.main.async {
-            self.navigationController?.present(mailComposeController, animated: true)
+            self.navigation.present(mailComposeController, animated: true)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        /// You should switch the result only after dismissing the controller
+        controller.dismiss(animated: true) {
+            let message: String
+            switch result {
+            case .sent: message = "Mensagem enviada com sucesso!"
+            case .saved: message = "Mensagem salva!"
+            case .cancelled: message = "Mensagem cancelada!"
+            case .failed:  message = "Erro desconhecido!"
+            @unknown default: fatalError()
+            }
+            self.showAlert(title: "E-mail", messsage: message)
         }
     }
 }
@@ -64,23 +80,5 @@ extension RateAppViewController: ActionRateAppProtocol {
     
     func close() {
         viewModel.close()
-    }
-}
-
-// MARK: - MFMailComposeViewController Delegate
-extension RateAppViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        /// You should switch the result only after dismissing the controller
-        controller.dismiss(animated: true) {
-            let message: String
-            switch result {
-            case .sent: message = "Mensagem enviada com sucesso!"
-            case .saved: message = "Mensagem salva!"
-            case .cancelled: message = "Mensagem cancelada!"
-            case .failed:  message = "Erro desconhecido!"
-            @unknown default: fatalError()
-            }
-            self.showAlert(title: "E-mail", messsage: message)
-        }
     }
 }

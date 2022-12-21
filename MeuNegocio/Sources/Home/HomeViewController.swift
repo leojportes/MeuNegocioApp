@@ -138,9 +138,10 @@ final class HomeViewController: CoordinatedViewController {
     }
     
     private func openRateApp() {
-        let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
-        if !value {
-            self.viewModel.navigateToRateApp()
-        }
+        self.viewModel.navigateToRateApp()
+//        let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
+//        if !value {
+//            self.viewModel.navigateToRateApp()
+//        }
     }
 }
