@@ -18,6 +18,7 @@ enum ButtonFilterType: String {
 final class FilterSegmentedControl: UIView, ViewCodeContract {
 
     private var didSelectIndexClosure: (ButtonFilterType) -> Void?
+    private var didSelectDateClosure: (String) -> Void?
     
     var segmentedControlButtons: [UIButton] = []
     
@@ -30,16 +31,20 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     var currentIndexFilter: ButtonFilterType = .all {
         didSet {
             if currentIndexFilter == .all {
-                handleSegmentedControlButtons(sender: UIButton())
+                handleSegmentedControlButtons()
                 all.backgroundColor = .MNColors.lightBrown
             }
         }
     }
     
     // MARK: - Init
-    init(didSelectIndexClosure: @escaping (ButtonFilterType) -> Void) {
+    init(
+        didSelectIndexClosure: @escaping (ButtonFilterType) -> Void,
+        didSelectDateClosure: @escaping (String) -> Void
+    ) {
         self.segmentedControlButtons = [all, today, sevenDays, thirtyDays, custom]
         self.didSelectIndexClosure = didSelectIndexClosure
+        self.didSelectDateClosure = didSelectDateClosure
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setupView()
@@ -71,18 +76,16 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-    
-    @objc func handleSegmentedControlButtons(sender: UIButton) {
-        for button in segmentedControlButtons {
-            if button == sender {
-                button.backgroundColor = .MNColors.lightBrown
-                let title = button.titleLabel?.text ?? .stringEmpty
-                self.didSelectIndexClosure(ButtonFilterType(rawValue: title) ?? .all)
-            } else {
-                button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
-            }
-        }
-    }
+
+    private lazy var datePicker: UIDatePicker = {
+        let date = UIDatePicker()
+        date.datePickerMode = .date
+        date.locale = Locale(identifier: "pt-BR")
+        date.calendar = Calendar(identifier: .gregorian)
+        date.timeZone = TimeZone(identifier: "pt-BR")
+        date.translatesAutoresizingMaskIntoConstraints = false
+        return date
+    }()
 
     func setupHierarchy() {
         addSubview(container)
@@ -111,12 +114,63 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     }
     
     func setupConfiguration() {
+        configurePickerView()
         segmentedControlButtons.forEach {
             $0.addTarget(
                 self,
                 action: #selector(handleSegmentedControlButtons(sender:)),
                 for: .touchUpInside
             )
+        }
+    }
+
+    func configurePickerView() {
+        custom.addSubview(datePicker)
+        datePicker
+            .topAnchor(in: custom)
+            .leftAnchor(in: custom)
+            .rightAnchor(in: custom)
+            .heightAnchor(250)
+            .bottomAnchor(in: custom)
+        datePicker.tintColor = .MNColors.grayDarkest
+        datePicker.alpha = 0.02
+        datePicker.isUserInteractionEnabled = true
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let minimumDate = formatter.date(from: "01/09/2022")
+        datePicker.minimumDate = minimumDate
+        datePicker.calendar.locale = Locale(identifier: "pt-BR")
+        datePicker.timeZone = TimeZone(identifier: "America/Sao_Paulo")
+        datePicker.addTarget(self, action: #selector(editingDidBeginPicker), for: .editingDidBegin)
+        datePicker.addTarget(self, action: #selector(editingDidEndPicker(sender:)), for: .editingDidEnd)
+    }
+
+    // MARK: - Actions methods
+    @objc
+    func editingDidBeginPicker() {
+        handleSegmentedControlButtons()
+        custom.backgroundColor = .MNColors.lightBrown
+    }
+
+    @objc
+    func editingDidEndPicker(sender: UIDatePicker) {
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        let dateString = df.string(from: sender.date)
+        self.didSelectDateClosure(dateString)
+    }
+
+    @objc
+    func handleSegmentedControlButtons(sender: UIButton? = nil) {
+        for button in segmentedControlButtons {
+            if button == sender {
+                button.backgroundColor = .MNColors.lightBrown
+                let title = button.titleLabel?.text ?? .stringEmpty
+                self.didSelectIndexClosure(ButtonFilterType(rawValue: title) ?? .all)
+            } else {
+                button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
+            }
         }
     }
 }

@@ -23,7 +23,8 @@ final class HomeViewController: CoordinatedViewController {
         navigateToHelp: weakify { $0.viewModel.navigateToHelp() },
         openProcedureDetails: weakify { $0.viewModel.openProcedureDetails($1) },
         didPullRefresh: weakify { $0.didPullToRefresh() },
-        didSelectIndexClosure: weakify { $0.didSelectFilter($1) }
+        didSelectIndexClosure: weakify { $0.didSelectFilter($1) },
+        didSelectDateClosure: weakify { $0.didSelectFilterDatePicker($1) }
     )
 
     // MARK: - Init
@@ -117,5 +118,11 @@ final class HomeViewController: CoordinatedViewController {
         case .thirtyDays: self.customView.procedures = filteredProcedures(procedures: procedures, isMonthly: true)
         case .custom: print("custom")
         }
+    }
+
+    private func didSelectFilterDatePicker(_ date: String) {
+        let proceduresFiltered = procedures.filter { $0.currentDate == date }
+        self.customView.procedures = proceduresFiltered
+        self.customView.tableview.reloadData()
     }
 }
