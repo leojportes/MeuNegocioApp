@@ -15,6 +15,7 @@ protocol ReportViewModelProtocol {
     func percentageFromString(percent: String, baseAmount: String) -> String
     func getLast7Days() -> [String]
     var returnCurrentDate: String { get set }
+    var dateRangeMonthly: String { get set }
 }
 
 class ReportViewModel: ReportViewModelProtocol {
@@ -29,6 +30,12 @@ class ReportViewModel: ReportViewModelProtocol {
         df.dateFormat = "dd/MM/yyyy"
         let dateString = df.string(from: date)
         return dateString
+    }()
+
+    var dateRangeMonthly: String = {
+        let datesOfCurrentMonth = Date.getDatesOfCurrentMonth()
+        return "\(PDFModel.monthlyTitle)_\(datesOfCurrentMonth.first.orEmpty)_\(datesOfCurrentMonth.last.orEmpty)"
+            .replacingOccurrences(of: "/", with: "-")
     }()
     
     // MARK: - Public methods
