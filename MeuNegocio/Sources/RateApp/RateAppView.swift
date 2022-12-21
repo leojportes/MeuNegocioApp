@@ -45,7 +45,7 @@ final class RateAppView: UIView {
         container.layer.shadowColor = UIColor.black.cgColor
         container.layer.shadowOpacity = 0.3
         container.layer.shadowOffset = CGSize(width: 0.0, height: 1)
-        container.layer.shadowRadius = 2
+        container.layer.shadowRadius = 5
         return container
     }()
     
@@ -76,25 +76,25 @@ final class RateAppView: UIView {
     }()
     
     lazy var emojiBad: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: .bad)
+        let emoji = EmojiView(emoji: .bad)
         emoji.setup(action: { self.didTapEmoji(.bad) })
         return emoji
     }()
     
     lazy var emojiRegular: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: .regular)
+        let emoji = EmojiView(emoji: .regular)
         emoji.setup(action: { self.didTapEmoji(.regular) })
         return emoji
     }()
     
     lazy var emojiGood: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: .good)
+        let emoji = EmojiView(emoji: .good)
         emoji.setup(action: { self.didTapEmoji(.good) })
         return emoji
     }()
     
     lazy var emojiGreat: EmojiView = {
-        let emoji = EmojiView(image: "emoji_bad", title: .great)
+        let emoji = EmojiView(emoji: .great)
         emoji.setup(action: { self.didTapEmoji(.great) })
         return emoji
     }()
@@ -131,15 +131,15 @@ extension RateAppView: ViewCodeContract {
             .widthAnchor(300)
         
         closedButton
-            .centerY(in: titleLabel)
-            .rightAnchor(in: container, padding: 20)
+            .topAnchor(in: container, padding: 24)
+            .rightAnchor(in: container, padding: 24)
             .widthAnchor(16)
             .heightAnchor(16)
         
         titleLabel
             .topAnchor(in: container, padding: 16)
             .leftAnchor(in: stackView, attribute: .left)
-            .rightAnchor(in: stackView, attribute: .right)
+            .rightAnchor(in: closedButton, attribute: .left)
         
         stackView
             .topAnchor(in: titleLabel, attribute: .bottom, padding: 16)
@@ -149,6 +149,6 @@ extension RateAppView: ViewCodeContract {
     }
     
     func setupConfiguration() {
-       backgroundColor = .clear
+        self.backgroundColor = UIColor.black.withAlphaComponent(0.4)
     }
 }

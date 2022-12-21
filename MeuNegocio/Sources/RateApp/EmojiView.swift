@@ -9,12 +9,10 @@ import UIKit
 
 class EmojiView: TappedView {
     
-    let image: String?
-    let title: EmojiType?
+    let emoji: EmojiType?
     
-    init(image: String, title: EmojiType) {
-        self.image = image
-        self.title = title
+    init(emoji: EmojiType) {
+        self.emoji = emoji
         super.init(frame: .zero)
         setupView()
     }
@@ -31,7 +29,6 @@ class EmojiView: TappedView {
     
     lazy var iconImage: UIImageView = {
         let img = UIImageView()
-        img.image = UIImage(named: image ?? "")
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
@@ -39,11 +36,29 @@ class EmojiView: TappedView {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.text = title?.rawValue
         label.font = UIFont.systemFont(ofSize: 12)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private func configureView() {
+        switch emoji {
+        case .bad:
+            iconImage.image = UIImage(named: Icon.emojiBad.rawValue)
+            titleLabel.text = "Ruim"
+        case .regular:
+            iconImage.image = UIImage(named: Icon.emojiRegular.rawValue)
+            titleLabel.text = "Regular"
+        case .good:
+            iconImage.image = UIImage(named: Icon.emojiGood.rawValue)
+            titleLabel.text = "Boa"
+        case .great:
+            iconImage.image = UIImage(named: Icon.emojiGreat.rawValue)
+            titleLabel.text = "Excelente"
+        default:
+            break
+        }
+    }
 }
 
 extension EmojiView: ViewCodeContract {
@@ -75,6 +90,7 @@ extension EmojiView: ViewCodeContract {
     
     func setupConfiguration() {
         self.translatesAutoresizingMaskIntoConstraints = false
+        configureView()
     }
     
     
