@@ -63,7 +63,13 @@ class LoginViewController: CoordinatedViewController {
         self.customView.loginButton.loadingIndicator(show: false)
         viewModel.fetchUser { [ weak self ] result in
             DispatchQueue.main.async {
-                result.isEmpty ? self?.viewModel.navigateToUserOnboarding() : self?.viewModel.navigateToHome()
+                if result.isEmpty {
+                    self?.viewModel.navigateToUserOnboarding()
+                } else {
+                    self?.viewModel.navigateToHome()
+                    guard let email = Auth.auth().currentUser?.email else { return }
+                    MNUserDefaults.set(value: true, forKey: email)
+                }
             }
         }
     }

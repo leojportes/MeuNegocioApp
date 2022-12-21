@@ -41,6 +41,7 @@ final class HomeViewController: CoordinatedViewController {
         super.viewDidLoad()
         self.view = customView
         bindProperties()
+        openRateApp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,6 +134,13 @@ final class HomeViewController: CoordinatedViewController {
         case 2: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
         case 3: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
         default: break
+        }
+    }
+    
+    private func openRateApp() {
+        let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
+        if !value {
+            self.viewModel.navigateToRateApp()
         }
     }
 }

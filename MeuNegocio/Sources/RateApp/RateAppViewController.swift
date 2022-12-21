@@ -11,7 +11,7 @@ import MessageUI
 
 class RateAppViewController: CoordinatedViewController {
     
-    let customView = RateAppView()
+    private let customView = RateAppView()
     private let viewModel: RateAppViewModelProtocol
 
     // MARK: - Init
@@ -51,6 +51,7 @@ class RateAppViewController: CoordinatedViewController {
 
 extension RateAppViewController: ActionRateAppProtocol {
     func typeEmojiSelected(type: EmojiType) {
+        MNUserDefaults.set(value: true, forKey: MNKeys.rateApp)
         switch type {
         case .great, .good, .regular:
             viewModel.goToReview()

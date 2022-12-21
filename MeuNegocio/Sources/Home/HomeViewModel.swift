@@ -14,6 +14,7 @@ protocol HomeViewModelProtocol: AnyObject {
     func navigateToProfile(_ userData: UserModelList)
     func navigateToAddProcedure()
     func navigateToHelp()
+    func navigateToRateApp()
     func openProcedureDetails(_ procedure: GetProcedureModel)
     func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String
 }
@@ -82,12 +83,17 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     }
 
     func navigateToAddProcedure() {
-        coordinator?.navigateTo(.rateApp)
-//        coordinator?.navigateTo(.AddProcedure)
+        coordinator?.navigateTo(.AddProcedure)
     }
 
     func navigateToHelp() {
         coordinator?.navigateTo(.Help)
+    }
+    
+    func navigateToRateApp() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            self.coordinator?.navigateTo(.rateApp)
+        })
     }
 
     func openProcedureDetails(_ procedure: GetProcedureModel) {
