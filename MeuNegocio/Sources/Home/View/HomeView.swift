@@ -10,14 +10,15 @@ import UIKit
 final class HomeView: UIView, ViewCodeContract {
     
     // MARK: - Actions properties
-    var openReport: Action?
-    var openAlertAction: Action?
-    var openProfile: Action?
-    var openAddProcedure: Action?
-    var openHelp: Action?
-    var openProcedureDetails: (GetProcedureModel) -> Void?
-    var didPullRefresh: Action?
-    var didSelectIndexClosure: (UISegmentedControl) -> Void?
+    private var openReport: Action?
+    private var openAlertAction: Action?
+    private var openProfile: Action?
+    private var openAddProcedure: Action?
+    private var openHelp: Action?
+    private var openProcedureDetails: (GetProcedureModel) -> Void?
+    private var didPullRefresh: Action?
+    private var didSelectIndexClosure: (ButtonFilterType) -> Void?
+    private var didSelectDateClosure: (String) -> Void?
 
     // MARK: - Properties
     var procedures: [GetProcedureModel] = [] {
@@ -27,15 +28,9 @@ final class HomeView: UIView, ViewCodeContract {
         }
     }
 
-    var currentIndex: Int = 0 {
+    var currentIndexFilter: ButtonFilterType = .all {
         didSet {
-            filterView.currentIndex = currentIndex
-        }
-    }
-
-    var filterRange: String = "" {
-        didSet {
-            filterView.filterRangeValue.text = filterRange
+            filterView.currentIndexFilter = currentIndexFilter
         }
     }
     
@@ -54,7 +49,8 @@ final class HomeView: UIView, ViewCodeContract {
         navigateToHelp: @escaping Action,
         openProcedureDetails: @escaping (GetProcedureModel) -> Void?,
         didPullRefresh: @escaping Action,
-        didSelectIndexClosure: @escaping (UISegmentedControl) -> Void?
+        didSelectIndexClosure: @escaping (ButtonFilterType) -> Void?,
+        didSelectDateClosure: @escaping (String) -> Void
     ) {
         self.openReport = navigateToReport
         self.openAlertAction = alertAction
@@ -64,6 +60,7 @@ final class HomeView: UIView, ViewCodeContract {
         self.openProcedureDetails = openProcedureDetails
         self.didPullRefresh = didPullRefresh
         self.didSelectIndexClosure = didSelectIndexClosure
+        self.didSelectDateClosure = didSelectDateClosure
         super.init(frame: .zero)
         setupView()
     }
@@ -107,9 +104,8 @@ final class HomeView: UIView, ViewCodeContract {
     }
     
     lazy var filterView = FilterSegmentedControl(
-        didSelectIndexClosure: weakify {
-            $0.didSelectIndexClosure($1)
-        }
+        didSelectIndexClosure: weakify { $0.didSelectIndexClosure($1) },
+        didSelectDateClosure: weakify { $0.didSelectDateClosure($1) }
     )
     
     // MARK: - Main
