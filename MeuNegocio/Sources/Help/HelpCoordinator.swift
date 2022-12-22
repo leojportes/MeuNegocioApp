@@ -8,10 +8,11 @@
 import UIKit
 
 class HelpCoordinator: BaseCoordinator {
+    var title: String?
 
     override func start() {
         let viewModel = HelpViewModel(coordinator: self)
-        let controller = HelpViewController(viewModel: viewModel, coordinator: self)
+        let controller = HelpViewController(viewModel: viewModel, coordinator: self, titleEmail: title)
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray

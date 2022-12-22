@@ -47,7 +47,10 @@ public extension UIColor {
         public static var yellowHighDark: UIColor {
             return UIColor(named: "yellowHighDark") ?? UIColor.systemYellow
         }
-
+        
+        public static var grayRateApp: UIColor {
+            return UIColor(named: "grayRateApp") ?? UIColor.gray
+        }
     }
     
 }
