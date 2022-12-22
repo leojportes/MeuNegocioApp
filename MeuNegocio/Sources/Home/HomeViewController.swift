@@ -113,20 +113,28 @@ final class HomeViewController: CoordinatedViewController {
 
     private func didSelectFilter(_ type: ButtonFilterType) {
         switch type {
-        case .all: self.customView.procedures = procedures
-        case .today: self.customView.procedures = todayProcedures(procedures: procedures)
-        case .sevenDays: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
-        case .thirtyDays: self.customView.procedures = filteredProcedures(procedures: procedures, isMonthly: true)
+        case .all:
+            TrackEvent.track(event: .homeFilterAll)
+            self.customView.procedures = procedures
+        case .today:
+            TrackEvent.track(event: .homeFilterToday)
+            self.customView.procedures = todayProcedures(procedures: procedures)
+        case .sevenDays:
+            TrackEvent.track(event: .homeFilterSevenDays)
+            self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
+        case .thirtyDays:
+            TrackEvent.track(event: .homeFilterThisMonth)
+            self.customView.procedures = filteredProcedures(procedures: procedures, isMonthly: true)
         case .custom: print("custom")
         }
     }
 
     private func openRateApp() {
         self.viewModel.navigateToRateApp()
-        // let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
-        // if !value {
-        // self.viewModel.navigateToRateApp()
-        // }
+        let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
+        if value.not {
+            self.viewModel.navigateToRateApp()
+        }
     }
 
     private func didSelectFilterDatePicker(_ date: String) {

@@ -75,18 +75,22 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
 
     // MARK: - Routes
     func navigateToReport(procedures: [GetProcedureModel]) {
+        TrackEvent.track(event: .homeReport)
         coordinator?.navigateTo(.Report(procedures))
     }
 
     func navigateToProfile(_ userData: UserModelList) {
+        TrackEvent.track(event: .homeProfile)
         coordinator?.navigateTo(.Profile(userData))
     }
 
     func navigateToAddProcedure() {
+        TrackEvent.track(event: .homeAddProcedure)
         coordinator?.navigateTo(.AddProcedure)
     }
 
     func navigateToHelp() {
+        TrackEvent.track(event: .homeInfo)
         coordinator?.navigateTo(.Help)
     }
     
@@ -97,6 +101,7 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
     }
 
     func openProcedureDetails(_ procedure: GetProcedureModel) {
+        TrackEvent.track(event: .homeProcedureDetails)
         coordinator?.navigateTo(.detailProcedure(procedure))
     }
 

@@ -149,6 +149,7 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
     // MARK: - Actions methods
     @objc
     func editingDidBeginPicker() {
+        TrackEvent.track(event: .homeFilterCustom)
         handleSegmentedControlButtons()
         custom.backgroundColor = .MNColors.lightBrown
     }

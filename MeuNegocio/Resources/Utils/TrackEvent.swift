@@ -20,16 +20,20 @@ public enum MNEvent: String {
     case homeReport = "home_relatorios"
     case homeInfo = "home_informacoes"
     case homeAddProcedure = "home_adicionar_procedimentos"
+    case homeProcedureDetails = "home_detalhes_procedimentos"
     case homeProfile = "home_perfil"
     case homeFilterAll = "home_filtro_todos"
     case homeFilterToday = "home_filtro_hoje"
     case homeFilterSevenDays = "home_filtro_sete_dias"
-    case homeFilterThirtyDays = "home_filtro_trinta_dias"
-    case homeFilterPerson = "home_filtro_personalizado"
-    case homeProcedure = "home_procedimento"
+    case homeFilterThisMonth = "home_filtro_mes_atual"
+    case homeFilterCustom = "home_filtro_personalizado"
     case homeDeleteProcedure = "home_deletar_procedimento"
     
     // Rate App
-    case rateEmail = "avaliacao_email"
-    case rateApple = "avaliacao_apple_click"
+    case rateBad = "avaliacao_ruim_click"
+    case rateGreat = "avaliacao_excelente_click"
+    case rateGood = "avaliacao_boa_click"
+    case rateRegular = "avaliacao_regular_click"
+    case rateClose = "avaliacao_fechar"
+
 }

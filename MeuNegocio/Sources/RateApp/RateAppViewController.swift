@@ -69,9 +69,20 @@ extension RateAppViewController: ActionRateAppProtocol {
     func typeEmojiSelected(type: EmojiType) {
         MNUserDefaults.set(value: true, forKey: MNKeys.rateApp)
         switch type {
-        case .great, .good, .regular:
+        case .great:
             viewModel.goToReview()
+            TrackEvent.track(event: .rateGreat)
+            
+        case .good:
+            viewModel.goToReview()
+            TrackEvent.track(event: .rateGood)
+            
+        case .regular:
+            viewModel.goToReview()
+            TrackEvent.track(event: .rateRegular)
+            
         case .bad:
+            TrackEvent.track(event: .rateBad)
             dismiss(animated: true) {
                 self.viewModel.goToHelp()
             }
@@ -80,5 +91,6 @@ extension RateAppViewController: ActionRateAppProtocol {
     
     func close() {
         viewModel.close()
+        TrackEvent.track(event: .rateClose)
     }
 }
