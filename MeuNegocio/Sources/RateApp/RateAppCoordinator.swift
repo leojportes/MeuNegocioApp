@@ -12,7 +12,11 @@ class RateAppCoordinator: BaseCoordinator {
 
     override func start() {
         let viewModel = RateAppViewModel(coordinator: self)
-        let controller = RateAppViewController(coordinator: self, viewModel: viewModel, navigation: configuration.navigationController ?? UINavigationController())
+        let controller = RateAppViewController(
+            coordinator: self,
+            viewModel: viewModel,
+            navigation: configuration.navigationController ?? UINavigationController()
+        )
         configuration.viewController = controller
         controller.modalPresentationStyle = .custom
         controller.modalTransitionStyle = .crossDissolve
@@ -25,7 +29,7 @@ class RateAppCoordinator: BaseCoordinator {
     
     func goToReview() {
         configuration.navigationController?.dismiss(animated: true, completion: {
-            if let url = URL(string: "https://apps.apple.com/br/app/meu-neg%C3%B3cio/id6443727568") {
+            if let url = URL(string: "https://itunes.apple.com/app/id6443727568") {
                 UIApplication.shared.open(url)
             }
         })
