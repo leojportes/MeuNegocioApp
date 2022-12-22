@@ -73,7 +73,7 @@ extension RateAppViewController: ActionRateAppProtocol {
             viewModel.goToReview()
         case .bad:
             dismiss(animated: true) {
-                self.sendEmailToInnovates()
+                self.viewModel.goToHelp()
             }
         }
     }

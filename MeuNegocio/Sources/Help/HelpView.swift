@@ -11,15 +11,18 @@ final class HelpView: UIView {
 
     private var openMailCompose: Action?
     private var openWhatsapp: Action?
+    private var titleEmail: String
 
     // MARK: - Init
 
     init(
         openMailCompose: @escaping Action,
-        openWhatsapp: @escaping Action
+        openWhatsapp: @escaping Action,
+        titleEmail: String
     ) {
         self.openMailCompose = openMailCompose
         self.openWhatsapp = openWhatsapp
+        self.titleEmail = titleEmail
         super.init(frame: .zero)
         setupView()
     }
@@ -45,7 +48,7 @@ final class HelpView: UIView {
     }
 
     private lazy var sendEmailButton = UIButton() .. {
-        $0.setTitle("Tire sua dúvida por e-mail", for: .normal)
+        $0.setTitle(titleEmail, for: .normal)
         $0.setTitleColor(.MNColors.grayDarkest, for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.setTitleColor(.black, for: .highlighted)
@@ -63,15 +66,15 @@ final class HelpView: UIView {
         $0.layer.borderWidth = 1
     }
 
-    private lazy var wppButton = UIButton() .. {
-        $0.setTitle("Chame-nos no whatsapp", for: .normal)
-        $0.setTitleColor(.MNColors.grayDarkest, for: .normal)
-        $0.setTitleColor(.darkGray, for: .highlighted)
-        $0.backgroundColor = .clear
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.contentHorizontalAlignment = .left
-        $0.addTarget(self, action: #selector(didTapWpp), for: .touchUpInside)
-    }
+//    private lazy var wppButton = UIButton() .. {
+//        $0.setTitle("Chame-nos no whatsapp", for: .normal)
+//        $0.setTitleColor(.MNColors.grayDarkest, for: .normal)
+//        $0.setTitleColor(.darkGray, for: .highlighted)
+//        $0.backgroundColor = .clear
+//        $0.translatesAutoresizingMaskIntoConstraints = false
+//        $0.contentHorizontalAlignment = .left
+//        $0.addTarget(self, action: #selector(didTapWpp), for: .touchUpInside)
+//    }
 
     private lazy var wppIconButton = IconButton() .. {
         $0.setup(

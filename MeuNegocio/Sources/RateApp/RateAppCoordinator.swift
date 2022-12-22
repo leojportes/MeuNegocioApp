@@ -10,12 +10,12 @@ import SafariServices
 
 class RateAppCoordinator: BaseCoordinator {
 
-    override func start() {
+    func start(navigation: UINavigationController) {
         let viewModel = RateAppViewModel(coordinator: self)
         let controller = RateAppViewController(
             coordinator: self,
             viewModel: viewModel,
-            navigation: configuration.navigationController ?? UINavigationController()
+            navigation: navigation
         )
         configuration.viewController = controller
         controller.modalPresentationStyle = .custom
@@ -34,8 +34,11 @@ class RateAppCoordinator: BaseCoordinator {
             }
         })
     }
-    
-    func sendImprovementEmail() {
-        print("enviar email")
+
+    func goToHelp() {
+        let coordinator = HelpCoordinator(with: configuration)
+        coordinator.title = "Enviar reclamação"
+        coordinator.start()
+        
     }
 }

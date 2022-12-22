@@ -5,7 +5,7 @@
 //  Created by Leonardo Portes on 07/02/22.
 //
 
-import Foundation
+import UIKit
 
 enum TypeScreen {
     case Report([GetProcedureModel])
@@ -63,7 +63,7 @@ extension HomeCoordinator {
     
     private func openRateApp() {
         let coordinator = RateAppCoordinator(with: configuration)
-        coordinator.start()
+        coordinator.start(navigation: configuration.navigationController ?? UINavigationController())
     }
 }
 
