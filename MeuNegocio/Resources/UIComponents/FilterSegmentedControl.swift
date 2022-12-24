@@ -160,6 +160,7 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
         df.dateFormat = "dd/MM/yyyy"
         let dateString = df.string(from: sender.date)
         self.didSelectDateClosure(dateString)
+        custom.setTitle(dateString, for: .normal)
     }
 
     @objc
@@ -170,6 +171,7 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
                 let title = button.titleLabel?.text ?? .stringEmpty
                 self.didSelectIndexClosure(ButtonFilterType(rawValue: title) ?? .all)
             } else {
+                custom.setTitle("Personalizado", for: .normal)
                 button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
             }
         }
