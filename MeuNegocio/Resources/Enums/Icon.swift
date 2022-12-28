@@ -31,4 +31,8 @@ enum Icon: String {
     case deleteAccount = "ic_deleteAccount"
     case logoutAccount = "ic_logout"
     case history = "ic_history"
+    case emojiBad = "emoji_bad"
+    case emojiGreat = "emoji_great"
+    case emojiRegular = "emoji_regular"
+    case emojiGood = "emoji_good"
 }

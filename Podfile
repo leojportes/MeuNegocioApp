@@ -6,6 +6,7 @@ target 'MeuNegocio' do
   use_frameworks!
   pod 'FirebaseAuth', '9.4.0'
   pod 'FirebaseFirestore', '9.4.0'
+  pod 'Firebase/Analytics'
   pod 'GoogleSignIn', '5.0.2'
   pod 'lottie-ios'
 

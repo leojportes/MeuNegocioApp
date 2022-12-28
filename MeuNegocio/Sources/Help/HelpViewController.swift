@@ -11,9 +11,12 @@ import MessageUI
 class HelpViewController: CoordinatedViewController, MFMailComposeViewControllerDelegate {
     
     // MARK: - Private properties
+    private var titleEmail: String?
+
     private lazy var customView = HelpView(
         openMailCompose: weakify { $0.openMailCompose() },
-        openWhatsapp: weakify { $0.viewModel.openWhatsapp() }
+        openWhatsapp: weakify { $0.viewModel.openWhatsapp() },
+        titleEmail: titleEmail ?? "Tire sua dúvida por e-mail"
     )
     
     private let viewModel: HelpViewModelProtocol
@@ -22,7 +25,7 @@ class HelpViewController: CoordinatedViewController, MFMailComposeViewController
         let mailComposeController = MFMailComposeViewController() .. {
             $0.mailComposeDelegate = self
             $0.setToRecipients(["innovatestechsc@gmail.com"])
-            $0.setSubject("Tenho uma dúvida")
+            $0.setSubject(titleEmail ?? "Tenho uma dúvida")
             $0.setMessageBody("", isHTML: false)
             $0.modalPresentationStyle = .pageSheet
             $0.mailComposeDelegate = self
@@ -33,7 +36,8 @@ class HelpViewController: CoordinatedViewController, MFMailComposeViewController
     }
 
     // MARK: - Init
-    init(viewModel: HelpViewModelProtocol, coordinator: CoordinatorProtocol){
+    init(viewModel: HelpViewModelProtocol, coordinator: CoordinatorProtocol, titleEmail: String?) {
+        self.titleEmail = titleEmail
         self.viewModel = viewModel
         super.init(coordinator: coordinator)
     }
@@ -45,7 +49,7 @@ class HelpViewController: CoordinatedViewController, MFMailComposeViewController
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Ajuda"
+        title = titleEmail == nil ? "Ajuda" : "Reclamação"
     }
 
     override func loadView() {

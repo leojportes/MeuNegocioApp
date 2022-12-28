@@ -23,7 +23,8 @@ final class HomeViewController: CoordinatedViewController {
         navigateToHelp: weakify { $0.viewModel.navigateToHelp() },
         openProcedureDetails: weakify { $0.viewModel.openProcedureDetails($1) },
         didPullRefresh: weakify { $0.didPullToRefresh() },
-        didSelectIndexClosure: weakify { $0.didSelectFilter($1) }
+        didSelectIndexClosure: weakify { $0.didSelectFilter($1) },
+        didSelectDateClosure: weakify { $0.didSelectFilterDatePicker($1) }
     )
 
     // MARK: - Init
@@ -41,13 +42,14 @@ final class HomeViewController: CoordinatedViewController {
         super.viewDidLoad()
         self.view = customView
         bindProperties()
+        openRateApp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
         bindProperties()
-        self.customView.currentIndex = 0
+        self.customView.currentIndexFilter = .all
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,7 +62,6 @@ final class HomeViewController: CoordinatedViewController {
         viewModel.output.procedures.bind() { [weak self] result in
             self?.customView.procedures = result.reversed()
             self?.procedures = result.reversed()
-            self?.setInitialFilterDateRange(result.reversed())
             self?.customView.totalReceiptCard.setupCardValues(
                 totalValues: self?.viewModel.input.makeTotalAmounts(result),
                 procedureValue: "\(result.count)")
@@ -74,27 +75,12 @@ final class HomeViewController: CoordinatedViewController {
         
         reloadData()
     }
-    
-    private func setInitialFilterDateRange(_ procedures: [GetProcedureModel]) {
-        let dates = procedures.map { $0.currentDate }
-        let firstDate = dates.first ?? ""
-        let lastDate = dates.last ?? ""
-        
-        if procedures.count > 1 && firstDate != lastDate {
-            self.customView.filterRange = "\(firstDate) - \(lastDate)"
-        } else if procedures.count >= 1 {
-            self.customView.filterRange = "\(firstDate)"
-        }
-
-        self.customView.filterView.filterRangeValue.isHidden = procedures.isEmpty
-        self.customView.filterView.filterRangeLabel.isHidden = procedures.isEmpty
-    }
 
     private func didPullToRefresh() {
         bindProperties()
-        self.customView.currentIndex = 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.customView.tableview.refreshControl?.endRefreshing()
+            self.customView.currentIndexFilter = .all
             self.reloadData()
         }
     }
@@ -103,15 +89,17 @@ final class HomeViewController: CoordinatedViewController {
         self.customView.tableview.reloadData()
     }
     
-    private func filteredProcedures(procedures: [GetProcedureModel], lastDays: Int) -> [GetProcedureModel] {
-        let lastDaysDates = Date.getDates(forLastNDays: lastDays)
-        self.customView.filterRange = "\(lastDaysDates.first ?? "") - \(lastDaysDates.last ?? "")"
+    private func filteredProcedures(
+            procedures: [GetProcedureModel],
+            lastDays: Int = 0,
+            isMonthly: Bool = false
+    ) -> [GetProcedureModel] {
+        let lastDaysDates = isMonthly ? Date.getDatesOfCurrentMonth() : Date.getDates(forLastNDays: lastDays)
         return procedures.filter({ lastDaysDates.contains($0.currentDate) })
     }
     
     func todayProcedures(procedures: [GetProcedureModel]) -> [GetProcedureModel] {
         let procedures = procedures.filter({$0.currentDate == returnCurrentDate})
-        customView.filterRange = returnCurrentDate
         return procedures
     }
 
@@ -123,16 +111,34 @@ final class HomeViewController: CoordinatedViewController {
         return dateString
     }()
 
-    private func didSelectFilter(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            setInitialFilterDateRange(procedures)
+    private func didSelectFilter(_ type: ButtonFilterType) {
+        switch type {
+        case .all:
+            TrackEvent.track(event: .homeFilterAll)
             self.customView.procedures = procedures
-
-        case 1: self.customView.procedures = todayProcedures(procedures: procedures)
-        case 2: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
-        case 3: self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 30)
-        default: break
+        case .today:
+            TrackEvent.track(event: .homeFilterToday)
+            self.customView.procedures = todayProcedures(procedures: procedures)
+        case .sevenDays:
+            TrackEvent.track(event: .homeFilterSevenDays)
+            self.customView.procedures = filteredProcedures(procedures: procedures, lastDays: 7)
+        case .thirtyDays:
+            TrackEvent.track(event: .homeFilterThisMonth)
+            self.customView.procedures = filteredProcedures(procedures: procedures, isMonthly: true)
+        case .custom: print("custom")
         }
+    }
+
+    private func openRateApp() {
+        let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
+        if value.not {
+            self.viewModel.navigateToRateApp()
+        }
+    }
+
+    private func didSelectFilterDatePicker(_ date: String) {
+        let proceduresFiltered = procedures.filter { $0.currentDate == date }
+        self.customView.procedures = proceduresFiltered
+        self.customView.tableview.reloadData()
     }
 }

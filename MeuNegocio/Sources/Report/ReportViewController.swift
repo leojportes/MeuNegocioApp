@@ -115,18 +115,18 @@ final class ReportViewController: CoordinatedViewController {
 
     /// Configure amout for Monthly card.
     private func setupMonthlyAmount(procedures: [GetProcedureModel], _ hasDiscount: Bool = false, percent: String = .stringEmpty) {
-        /// Here we filter the procedures from the last 30 days.
-        let monthlyProcedures = viewModel.monthlyProceduresLast30Days(procedures: procedures)
-        /// Here we add the values ​​of the procedures of the last 30 days.
+        /// Here we filter the procedures from current month.
+        let monthlyProcedures = viewModel.monthlyProceduresThisMonth(procedures: procedures)
+        /// Here we add the values ​​of the procedures of current month.
         let makeTotalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
         
         if hasDiscount {
             let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalMonthlyAmount)
             self.customView.setupMonthlyCard(percentResult, "\(monthlyProcedures.count)")
-            self.customView.setupMonthlyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.last30days)")
+            self.customView.setupMonthlyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.thisMonth)")
         } else {
             self.customView.setupMonthlyCard(makeTotalMonthlyAmount, "\(monthlyProcedures.count)")
-            self.customView.setupMonthlyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.last30days)")
+            self.customView.setupMonthlyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.thisMonth)")
         }
     }
 
@@ -163,11 +163,12 @@ final class ReportViewController: CoordinatedViewController {
         }
     
         /// Share  monthly report.
-        let monthlyProcedures = self.viewModel.monthlyProceduresLast30Days(procedures: procedures)
+        let dateRange = viewModel.dateRangeMonthly
+        let monthlyProcedures = self.viewModel.monthlyProceduresThisMonth(procedures: procedures)
         let totalMonthlyAmount = viewModel.makeTotalAmount(monthlyProcedures)
         let totalPercentMonthlyAmount = viewModel.percentageFromString(percent: percent, baseAmount: totalMonthlyAmount)
         self.customView.didTapDownloadMonthlyHistoric = {
-            self.sharePDF(monthlyProcedures, PDFModel.monthlyTitle, .monthly, totalPercentMonthlyAmount, hasDiscount, percent)
+            self.sharePDF(monthlyProcedures, dateRange, .monthly, totalPercentMonthlyAmount, hasDiscount, percent)
         }
     }
     

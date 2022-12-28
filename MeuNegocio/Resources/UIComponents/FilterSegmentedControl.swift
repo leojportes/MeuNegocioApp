@@ -7,23 +7,44 @@
 
 import UIKit
 
+enum ButtonFilterType: String {
+    case all = "Todos"
+    case today = "Hoje"
+    case sevenDays = "7 dias"
+    case thirtyDays = "Este mês"
+    case custom = "Personalizado"
+}
+
 final class FilterSegmentedControl: UIView, ViewCodeContract {
+
+    private var didSelectIndexClosure: (ButtonFilterType) -> Void?
+    private var didSelectDateClosure: (String) -> Void?
     
-    private var items: [String]
-    private var didSelectIndexClosure: (UISegmentedControl) -> Void?
+    var segmentedControlButtons: [UIButton] = []
     
-    var currentIndex: Int = 0 {
+    let all = SegmentedControlButton(title: ButtonFilterType.all.rawValue)
+    let today = SegmentedControlButton(title: ButtonFilterType.today.rawValue)
+    let sevenDays = SegmentedControlButton(title: ButtonFilterType.sevenDays.rawValue)
+    let thirtyDays = SegmentedControlButton(title: ButtonFilterType.thirtyDays.rawValue)
+    let custom = SegmentedControlButton(title: ButtonFilterType.custom.rawValue)
+
+    var currentIndexFilter: ButtonFilterType = .all {
         didSet {
-            segmentedControl.selectedSegmentIndex = self.currentIndex
+            if currentIndexFilter == .all {
+                handleSegmentedControlButtons()
+                all.backgroundColor = .MNColors.lightBrown
+            }
         }
     }
     
+    // MARK: - Init
     init(
-        items: [String] = ["Todos", "Hoje","7 dias","30 dias"],
-        didSelectIndexClosure: @escaping (UISegmentedControl) -> Void
+        didSelectIndexClosure: @escaping (ButtonFilterType) -> Void,
+        didSelectDateClosure: @escaping (String) -> Void
     ) {
-        self.items = items
+        self.segmentedControlButtons = [all, today, sevenDays, thirtyDays, custom]
         self.didSelectIndexClosure = didSelectIndexClosure
+        self.didSelectDateClosure = didSelectDateClosure
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setupView()
@@ -39,60 +60,146 @@ final class FilterSegmentedControl: UIView, ViewCodeContract {
         return container
     }()
     
-    private lazy var segmentedControl: UISegmentedControl = {
-        let seg = UISegmentedControl(items: items)
-        seg.selectedSegmentTintColor = .MNColors.lightBrown
-        seg.selectedSegmentIndex = 0
-        seg.translatesAutoresizingMaskIntoConstraints = false
-        seg.addTarget(self, action: #selector(didSelectIndex(_:)), for: .valueChanged)
-        return seg
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: segmentedControlButtons)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.distribution = .fillProportionally
+        return stackView
     }()
     
-    private(set) lazy var filterRangeLabel = MNLabel(
-        text: "Período:",
-        font: UIFont.boldSystemFont(ofSize: 15),
-        textColor: .MNColors.grayDarkest
-    )
-    
-    lazy var filterRangeValue = MNLabel(
-        font: UIFont.boldSystemFont(ofSize: 14),
-        textColor: .MNColors.grayDescription
-    )
-    
-    @objc
-    private func didSelectIndex(_ sender: UISegmentedControl) {
-        self.didSelectIndexClosure(sender)
-    }
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.contentSize = CGSize(width: .zero, height: 30)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+
+    private lazy var datePicker: UIDatePicker = {
+        let date = UIDatePicker()
+        date.datePickerMode = .date
+        date.locale = Locale(identifier: "pt-BR")
+        date.calendar = Calendar(identifier: .gregorian)
+        date.timeZone = TimeZone(identifier: "pt-BR")
+        date.translatesAutoresizingMaskIntoConstraints = false
+        return date
+    }()
 
     func setupHierarchy() {
         addSubview(container)
-        container.addSubview(segmentedControl)
-        container.addSubview(filterRangeLabel)
-        container.addSubview(filterRangeValue)
+        container.addSubview(scrollView)
+        scrollView.addSubview(stackView)
     }
     
     func setupConstraints() {
-        container
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .bottomAnchor(in: self)
-        
-        segmentedControl
-            .topAnchor(in: container)
-            .leftAnchor(in: container)
-            .rightAnchor(in: container)
-            .heightAnchor(30)
-        
-        filterRangeLabel
-            .topAnchor(in: segmentedControl, attribute: .bottom, padding: 6)
-            .leftAnchor(in: container, padding: 4)
-            .bottomAnchor(in: container, attribute: .bottom)
-        
-        filterRangeValue
-            .topAnchor(in: segmentedControl, attribute: .bottom, padding: 6)
-            .leftAnchor(in: filterRangeLabel, attribute: .right, padding: 6)
-            .bottomAnchor(in: container, attribute: .bottom)
+        NSLayoutConstraint.activate([
+            container.topAnchor.constraint(equalTo: topAnchor),
+            container.leadingAnchor.constraint(equalTo: leadingAnchor),
+            container.trailingAnchor.constraint(equalTo: trailingAnchor),
+            container.bottomAnchor.constraint(equalTo: bottomAnchor),
+            container.heightAnchor.constraint(equalToConstant: 30),
+
+            scrollView.topAnchor.constraint(equalTo: container.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            scrollView.heightAnchor.constraint(equalToConstant: 30),
+
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    func setupConfiguration() {
+        configurePickerView()
+        segmentedControlButtons.forEach {
+            $0.addTarget(
+                self,
+                action: #selector(handleSegmentedControlButtons(sender:)),
+                for: .touchUpInside
+            )
+        }
+    }
+
+    func configurePickerView() {
+        custom.addSubview(datePicker)
+        datePicker
+            .topAnchor(in: custom)
+            .leftAnchor(in: custom)
+            .rightAnchor(in: custom)
+            .heightAnchor(250)
+            .bottomAnchor(in: custom)
+        datePicker.tintColor = .MNColors.grayDarkest
+        datePicker.alpha = 0.02
+        datePicker.isUserInteractionEnabled = true
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let minimumDate = formatter.date(from: "01/09/2022")
+        datePicker.minimumDate = minimumDate
+        datePicker.calendar.locale = Locale(identifier: "pt-BR")
+        datePicker.timeZone = TimeZone(identifier: "America/Sao_Paulo")
+        datePicker.addTarget(self, action: #selector(editingDidBeginPicker), for: .editingDidBegin)
+        datePicker.addTarget(self, action: #selector(editingDidEndPicker(sender:)), for: .editingDidEnd)
+    }
+
+    // MARK: - Actions methods
+    @objc
+    func editingDidBeginPicker() {
+        TrackEvent.track(event: .homeFilterCustom)
+        handleSegmentedControlButtons()
+        custom.backgroundColor = .MNColors.lightBrown
+    }
+
+    @objc
+    func editingDidEndPicker(sender: UIDatePicker) {
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        let dateString = df.string(from: sender.date)
+        self.didSelectDateClosure(dateString)
+        custom.setTitle(dateString, for: .normal)
+    }
+
+    @objc
+    func handleSegmentedControlButtons(sender: UIButton? = nil) {
+        for button in segmentedControlButtons {
+            if button == sender {
+                button.backgroundColor = .MNColors.lightBrown
+                let title = button.titleLabel?.text ?? .stringEmpty
+                self.didSelectIndexClosure(ButtonFilterType(rawValue: title) ?? .all)
+            } else {
+                custom.setTitle("Personalizado", for: .normal)
+                button.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
+            }
+        }
+    }
+}
+
+class SegmentedControlButton: UIButton {
+
+    // MARK: - Init
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Init
+    init(title: String) {
+        super.init(frame: .zero)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.setTitle(title, for: .normal)
+        self.titleLabel?.font = .systemFont(ofSize: 14)
+        self.setTitleColor(.black, for: .normal)
+        self.backgroundColor = UIColor.init(white: 0.1, alpha: 0.1)
+        self.roundCorners(cornerRadius: 15)
+        self.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        self.layer.borderColor = UIColor.black.cgColor
     }
 
 }

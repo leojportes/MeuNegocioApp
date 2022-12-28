@@ -52,6 +52,12 @@
 		52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC01B128BE51DB0048237C /* AddProcedureViewModel.swift */; };
 		52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */; };
 		52EC175128AC6C71005E6B4C /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EC175028AC6C71005E6B4C /* String+Extensions.swift */; };
+		52ECF86E295106AD00C6230A /* RateAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF86D295106AD00C6230A /* RateAppView.swift */; };
+		52ECF870295106BA00C6230A /* RateAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF86F295106BA00C6230A /* RateAppViewController.swift */; };
+		52ECF8722951092700C6230A /* RateAppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF8712951092700C6230A /* RateAppCoordinator.swift */; };
+		52ECF874295112A100C6230A /* RateAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF873295112A100C6230A /* RateAppViewModel.swift */; };
+		52ECF876295160E200C6230A /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF875295160E200C6230A /* EmojiView.swift */; };
+		52ECF8782953AAFE00C6230A /* TrackEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF8772953AAFC00C6230A /* TrackEvent.swift */; };
 		6DC92EDA59C9AABBC0EFB31C /* Pods_MeuNegocio_MeuNegocioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12373934365FD2041805703E /* Pods_MeuNegocio_MeuNegocioUITests.framework */; };
 		B594CBE925F51042746B6C33 /* Pods_MeuNegocio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68845A59EE9CD2EFFD23B9B8 /* Pods_MeuNegocio.framework */; };
 		C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */; };
@@ -196,6 +202,12 @@
 		52DC01B128BE51DB0048237C /* AddProcedureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProcedureViewModel.swift; sourceTree = "<group>"; };
 		52E435CF28C2BEC000B9D21C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		52EC175028AC6C71005E6B4C /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		52ECF86D295106AD00C6230A /* RateAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppView.swift; sourceTree = "<group>"; };
+		52ECF86F295106BA00C6230A /* RateAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewController.swift; sourceTree = "<group>"; };
+		52ECF8712951092700C6230A /* RateAppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppCoordinator.swift; sourceTree = "<group>"; };
+		52ECF873295112A100C6230A /* RateAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewModel.swift; sourceTree = "<group>"; };
+		52ECF875295160E200C6230A /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
+		52ECF8772953AAFC00C6230A /* TrackEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackEvent.swift; sourceTree = "<group>"; };
 		68845A59EE9CD2EFFD23B9B8 /* Pods_MeuNegocio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F9C997EEE88AD0D87C3A97 /* Pods-MeuNegocio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocio/Pods-MeuNegocio.debug.xcconfig"; sourceTree = "<group>"; };
 		B301BF0212414E2B8C58B7C9 /* Pods-MeuNegocioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocioTests.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocioTests/Pods-MeuNegocioTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -329,6 +341,7 @@
 				5213DCFF290AFC3A00AFC980 /* MNUserDefaults.swift */,
 				5213DD01290B27BB00AFC980 /* MNKeys.swift */,
 				5213DD16290C4C2300AFC980 /* KeychainService.swift */,
+				52ECF8772953AAFC00C6230A /* TrackEvent.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -457,6 +470,18 @@
 			path = AddProcedure;
 			sourceTree = "<group>";
 		};
+		52ECF86C2951061500C6230A /* RateApp */ = {
+			isa = PBXGroup;
+			children = (
+				52ECF86D295106AD00C6230A /* RateAppView.swift */,
+				52ECF86F295106BA00C6230A /* RateAppViewController.swift */,
+				52ECF8712951092700C6230A /* RateAppCoordinator.swift */,
+				52ECF873295112A100C6230A /* RateAppViewModel.swift */,
+				52ECF875295160E200C6230A /* EmojiView.swift */,
+			);
+			path = RateApp;
+			sourceTree = "<group>";
+		};
 		C016B24B28DFA2D1007372E4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -572,6 +597,7 @@
 		C0A7414327B1955200391CE6 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				52ECF86C2951061500C6230A /* RateApp */,
 				5213DD05290B699400AFC980 /* StartApp */,
 				52B8A08E28E7C90E00B1C9F7 /* UserOnboarding */,
 				52C4AE7B28B999350055E384 /* AddProcedure */,
@@ -1044,6 +1070,7 @@
 				C0A741C727B1A8C600391CE6 /* UIView+RawAnchors.swift in Sources */,
 				C0A7411127B1953000391CE6 /* AppDelegate.swift in Sources */,
 				C0A741E027B1A95700391CE6 /* Padding.swift in Sources */,
+				52ECF86E295106AD00C6230A /* RateAppView.swift in Sources */,
 				52E435D028C2BEC000B9D21C /* ProfileViewModel.swift in Sources */,
 				C0AFF99D28C460AF00B816AA /* HelpViewModel.swift in Sources */,
 				52B8A09628E7D47100B1C9F7 /* UserOnboardingViewModel.swift in Sources */,
@@ -1053,10 +1080,12 @@
 				C0A741D127B1A90500391CE6 /* UIView+AxisAttribute.swift in Sources */,
 				527D06DC28AADB36001E0BE0 /* CreateAccountCoordinator.swift in Sources */,
 				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,
+				52ECF870295106BA00C6230A /* RateAppViewController.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
 				C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */,
 				5213DD04290B694500AFC980 /* StartCoordinator.swift in Sources */,
 				C0AF028128C536C600B816AA /* ForgetPasswordViewController.swift in Sources */,
+				52ECF8722951092700C6230A /* RateAppCoordinator.swift in Sources */,
 				C0AF028728C5389600B816AA /* ForgetPasswordView.swift in Sources */,
 				C0AF028528C5373D00B816AA /* ForgetPasswordViewModel.swift in Sources */,
 				C0A7417527B1984100391CE6 /* CoordinatedViewController.swift in Sources */,
@@ -1084,6 +1113,7 @@
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
 				C036EAA528FBB69D0049C80D /* Constants.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
+				52ECF874295112A100C6230A /* RateAppViewModel.swift in Sources */,
 				5249214928C00621006F01DA /* HomeViewModel.swift in Sources */,
 				C0A174CF28E5342300DB0CE4 /* TappedView.swift in Sources */,
 				C0AF028328C5370000B816AA /* ForgetPasswordCoordinator.swift in Sources */,
@@ -1121,6 +1151,7 @@
 				52B8A08828E288A900B1C9F7 /* ReportViewModel.swift in Sources */,
 				C0AFF99628C454FC00B816AA /* CascadeOperator.swift in Sources */,
 				C0F8FCB028EE3CFA00ECEB63 /* Currency.swift in Sources */,
+				52ECF876295160E200C6230A /* EmojiView.swift in Sources */,
 				C0A7418427B1989900391CE6 /* HomeViewController.swift in Sources */,
 				5213DD07290B69C200AFC980 /* StartViewController.swift in Sources */,
 				C080E9B028E7CBDC00555D80 /* Array+Ext.swift in Sources */,
@@ -1137,6 +1168,7 @@
 				C0A741A727B1A4FE00391CE6 /* ActionTypealias.swift in Sources */,
 				C09BB5C027B7EB6100C91F48 /* ProfileHeaderView.swift in Sources */,
 				522D9021289A00E00085575A /* LoginViewController.swift in Sources */,
+				52ECF8782953AAFE00C6230A /* TrackEvent.swift in Sources */,
 				5213DD00290AFC3A00AFC980 /* MNUserDefaults.swift in Sources */,
 				52B8A09028E7C95D00B1C9F7 /* UserOnboardingViewController.swift in Sources */,
 				52C4AE7D28B999C10055E384 /* AddProcedureView.swift in Sources */,
@@ -1324,7 +1356,7 @@
 				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
@@ -1333,7 +1365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Innovationstechsc.MeuNegocio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1353,7 +1385,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MeuNegocio/MeuNegocio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SQ669C5Y4F;
 				EXCLUDED_ARCHS = "";
 				INFOPLIST_FILE = MeuNegocio/Info.plist;
@@ -1362,7 +1394,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Innovationstechsc.MeuNegocio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

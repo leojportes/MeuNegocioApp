@@ -56,7 +56,8 @@ final class ProcedureDetailViewController: CoordinatedViewController {
             self.viewModel.deleteProcedure(procedure) { message in
                 DispatchQueue.main.async {
                     self.showAlert(title: "", messsage: message) {
-                        self.closedView()
+                        TrackEvent.track(event: .homeDeleteProcedure)
+                        return self.closedView()
                     }
                 }
             }

@@ -12,4 +12,5 @@ public enum MNKeys {
     public static let nameAppleID = "nameAppleID"
     public static let passedTheOnboarding = "passedTheOnboarding"
     public static let loginWithApple = "loginWithApple"
+    public static let rateApp = "rateApp"
 }

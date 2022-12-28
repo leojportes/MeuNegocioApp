@@ -15,7 +15,7 @@ struct ReportConsts {
     public static let atRange = "% do período"
     public static let withOutProcedure = "Nenhum procedimento"
     public static let reportGenerate = "cadastrado para gerar relatório"
-    public static let last30days = "últimos 30 dias"
+    public static let thisMonth = "este mês"
     public static let last7days = "últimos 7 dias"
     public static let today = "hoje"
     public static let applyPercent = "Aplicar porcentagem:"
@@ -30,7 +30,7 @@ struct ReportConsts {
     public static let weeklyReportDownload = "Baixar relatório semanal"
 
     public static let monthlyHistoric = "Histórico mensal"
-    public static let monthlyTotal = "Total • últimos 30 dias"
+    public static let monthlyTotal = "Total • este mês"
     public static let monthlyReportDownload = "Baixar relatório mensal"
 }
 
