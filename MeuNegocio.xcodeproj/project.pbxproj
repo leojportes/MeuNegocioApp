@@ -58,6 +58,8 @@
 		52ECF874295112A100C6230A /* RateAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF873295112A100C6230A /* RateAppViewModel.swift */; };
 		52ECF876295160E200C6230A /* EmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF875295160E200C6230A /* EmojiView.swift */; };
 		52ECF8782953AAFE00C6230A /* TrackEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ECF8772953AAFC00C6230A /* TrackEvent.swift */; };
+		52F59BF8295CAFD50000CB20 /* CardCostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F59BF7295CAFD50000CB20 /* CardCostsView.swift */; };
+		52F59BFA295CE5CD0000CB20 /* TitleAndSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F59BF9295CE5CD0000CB20 /* TitleAndSubtitleView.swift */; };
 		6DC92EDA59C9AABBC0EFB31C /* Pods_MeuNegocio_MeuNegocioUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12373934365FD2041805703E /* Pods_MeuNegocio_MeuNegocioUITests.framework */; };
 		B594CBE925F51042746B6C33 /* Pods_MeuNegocio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68845A59EE9CD2EFFD23B9B8 /* Pods_MeuNegocio.framework */; };
 		C016B24D28DFA2DE007372E4 /* ProcedureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C016B24C28DFA2DE007372E4 /* ProcedureModel.swift */; };
@@ -208,6 +210,8 @@
 		52ECF873295112A100C6230A /* RateAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateAppViewModel.swift; sourceTree = "<group>"; };
 		52ECF875295160E200C6230A /* EmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiView.swift; sourceTree = "<group>"; };
 		52ECF8772953AAFC00C6230A /* TrackEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackEvent.swift; sourceTree = "<group>"; };
+		52F59BF7295CAFD50000CB20 /* CardCostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCostsView.swift; sourceTree = "<group>"; };
+		52F59BF9295CE5CD0000CB20 /* TitleAndSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleAndSubtitleView.swift; sourceTree = "<group>"; };
 		68845A59EE9CD2EFFD23B9B8 /* Pods_MeuNegocio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72F9C997EEE88AD0D87C3A97 /* Pods-MeuNegocio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocio/Pods-MeuNegocio.debug.xcconfig"; sourceTree = "<group>"; };
 		B301BF0212414E2B8C58B7C9 /* Pods-MeuNegocioTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocioTests.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocioTests/Pods-MeuNegocioTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -466,6 +470,7 @@
 				52DC01B128BE51DB0048237C /* AddProcedureViewModel.swift */,
 				52C4AE7C28B999C10055E384 /* AddProcedureView.swift */,
 				52C4AE7E28B999E00055E384 /* AddProcedureViewController.swift */,
+				52F59BF7295CAFD50000CB20 /* CardCostsView.swift */,
 			);
 			path = AddProcedure;
 			sourceTree = "<group>";
@@ -754,6 +759,7 @@
 				52B1854028EFADB300907FA0 /* MNView.swift */,
 				C036EAA228F9AF260049C80D /* FilterSegmentedControl.swift */,
 				52B1854328F900E800907FA0 /* CardIconAndTitleView.swift */,
+				52F59BF9295CE5CD0000CB20 /* TitleAndSubtitleView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -1111,6 +1117,7 @@
 				C0F8FE7128EE94DC00ECEB63 /* CheckYourAccountController.swift in Sources */,
 				C0A741CC27B1A8E400391CE6 /* UIView+SafeAreaAnchors.swift in Sources */,
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
+				52F59BF8295CAFD50000CB20 /* CardCostsView.swift in Sources */,
 				C036EAA528FBB69D0049C80D /* Constants.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
 				52ECF874295112A100C6230A /* RateAppViewModel.swift in Sources */,
@@ -1123,6 +1130,7 @@
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
 				C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */,
 				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,
+				52F59BFA295CE5CD0000CB20 /* TitleAndSubtitleView.swift in Sources */,
 				52DC01B228BE51DB0048237C /* AddProcedureViewModel.swift in Sources */,
 				C0BCE57127B6EA49005805A6 /* UIColor+Extensions.swift in Sources */,
 				520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */,
