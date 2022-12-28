@@ -83,7 +83,7 @@ final class HomeView: UIView, ViewCodeContract {
         stack.backgroundColor = .MNColors.lightGray
         stack.axis = .vertical
         stack.spacing = 16
-        stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 8, right: 16)
+        stack.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         stack.isLayoutMarginsRelativeArrangement = true
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
