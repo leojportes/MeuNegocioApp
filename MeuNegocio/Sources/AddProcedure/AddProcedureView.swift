@@ -9,7 +9,12 @@ import UIKit
 import FirebaseAuth
 
 protocol AddProcedureActionsProtocol: AnyObject {
-    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String)
+    func addProcedure(nameClient: String,
+                      typeProcedure: String,
+                      formPayment: String,
+                      value: String,
+                      email: String,
+                      costs: String)
     func alertEmptyField()
 }
 
@@ -18,6 +23,7 @@ class AddProcedureView: MNView {
     // MARK: - Properties
     weak var delegateActions: AddProcedureActionsProtocol?
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
+    private var valueCosts: String = .stringEmpty
     
     // MARK: - Init
     override init() {
@@ -54,10 +60,10 @@ class AddProcedureView: MNView {
     }()
     
     lazy var containerStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [nameTextField, typeJobTextField, paymentTextField, valueTextField])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 24
-        stack.distribution = .fillEqually
+        stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -124,20 +130,11 @@ class AddProcedureView: MNView {
         return textField
     }()
     
-    private lazy var teste: CustomTextField = {
-        let textField = CustomTextField(
-            titlePlaceholder: "R$",
-            colorPlaceholder: .lightGray,
-            textColor: .MNColors.darkGray,
-            radius: 5,
-            borderColor: UIColor.systemGray.cgColor,
-            borderWidth: 0.5,
-            keyboardType: .numberPad
-        )
-        textField.heightAnchor(48)
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
-        return textField
+    lazy var containerCostsView: CardCostsView = {
+        let container = CardCostsView(valueTextField: { self.setCostValue($0) })
+        container.backgroundColor = .MNColors.lightGray
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
 
     lazy var addButton: CustomSubmitButton = {
@@ -152,6 +149,10 @@ class AddProcedureView: MNView {
     }()
     
     // MARK: - Methods
+    
+    func setCostValue(_ value: String) {
+        valueCosts = value
+    }
 
     @objc
     private func myTextFieldDidChange(_ textField: UITextField) {
@@ -193,7 +194,8 @@ class AddProcedureView: MNView {
                 typeProcedure: typeJobTextField.text.orEmpty,
                 formPayment: paymentTextField.text.orEmpty,
                 value: amount.orEmpty,
-                email: email
+                email: email,
+                costs: valueCosts
             )
         }
     }
@@ -204,6 +206,13 @@ extension AddProcedureView: ViewCodeContract {
         addSubview(gripView)
         addSubview(subTitleLabel)
         addSubview(containerStack)
+        
+        containerStack.addArrangedSubview(nameTextField)
+        containerStack.addArrangedSubview(typeJobTextField)
+        containerStack.addArrangedSubview(paymentTextField)
+        containerStack.addArrangedSubview(valueTextField)
+//        containerStack.addArrangedSubview(containerCostsView)
+        addSubview(containerCostsView)
         addSubview(addButton)
     }
     
@@ -223,9 +232,14 @@ extension AddProcedureView: ViewCodeContract {
             .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 30)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
+        
+        containerCostsView
+            .topAnchor(in: containerStack, attribute: .bottom, padding: 24)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
     
         addButton
-            .topAnchor(in: containerStack, attribute: .bottom, padding: 54)
+            .topAnchor(in: containerCostsView, attribute: .bottom, padding: 54)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
