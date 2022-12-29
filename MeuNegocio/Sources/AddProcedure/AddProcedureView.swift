@@ -132,7 +132,8 @@ class AddProcedureView: MNView {
     
     lazy var containerCostsView: CardCostsView = {
         let container = CardCostsView(valueTextField: { self.setCostValue($0) })
-        container.backgroundColor = .MNColors.lightGray
+        container.backgroundColor = .MNColors.separatorGray
+        container.layer.cornerRadius = 15
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
@@ -235,11 +236,11 @@ extension AddProcedureView: ViewCodeContract {
         
         containerCostsView
             .topAnchor(in: containerStack, attribute: .bottom, padding: 24)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
+            .leftAnchor(in: self, padding: 16)
+            .rightAnchor(in: self, padding: 16)
     
         addButton
-            .topAnchor(in: containerCostsView, attribute: .bottom, padding: 54)
+            .topAnchor(in: containerCostsView, attribute: .bottom, padding: 24)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)

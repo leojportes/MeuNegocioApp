@@ -35,8 +35,6 @@ class CardCostsView: UIView {
     lazy var containerHorizontal: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        stack.layoutMargins = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
-        stack.isLayoutMarginsRelativeArrangement = true
         stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
@@ -69,6 +67,8 @@ class CardCostsView: UIView {
         textField.widthAnchor(110)
         textField.isHidden = true
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        textField.leftViewMode = .always
         return textField
     }()
     

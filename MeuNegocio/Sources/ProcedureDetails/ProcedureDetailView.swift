@@ -140,7 +140,7 @@ extension ProcedureDetailView: ViewCodeContract {
             .rightAnchor(in: baseView, padding: 20)
         
         deleteButton
-            .bottomAnchor(in: baseView, attribute: .bottom, padding: 8, layoutOption: .useSafeArea)
+            .bottomAnchor(in: baseView, attribute: .bottom, padding: 16, layoutOption: .useSafeArea)
             .leftAnchor(in: baseView, padding: 20)
             .rightAnchor(in: baseView, padding: 20)
             .heightAnchor(45)
