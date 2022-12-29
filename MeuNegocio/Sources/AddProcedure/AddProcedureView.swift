@@ -130,7 +130,7 @@ class AddProcedureView: MNView {
         return textField
     }()
     
-    lazy var containerCostsView: CardCostsView = {
+    lazy var costsView: CardCostsView = {
         let container = CardCostsView(valueTextField: { self.setCostValue($0) })
         container.backgroundColor = .MNColors.separatorGray
         container.layer.cornerRadius = 15
@@ -212,8 +212,8 @@ extension AddProcedureView: ViewCodeContract {
         containerStack.addArrangedSubview(typeJobTextField)
         containerStack.addArrangedSubview(paymentTextField)
         containerStack.addArrangedSubview(valueTextField)
-//        containerStack.addArrangedSubview(containerCostsView)
-        addSubview(containerCostsView)
+        
+        addSubview(costsView)
         addSubview(addButton)
     }
     
@@ -234,13 +234,13 @@ extension AddProcedureView: ViewCodeContract {
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
         
-        containerCostsView
+        costsView
             .topAnchor(in: containerStack, attribute: .bottom, padding: 24)
             .leftAnchor(in: self, padding: 16)
             .rightAnchor(in: self, padding: 16)
     
         addButton
-            .topAnchor(in: containerCostsView, attribute: .bottom, padding: 24)
+            .topAnchor(in: costsView, attribute: .bottom, padding: 24)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
@@ -248,6 +248,7 @@ extension AddProcedureView: ViewCodeContract {
     
     func setupConfiguration() {
         backgroundColor = .white
+        costsView.customTextField.delegate = self
     }
 }
 
@@ -281,8 +282,13 @@ extension AddProcedureView: UITextFieldDelegate {
         if textField == valueTextField {
             maxLength = 13
         }
+        
         if textField == typeJobTextField {
             maxLength = 28
+        }
+        
+        if textField == costsView.customTextField {
+            maxLength = 13
         }
         return newString.count <= maxLength
     }

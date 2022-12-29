@@ -55,7 +55,7 @@ class CardCostsView: UIView {
         return label
     }()
     
-    private lazy var customTextField: CustomTextField = {
+    lazy var customTextField: CustomTextField = {
         let textField = CustomTextField(
             titlePlaceholder: "R$",
             colorPlaceholder: .MNColors.grayDescription,
@@ -124,6 +124,4 @@ extension CardCostsView: ViewCodeContract {
             .heightAnchor(30)
 
     }
-    
-    
 }
