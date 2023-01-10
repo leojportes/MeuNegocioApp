@@ -216,7 +216,7 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
             cell?.setupCustomCell(
                 title: procedure.nameClient,
                 procedure: procedure.typeProcedure,
-                price: amount,
+                price: "Lucro: \(amount)",
                 paymentMethod: "\(procedure.currentDate) • \(procedure.formPayment.rawValue)"
             )
             cell?.setPaymentIcon(method: procedure.formPayment)
