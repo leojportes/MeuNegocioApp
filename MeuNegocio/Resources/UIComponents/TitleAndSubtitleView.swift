@@ -27,14 +27,13 @@ class TitleAndSubTitleView: UIView {
     private lazy var titleLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
         $0.textColor = .MNColors.grayDarkest
-        $0.numberOfLines = .zero
         $0.textAlignment = .left
     }
 
     private lazy var subtitleLabel = MNLabel() .. {
         $0.font = UIFont.boldSystemFont(ofSize: 16)
         $0.textColor = .MNColors.grayDescription
-        $0.numberOfLines = .zero
+        $0.numberOfLines = 0
         $0.textAlignment = .right
     }
     
@@ -60,19 +59,21 @@ extension TitleAndSubTitleView: ViewCodeContract {
             .bottomAnchor(in: self)
         
         titleLabel
-            .topAnchor(in: container, padding: 4)
+            .topAnchor(in: container, padding: 10)
             .leftAnchor(in: container)
-            .bottomAnchor(in: container, padding: 4)
+            .bottomAnchor(in: container, padding: 10)
         
         subtitleLabel
-            .topAnchor(in: container, padding: 4)
+            .topAnchor(in: container, padding: 10)
             .rightAnchor(in: container)
-            .bottomAnchor(in: container, padding: 4)
+            .leftAnchor(in: container, padding: 120)
+            .bottomAnchor(in: container, padding: 10)
         
     }
     
     func setupConfiguration() {
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.addBottomBorder()
     }
     
 }

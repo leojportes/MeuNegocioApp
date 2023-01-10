@@ -284,7 +284,7 @@ extension AddProcedureView: UITextFieldDelegate {
         }
         
         if textField == typeJobTextField {
-            maxLength = 28
+            maxLength = 60
         }
         
         if textField == costsView.customTextField {

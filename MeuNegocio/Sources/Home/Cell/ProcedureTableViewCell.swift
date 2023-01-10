@@ -49,7 +49,6 @@ final class ProcedureTableViewCell: UITableViewCell, ViewCodeContract {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor(named: "grayDescription")
-        label.numberOfLines = .zero
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

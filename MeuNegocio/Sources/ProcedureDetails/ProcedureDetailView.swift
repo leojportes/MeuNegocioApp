@@ -30,10 +30,7 @@ final class ProcedureDetailView: BottomSheetView {
     lazy var containerStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 16
-//        stack.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-//        stack.isLayoutMarginsRelativeArrangement = true
-        stack.distribution = .fillProportionally
+        stack.distribution = .fill
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
