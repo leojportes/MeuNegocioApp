@@ -91,13 +91,7 @@ class CardCostsView: UIView {
     private func myTextFieldDidChange(_ textField: UITextField) {
         if let amountString = textField.text?.currencyInputFormatting() {
             textField.text = amountString
-            let amount = amountString
-                .replacingOccurrences(of: "R$", with: "")
-                .dropFirst()
-                .replacingOccurrences(of: ".", with: "")
-                .replacingOccurrences(of: ",", with: ".")
-                .replacingOccurrences(of: " ", with: ".")
-            valueTextField(amount)
+            valueTextField(amountString)
         }
     }
 }

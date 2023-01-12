@@ -70,10 +70,10 @@ extension AddProcedureViewController: AddProcedureActionsProtocol {
                 }
     }
 
-    func alertEmptyField() {
+    func alertForTextField(message: String) {
         customView.addButton.loadingIndicator(show: false)
         showAlert(title: "Atenção",
-                  messsage: "Preencha todos os campos.")
+                  messsage: message)
     }
     
 }

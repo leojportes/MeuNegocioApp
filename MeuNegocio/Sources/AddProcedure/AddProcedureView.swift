@@ -15,7 +15,7 @@ protocol AddProcedureActionsProtocol: AnyObject {
                       value: String,
                       email: String,
                       costs: String)
-    func alertEmptyField()
+    func alertForTextField(message: String)
 }
 
 class AddProcedureView: MNView {
@@ -176,14 +176,32 @@ class AddProcedureView: MNView {
         return result
     }
     
+    private func checkValueCosts() -> Bool {
+        let value = valueTextField.text.orEmpty
+        if valueCosts > value {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - Action Buttons
     @objc
     private func handleAddButton() {
         if isSomeEmptyField() {
-            delegateActions?.alertEmptyField()
+            delegateActions?.alertForTextField(message: "Preencha todos os campos.")
+        } else if checkValueCosts(){
+            delegateActions?.alertForTextField(message: "O custo não pode ser maior que o valor do procedimento")
         } else {
             guard let email = Auth.auth().currentUser?.email else { return }
-            let amount = valueTextField.text?
+            let amountValue = valueTextField.text?
+                .replacingOccurrences(of: "R$", with: "")
+                .dropFirst()
+                .replacingOccurrences(of: ".", with: "")
+                .replacingOccurrences(of: ",", with: ".")
+                .replacingOccurrences(of: " ", with: ".")
+            
+            let amountCosts = valueCosts
                 .replacingOccurrences(of: "R$", with: "")
                 .dropFirst()
                 .replacingOccurrences(of: ".", with: "")
@@ -194,9 +212,9 @@ class AddProcedureView: MNView {
                 nameClient: nameTextField.text.orEmpty,
                 typeProcedure: typeJobTextField.text.orEmpty,
                 formPayment: paymentTextField.text.orEmpty,
-                value: amount.orEmpty,
+                value: amountValue.orEmpty,
                 email: email,
-                costs: valueCosts
+                costs: amountCosts
             )
         }
     }
