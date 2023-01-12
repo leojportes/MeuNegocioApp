@@ -51,6 +51,13 @@ public class Current: NSObject, MFMailComposeViewControllerDelegate {
         return amounts
     }
     
+    public func formatterAmountsReport(amounts: String, reduce: Bool = false ) -> String {
+        let proceduresAmounts: Double = Double(amounts) ?? 00.00
+        let values = proceduresAmounts.plata
+        let amounts = values.rawValue.plata.string(currency: .br)
+        return amounts
+    }
+    
     var isEmailVerified: Bool {
         Auth.auth().currentUser?.isEmailVerified ?? false
     }
