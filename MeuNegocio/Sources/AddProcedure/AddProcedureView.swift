@@ -177,8 +177,24 @@ class AddProcedureView: MNView {
     }
     
     private func checkValueCosts() -> Bool {
-        let value = valueTextField.text.orEmpty
-        if valueCosts > value {
+        let amountCosts = valueCosts
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let amountValue = valueTextField.text.orEmpty
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let doubleCosts = Double(amountCosts) ?? 0.0
+        let doubleValue = Double(amountValue) ?? 0.0
+        
+        if doubleCosts > doubleValue {
             return true
         } else {
             return false
