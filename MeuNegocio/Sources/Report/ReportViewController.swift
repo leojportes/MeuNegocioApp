@@ -89,7 +89,7 @@ final class ReportViewController: CoordinatedViewController {
         if hasDiscount {
             let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalDailyAmount)
             self.customView.setupDailyCard(percentResult, "\(dailyProcedures.count)")
-            self.customView.setupDailyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.today)")
+            self.customView.setupDailyTitleIfHasDiscount("\(percent)% do total líquido • \(ReportConsts.today)")
         } else {
             self.customView.setupDailyCard(makeTotalDailyAmount, "\(dailyProcedures.count)")
             self.customView.setupDailyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.today)")
@@ -106,7 +106,7 @@ final class ReportViewController: CoordinatedViewController {
         if hasDiscount {
             let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalWeeklyAmount)
             self.customView.setupWeeklyCard(percentResult, "\(weeklyProcedures.count)")
-            self.customView.setupWeeklyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.last7days)")
+            self.customView.setupWeeklyTitleIfHasDiscount("\(percent)% do total líquido • \(ReportConsts.last7days)")
         } else {
             self.customView.setupWeeklyCard(makeTotalWeeklyAmount, "\(weeklyProcedures.count)")
             self.customView.setupWeeklyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.last7days)")
@@ -123,7 +123,7 @@ final class ReportViewController: CoordinatedViewController {
         if hasDiscount {
             let percentResult = viewModel.percentageFromString(percent: percent, baseAmount: makeTotalMonthlyAmount)
             self.customView.setupMonthlyCard(percentResult, "\(monthlyProcedures.count)")
-            self.customView.setupMonthlyTitleIfHasDiscount("\(percent)% do total • \(ReportConsts.thisMonth)")
+            self.customView.setupMonthlyTitleIfHasDiscount("\(percent)% do total líquido • \(ReportConsts.thisMonth)")
         } else {
             self.customView.setupMonthlyCard(makeTotalMonthlyAmount, "\(monthlyProcedures.count)")
             self.customView.setupMonthlyTitleIfHasDiscount("\(ReportConsts.total) • \(ReportConsts.thisMonth)")

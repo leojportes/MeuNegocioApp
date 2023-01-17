@@ -66,7 +66,7 @@ class HomeViewModel: HomeViewModelProtocol, HomeViewModelOutputProtocol {
 
     /// We set up the total value of the procedure.
     func makeTotalAmount(_ procedures: [GetProcedureModel]) -> String {
-        let proceduresAmounts: [Double] = procedures.map({ Double($0.value) ?? 00.00 })
+        let proceduresAmounts: [Double] = procedures.map({ Double($0.valueLiquid ?? $0.value) ?? 00.00 })
         let values = proceduresAmounts.map({ $0.plata })
         let amount = values.map { $0 }
         let sum = amount.reduce(0, +)

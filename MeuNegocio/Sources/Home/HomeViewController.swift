@@ -42,7 +42,6 @@ final class HomeViewController: CoordinatedViewController {
         super.viewDidLoad()
         self.view = customView
         bindProperties()
-        openRateApp()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +65,7 @@ final class HomeViewController: CoordinatedViewController {
                 totalValues: self?.viewModel.input.makeTotalAmounts(result),
                 procedureValue: "\(result.count)")
             self?.customView.totalReceiptCard.loadingIndicatorView(show: false)
+            self?.openRateApp()
         }
         
         viewModel.output.userData.bind { [weak self] result in
@@ -131,7 +131,7 @@ final class HomeViewController: CoordinatedViewController {
 
     private func openRateApp() {
         let value = MNUserDefaults.get(boolForKey: MNKeys.rateApp) ?? false
-        if value.not {
+        if value.not && procedures.count > 0 {
             self.viewModel.navigateToRateApp()
         }
     }

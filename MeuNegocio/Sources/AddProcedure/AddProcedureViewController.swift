@@ -44,7 +44,7 @@ class AddProcedureViewController: CoordinatedViewController {
 
 extension AddProcedureViewController: AddProcedureActionsProtocol {
     
-    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String) {
+    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String, costs: String) {
         customView.addButton.loadingIndicator(show: true)
         viewModel.createProcedure(
             procedure: CreateProcedureModel(
@@ -53,7 +53,8 @@ extension AddProcedureViewController: AddProcedureActionsProtocol {
                 formPayment: formPayment,
                 value: value,
                 currentDate: .currentDateSystem,
-                email: email)) { [ weak self ] result in
+                email: email,
+                costs: costs)) { [ weak self ] result in
                     guard let self = self else {return}
                     if result {
                         self.customView.addButton.loadingIndicator(show: false)
@@ -69,10 +70,10 @@ extension AddProcedureViewController: AddProcedureActionsProtocol {
                 }
     }
 
-    func alertEmptyField() {
+    func alertForTextField(message: String) {
         customView.addButton.loadingIndicator(show: false)
         showAlert(title: "Atenção",
-                  messsage: "Preencha todos os campos.")
+                  messsage: message)
     }
     
 }

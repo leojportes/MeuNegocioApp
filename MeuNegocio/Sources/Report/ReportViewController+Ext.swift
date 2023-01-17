@@ -37,15 +37,18 @@ extension ReportViewController: PDFConfigurableTableDataSource {
     func getTableRows(table: ConfigurableTable!, for indexRow: Int!) -> [ColumnCell]! {
         let procedure = procedures[indexRow! - 1]
 
-        let amounts = Current.shared.formatterAmounts(amounts: procedures)
-        let amount = amounts[indexRow! - 1]
-
+        let amountsValueTotal = Current.shared.formatterAmountsReport(amounts: procedure.value )
+        let amountsCosts = Current.shared.formatterAmountsReport(amounts: procedure.costs ?? "")
+        let amountsLiquid = Current.shared.formatterAmountsReport(amounts: procedure.valueLiquid ?? procedure.value)
+        
         let column1 = ConfigurableTable.make_string_cell(val: procedure.formPayment.rawValue)
         let column2 = ConfigurableTable.make_string_cell(val: procedure.nameClient)
         let column3 = ConfigurableTable.make_string_cell(val: procedure.currentDate)
-        let column4 = ConfigurableTable.make_string_cell(val: amount)
+        let column4 = ConfigurableTable.make_string_cell(val: amountsValueTotal)
+        let column5 = ConfigurableTable.make_string_cell(val: amountsCosts)
+        let column6 = ConfigurableTable.make_string_cell(val: amountsLiquid)
         
-        return [column1, column2, column3, column4]
+        return [column1, column2, column3, column4, column5, column6]
     }
     
 }
