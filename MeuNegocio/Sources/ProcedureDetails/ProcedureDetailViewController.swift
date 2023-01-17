@@ -31,25 +31,28 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = customView
-        tappedOutViewBottomSheetDismiss()
+        title = "Detalhes"
         customView.setupView(procedure: procedure)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+    override func loadView() {
+        super.loadView()
+        view = customView
     }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: false)
+//    }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+//    }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        UIViewController.findCurrentController()?.viewWillAppear(true)
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        UIViewController.findCurrentController()?.viewWillAppear(true)
+//    }
 
     private func didTapDelete(procedure: String) {
         self.showDeleteAlert(closedScreen: true) {
@@ -66,7 +69,8 @@ final class ProcedureDetailViewController: CoordinatedViewController {
 
     private func closedView() {
         self.customView.deleteButton.loadingIndicator(show: false)
-        self.dismiss(animated: true)
+        self.modalTransitionStyle = .crossDissolve
+        self.navigationController?.popViewController(animated: false)
     }
 
 }

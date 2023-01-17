@@ -15,11 +15,10 @@ class ProcedureDetailCoordinator: BaseCoordinator {
         guard let procedure = procedure else { return }
         let viewModel = ProcedureDetailViewModel(coordinator: self)
         let controller = ProcedureDetailViewController(viewModel: viewModel, coordinator: self, procedure: procedure)
-        controller.modalPresentationStyle = .pageSheet
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
-        configuration.navigationController?.navigationBar.isHidden = true
-        configuration.navigationController?.present(controller, animated: true)
+        configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray
+        configuration.navigationController?.pushViewController(controller, animated: true)
     }
 
 }

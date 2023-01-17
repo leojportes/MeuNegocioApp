@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProcedureDetailView: BottomSheetView {
+final class ProcedureDetailView: UIView {
     
     // MARK: - Actions properties
     private var procedure: GetProcedureModel?
@@ -16,7 +16,7 @@ final class ProcedureDetailView: BottomSheetView {
     // MARK: - Init
     init(didTapDelete: @escaping (String) -> Void?) {
         self.didTapDelete = didTapDelete
-        super.init(height: 410)
+        super.init(frame: .zero)
         backgroundColor = .clear
         setupView()
     }
@@ -27,7 +27,7 @@ final class ProcedureDetailView: BottomSheetView {
     
     // MARK: - View Code
     
-    lazy var containerStack: UIStackView = {
+    lazy var detailsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .fill
@@ -72,11 +72,32 @@ final class ProcedureDetailView: BottomSheetView {
         return container
     }()
     
+    lazy var buttonsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.spacing = 16
+        stack.distribution = .fillEqually
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
+    private(set) lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .MNColors.blueEdit
+        button.setTitle("Editar", for: .normal)
+        button.setTitleColor(.MNColors.lightGray, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        button.roundCorners(cornerRadius: 15)
+        button.addTarget(nil, action: #selector(didTapEditButton), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private(set) lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "redLight")
-        button.setTitle("Deletar procedimento", for: .normal)
-        button.setTitleColor(UIColor(named: "redDarkest"), for: .normal)
+        button.backgroundColor = .red
+        button.setTitle("Deletar", for: .normal)
+        button.setTitleColor(.MNColors.lightGray, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         button.roundCorners(cornerRadius: 15)
         button.addTarget(nil, action: #selector(didTapDeleteButton), for: .touchUpInside)
@@ -106,40 +127,50 @@ final class ProcedureDetailView: BottomSheetView {
     }
 
     @objc
+    private func didTapEditButton() {
+        print("editar")
+    }
+    
+    @objc
     private func didTapDeleteButton() {
         self.deleteButton.loadingIndicator(show: true)
         self.didTapDelete(procedure?._id ?? .stringEmpty)
     }
+
 }
 
 extension ProcedureDetailView: ViewCodeContract {
     
     func setupHierarchy() {
-       
-        baseView.addSubview(containerStack)
+        addSubview(detailsStack)
+        detailsStack.addArrangedSubview(clientLabel)
+        detailsStack.addArrangedSubview(procedureLabel)
+        detailsStack.addArrangedSubview(paymentType)
+        detailsStack.addArrangedSubview(dateLabel)
+        detailsStack.addArrangedSubview(valueTotal)
+        detailsStack.addArrangedSubview(valueCosts)
+        detailsStack.addArrangedSubview(valueLiquid)
         
-        containerStack.addArrangedSubview(clientLabel)
-        containerStack.addArrangedSubview(procedureLabel)
-        containerStack.addArrangedSubview(paymentType)
-        containerStack.addArrangedSubview(dateLabel)
-        containerStack.addArrangedSubview(valueTotal)
-        containerStack.addArrangedSubview(valueCosts)
-        containerStack.addArrangedSubview(valueLiquid)
-        
-        baseView.addSubview(deleteButton)
+        addSubview(buttonsStack)
+        buttonsStack.addArrangedSubview(editButton)
+        buttonsStack.addArrangedSubview(deleteButton)
     }
 
     func setupConstraints() {
         
-        containerStack
-            .topAnchor(in: baseView, padding: 40)
-            .leftAnchor(in: baseView, padding: 20)
-            .rightAnchor(in: baseView, padding: 20)
+        detailsStack
+            .topAnchor(in: self, padding: 60)
+            .leftAnchor(in: self, padding: 20)
+            .rightAnchor(in: self, padding: 20)
         
-        deleteButton
-            .bottomAnchor(in: baseView, attribute: .bottom, padding: 16, layoutOption: .useSafeArea)
-            .leftAnchor(in: baseView, padding: 20)
-            .rightAnchor(in: baseView, padding: 20)
+        buttonsStack
+            .bottomAnchor(in: self, attribute: .bottom, padding: 16, layoutOption: .useSafeArea)
+            .leftAnchor(in: self, padding: 16)
+            .rightAnchor(in: self, padding: 16)
             .heightAnchor(45)
+    }
+    
+    func setupConfiguration() {
+        self.backgroundColor = .white
     }
 }
