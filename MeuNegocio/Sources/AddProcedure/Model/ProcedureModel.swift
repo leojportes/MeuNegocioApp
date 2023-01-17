@@ -15,6 +15,8 @@ public struct GetProcedureModel: Decodable {
     let value: String
     let currentDate: String
     let email: String
+    let costs: String?
+    let valueLiquid: String?
 }
 
 public struct CreateProcedureModel: Codable {
@@ -24,4 +26,5 @@ public struct CreateProcedureModel: Codable {
     let value: String
     let currentDate: String
     let email: String
+    let costs: String
 }

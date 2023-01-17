@@ -9,8 +9,13 @@ import UIKit
 import FirebaseAuth
 
 protocol AddProcedureActionsProtocol: AnyObject {
-    func addProcedure(nameClient: String, typeProcedure: String, formPayment: String, value: String, email: String)
-    func alertEmptyField()
+    func addProcedure(nameClient: String,
+                      typeProcedure: String,
+                      formPayment: String,
+                      value: String,
+                      email: String,
+                      costs: String)
+    func alertForTextField(message: String)
 }
 
 class AddProcedureView: MNView {
@@ -18,6 +23,7 @@ class AddProcedureView: MNView {
     // MARK: - Properties
     weak var delegateActions: AddProcedureActionsProtocol?
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
+    private var valueCosts: String = .stringEmpty
     
     // MARK: - Init
     override init() {
@@ -54,10 +60,10 @@ class AddProcedureView: MNView {
     }()
     
     lazy var containerStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [nameTextField, typeJobTextField, paymentTextField, valueTextField])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 24
-        stack.distribution = .fillEqually
+        stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
@@ -124,20 +130,12 @@ class AddProcedureView: MNView {
         return textField
     }()
     
-    private lazy var teste: CustomTextField = {
-        let textField = CustomTextField(
-            titlePlaceholder: "R$",
-            colorPlaceholder: .lightGray,
-            textColor: .MNColors.darkGray,
-            radius: 5,
-            borderColor: UIColor.systemGray.cgColor,
-            borderWidth: 0.5,
-            keyboardType: .numberPad
-        )
-        textField.heightAnchor(48)
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
-        return textField
+    lazy var costsView: CardCostsView = {
+        let container = CardCostsView(valueTextField: { self.setCostValue($0) })
+        container.backgroundColor = .MNColors.separatorGray
+        container.layer.cornerRadius = 15
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
     }()
 
     lazy var addButton: CustomSubmitButton = {
@@ -152,6 +150,10 @@ class AddProcedureView: MNView {
     }()
     
     // MARK: - Methods
+    
+    func setCostValue(_ value: String) {
+        valueCosts = value
+    }
 
     @objc
     private func myTextFieldDidChange(_ textField: UITextField) {
@@ -174,14 +176,48 @@ class AddProcedureView: MNView {
         return result
     }
     
+    private func checkValueCosts() -> Bool {
+        let amountCosts = valueCosts
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let amountValue = valueTextField.text.orEmpty
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let doubleCosts = Double(amountCosts) ?? 0.0
+        let doubleValue = Double(amountValue) ?? 0.0
+        
+        if doubleCosts > doubleValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - Action Buttons
     @objc
     private func handleAddButton() {
         if isSomeEmptyField() {
-            delegateActions?.alertEmptyField()
+            delegateActions?.alertForTextField(message: "Preencha todos os campos.")
+        } else if checkValueCosts(){
+            delegateActions?.alertForTextField(message: "O custo não pode ser maior que o valor do procedimento")
         } else {
             guard let email = Auth.auth().currentUser?.email else { return }
-            let amount = valueTextField.text?
+            let amountValue = valueTextField.text?
+                .replacingOccurrences(of: "R$", with: "")
+                .dropFirst()
+                .replacingOccurrences(of: ".", with: "")
+                .replacingOccurrences(of: ",", with: ".")
+                .replacingOccurrences(of: " ", with: ".")
+            
+            let amountCosts = valueCosts
                 .replacingOccurrences(of: "R$", with: "")
                 .dropFirst()
                 .replacingOccurrences(of: ".", with: "")
@@ -192,8 +228,9 @@ class AddProcedureView: MNView {
                 nameClient: nameTextField.text.orEmpty,
                 typeProcedure: typeJobTextField.text.orEmpty,
                 formPayment: paymentTextField.text.orEmpty,
-                value: amount.orEmpty,
-                email: email
+                value: amountValue.orEmpty,
+                email: email,
+                costs: amountCosts
             )
         }
     }
@@ -204,6 +241,13 @@ extension AddProcedureView: ViewCodeContract {
         addSubview(gripView)
         addSubview(subTitleLabel)
         addSubview(containerStack)
+        
+        containerStack.addArrangedSubview(nameTextField)
+        containerStack.addArrangedSubview(typeJobTextField)
+        containerStack.addArrangedSubview(paymentTextField)
+        containerStack.addArrangedSubview(valueTextField)
+        
+        addSubview(costsView)
         addSubview(addButton)
     }
     
@@ -223,9 +267,14 @@ extension AddProcedureView: ViewCodeContract {
             .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 30)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
+        
+        costsView
+            .topAnchor(in: containerStack, attribute: .bottom, padding: 24)
+            .leftAnchor(in: self, padding: 16)
+            .rightAnchor(in: self, padding: 16)
     
         addButton
-            .topAnchor(in: containerStack, attribute: .bottom, padding: 54)
+            .topAnchor(in: costsView, attribute: .bottom, padding: 24)
             .leftAnchor(in: self, attribute: .left, padding: 16)
             .rightAnchor(in: self, attribute: .right, padding: 16)
             .heightAnchor(48)
@@ -233,6 +282,7 @@ extension AddProcedureView: ViewCodeContract {
     
     func setupConfiguration() {
         backgroundColor = .white
+        costsView.customTextField.delegate = self
     }
 }
 
@@ -266,8 +316,13 @@ extension AddProcedureView: UITextFieldDelegate {
         if textField == valueTextField {
             maxLength = 13
         }
+        
         if textField == typeJobTextField {
-            maxLength = 28
+            maxLength = 60
+        }
+        
+        if textField == costsView.customTextField {
+            maxLength = 13
         }
         return newString.count <= maxLength
     }

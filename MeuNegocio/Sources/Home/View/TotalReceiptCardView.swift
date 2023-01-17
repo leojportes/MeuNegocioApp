@@ -20,7 +20,7 @@ class TotalReceiptCardView: CardView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private lazy var totalLabel = MNLabel(text: "Valor total recebido") .. {
+    private lazy var totalLabel = MNLabel(text: "Valor total líquido") .. {
         $0.font = UIFont.boldSystemFont(ofSize: 15)
         $0.textColor = .MNColors.grayDescription
     }
