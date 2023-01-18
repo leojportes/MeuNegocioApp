@@ -11,11 +11,16 @@ import UIKit
 class EditProcedureView: MNView {
         
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
-    var procedures: GetProcedureModel?
+    var valuesUpdate: (UpdateProcedureModel) -> Void = { _ in }
     
     override init() {
         super.init()
         setupView()
+    }
+    
+    convenience init(valuesUpdate: @escaping (UpdateProcedureModel) -> Void) {
+        self.init()
+        self.valuesUpdate = valuesUpdate
     }
     
     required init?(coder: NSCoder) {
@@ -139,8 +144,8 @@ class EditProcedureView: MNView {
                                          typeProcedure: typeJobTextField.text.orEmpty,
                                          formPayment: paymentTextField.text.orEmpty,
                                          value: valueTextField.text.orEmpty,
-                                         costs: valueTextField.text.orEmpty)
-        print(model)
+                                         costs: costsTextField.text.orEmpty)
+        valuesUpdate(model)
     }
 }
 
@@ -194,7 +199,7 @@ extension EditProcedureView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextField = textField
     }
-    
+
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.activeTextField = nil
     }

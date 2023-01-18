@@ -12,10 +12,12 @@ final class ProcedureDetailView: UIView {
     // MARK: - Actions properties
     private var procedure: GetProcedureModel?
     var didTapDelete: (String) -> Void?
+    var valuesUpdate: (UpdateProcedureModel) -> Void?
  
     // MARK: - Init
-    init(didTapDelete: @escaping (String) -> Void?) {
+    init(didTapDelete: @escaping (String) -> Void?, valuesUpdate: @escaping (UpdateProcedureModel) -> Void?) {
         self.didTapDelete = didTapDelete
+        self.valuesUpdate = valuesUpdate
         super.init(frame: .zero)
         backgroundColor = .clear
         setupView()
@@ -73,12 +75,11 @@ final class ProcedureDetailView: UIView {
     }()
     
     lazy var editingContainer: EditProcedureView = {
-        let container = EditProcedureView()
+        let container = EditProcedureView { self.valuesUpdate($0) }
         container.isHidden = true
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
-    
     
     lazy var buttonsStack: UIStackView = {
         let stack = UIStackView()

@@ -15,7 +15,9 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     private var procedure: GetProcedureModel
 
     // MARK: - View
-    private lazy var customView = ProcedureDetailView(didTapDelete: weakify { $0.didTapDelete(procedure: $1) })
+    private lazy var customView = ProcedureDetailView(didTapDelete: weakify { $0.deleteProcedure(procedure: $1) }, valuesUpdate: { self.updateProcedure(procedure: $0) })
+    
+    
 
     // MARK: - Init
     init(viewModel: ProcedureDetailViewModelProtocol, coordinator: CoordinatorProtocol, procedure: GetProcedureModel) {
@@ -40,8 +42,12 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         super.loadView()
         view = customView
     }
+    
+    private func updateProcedure(procedure: UpdateProcedureModel) {
+        print(procedure)
+    }
 
-    private func didTapDelete(procedure: String) {
+    private func deleteProcedure(procedure: String) {
         self.showDeleteAlert(closedScreen: true) {
             self.viewModel.deleteProcedure(procedure) { message in
                 DispatchQueue.main.async {
