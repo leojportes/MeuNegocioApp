@@ -9,6 +9,7 @@ import Foundation
 
 protocol ProcedureDetailViewModelProtocol: AnyObject {
     func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void)
+    func openEditProcedure(procedure: GetProcedureModel)
 }
 
 class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
@@ -28,6 +29,10 @@ class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
         service.deleteProcedure(procedure) { message in
             completion(message)
         }
+    }
+    
+    func openEditProcedure(procedure: GetProcedureModel) {
+        coordinator?.openEdit(procedure: procedure)
     }
 
 }

@@ -33,6 +33,7 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         super.viewDidLoad()
         title = "Detalhes"
         customView.setupView(procedure: procedure)
+        self.hideKeyboardWhenTappedAround()
     }
 
     override func loadView() {

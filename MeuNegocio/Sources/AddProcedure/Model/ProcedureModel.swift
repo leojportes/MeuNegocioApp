@@ -28,3 +28,11 @@ public struct CreateProcedureModel: Codable {
     let email: String
     let costs: String
 }
+
+public struct UpdateProcedureModel: Codable {
+    let nameClient: String
+    let typeProcedure: String
+    let formPayment: String
+    let value: String
+    let costs: String
+}

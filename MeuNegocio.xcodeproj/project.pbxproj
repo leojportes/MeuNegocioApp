@@ -25,6 +25,7 @@
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
 		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
 		5249214928C00621006F01DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249214828C00621006F01DA /* HomeViewModel.swift */; };
+		52589307297765940032E4B1 /* EditProcedureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52589306297765940032E4B1 /* EditProcedureView.swift */; };
 		52597A8629144F0200B71FBC /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 52597A8529144F0200B71FBC /* loading.json */; };
 		527D06D828AAD5ED001E0BE0 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */; };
 		527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */; };
@@ -176,6 +177,7 @@
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = MeuNegocio/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		52589306297765940032E4B1 /* EditProcedureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcedureView.swift; sourceTree = "<group>"; };
 		52597A8529144F0200B71FBC /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		527D06D728AAD5ED001E0BE0 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		527D06D928AAD60C001E0BE0 /* CreateAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountView.swift; sourceTree = "<group>"; };
@@ -510,6 +512,7 @@
 				C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */,
 				C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */,
 				C016B61628E0AFC4007372E4 /* ProcedureDetailViewController.swift */,
+				52589306297765940032E4B1 /* EditProcedureView.swift */,
 			);
 			path = ProcedureDetails;
 			sourceTree = "<group>";
@@ -1128,6 +1131,7 @@
 				C080E9B928E7D8CB00555D80 /* PDFConfigurationType.swift in Sources */,
 				5213DD17290C4C2300AFC980 /* KeychainService.swift in Sources */,
 				C0A741A127B19CD700391CE6 /* ViewCodeContract.swift in Sources */,
+				52589307297765940032E4B1 /* EditProcedureView.swift in Sources */,
 				C036EAA328F9AF260049C80D /* FilterSegmentedControl.swift in Sources */,
 				52B8A09428E7CA8700B1C9F7 /* UserOnboardingCoordinator.swift in Sources */,
 				52F59BFA295CE5CD0000CB20 /* TitleAndSubtitleView.swift in Sources */,

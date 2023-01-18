@@ -20,5 +20,10 @@ class ProcedureDetailCoordinator: BaseCoordinator {
         configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray
         configuration.navigationController?.pushViewController(controller, animated: true)
     }
+    
+    func openEdit(procedure: GetProcedureModel) {
+        print("PROCEDIMENTO A SER EDITADO: \(procedure)")
+        AddProcedureCoordinator(with: configuration).start()
+    }
 
 }

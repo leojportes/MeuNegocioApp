@@ -72,6 +72,14 @@ final class ProcedureDetailView: UIView {
         return container
     }()
     
+    lazy var editingContainer: EditProcedureView = {
+        let container = EditProcedureView()
+        container.isHidden = true
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
+    
     lazy var buttonsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -128,7 +136,10 @@ final class ProcedureDetailView: UIView {
 
     @objc
     private func didTapEditButton() {
-        print("editar")
+        editingContainer.setValues(procedure: procedure)
+        detailsStack.isHidden = true
+        editingContainer.isHidden = false
+        buttonsStack.isHidden = true
     }
     
     @objc
@@ -151,6 +162,8 @@ extension ProcedureDetailView: ViewCodeContract {
         detailsStack.addArrangedSubview(valueCosts)
         detailsStack.addArrangedSubview(valueLiquid)
         
+        addSubview(editingContainer)
+        
         addSubview(buttonsStack)
         buttonsStack.addArrangedSubview(editButton)
         buttonsStack.addArrangedSubview(deleteButton)
@@ -159,6 +172,11 @@ extension ProcedureDetailView: ViewCodeContract {
     func setupConstraints() {
         
         detailsStack
+            .topAnchor(in: self, padding: 60)
+            .leftAnchor(in: self, padding: 20)
+            .rightAnchor(in: self, padding: 20)
+        
+        editingContainer
             .topAnchor(in: self, padding: 60)
             .leftAnchor(in: self, padding: 20)
             .rightAnchor(in: self, padding: 20)
