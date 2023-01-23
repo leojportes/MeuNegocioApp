@@ -92,7 +92,7 @@ final class ProcedureDetailView: UIView {
     
     private(set) lazy var editButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .MNColors.blueEdit
+        button.backgroundColor = .MNColors.grayDescription
         button.setTitle("Editar", for: .normal)
         button.setTitleColor(.MNColors.lightGray, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
@@ -104,7 +104,7 @@ final class ProcedureDetailView: UIView {
     
     private(set) lazy var deleteButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .red
+        button.backgroundColor = .MNColors.redDelete
         button.setTitle("Deletar", for: .normal)
         button.setTitleColor(.MNColors.lightGray, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
