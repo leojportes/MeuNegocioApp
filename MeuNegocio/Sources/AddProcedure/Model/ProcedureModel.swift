@@ -29,10 +29,19 @@ public struct CreateProcedureModel: Codable {
     let costs: String
 }
 
-public struct UpdateProcedureModel: Codable {
+public struct ProceduresToUpdateModel: Codable {
     let nameClient: String
     let typeProcedure: String
     let formPayment: String
     let value: String
     let costs: String
+}
+
+public struct UpdatedProceduresModel: Codable {
+    let nameClient: String?
+    let typeProcedure: String?
+    let formPayment: String?
+    let value: String?
+    let costs: String?
+    let valueLiquid: String?
 }

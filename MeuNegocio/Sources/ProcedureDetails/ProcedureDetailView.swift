@@ -12,10 +12,10 @@ final class ProcedureDetailView: UIView {
     // MARK: - Actions properties
     private var procedure: GetProcedureModel?
     var didTapDelete: (String) -> Void?
-    var valuesUpdate: (UpdateProcedureModel) -> Void?
+    var valuesUpdate: (GetProcedureModel) -> Void?
  
     // MARK: - Init
-    init(didTapDelete: @escaping (String) -> Void?, valuesUpdate: @escaping (UpdateProcedureModel) -> Void?) {
+    init(didTapDelete: @escaping (String) -> Void?, valuesUpdate: @escaping (GetProcedureModel) -> Void?) {
         self.didTapDelete = didTapDelete
         self.valuesUpdate = valuesUpdate
         super.init(frame: .zero)
@@ -134,6 +134,17 @@ final class ProcedureDetailView: UIView {
             valueCosts.configureView(title: "Custos:", subtitle: amountCosts.plata.string(currency: .br))
         }
     }
+    
+    func updated(_ result: Bool) {
+        if result {
+            detailsStack.isHidden = false
+            editingContainer.isHidden = true
+            buttonsStack.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                self.detailsStack.loadingIndicatorView(show: false)
+            })
+        }
+    }
 
     @objc
     private func didTapEditButton() {
@@ -141,6 +152,7 @@ final class ProcedureDetailView: UIView {
         detailsStack.isHidden = true
         editingContainer.isHidden = false
         buttonsStack.isHidden = true
+        detailsStack.loadingIndicatorView(show: true)
     }
     
     @objc

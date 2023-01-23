@@ -11,14 +11,15 @@ import UIKit
 class EditProcedureView: MNView {
         
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
-    var valuesUpdate: (UpdateProcedureModel) -> Void = { _ in }
+    private var procedures: GetProcedureModel?
+    var valuesUpdate: (GetProcedureModel) -> Void = { _ in }
     
     override init() {
         super.init()
         setupView()
     }
     
-    convenience init(valuesUpdate: @escaping (UpdateProcedureModel) -> Void) {
+    convenience init(valuesUpdate: @escaping (GetProcedureModel) -> Void) {
         self.init()
         self.valuesUpdate = valuesUpdate
     }
@@ -28,6 +29,7 @@ class EditProcedureView: MNView {
     }
     
     func setValues(procedure: GetProcedureModel?) {
+        procedures = procedure
         nameTextField.text = procedure?.nameClient
         typeJobTextField.text = procedure?.typeProcedure
         paymentTextField.text = procedure?.formPayment.rawValue
@@ -125,7 +127,7 @@ class EditProcedureView: MNView {
         return textField
     }()
     
-    lazy var addButton: CustomSubmitButton = {
+    lazy var saveButton: CustomSubmitButton = {
         let button = CustomSubmitButton(
             title: "Salvar",
             colorTitle: .MNColors.darkGray,
@@ -140,11 +142,19 @@ class EditProcedureView: MNView {
     //MARK: - Actions
     @objc
     private func handleAddButton() {
-        let model = UpdateProcedureModel(nameClient: nameTextField.text.orEmpty,
-                                         typeProcedure: typeJobTextField.text.orEmpty,
-                                         formPayment: paymentTextField.text.orEmpty,
-                                         value: valueTextField.text.orEmpty,
-                                         costs: costsTextField.text.orEmpty)
+        self.saveButton.loadingIndicator(show: true)
+        
+        guard let procedures = procedures else { return }
+        let model = GetProcedureModel(_id: procedures._id,
+                                      nameClient: nameTextField.text.orEmpty,
+                                      typeProcedure: typeJobTextField.text.orEmpty,
+                                      formPayment: PaymentMethodType(rawValue: paymentTextField.text.orEmpty) ?? .cash,
+                                      value: valueTextField.text.orEmpty,
+                                      currentDate: procedures.currentDate,
+                                      email: procedures.email,
+                                      costs: costsTextField.text.orEmpty,
+                                      valueLiquid: procedures.valueLiquid)
+
         valuesUpdate(model)
     }
 }
@@ -157,7 +167,7 @@ extension EditProcedureView: ViewCodeContract {
         editingStack.addArrangedSubview(paymentTextField)
         editingStack.addArrangedSubview(valueTextField)
         editingStack.addArrangedSubview(costsTextField)
-        editingStack.addArrangedSubview(addButton)
+        editingStack.addArrangedSubview(saveButton)
     }
 
     func setupConstraints() {

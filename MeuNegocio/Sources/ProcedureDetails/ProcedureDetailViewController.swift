@@ -43,8 +43,25 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         view = customView
     }
     
-    private func updateProcedure(procedure: UpdateProcedureModel) {
-        print(procedure)
+    private func updateProcedure(procedure: GetProcedureModel) {
+        self.viewModel.updateProcedure(procedure) { result in
+            self.customView.editingContainer.saveButton.loadingIndicator(show: false)
+            
+            let model = GetProcedureModel(_id: procedure._id,
+                                          nameClient: result.nameClient ?? procedure.nameClient,
+                                          typeProcedure: result.typeProcedure ?? procedure.typeProcedure,
+                                          formPayment: PaymentMethodType(rawValue: result.formPayment ?? "") ?? procedure.formPayment,
+                                          value: result.value ?? procedure.value,
+                                          currentDate: procedure.currentDate,
+                                          email: procedure.email,
+                                          costs: result.costs ?? procedure.costs,
+                                          valueLiquid: result.valueLiquid ?? procedure.valueLiquid
+            )
+            
+            self.showAlert(title: "", messsage: "Procedimento atualizado!") {
+                self.updateLayout(model)
+            }
+        }
     }
 
     private func deleteProcedure(procedure: String) {
@@ -64,6 +81,11 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         self.customView.deleteButton.loadingIndicator(show: false)
         self.modalTransitionStyle = .crossDissolve
         self.navigationController?.popViewController(animated: false)
+    }
+    
+    private func updateLayout(_ procedures: GetProcedureModel) {
+        self.customView.setupView(procedure: procedures)
+        self.customView.updated(true)
     }
 
 }
