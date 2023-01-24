@@ -24,6 +24,7 @@
 		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
 		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
+		52402322297F660400CBEDB2 /* ProcedureDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52402321297F660400CBEDB2 /* ProcedureDetailService.swift */; };
 		5249214928C00621006F01DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249214828C00621006F01DA /* HomeViewModel.swift */; };
 		52589307297765940032E4B1 /* EditProcedureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52589306297765940032E4B1 /* EditProcedureView.swift */; };
 		52597A8629144F0200B71FBC /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = 52597A8529144F0200B71FBC /* loading.json */; };
@@ -176,6 +177,7 @@
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = MeuNegocio/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
+		52402321297F660400CBEDB2 /* ProcedureDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailService.swift; sourceTree = "<group>"; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		52589306297765940032E4B1 /* EditProcedureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcedureView.swift; sourceTree = "<group>"; };
 		52597A8529144F0200B71FBC /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
@@ -374,6 +376,15 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		5240232329800C7E00CBEDB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52589306297765940032E4B1 /* EditProcedureView.swift */,
+				C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		525A98B128DE36C800920AA5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,11 +519,11 @@
 		C016B61E28E0BC9C007372E4 /* ProcedureDetails */ = {
 			isa = PBXGroup;
 			children = (
+				5240232329800C7E00CBEDB2 /* View */,
 				C016B61A28E0B341007372E4 /* ProcedureDetailCoordinator.swift */,
 				C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */,
-				C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */,
 				C016B61628E0AFC4007372E4 /* ProcedureDetailViewController.swift */,
-				52589306297765940032E4B1 /* EditProcedureView.swift */,
+				52402321297F660400CBEDB2 /* ProcedureDetailService.swift */,
 			);
 			path = ProcedureDetails;
 			sourceTree = "<group>";
@@ -1122,6 +1133,7 @@
 				52C4AE7228B563780055E384 /* ProfileView.swift in Sources */,
 				52F59BF8295CAFD50000CB20 /* CardCostsView.swift in Sources */,
 				C036EAA528FBB69D0049C80D /* Constants.swift in Sources */,
+				52402322297F660400CBEDB2 /* ProcedureDetailService.swift in Sources */,
 				C0AFFEF028C4838600B816AA /* Current.swift in Sources */,
 				52ECF874295112A100C6230A /* RateAppViewModel.swift in Sources */,
 				5249214928C00621006F01DA /* HomeViewModel.swift in Sources */,

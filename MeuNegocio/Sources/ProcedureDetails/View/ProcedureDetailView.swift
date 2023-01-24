@@ -12,12 +12,10 @@ final class ProcedureDetailView: UIView {
     // MARK: - Actions properties
     private var procedure: GetProcedureModel?
     var didTapDelete: (String) -> Void?
-    var valuesUpdate: (GetProcedureModel) -> Void?
  
     // MARK: - Init
-    init(didTapDelete: @escaping (String) -> Void?, valuesUpdate: @escaping (GetProcedureModel) -> Void?) {
+    init(didTapDelete: @escaping (String) -> Void?) {
         self.didTapDelete = didTapDelete
-        self.valuesUpdate = valuesUpdate
         super.init(frame: .zero)
         backgroundColor = .clear
         setupView()
@@ -75,7 +73,7 @@ final class ProcedureDetailView: UIView {
     }()
     
     lazy var editingContainer: EditProcedureView = {
-        let container = EditProcedureView { self.valuesUpdate($0) }
+        let container = EditProcedureView()
         container.isHidden = true
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
@@ -127,11 +125,15 @@ final class ProcedureDetailView: UIView {
         dateLabel.configureView(title: "Data:", subtitle: procedure.currentDate)
         valueTotal.configureView(title: "Valor recebido:", subtitle: amountTotal.plata.string(currency: .br))
         
+        /// Se tiver custo vai aparecer o o custo e o valor total
         if procedure.costs != .stringEmpty && procedure.costs != nil {
             valueCosts.isHidden = false
             valueLiquid.isHidden = false
             valueLiquid.configureView(title: "Lucro:", subtitle: amountLiquid.plata.string(currency: .br))
             valueCosts.configureView(title: "Custos:", subtitle: amountCosts.plata.string(currency: .br))
+        } else {
+            valueCosts.isHidden = true
+            valueLiquid.isHidden = true
         }
     }
     

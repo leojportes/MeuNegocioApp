@@ -15,9 +15,7 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     private var procedure: GetProcedureModel
 
     // MARK: - View
-    private lazy var customView = ProcedureDetailView(didTapDelete: weakify { $0.deleteProcedure(procedure: $1) }, valuesUpdate: { self.updateProcedure(procedure: $0) })
-    
-    
+    private lazy var customView = ProcedureDetailView(didTapDelete: weakify { $0.deleteProcedure(procedure: $1) })
 
     // MARK: - Init
     init(viewModel: ProcedureDetailViewModelProtocol, coordinator: CoordinatorProtocol, procedure: GetProcedureModel) {
@@ -35,33 +33,13 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         super.viewDidLoad()
         title = "Detalhes"
         customView.setupView(procedure: procedure)
+        customView.editingContainer.delegate = self
         self.hideKeyboardWhenTappedAround()
     }
 
     override func loadView() {
         super.loadView()
         view = customView
-    }
-    
-    private func updateProcedure(procedure: GetProcedureModel) {
-        self.viewModel.updateProcedure(procedure) { result in
-            self.customView.editingContainer.saveButton.loadingIndicator(show: false)
-            
-            let model = GetProcedureModel(_id: procedure._id,
-                                          nameClient: result.nameClient ?? procedure.nameClient,
-                                          typeProcedure: result.typeProcedure ?? procedure.typeProcedure,
-                                          formPayment: PaymentMethodType(rawValue: result.formPayment ?? "") ?? procedure.formPayment,
-                                          value: result.value ?? procedure.value,
-                                          currentDate: procedure.currentDate,
-                                          email: procedure.email,
-                                          costs: result.costs ?? procedure.costs,
-                                          valueLiquid: result.valueLiquid ?? procedure.valueLiquid
-            )
-            
-            self.showAlert(title: "", messsage: "Procedimento atualizado!") {
-                self.updateLayout(model)
-            }
-        }
     }
 
     private func deleteProcedure(procedure: String) {
@@ -88,4 +66,40 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         self.customView.updated(true)
     }
 
+}
+
+extension ProcedureDetailViewController: EditProcedureDelegate {
+    func alertForTextField(message: String) {
+        customView.editingContainer.saveButton.loadingIndicator(show: false)
+        showAlert(title: "", messsage: message)
+    }
+    
+    func isSomeEmptyField(message: String) {
+        customView.editingContainer.saveButton.loadingIndicator(show: false)
+        showAlert(title: "", messsage: message)
+    }
+    
+    func saveProcedure(procedures: GetProcedureModel) {
+        self.viewModel.updateProcedure(procedures) { result, isSuccess in
+            self.customView.editingContainer.saveButton.loadingIndicator(show: false)
+            let model = GetProcedureModel(_id: procedures._id,
+                                          nameClient: result.nameClient ?? procedures.nameClient,
+                                          typeProcedure: result.typeProcedure ?? procedures.typeProcedure,
+                                          formPayment: PaymentMethodType(rawValue: result.formPayment ?? "") ?? procedures.formPayment,
+                                          value: result.value ?? procedures.value,
+                                          currentDate: procedures.currentDate,
+                                          email: procedures.email,
+                                          costs: result.costs,
+                                          valueLiquid: result.valueLiquid)
+            if isSuccess {
+                self.showAlert(title: "", messsage: "Procedimento atualizado!") {
+                    self.updateLayout(model)
+                }
+            } else {
+                self.showAlert(title: "Ocorreu um erro", messsage: "Tente novamente mais tarde!")
+            }
+        }
+    }
+    
+    
 }

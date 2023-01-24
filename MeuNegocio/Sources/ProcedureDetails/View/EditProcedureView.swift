@@ -8,20 +8,21 @@
 import Foundation
 import UIKit
 
+protocol EditProcedureDelegate: AnyObject {
+    func alertForTextField(message: String)
+    func isSomeEmptyField(message: String)
+    func saveProcedure(procedures: GetProcedureModel)
+}
+
 class EditProcedureView: MNView {
         
     private let paymentMethods: [PaymentMethodType] = [.pix, .cash, .credit, .debit, .other]
     private var procedures: GetProcedureModel?
-    var valuesUpdate: (GetProcedureModel) -> Void = { _ in }
+    weak var delegate: EditProcedureDelegate?
     
     override init() {
         super.init()
         setupView()
-    }
-    
-    convenience init(valuesUpdate: @escaping (GetProcedureModel) -> Void) {
-        self.init()
-        self.valuesUpdate = valuesUpdate
     }
     
     required init?(coder: NSCoder) {
@@ -30,11 +31,13 @@ class EditProcedureView: MNView {
     
     func setValues(procedure: GetProcedureModel?) {
         procedures = procedure
-        nameTextField.text = procedure?.nameClient
-        typeJobTextField.text = procedure?.typeProcedure
-        paymentTextField.text = procedure?.formPayment.rawValue
-        valueTextField.text = procedure?.value
-        costsTextField.text = procedure?.costs
+        guard let procedure = procedure else { return }
+        
+        nameTextField.text = procedure.nameClient
+        typeJobTextField.text = procedure.typeProcedure
+        paymentTextField.text = procedure.formPayment.rawValue
+        valueTextField.text = procedure.value.currencyInputFormatting()
+        costsTextField.text = procedure.costs?.currencyInputFormatting()
     }
     
     private lazy var pickerView = UIPickerView() .. {
@@ -109,6 +112,7 @@ class EditProcedureView: MNView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
+        textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         textField.delegate = self
         return textField
     }()
@@ -123,6 +127,7 @@ class EditProcedureView: MNView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
+        textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         textField.delegate = self
         return textField
     }()
@@ -139,23 +144,90 @@ class EditProcedureView: MNView {
         return button
     }()
     
-    //MARK: - Actions
+    //MARK: - Methods
+    @objc
+    private func myTextFieldDidChange(_ textField: UITextField) {
+        if let amountString = textField.text?.currencyInputFormatting() {
+            textField.text = amountString
+        }
+    }
+    
     @objc
     private func handleAddButton() {
         self.saveButton.loadingIndicator(show: true)
-        
         guard let procedures = procedures else { return }
+        
+        let amountValue = valueTextField.text?
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let amountCosts = costsTextField.text?
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
         let model = GetProcedureModel(_id: procedures._id,
                                       nameClient: nameTextField.text.orEmpty,
                                       typeProcedure: typeJobTextField.text.orEmpty,
                                       formPayment: PaymentMethodType(rawValue: paymentTextField.text.orEmpty) ?? .cash,
-                                      value: valueTextField.text.orEmpty,
+                                      value: amountValue.orEmpty,
                                       currentDate: procedures.currentDate,
                                       email: procedures.email,
-                                      costs: costsTextField.text.orEmpty,
+                                      costs: amountCosts,
                                       valueLiquid: procedures.valueLiquid)
+        
+        if isSomeEmptyField() {
+            delegate?.isSomeEmptyField(message: "Preencha todos os campos.")
+        } else if checkValueCosts(){
+            delegate?.alertForTextField(message: "O custo não pode ser maior que o valor do procedimento")
+        } else {
+            delegate?.saveProcedure(procedures: model)
+        }
 
-        valuesUpdate(model)
+    }
+    
+    private func checkValueCosts() -> Bool {
+        let amountCosts = costsTextField.text.orEmpty
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let amountValue = valueTextField.text.orEmpty
+            .replacingOccurrences(of: "R$", with: "")
+            .dropFirst()
+            .replacingOccurrences(of: ".", with: "")
+            .replacingOccurrences(of: ",", with: ".")
+            .replacingOccurrences(of: " ", with: ".")
+        
+        let doubleCosts = Double(amountCosts) ?? 0.0
+        let doubleValue = Double(amountValue) ?? 0.0
+        
+        if doubleCosts > doubleValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func isSomeEmptyField() -> Bool {
+        var result: Bool = false
+        let name = nameTextField.text.orEmpty
+        let typeJob = typeJobTextField.text.orEmpty
+        let payment = paymentTextField.text.orEmpty
+        let value = valueTextField.text.orEmpty
+        
+        let someAreEmpty = name.isEmpty || typeJob.isEmpty || payment.isEmpty || value.isEmpty
+
+        result = someAreEmpty ? true : false
+
+        return result
     }
 }
 
