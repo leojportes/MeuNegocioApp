@@ -41,6 +41,8 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         super.loadView()
         view = customView
     }
+    
+    
 
     private func deleteProcedure(procedure: String) {
         self.showDeleteAlert(closedScreen: true) {

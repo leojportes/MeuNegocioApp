@@ -26,6 +26,11 @@ final class ProcedureDetailView: UIView {
     }
     
     // MARK: - View Code
+    private lazy var gripView = UIView() .. {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .lightGray
+        $0.roundCorners(cornerRadius: 2)
+    }
     
     lazy var detailsStack: UIStackView = {
         let stack = UIStackView()
@@ -75,6 +80,7 @@ final class ProcedureDetailView: UIView {
     lazy var editingContainer: EditProcedureView = {
         let container = EditProcedureView()
         container.isHidden = true
+//        container.backgroundColor = .green
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
@@ -119,6 +125,7 @@ final class ProcedureDetailView: UIView {
         let amountLiquid = Double(procedure.valueLiquid ?? procedure.value) ?? 0.0
         let amountTotal = Double(procedure.value) ?? 0.0
         let amountCosts = Double(procedure.costs ?? .stringEmpty) ?? 0.0
+        
         clientLabel.configureView(title: "Cliente:", subtitle: procedure.nameClient)
         procedureLabel.configureView(title: "Procedimento:", subtitle: procedure.typeProcedure)
         paymentType.configureView(title: "Metódo de pagamento:", subtitle: procedure.formPayment.rawValue)
@@ -168,6 +175,7 @@ final class ProcedureDetailView: UIView {
 extension ProcedureDetailView: ViewCodeContract {
     
     func setupHierarchy() {
+        addSubview(gripView)
         addSubview(detailsStack)
         detailsStack.addArrangedSubview(clientLabel)
         detailsStack.addArrangedSubview(procedureLabel)
@@ -186,15 +194,21 @@ extension ProcedureDetailView: ViewCodeContract {
 
     func setupConstraints() {
         
+        gripView
+            .topAnchor(in: self, padding: 10)
+            .centerX(in: self)
+            .heightAnchor(4)
+            .widthAnchor(34)
+        
         detailsStack
-            .topAnchor(in: self, padding: 60)
+            .topAnchor(in: gripView, attribute: .bottom, padding: 60)
             .leftAnchor(in: self, padding: 20)
             .rightAnchor(in: self, padding: 20)
         
         editingContainer
             .topAnchor(in: self, padding: 60)
-            .leftAnchor(in: self, padding: 20)
-            .rightAnchor(in: self, padding: 20)
+            .leftAnchor(in: self)
+            .rightAnchor(in: self)
         
         buttonsStack
             .bottomAnchor(in: self, attribute: .bottom, padding: 16, layoutOption: .useSafeArea)

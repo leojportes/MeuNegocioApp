@@ -40,6 +40,15 @@ class EditProcedureView: MNView {
         costsTextField.text = procedure.costs?.currencyInputFormatting()
     }
     
+    private lazy var titleLabel: MNLabel = {
+        let label = MNLabel(text: "Preencha com novos valores \n os campos que devem ser editados.",
+                            font: UIFont.systemFont(ofSize: 16),
+                            textColor: .darkGray)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
+    
     private lazy var pickerView = UIPickerView() .. {
         $0.delegate = self
         $0.dataSource = self
@@ -112,6 +121,7 @@ class EditProcedureView: MNView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
+        textField.heightAnchor(48)
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         textField.delegate = self
         return textField
@@ -127,6 +137,7 @@ class EditProcedureView: MNView {
             borderWidth: 0.5,
             keyboardType: .numberPad
         )
+        textField.heightAnchor(48)
         textField.addTarget(self, action: #selector(myTextFieldDidChange), for: .editingChanged)
         textField.delegate = self
         return textField
@@ -234,6 +245,7 @@ class EditProcedureView: MNView {
 extension EditProcedureView: ViewCodeContract {
     func setupHierarchy() {
         addSubview(editingStack)
+        editingStack.addArrangedSubview(titleLabel)
         editingStack.addArrangedSubview(nameTextField)
         editingStack.addArrangedSubview(typeJobTextField)
         editingStack.addArrangedSubview(paymentTextField)
@@ -244,18 +256,13 @@ extension EditProcedureView: ViewCodeContract {
 
     func setupConstraints() {
         editingStack
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .bottomAnchor(in: self)
-        
-        valueTextField
-            .heightAnchor(48)
-        
-        costsTextField
-            .heightAnchor(48)
+            .topAnchor(in: self, padding: 60)
+            .leftAnchor(in: self, padding: 16)
+            .rightAnchor(in: self, padding: 16)
+            .bottomAnchor(in: self, padding: 16)
     }
 }
+
 // MARK: - UITextFieldDelegate & UITextFieldDataSource
 
 extension EditProcedureView: UITextFieldDelegate {
@@ -267,11 +274,11 @@ extension EditProcedureView: UITextFieldDelegate {
         if textField == valueTextField {
             maxLength = 13
         }
-        
+
         if textField == typeJobTextField {
             maxLength = 60
         }
-        
+
         if textField == costsTextField {
             maxLength = 13
         }
@@ -286,7 +293,6 @@ extension EditProcedureView: UITextFieldDelegate {
         self.activeTextField = nil
     }
 }
-
 
 // MARK: - UIPickerViewDelegate & UIPickerViewDataSource
 extension EditProcedureView: UIPickerViewDelegate, UIPickerViewDataSource {
