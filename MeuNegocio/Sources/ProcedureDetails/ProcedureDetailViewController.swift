@@ -59,8 +59,7 @@ final class ProcedureDetailViewController: CoordinatedViewController {
 
     private func closedView() {
         self.customView.deleteButton.loadingIndicator(show: false)
-        self.modalTransitionStyle = .crossDissolve
-        self.navigationController?.popViewController(animated: false)
+        viewModel.closed()
     }
     
     private func updateLayout(_ procedures: GetProcedureModel) {

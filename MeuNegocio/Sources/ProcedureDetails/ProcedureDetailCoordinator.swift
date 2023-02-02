@@ -18,13 +18,11 @@ class ProcedureDetailCoordinator: BaseCoordinator {
         configuration.viewController = controller
         configuration.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         configuration.navigationController?.navigationBar.tintColor = .MNColors.darkGray
-//        configuration.navigationController?.pushViewController(controller, animated: true)
         configuration.navigationController?.present(controller, animated: true)
     }
     
-    func openEdit(procedure: GetProcedureModel) {
-        print("PROCEDIMENTO A SER EDITADO: \(procedure)")
-        AddProcedureCoordinator(with: configuration).start()
+    func closed() {
+        configuration.navigationController?.dismiss(animated: false)
     }
 
 }

@@ -256,7 +256,7 @@ extension EditProcedureView: ViewCodeContract {
 
     func setupConstraints() {
         editingStack
-            .topAnchor(in: self, padding: 60)
+            .topAnchor(in: self, padding: 16)
             .leftAnchor(in: self, padding: 16)
             .rightAnchor(in: self, padding: 16)
             .bottomAnchor(in: self, padding: 16)

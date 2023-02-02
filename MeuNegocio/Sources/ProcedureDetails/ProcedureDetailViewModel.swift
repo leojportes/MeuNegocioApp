@@ -10,6 +10,7 @@ import Foundation
 protocol ProcedureDetailViewModelProtocol: AnyObject {
     func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void)
     func updateProcedure(_ procedure: GetProcedureModel, completion: @escaping (UpdatedProceduresModel, Bool) -> Void)
+    func closed()
 }
 
 class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
@@ -35,6 +36,10 @@ class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
         service.updateProcedure(procedure: procedure) { model, result in
             completion(model, result)
         }
+    }
+    
+    func closed() {
+        coordinator?.closed()
     }
 
 }

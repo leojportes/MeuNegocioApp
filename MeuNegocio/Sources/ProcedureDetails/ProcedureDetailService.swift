@@ -63,14 +63,7 @@ class ProcedureDetailService: ProcedureDetailServiceProtocol {
                 }
                 return
             }
-            
-            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-                DispatchQueue.main.async {
-                    completion(UpdatedProceduresModel(), false)
-                }
-                return
-            }
-            
+                    
             do {
                 let model = try JSONDecoder().decode(UpdatedProceduresModel.self, from: data)
                 DispatchQueue.main.async {
