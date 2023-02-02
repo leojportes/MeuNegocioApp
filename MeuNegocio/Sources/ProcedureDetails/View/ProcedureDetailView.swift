@@ -206,9 +206,10 @@ extension ProcedureDetailView: ViewCodeContract {
             .rightAnchor(in: self, padding: 20)
         
         editingContainer
-            .topAnchor(in: self, padding: 60)
+            .topAnchor(in: self)
             .leftAnchor(in: self)
             .rightAnchor(in: self)
+            .bottomAnchor(in: self)
         
         buttonsStack
             .bottomAnchor(in: self, attribute: .bottom, padding: 16, layoutOption: .useSafeArea)
