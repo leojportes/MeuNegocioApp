@@ -72,6 +72,7 @@ class LoginViewController: CoordinatedViewController {
         self.customView.loginButton.loadingIndicator(show: false)
         viewModel.fetchUser { [ weak self ] result in
             DispatchQueue.main.async {
+                MNUserDefaults.remove(key: MNKeys.emailNewUser)
                 if result.isEmpty {
                     self?.viewModel.navigateToUserOnboarding()
                 } else {

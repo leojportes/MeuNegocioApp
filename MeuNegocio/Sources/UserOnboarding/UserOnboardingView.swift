@@ -28,6 +28,18 @@ class UserOnboardingView: MNView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    lazy var contentView: UIView = {
+        let container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = false
+        return container
+    }()
+    
     lazy var titleLabel: MNLabel = {
         let label = MNLabel(
             text: "Olá, seja bem-vindo(a)!",
@@ -174,35 +186,48 @@ class UserOnboardingView: MNView {
 
 extension UserOnboardingView: ViewCodeContract {
     func setupHierarchy() {
-        addSubview(titleLabel)
-        addSubview(subTitleLabel)
-        addSubview(containerStack)
-        addSubview(continueButton)
+        self.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(subTitleLabel)
+        contentView.addSubview(containerStack)
+        contentView.addSubview(continueButton)
     }
     
     func setupConstraints() {
         
-        titleLabel
-            .topAnchor(in: self, attribute: .top, padding: 90)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+        scrollView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 130).isActive = true
+        
+        titleLabel
+            .topAnchor(in: contentView, attribute: .top, padding: 90)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
+
         subTitleLabel
             .topAnchor(in: titleLabel, attribute: .bottom, padding: 16)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
-        
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
+
         containerStack
             .topAnchor(in: subTitleLabel, attribute: .bottom, padding: 30)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
-        
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
+
         continueButton
             .topAnchor(in: containerStack, attribute: .bottom, padding: 48)
-            .leftAnchor(in: self, attribute: .left, padding: 16)
-            .rightAnchor(in: self, attribute: .right, padding: 16)
+            .leftAnchor(in: contentView, attribute: .left, padding: 16)
+            .rightAnchor(in: contentView, attribute: .right, padding: 16)
             .heightAnchor(48)
-        
     }
     
     func setupConfiguration() {
@@ -224,11 +249,11 @@ extension UserOnboardingView: UITextFieldDelegate {
         return newString.count <= maxLength
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.activeTextField = textField
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.activeTextField = nil
-    }
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        self.activeTextField = textField
+//    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        self.activeTextField = nil
+//    }
 }
