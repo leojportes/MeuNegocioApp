@@ -38,6 +38,7 @@ class LoginViewController: CoordinatedViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addNewEmailToTextField()
         customView.loginButton.loadingIndicator(show: false)
         dismissKeyboard()
     }
@@ -48,6 +49,11 @@ class LoginViewController: CoordinatedViewController {
     }
     
     // MARK: - Private methods
+    private func addNewEmailToTextField() {
+        guard let emailNewUser = MNUserDefaults.get(stringForKey: MNKeys.emailNewUser) else { return }
+        customView.setEmailNewUser(email: emailNewUser)
+    }
+    
     private func showError( _ descriptionError: String) {
         self.showAlert(title: "Atenção", messsage: descriptionError)
         self.customView.loginButton.loadingIndicator(show: false)
