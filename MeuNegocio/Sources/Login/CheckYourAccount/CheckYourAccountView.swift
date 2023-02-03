@@ -29,7 +29,7 @@ class CheckYourAccountView: UIView, ViewCodeContract {
 
     private lazy var emptyView: ErrorView = {
         let view = ErrorView(title: "Verifique seu e-mail!",
-                             subTitle: "Você receberá um e-mail com um link para verificar sua conta.",
+                             subTitle: "Foi enviado para seu email um link de verificação. Caso não tenha recebido clique em verificar conta para enviarmos um novo email ou verifique sua caixa de spam.",
                              imageName: "icon-alert-error")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white

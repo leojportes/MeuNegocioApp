@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateAccountViewController: CoordinatedViewController {
     
@@ -48,9 +49,18 @@ class CreateAccountViewController: CoordinatedViewController {
         customView?.closedView = weakify { $0.viewModel.closed()}
     }
     
+    private var authUser : User? {
+        return Auth.auth().currentUser
+    }
+    
     private func accountCreatedSuccessfully() {
-        showAlert(title: "Parabéns!", messsage: "Conta criada com sucesso.") {
-            self.viewModel.closed()
+        if self.authUser != nil && Current.shared.isEmailVerified.not {
+            self.authUser!.sendEmailVerification() { (error) in
+                self.showAlert(title: "Parabéns!",
+                               messsage: "Conta criada com sucesso. \n Foi enviado para seu email um link de verificação. Após verificar, retorne ao app para efetuar o login. \n Verifique sua caixa de spam.") {
+                    self.viewModel.closed()
+                }
+            }
         }
     }
 
