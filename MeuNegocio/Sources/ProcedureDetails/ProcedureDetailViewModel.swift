@@ -9,8 +9,10 @@ import Foundation
 
 protocol ProcedureDetailViewModelProtocol: AnyObject {
     func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void)
+    func goToEditProcedure(_ procedure: GetProcedureModel)
     func updateProcedure(_ procedure: GetProcedureModel, completion: @escaping (UpdatedProceduresModel, Bool) -> Void)
-    func closed()
+    func closed(_ type: Presentation)
+    var coordinator: ProcedureDetailCoordinator? { get set }
 }
 
 class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
@@ -18,7 +20,7 @@ class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
     private let service: ProcedureDetailServiceProtocol
 
     // MARK: - Properties
-    private var coordinator: ProcedureDetailCoordinator?
+    var coordinator: ProcedureDetailCoordinator?
 
     // MARK: - Init
     init(service: ProcedureDetailServiceProtocol = ProcedureDetailService(), coordinator: ProcedureDetailCoordinator?) {
@@ -38,8 +40,11 @@ class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
         }
     }
     
-    func closed() {
-        coordinator?.closed()
+    func goToEditProcedure(_ procedure: GetProcedureModel) {
+        coordinator?.routeEditProcedure(procedure)
     }
-
+    
+    func closed(_ type: Presentation) {
+        coordinator?.closed(type)
+    }
 }

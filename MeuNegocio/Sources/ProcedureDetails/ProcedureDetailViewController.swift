@@ -15,7 +15,10 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     private var procedure: GetProcedureModel
 
     // MARK: - View
-    private lazy var customView = ProcedureDetailView(didTapDelete: weakify { $0.deleteProcedure(procedure: $1) })
+    private lazy var customView = ProcedureDetailView(
+        didTapDelete: weakify { $0.deleteProcedure(procedure: $1) },
+        didTapEditProcedure: { self.editProcedure(procedure: $0)}
+    )
 
     // MARK: - Init
     init(viewModel: ProcedureDetailViewModelProtocol, coordinator: CoordinatorProtocol, procedure: GetProcedureModel) {
@@ -33,8 +36,8 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         super.viewDidLoad()
         title = "Detalhes"
         customView.setupView(procedure: procedure)
-        customView.editingContainer.delegate = self
         self.hideKeyboardWhenTappedAround()
+        viewModel.coordinator?.delegate = self
     }
 
     override func loadView() {
@@ -42,7 +45,9 @@ final class ProcedureDetailViewController: CoordinatedViewController {
         view = customView
     }
     
-    
+    private func editProcedure(procedure: GetProcedureModel) {
+        viewModel.goToEditProcedure(procedure)
+    }
 
     private func deleteProcedure(procedure: String) {
         self.showDeleteAlert(closedScreen: true) {
@@ -59,48 +64,21 @@ final class ProcedureDetailViewController: CoordinatedViewController {
 
     private func closedView() {
         self.customView.deleteButton.loadingIndicator(show: false)
-        viewModel.closed()
+        viewModel.closed(.push)
     }
     
-    private func updateLayout(_ procedures: GetProcedureModel) {
-        self.customView.setupView(procedure: procedures)
-        self.customView.updated(true)
+    private func reloadStackDetails() {
+        self.customView.detailsStack.loadingIndicatorView(show: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.customView.detailsStack.loadingIndicatorView(show: false)
+        })
     }
-
+    
 }
 
-extension ProcedureDetailViewController: EditProcedureDelegate {
-    func alertForTextField(message: String) {
-        customView.editingContainer.saveButton.loadingIndicator(show: false)
-        showAlert(title: "", messsage: message)
+extension ProcedureDetailViewController: CloseAndUpdateProcedureDelegate {
+    func updateProcedureDetails(_ procedure: GetProcedureModel) {
+        self.customView.setupView(procedure: procedure)
+        self.reloadStackDetails()
     }
-    
-    func isSomeEmptyField(message: String) {
-        customView.editingContainer.saveButton.loadingIndicator(show: false)
-        showAlert(title: "", messsage: message)
-    }
-    
-    func saveProcedure(procedures: GetProcedureModel) {
-        self.viewModel.updateProcedure(procedures) { result, isSuccess in
-            self.customView.editingContainer.saveButton.loadingIndicator(show: false)
-            let model = GetProcedureModel(_id: procedures._id,
-                                          nameClient: result.nameClient ?? procedures.nameClient,
-                                          typeProcedure: result.typeProcedure ?? procedures.typeProcedure,
-                                          formPayment: PaymentMethodType(rawValue: result.formPayment ?? "") ?? procedures.formPayment,
-                                          value: result.value ?? procedures.value,
-                                          currentDate: procedures.currentDate,
-                                          email: procedures.email,
-                                          costs: result.costs,
-                                          valueLiquid: result.valueLiquid)
-            if isSuccess {
-                self.showAlert(title: "", messsage: "Procedimento atualizado!") {
-                    self.updateLayout(model)
-                }
-            } else {
-                self.showAlert(title: "Ocorreu um erro", messsage: "Tente novamente mais tarde!")
-            }
-        }
-    }
-    
-    
 }

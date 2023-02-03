@@ -12,10 +12,12 @@ final class ProcedureDetailView: UIView {
     // MARK: - Actions properties
     private var procedure: GetProcedureModel?
     var didTapDelete: (String) -> Void?
+    var didTapEditProcedure: (GetProcedureModel) -> Void?
  
     // MARK: - Init
-    init(didTapDelete: @escaping (String) -> Void?) {
+    init(didTapDelete: @escaping (String) -> Void?, didTapEditProcedure: @escaping (GetProcedureModel) -> Void?) {
         self.didTapDelete = didTapDelete
+        self.didTapEditProcedure = didTapEditProcedure
         super.init(frame: .zero)
         backgroundColor = .clear
         setupView()
@@ -80,7 +82,6 @@ final class ProcedureDetailView: UIView {
     lazy var editingContainer: EditProcedureView = {
         let container = EditProcedureView()
         container.isHidden = true
-//        container.backgroundColor = .green
         container.translatesAutoresizingMaskIntoConstraints = false
         return container
     }()
@@ -143,25 +144,11 @@ final class ProcedureDetailView: UIView {
             valueLiquid.isHidden = true
         }
     }
-    
-    func updated(_ result: Bool) {
-        if result {
-            detailsStack.isHidden = false
-            editingContainer.isHidden = true
-            buttonsStack.isHidden = false
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-                self.detailsStack.loadingIndicatorView(show: false)
-            })
-        }
-    }
 
     @objc
     private func didTapEditButton() {
-        editingContainer.setValues(procedure: procedure)
-        detailsStack.isHidden = true
-        editingContainer.isHidden = false
-        buttonsStack.isHidden = true
-        detailsStack.loadingIndicatorView(show: true)
+        guard let procedure = procedure else { return }
+        didTapEditProcedure(procedure)
     }
     
     @objc
@@ -184,9 +171,7 @@ extension ProcedureDetailView: ViewCodeContract {
         detailsStack.addArrangedSubview(valueTotal)
         detailsStack.addArrangedSubview(valueCosts)
         detailsStack.addArrangedSubview(valueLiquid)
-        
-        addSubview(editingContainer)
-        
+                
         addSubview(buttonsStack)
         buttonsStack.addArrangedSubview(editButton)
         buttonsStack.addArrangedSubview(deleteButton)
@@ -194,22 +179,10 @@ extension ProcedureDetailView: ViewCodeContract {
 
     func setupConstraints() {
         
-        gripView
-            .topAnchor(in: self, padding: 10)
-            .centerX(in: self)
-            .heightAnchor(4)
-            .widthAnchor(34)
-        
         detailsStack
-            .topAnchor(in: gripView, attribute: .bottom, padding: 60)
+            .topAnchor(in: self, padding: 20)
             .leftAnchor(in: self, padding: 20)
             .rightAnchor(in: self, padding: 20)
-        
-        editingContainer
-            .topAnchor(in: self)
-            .leftAnchor(in: self)
-            .rightAnchor(in: self)
-            .bottomAnchor(in: self)
         
         buttonsStack
             .bottomAnchor(in: self, attribute: .bottom, padding: 16, layoutOption: .useSafeArea)

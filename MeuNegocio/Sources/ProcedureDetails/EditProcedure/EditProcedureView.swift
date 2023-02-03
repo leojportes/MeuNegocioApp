@@ -40,6 +40,12 @@ class EditProcedureView: MNView {
         costsTextField.text = procedure.costs?.currencyInputFormatting()
     }
     
+    private lazy var gripView = UIView() .. {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = .lightGray
+        $0.roundCorners(cornerRadius: 2)
+    }
+    
     private lazy var titleLabel: MNLabel = {
         let label = MNLabel(text: "Preencha com novos valores \n os campos que devem ser editados.",
                             font: UIFont.systemFont(ofSize: 16),
@@ -244,6 +250,7 @@ class EditProcedureView: MNView {
 
 extension EditProcedureView: ViewCodeContract {
     func setupHierarchy() {
+        addSubview(gripView)
         addSubview(editingStack)
         editingStack.addArrangedSubview(titleLabel)
         editingStack.addArrangedSubview(nameTextField)
@@ -255,10 +262,20 @@ extension EditProcedureView: ViewCodeContract {
     }
 
     func setupConstraints() {
+        gripView
+            .topAnchor(in: self, padding: 10)
+            .centerX(in: self)
+            .heightAnchor(4)
+            .widthAnchor(34)
+        
         editingStack
-            .topAnchor(in: self, padding: 60)
+            .topAnchor(in: gripView, padding: 40)
             .leftAnchor(in: self, padding: 16)
             .rightAnchor(in: self, padding: 16)
+    }
+    
+    func setupConfiguration() {
+        backgroundColor = .white
     }
 }
 

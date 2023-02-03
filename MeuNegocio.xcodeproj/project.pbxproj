@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52057DB1298C764000A051C1 /* EditProcedureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52057DB0298C764000A051C1 /* EditProcedureViewController.swift */; };
 		520C66A628A850270016F167 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A528A850270016F167 /* UITextField+Extensions.swift */; };
 		520C66A828A857A90016F167 /* CustomSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A728A857A80016F167 /* CustomSubmitButton.swift */; };
 		520C66AA28A862A20016F167 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C66A928A862A20016F167 /* CustomTextField.swift */; };
@@ -160,6 +161,7 @@
 		12373934365FD2041805703E /* Pods_MeuNegocio_MeuNegocioUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MeuNegocio_MeuNegocioUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2947D2963AD980C6890ACFF4 /* Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig"; path = "Target Support Files/Pods-MeuNegocio-MeuNegocioUITests/Pods-MeuNegocio-MeuNegocioUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2CB0E43712AAB451FF798EAB /* Pods-MeuNegocio-MeuNegocioUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MeuNegocio-MeuNegocioUITests.release.xcconfig"; path = "Target Support Files/Pods-MeuNegocio-MeuNegocioUITests/Pods-MeuNegocio-MeuNegocioUITests.release.xcconfig"; sourceTree = "<group>"; };
+		52057DB0298C764000A051C1 /* EditProcedureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProcedureViewController.swift; sourceTree = "<group>"; };
 		520C66A528A850270016F167 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
 		520C66A728A857A80016F167 /* CustomSubmitButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubmitButton.swift; sourceTree = "<group>"; };
 		520C66A928A862A20016F167 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -343,6 +345,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		52057DAF298C762700A051C1 /* EditProcedure */ = {
+			isa = PBXGroup;
+			children = (
+				52589306297765940032E4B1 /* EditProcedureView.swift */,
+				52057DB0298C764000A051C1 /* EditProcedureViewController.swift */,
+			);
+			path = EditProcedure;
+			sourceTree = "<group>";
+		};
 		5213DCFE290AFC0F00AFC980 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,15 +385,6 @@
 				521A929928AEBFE40024865B /* LoginViewModel.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		5240232329800C7E00CBEDB2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				52589306297765940032E4B1 /* EditProcedureView.swift */,
-				C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		525A98B128DE36C800920AA5 /* Home */ = {
@@ -519,8 +521,9 @@
 		C016B61E28E0BC9C007372E4 /* ProcedureDetails */ = {
 			isa = PBXGroup;
 			children = (
-				5240232329800C7E00CBEDB2 /* View */,
+				52057DAF298C762700A051C1 /* EditProcedure */,
 				C016B61A28E0B341007372E4 /* ProcedureDetailCoordinator.swift */,
+				C016B61828E0AFD5007372E4 /* ProcedureDetailView.swift */,
 				C016B61C28E0B3CC007372E4 /* ProcedureDetailViewModel.swift */,
 				C016B61628E0AFC4007372E4 /* ProcedureDetailViewController.swift */,
 				52402321297F660400CBEDB2 /* ProcedureDetailService.swift */,
@@ -1122,6 +1125,7 @@
 				C0A7411327B1953000391CE6 /* SceneDelegate.swift in Sources */,
 				5213DD02290B27BB00AFC980 /* MNKeys.swift in Sources */,
 				C0A7416327B197DE00391CE6 /* BaseCoordinator.swift in Sources */,
+				52057DB1298C764000A051C1 /* EditProcedureViewController.swift in Sources */,
 				C09BB5C527B81AD300C91F48 /* ProcedureTableViewCell.swift in Sources */,
 				C016B61928E0AFD5007372E4 /* ProcedureDetailView.swift in Sources */,
 				52B8A08D28E7B4D300B1C9F7 /* HomeService.swift in Sources */,
