@@ -15,4 +15,27 @@ extension UITextField {
         self.leftView = paddingView
         self.leftViewMode = .always
     }
+    
+    func addDoneButtonToKeyboard() {
+        let doneButton = UIButton(type: .system)
+        doneButton.setTitle("Fechar", for: .normal)
+        doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+        doneButton.sizeToFit()
+
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = .black
+        toolBar.sizeToFit()
+
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButtonItem = UIBarButtonItem(customView: doneButton)
+        toolBar.setItems([flexibleSpace, doneButtonItem], animated: false)
+
+        self.inputAccessoryView = toolBar
+    }
+
+    @objc func doneButtonTapped() {
+        self.resignFirstResponder()
+    }
 }
