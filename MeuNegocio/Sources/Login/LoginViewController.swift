@@ -54,8 +54,11 @@ class LoginViewController: CoordinatedViewController {
     }
     
     private func checkNewUser() {
+        /// em caso de email não verificado é removida as credenciais para auto login
+        /// e direciona o usuario para tela de verificação de conta.
         if Current.shared.isEmailVerified.not {
             DispatchQueue.main.async {
+                KeychainService.deleteCredentials()
                 self.viewModel.navigateToCheckYourAccount()
             }
             return
