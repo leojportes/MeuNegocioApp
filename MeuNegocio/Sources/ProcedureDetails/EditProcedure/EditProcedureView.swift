@@ -135,7 +135,7 @@ class EditProcedureView: MNView {
     
     private lazy var costsTextField: CustomTextField = {
         let textField = CustomTextField(
-            titlePlaceholder: "R$",
+            titlePlaceholder: "Custo",
             colorPlaceholder: .lightGray,
             textColor: .MNColors.darkGray,
             radius: 5,
