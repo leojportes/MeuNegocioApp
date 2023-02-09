@@ -33,11 +33,14 @@ class EditProcedureView: MNView {
         procedures = procedure
         guard let procedure = procedure else { return }
         
+        let amountTotal = Double(procedure.value) ?? 0.0
+        let amountCosts = Double(procedure.costs ?? .stringEmpty)
+        
         nameTextField.text = procedure.nameClient
         typeJobTextField.text = procedure.typeProcedure
         paymentTextField.text = procedure.formPayment.rawValue
-        valueTextField.text = procedure.value.currencyInputFormatting()
-        costsTextField.text = procedure.costs?.currencyInputFormatting()
+        valueTextField.text = amountTotal.plata.string(currency: .br)
+        costsTextField.text = amountCosts?.plata.string(currency: .br)
     }
     
     private lazy var gripView = UIView() .. {
