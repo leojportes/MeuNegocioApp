@@ -9,6 +9,10 @@ import Foundation
 
 protocol ProcedureDetailViewModelProtocol: AnyObject {
     func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void)
+    func goToEditProcedure(_ procedure: GetProcedureModel)
+    func updateProcedure(_ procedure: GetProcedureModel, completion: @escaping (UpdatedProceduresModel, Bool) -> Void)
+    func closed(_ type: Presentation)
+    var coordinator: ProcedureDetailCoordinator? { get set }
 }
 
 class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
@@ -16,7 +20,7 @@ class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
     private let service: ProcedureDetailServiceProtocol
 
     // MARK: - Properties
-    private var coordinator: ProcedureDetailCoordinator?
+    var coordinator: ProcedureDetailCoordinator?
 
     // MARK: - Init
     init(service: ProcedureDetailServiceProtocol = ProcedureDetailService(), coordinator: ProcedureDetailCoordinator?) {
@@ -29,25 +33,18 @@ class ProcedureDetailViewModel: ProcedureDetailViewModelProtocol {
             completion(message)
         }
     }
-
-}
-
-protocol ProcedureDetailServiceProtocol {
-    func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void)
-}
-
-class ProcedureDetailService: ProcedureDetailServiceProtocol {
-
-    /// Delete procedure
-    func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void) {
-        guard let url = URL(string: "http://54.86.122.10:3000/procedure/\(procedure)") else {
-            print("Error: cannot create URL")
-            return
+    
+    func updateProcedure(_ procedure: GetProcedureModel, completion: @escaping (UpdatedProceduresModel, Bool) -> Void) {
+        service.updateProcedure(procedure: procedure) { model, result in
+            completion(model, result)
         }
-        var urlReq = URLRequest(url: url)
-        urlReq.httpMethod = "DELETE"
-        URLSession.shared.dataTask(with: urlReq) { data, response, error in
-            completion(error?.localizedDescription ?? "Deletado com sucesso!")
-        }.resume()
+    }
+    
+    func goToEditProcedure(_ procedure: GetProcedureModel) {
+        coordinator?.routeEditProcedure(procedure)
+    }
+    
+    func closed(_ type: Presentation) {
+        coordinator?.closed(type)
     }
 }

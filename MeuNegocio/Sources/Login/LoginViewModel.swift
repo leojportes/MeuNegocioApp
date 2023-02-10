@@ -37,7 +37,6 @@ class LoginViewModel: LoginViewModelProtocol {
                 resultLogin(false, self.descriptionError(error: typeError))
             } else {
                 MNUserDefaults.set(value: true, forKey: MNKeys.authenticated)
-                KeychainService.saveCredentials(email: email, password: password)
                 MNUserDefaults.remove(key: MNKeys.loginWithApple)
                 resultLogin(true, .stringEmpty)
             }

@@ -260,7 +260,7 @@ extension AddProcedureView: ViewCodeContract {
             .widthAnchor(34)
         
         subTitleLabel
-            .topAnchor(in: self, padding: 80)
+            .topAnchor(in: self, padding: 60)
             .centerX(in: self)
         
         containerStack

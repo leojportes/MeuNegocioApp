@@ -51,6 +51,15 @@ public extension UIColor {
         public static var grayRateApp: UIColor {
             return UIColor(named: "grayRateApp") ?? UIColor.gray
         }
+        
+        public static var blueEdit: UIColor {
+            return UIColor(named: "blueEdit") ?? UIColor.gray
+        }
+        
+        public static var redDelete: UIColor {
+            return UIColor(named: "redDarkest") ?? UIColor.gray
+        }
+        
     }
     
 }
