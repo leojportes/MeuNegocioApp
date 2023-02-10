@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateAccountViewController: CoordinatedViewController {
     
@@ -34,11 +35,17 @@ class CreateAccountViewController: CoordinatedViewController {
         self.view = customView
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UIViewController.findCurrentController()?.viewWillAppear(true)
+    }
+    
     private func createAccount() {
         customView?.createAccount = weakify { weakSelf, email, password in
             weakSelf.viewModel.createAccount(email, password, resultCreateUser: { result, descriptionError  in
                 weakSelf.customView?.createAccountButton.loadingIndicator(show: false)
                 if result {
+                    MNUserDefaults.set(value: email, forKey: MNKeys.emailNewUser)
                     weakSelf.accountCreatedSuccessfully()
                 } else {
                     weakSelf.showAlert(title: "Atenção", messsage: descriptionError)
@@ -48,9 +55,18 @@ class CreateAccountViewController: CoordinatedViewController {
         customView?.closedView = weakify { $0.viewModel.closed()}
     }
     
+    private var authUser : User? {
+        return Auth.auth().currentUser
+    }
+    
     private func accountCreatedSuccessfully() {
-        showAlert(title: "Parabéns!", messsage: "Conta criada com sucesso.") {
-            self.viewModel.closed()
+        if self.authUser != nil && Current.shared.isEmailVerified.not {
+            self.authUser!.sendEmailVerification() { (error) in
+                self.showAlert(title: "Parabéns!",
+                               messsage: "Conta criada com sucesso. \n Foi enviado para seu email um link de verificação. Após verificar, retorne ao app para efetuar o login. \n Verifique sua caixa de spam.") {
+                    self.viewModel.closed()
+                }
+            }
         }
     }
 

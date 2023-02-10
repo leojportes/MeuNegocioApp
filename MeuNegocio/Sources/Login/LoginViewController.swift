@@ -38,6 +38,7 @@ class LoginViewController: CoordinatedViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        addNewEmailToTextField()
         customView.loginButton.loadingIndicator(show: false)
         dismissKeyboard()
     }
@@ -48,14 +49,22 @@ class LoginViewController: CoordinatedViewController {
     }
     
     // MARK: - Private methods
+    private func addNewEmailToTextField() {
+        guard let emailNewUser = MNUserDefaults.get(stringForKey: MNKeys.emailNewUser) else { return }
+        customView.setEmailNewUser(email: emailNewUser)
+    }
+    
     private func showError( _ descriptionError: String) {
         self.showAlert(title: "Atenção", messsage: descriptionError)
         self.customView.loginButton.loadingIndicator(show: false)
     }
     
-    private func checkNewUser() {
+    private func checkNewUser(email: String = "", password: String = "") {
+        /// em caso de email não verificado é removida as credenciais para auto login
+        /// e direciona o usuario para tela de verificação de conta.
         if Current.shared.isEmailVerified.not {
             DispatchQueue.main.async {
+                KeychainService.deleteCredentials()
                 self.viewModel.navigateToCheckYourAccount()
             }
             return
@@ -63,9 +72,11 @@ class LoginViewController: CoordinatedViewController {
         self.customView.loginButton.loadingIndicator(show: false)
         viewModel.fetchUser { [ weak self ] result in
             DispatchQueue.main.async {
+                MNUserDefaults.remove(key: MNKeys.emailNewUser)
                 if result.isEmpty {
                     self?.viewModel.navigateToUserOnboarding()
                 } else {
+                    KeychainService.saveCredentials(email: email, password: password)
                     self?.viewModel.navigateToHome()
                     guard let email = Auth.auth().currentUser?.email else { return }
                     MNUserDefaults.set(value: true, forKey: email)
@@ -78,7 +89,7 @@ class LoginViewController: CoordinatedViewController {
 extension LoginViewController: LoginScreenActionsProtocol {
     func didTapLogin(_ email: String, _ password: String) {
         viewModel.authLogin(email, password) { [weak self] onSuccess, descriptionError in
-            onSuccess ? self?.checkNewUser() : self?.showError(descriptionError)
+            onSuccess ? self?.checkNewUser(email: email, password: password) : self?.showError(descriptionError)
         }
     }
     

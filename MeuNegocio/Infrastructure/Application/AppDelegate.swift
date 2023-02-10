@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if !isAuthenticated() {
             KeychainService.deleteCredentials()
+            
         }
         return true
     }

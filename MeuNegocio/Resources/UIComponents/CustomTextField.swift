@@ -40,6 +40,7 @@ class CustomTextField: UITextField {
         self.keyboardType = keyboardType
         self.isSecureTextEntry = isSecureTextEntry
         self.setPaddingLeft()
+        self.addDoneButtonToKeyboard()
 
         self.addSubview(baseLineview)
         baseLineview

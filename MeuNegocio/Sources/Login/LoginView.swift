@@ -216,6 +216,10 @@ class LoginView: UIView {
         }
     }
     
+    func setEmailNewUser(email: String) {
+        emailTextField.text = email
+    }
+    
     // MARK: - Action TextFields
     @objc private func textFieldEditingDidChange() {
         guard let email = emailTextField.text else { return }

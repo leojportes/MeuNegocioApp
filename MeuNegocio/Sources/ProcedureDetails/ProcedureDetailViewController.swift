@@ -15,7 +15,10 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     private var procedure: GetProcedureModel
 
     // MARK: - View
-    private lazy var customView = ProcedureDetailView(didTapDelete: weakify { $0.didTapDelete(procedure: $1) })
+    private lazy var customView = ProcedureDetailView(
+        didTapDelete: weakify { $0.deleteProcedure(procedure: $1) },
+        didTapEditProcedure: { self.editProcedure(procedure: $0)}
+    )
 
     // MARK: - Init
     init(viewModel: ProcedureDetailViewModelProtocol, coordinator: CoordinatorProtocol, procedure: GetProcedureModel) {
@@ -31,27 +34,22 @@ final class ProcedureDetailViewController: CoordinatedViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = customView
-        tappedOutViewBottomSheetDismiss()
+        title = "Detalhes"
         customView.setupView(procedure: procedure)
+        self.hideKeyboardWhenTappedAround()
+        viewModel.coordinator?.delegate = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
+    override func loadView() {
+        super.loadView()
+        view = customView
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        UIViewController.findCurrentController()?.viewWillAppear(true)
+    private func editProcedure(procedure: GetProcedureModel) {
+        viewModel.goToEditProcedure(procedure)
     }
 
-    private func didTapDelete(procedure: String) {
+    private func deleteProcedure(procedure: String) {
         self.showDeleteAlert(closedScreen: true) {
             self.viewModel.deleteProcedure(procedure) { message in
                 DispatchQueue.main.async {
@@ -66,7 +64,21 @@ final class ProcedureDetailViewController: CoordinatedViewController {
 
     private func closedView() {
         self.customView.deleteButton.loadingIndicator(show: false)
-        self.dismiss(animated: true)
+        viewModel.closed(.push)
     }
+    
+    private func reloadStackDetails() {
+        self.customView.detailsStack.loadingIndicatorView(show: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.customView.detailsStack.loadingIndicatorView(show: false)
+        })
+    }
+    
+}
 
+extension ProcedureDetailViewController: CloseAndUpdateProcedureDelegate {
+    func updateProcedureDetails(_ procedure: GetProcedureModel) {
+        self.customView.setupView(procedure: procedure)
+        self.reloadStackDetails()
+    }
 }
