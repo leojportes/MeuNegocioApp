@@ -23,7 +23,10 @@ class UserOnboardingViewModel: UserOnboardingViewModelProtocol {
     }
     
     func createUser(userModel: CreateUserModel, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "http://54.86.122.10:3000/profile") else {
+        
+        let createUser = MNUserDefaults.getRemoteConfig()?.addUser ?? "http://54.86.122.10:3000/profile"
+        
+        guard let url = URL(string: createUser) else {
             print("Error: cannot create URL")
             return
         }

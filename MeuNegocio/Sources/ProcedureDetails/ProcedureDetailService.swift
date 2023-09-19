@@ -16,7 +16,10 @@ class ProcedureDetailService: ProcedureDetailServiceProtocol {
 
     /// Delete procedure
     func deleteProcedure(_ procedure: String, completion: @escaping (String) -> Void) {
-        guard let url = URL(string: "http://54.86.122.10:3000/procedure/\(procedure)") else {
+        
+        let deleteProcedureById = MNUserDefaults.getRemoteConfig()?.deleteProcedureById ?? "http://54.86.122.10:3000/procedure/"
+        
+        guard let url = URL(string: "\(deleteProcedureById)\(procedure)") else {
             print("Error: cannot create URL")
             return
         }
@@ -35,7 +38,10 @@ class ProcedureDetailService: ProcedureDetailServiceProtocol {
                                                   value: procedure.value,
                                                   costs: procedure.costs.orEmpty)
         
-        guard let url = URL(string: "http://54.86.122.10:3000/procedure/\(procedure._id)") else {
+        
+        let updateProcedureById = MNUserDefaults.getRemoteConfig()?.updateProcedureById ?? "http://54.86.122.10:3000/procedure/"
+        
+        guard let url = URL(string: "\(updateProcedureById)\(procedure._id)") else {
             print("Error: cannot create URL")
             return
         }

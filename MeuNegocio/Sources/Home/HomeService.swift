@@ -5,7 +5,7 @@
 //  Created by Renilson Moreira on 30/09/22.
 //
 import Foundation
-import FirebaseAuth
+import Firebase
 
 
 protocol HomeServiceProtocol {
@@ -20,7 +20,9 @@ class HomeService: HomeServiceProtocol {
     func getProcedureList(completion: @escaping ([GetProcedureModel]) -> Void) {
         guard let email = Auth.auth().currentUser?.email else { return }
 
-        let urlString = "http://54.86.122.10:3000/procedure/\(email)"
+        let urlProcedureList = MNUserDefaults.getRemoteConfig()?.getProcedureByEmail ?? "http://54.86.122.10:3000/procedure/"
+        
+        let urlString = "\(urlProcedureList)\(email)"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
@@ -39,7 +41,12 @@ class HomeService: HomeServiceProtocol {
 
     // Delete procedure
     func deleteProcedure(_ procedure: String, completion: @escaping () -> Void) {
-        guard let url = URL(string: "http://54.86.122.10:3000/procedure/\(procedure)") else {
+        
+        let deleteProcedureById = MNUserDefaults.getRemoteConfig()?.deleteProcedureById ?? "http://54.86.122.10:3000/procedure/"
+        
+        let urlString = "\(deleteProcedureById)\(procedure)"
+        
+        guard let url = URL(string: urlString) else {
             print("Error: cannot create URL")
             return
         }
@@ -52,8 +59,11 @@ class HomeService: HomeServiceProtocol {
     
     func fetchUser(completion: @escaping (UserModelList) -> Void) {
         guard let email = Auth.auth().currentUser?.email else { return }
+        
+        let getUserByEmail = MNUserDefaults.getRemoteConfig()?.getUserByEmail ?? "http://54.86.122.10:3000/profile/"
+        
+        let urlString = "\(getUserByEmail)\(email)"
 
-        let urlString = "http://54.86.122.10:3000/profile/\(email)"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }

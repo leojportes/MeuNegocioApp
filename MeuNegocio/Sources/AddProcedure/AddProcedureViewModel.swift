@@ -29,7 +29,10 @@ class AddProcedureViewModel: AddProcedureViewModelProtocol {
 
     // MARK: - Methods
     func createProcedure(procedure: CreateProcedureModel, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: "http://54.86.122.10:3000/procedure") else {
+        
+        let createProcedure = MNUserDefaults.getRemoteConfig()?.addProcedure ?? "http://54.86.122.10:3000/procedure"
+        
+        guard let url = URL(string: createProcedure) else {
             print("Error: cannot create URL")
             return
         }

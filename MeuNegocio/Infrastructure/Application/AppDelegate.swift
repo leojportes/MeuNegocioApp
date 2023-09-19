@@ -14,11 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        RemoteConfigManager.shared.fetch()
         GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
         
         if !isAuthenticated() {
             KeychainService.deleteCredentials()
-            
         }
         return true
     }

@@ -24,6 +24,7 @@
 		522D901C289A00C40085575A /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901B289A00C40085575A /* LoginCoordinator.swift */; };
 		522D9020289A00E00085575A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901E289A00DF0085575A /* LoginView.swift */; };
 		522D9021289A00E00085575A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522D901F289A00DF0085575A /* LoginViewController.swift */; };
+		522DB4272ABA507200F4005A /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522DB4262ABA507200F4005A /* RemoteConfigManager.swift */; };
 		523ED6DE28B19DF10092FAAC /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */; };
 		52402322297F660400CBEDB2 /* ProcedureDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52402321297F660400CBEDB2 /* ProcedureDetailService.swift */; };
 		5249214928C00621006F01DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5249214828C00621006F01DA /* HomeViewModel.swift */; };
@@ -178,6 +179,7 @@
 		522D901B289A00C40085575A /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		522D901E289A00DF0085575A /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		522D901F289A00DF0085575A /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		522DB4262ABA507200F4005A /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		523ED6DD28B19DF10092FAAC /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountViewModel.swift; path = MeuNegocio/Sources/CreateAccount/CreateAccountViewModel.swift; sourceTree = SOURCE_ROOT; };
 		52402321297F660400CBEDB2 /* ProcedureDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcedureDetailService.swift; sourceTree = "<group>"; };
 		5249214828C00621006F01DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				5213DD01290B27BB00AFC980 /* MNKeys.swift */,
 				5213DD16290C4C2300AFC980 /* KeychainService.swift */,
 				52ECF8772953AAFC00C6230A /* TrackEvent.swift */,
+				522DB4262ABA507200F4005A /* RemoteConfigManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1105,6 +1108,7 @@
 				527D06DA28AAD60C001E0BE0 /* CreateAccountView.swift in Sources */,
 				52ECF870295106BA00C6230A /* RateAppViewController.swift in Sources */,
 				C0A7416B27B1980300391CE6 /* Coordinator.swift in Sources */,
+				522DB4272ABA507200F4005A /* RemoteConfigManager.swift in Sources */,
 				C0A174CB28E4F68B00DB0CE4 /* ReportCardView.swift in Sources */,
 				5213DD04290B694500AFC980 /* StartCoordinator.swift in Sources */,
 				C0AF028128C536C600B816AA /* ForgetPasswordViewController.swift in Sources */,

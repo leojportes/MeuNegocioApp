@@ -25,8 +25,9 @@ class ProfileViewModel: ProfileViewModelProtocol {
     }
     
     func deleteDatabaseData(completion: @escaping (Bool) -> Void) {
+        let deleteAccountByEmail = MNUserDefaults.getRemoteConfig()?.deleteAccountByEmail ?? "http://54.86.122.10:3000/procedure/delete-account/"
         guard let email = Auth.auth().currentUser?.email else { return }
-        guard let url = URL(string: "http://54.86.122.10:3000/procedure/delete-account/\(email)") else {
+        guard let url = URL(string: "\(deleteAccountByEmail)\(email)") else {
             print("Error: cannot create URL")
             return
         }

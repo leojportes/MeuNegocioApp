@@ -66,9 +66,12 @@ class LoginViewModel: LoginViewModelProtocol {
     }
     
     func fetchUser(completion: @escaping (UserModelList) -> Void) {
+        
+        let getUserByEmail = MNUserDefaults.getRemoteConfig()?.getUserByEmail ?? "http://54.86.122.10:3000/profile/"
+        
         guard let email = Auth.auth().currentUser?.email else { return }
 
-        let urlString = "http://54.86.122.10:3000/profile/\(email)"
+        let urlString = "\(getUserByEmail)\(email)"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
